@@ -1,10 +1,11 @@
 import Layout from "./components/Layout"
+import Gestionar from "./pages/Gestionar"
 
 function App(){
   return (<>
         <Layout>
         {
-          //su página debe estar en la carpeta page y lo incluyen acá
+          <Gestionar/>
         }
         </Layout>
 
