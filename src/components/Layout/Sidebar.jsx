@@ -1,5 +1,4 @@
-import "../styles/Sidebar.css"
-
+import "../../styles/Sidebsar.css"
 export default function SideBar() {
     return (
         <div className="main d-none d-lg-inline">
