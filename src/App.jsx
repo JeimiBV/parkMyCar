@@ -1,11 +1,10 @@
 import Layout from "./components/Layout"
+import ListaReserva from "./pages/ListaReserva"
 
 function App(){
   return (<>
         <Layout>
-        {
-          //su página debe estar en la carpeta page y lo incluyen acá
-        }
+          <ListaReserva/>
         </Layout>
 
   </>)

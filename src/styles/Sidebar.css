@@ -1,19 +1,20 @@
-.main{
+.main {
     background-color: #C3CEDA;
     min-height: 87vh;
     width: 17vw;
 }
 
-.opcion{
+.opcion {
     list-style: none;
     padding: 0 30px;
     width: 17vw;
     margin-left: -32px;
 }
-.opcion:hover{
-    background-color: #769BC3;
-}
-.opcion:hover .opciones{
-     color: aliceblue;
+
+.opcion:hover {
+    background-color: #738FA7;
 }
 
+.opcion:hover .opciones {
+    color: white;
+}
