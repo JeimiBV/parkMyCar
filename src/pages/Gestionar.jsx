@@ -8,13 +8,10 @@ const Gestionar = () => {
       <div className="formulario p-3">
         Numero de bloques de autos:
         <select name="opciones">
-                <option value="2">2</option>
-                <option value="4">4</option>
-                <option value="6">6</option>
-                <option value="8">8</option>
-                <option value="10">10</option>
-                <option value="12">12</option>
-              </select>
+          <option value="2">1</option>
+          <option value="4">2</option>
+          <option value="6">3</option>
+        </select>
         <p className="p">Capacidad de autos en cada bloque:</p>
         <div class="container text-center ">
           <div class="row align-items-center">
@@ -60,13 +57,13 @@ const Gestionar = () => {
       <div className="formulario p-3">
         Cantidad plazas especiales:
         <select name="opciones">
-                <option value="2">2</option>
-                <option value="4">4</option>
-                <option value="6">6</option>
-                <option value="8">8</option>
-                <option value="10">10</option>
-                <option value="12">12</option>
-              </select>
+          <option value="2">2</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+          <option value="12">12</option>
+        </select>
         <p className="p">Capacidad de plazas en cada bloque:</p>
         <div class="container text-center ">
           <div class="row align-items-center">
@@ -111,7 +108,7 @@ const Gestionar = () => {
 
       <div className="formulario p-3">
         <p>Capacidad de motos:</p>
-        <button className="botonGuardar" > Guardar</button> 
+        <button className="botonGuardar"> Guardar</button>
       </div>
     </div>
   );
