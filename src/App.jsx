@@ -1,10 +1,11 @@
 import Layout from "./components/Layout"
-import ListaReserva from "./pages/ListaReserva"
+//import ListaReserva from "./pages/ListaReserva"
+import RegistroReserva from "./pages/RegistroReserva"
 
 function App(){
   return (<>
         <Layout>
-          <ListaReserva/>
+          <RegistroReserva/>
         </Layout>
 
   </>)

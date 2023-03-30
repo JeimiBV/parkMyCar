@@ -1,7 +1,8 @@
 .main {
-    background-color: #C3CEDA;
+    background-color: rgba(7 19 48 /80%);
     min-height: 87vh;
     width: 17vw;
+    border-right: 1px solid white;
 }
 
 .opcion {
@@ -12,7 +13,7 @@
 }
 
 .opcion:hover {
-    background-color: #738FA7;
+    background-color: rgba(195 206 218 / 20% );
 }
 
 .opcion:hover .opciones {

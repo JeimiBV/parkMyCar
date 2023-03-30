@@ -1,14 +1,14 @@
 .contenedorC{
     width: 85vw;
     height: 87vh;
-    background-color: #738FA7;
+    background-color: rgba(7 19 48 / 80%);;
 }
 
 @media (max-width:990px){
     .contenedorC{
         width: 100vw;
         height: 87vh;
-        background-color: #738FA7;
-    
+        background-color: rgba(7 19 48 / 80%);;
+        
     }
 }
