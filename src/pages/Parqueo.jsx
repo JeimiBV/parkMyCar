@@ -3,6 +3,8 @@ import "./Parqueo.css";
 
 function Parqueo() {
   const [plazas, setPlazas] = useState(Array(12).fill({ disponible: true }));
+  const [entrada, setEntrada] = useState("");
+  const [salida, setSalida] = useState("");
 
   const handleClick = (index) => {
     const newPlazas = plazas.map((plaza, i) =>
@@ -11,9 +13,35 @@ function Parqueo() {
     setPlazas(newPlazas);
   };
 
+  const handleEntradaChange = (event) => {
+    setEntrada(event.target.value);
+  };
+
+  const handleSalidaChange = (event) => {
+    setSalida(event.target.value);
+  };
+
   return (
     <div className="parqueo-container vertical-line">
-      <h1>Sistema de Reserva de Plazas en Parqueo</h1>
+      <h1>Plazas</h1>
+      <div className="buscadores">
+        <div className="buscador">
+          <input
+            type="text"
+            value={entrada}
+            onChange={handleEntradaChange}
+            placeholder="Hora de entrada"
+          />
+        </div>
+        <div className="buscador">
+          <input
+            type="text"
+            value={salida}
+            onChange={handleSalidaChange}
+            placeholder="Hora de salida"
+          />
+        </div>
+      </div>
       <div className="plazas-container">
         <div className="plazas-column">
           {plazas.slice(0, 6).map((plaza, index) => (
