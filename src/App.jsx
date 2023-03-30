@@ -1,14 +1,10 @@
-import Container from "./components/Container";
-import Navbar from "./components/Navbar";
-import SideBar from "./components/Sidebar";
+import Layout from "./components/Layout";
+import Gestionar from "./pages/Gestionar";
+
 function App() {
   return (
     <>
-      <Navbar />
-      <div className="d-flex">
-        <SideBar />
-        <Container />
-      </div>
+      <Layout>{<Gestionar />}</Layout>
     </>
   );
 }
