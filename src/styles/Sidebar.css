@@ -1,19 +1,22 @@
-.main{
-    background-color: #C3CEDA;
-    min-height: 87vh;
-    width: 17vw;
+.main {
+    background-color: rgba(7 19 48 /80%);
+    min-height: 88vh;
+    width: 16.6vw;
+    border-right: 1px solid white;
+    position: fixed;
 }
 
-.opcion{
+.opcion {
     list-style: none;
     padding: 0 30px;
-    width: 17vw;
+    width: 16.5vw;
     margin-left: -32px;
 }
-.opcion:hover{
-    background-color: #769BC3;
-}
-.opcion:hover .opciones{
-     color: aliceblue;
+
+.opcion:hover {
+    background-color: rgba(195 206 218 / 20% );
 }
 
+.opcion:hover .opciones {
+    color: white;
+}

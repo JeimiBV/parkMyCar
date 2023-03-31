@@ -1,8 +1,7 @@
-import { useState } from "react"
 import Layout from "./components/Layout/Layout"
-import Table from "./components/Table"
-//import Modal from "./components/Modal"
-//import ButtonDate from "./components/ButtonDate"
+//import ListaReserva from "./pages/ListaReserva"
+import RegistroReserva from "./pages/RegistroReserva"
+import { useState } from "react"
 
 function App(){
   const [datos, setDatos]=useState([ {hora:"3:30 - 4:30",
@@ -14,7 +13,7 @@ placa:"sadasssd"}
 ])
   return (<>
         <Layout>
-        <Table datos={datos}/>
+          <RegistroReserva/>
         </Layout>
 
   </>)

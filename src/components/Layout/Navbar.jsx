@@ -3,7 +3,7 @@ import "../../styles/Navbar.css"
 
 export default function Navbar() {
     return (
-        <div className="navegador d-flex ">
+        <div className="navegador d-flex fixed-top">
             <nav class="navbar navbar-expand-lg container-fluid d-flex ">
                 <div class="container-fluid ">
 
