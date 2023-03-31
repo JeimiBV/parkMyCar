@@ -1,11 +1,13 @@
-import Layout from "./components/Layout"
-//import ListaReserva from "./pages/ListaReserva"
-import RegistroReserva from "./pages/RegistroReserva"
+import Layout from "./components/Layout/Layout"
+import ListaReserva from "./pages/ListaReserva"
+//import RegistroReserva from "./pages/RegistroReserva"
+import { useState } from "react"
 
 function App(){
+  
   return (<>
         <Layout>
-          <RegistroReserva/>
+          <ListaReserva/>
         </Layout>
 
   </>)

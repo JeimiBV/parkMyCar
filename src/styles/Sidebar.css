@@ -1,14 +1,15 @@
 .main {
     background-color: rgba(7 19 48 /80%);
-    min-height: 87vh;
-    width: 17vw;
+    min-height: 88vh;
+    width: 16.6vw;
     border-right: 1px solid white;
+    position: fixed;
 }
 
 .opcion {
     list-style: none;
     padding: 0 30px;
-    width: 17vw;
+    width: 16.5vw;
     margin-left: -32px;
 }
 

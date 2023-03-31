@@ -1,0 +1,10 @@
+.cardH {
+    background-color: rgba(195 206 218 /70%);
+    width: 100%;
+
+}
+.cardV {
+    background-color: rgba(195 206 218 /70%);
+    width: 100%;
+    height: 86.7vh;
+}

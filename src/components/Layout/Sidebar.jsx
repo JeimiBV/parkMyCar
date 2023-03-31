@@ -1,8 +1,7 @@
-import "../styles/Sidebar.css"
-
+import "../../styles/Sidebar.css"
 export default function SideBar() {
     return (
-        <div className="main d-none d-lg-inline m-4 me-0">
+        <div className="main d-none d-lg-inline ">
             <ul>
                 <div className="opcion ">
                     <div className="d-flex py-3 text-decoration-none text-light align-items-center" >
