@@ -2,6 +2,7 @@ import Navbar from "./Navbar";
 import SideBar from "./Sidebar";
 import Container from "./Container";
 import "../../styles/Layout.css";
+import { Router } from "react-router-dom";
 
 export default function Layout({ children }) {
   return (

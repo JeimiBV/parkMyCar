@@ -1,16 +1,16 @@
 import Layout from "./components/Layout/Layout"
 import ListaReserva from "./pages/ListaReserva"
 //import RegistroReserva from "./pages/RegistroReserva"
-import { useState } from "react"
+import { BrowserRouter } from 'react-router-dom';
 
-function App(){
-  
-  return (<>
-        <Layout>
-          <ListaReserva/>
-        </Layout>
+function App() {
 
-  </>)
+  return (
+    <BrowserRouter>
+    </BrowserRouter>
+      
+    
+  )
 }
 
 export default App
