@@ -2,13 +2,12 @@ import Navbar from "./Navbar";
 import SideBar from "./Sidebar";
 import Container from "./Container";
 import "../../styles/Layout.css";
-import { Router } from "react-router-dom";
 
 export default function Layout({ children }) {
   return (
-    <div className=" ContenedorL">
+    <div className="layout ">
       <Navbar />
-      <div className="row layout w-100">
+      <div className="row w-100 mr-0 ml-0">
         <div className="col-2">
           <SideBar />
         </div>

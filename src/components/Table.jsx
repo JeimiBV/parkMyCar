@@ -2,7 +2,7 @@ import "../styles/Table.css"
 export default function Table({ datos, fecha }) {
     return (
         <div className="ms-5 ps-5 mb-5">
-            <section className="fs-4 fecha p-3 rounded-4 text-center mb-4">
+            <section className="fs-4 fecha p-3 rounded-4 text-center mb-4 text-light">
                 {fecha}
             </section>
             <div>

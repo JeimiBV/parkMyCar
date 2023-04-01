@@ -7,9 +7,8 @@ function App() {
 
   return (
     <BrowserRouter>
-    </BrowserRouter>
-      
-    
+      <Layout/>
+    </BrowserRouter>   
   )
 }
 

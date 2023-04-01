@@ -1,7 +1,7 @@
 import Button from "../components/Button";
 import Table from "../components/Table"
 import { useState } from "react";
-import Layout from "../components/Layout/Layout"
+import "../styles/PagesStyles/ListaReserva.css"
 
 export default function ListaReserva() {
   const [datos, setDatos] = useState([
@@ -33,8 +33,8 @@ export default function ListaReserva() {
     ]}
   ])
   return (
-    <>
-      <div className="m-2 pt-2">
+    <div className="overflow-y-scroll containerListaReserva">
+      <div className="p-2">
         <div>
           <Button
             volverButton={true}>
@@ -55,6 +55,6 @@ export default function ListaReserva() {
         </div>
 
       </div>
-    </>
+    </div>
   );
 }
