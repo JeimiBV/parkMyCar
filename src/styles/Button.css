@@ -1,0 +1,9 @@
+.volver{
+    width: 8vw;
+    background-color: #071330;
+    color: white;
+}
+.volver:hover{
+    background-color: #0C4160;
+    color: white;
+}

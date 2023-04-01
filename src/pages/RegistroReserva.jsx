@@ -1,8 +1,11 @@
 import Card from "../components/Card";
 import Button from "../components/Button";
+import Modal from "../components/Modal";
+import { useState } from "react";
 export default function RegistroReserva() {
+  const [modal, setMondal]=useState(false);
   return (
-    <div className="row w-100">
+    <div className="row w-100 position-relative">
       <h1 className="text-center text-light my-4 ">Reserva</h1>
       <div className="m-3 col-8">
         <Card titulo={"Tiempo de reserva"}>
@@ -98,6 +101,10 @@ export default function RegistroReserva() {
           </div>
         </Card>
       </div>
+      <Modal mostrar={true}>
+      
+
+      </Modal>
     </div>
   );
 }
