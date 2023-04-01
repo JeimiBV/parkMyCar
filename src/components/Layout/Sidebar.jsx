@@ -4,7 +4,7 @@ export default function SideBar() {
     return (
         <div className="main d-lg-inline pt-2">
             <ul>
-                <div className="opcion ">
+                <div className="opcion">
                     <a href="/reservas" className="text-decoration-none">
                         <div className="d-flex py-3 text-decoration-none text-light align-items-center" >
                             <i class="fa-solid fa-square-parking fs-1 me-3 opciones"></i>
