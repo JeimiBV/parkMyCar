@@ -1,9 +1,16 @@
+//import RegistroReserva from "./pages/RegistroReserva"
+import {MuiPickersUtilsProvider} from "@material-ui/pickers"
+import DateFnsUtils from "@date-io/date-fns"
+import { DateTimePicker } from "@material-ui/pickers"
+
+import esLocale from "date-fns/locale/es"
+
 import Card from "../components/Card";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
 import { useState } from "react";
 export default function RegistroReserva() {
-  const [modal, setMondal]=useState(false);
+  const [modal, setModal]=useState(false);
   return (
     <div className="row w-100 position-relative">
       <h1 className="text-center text-light my-4 ">Reserva</h1>
@@ -18,7 +25,7 @@ export default function RegistroReserva() {
               <p>Parqueo desde</p>
             </div>
             <div className="col">
-              <a>day dd/mm/yyyy</a>
+              <a onClick={()=>{setModal(true)}}>day dd/mm/yyyy</a>
             </div>
           </div>
           <div className="row">
@@ -30,7 +37,7 @@ export default function RegistroReserva() {
               <p>Parqueo hasta</p>
             </div>
             <div className="col">
-              <a>day dd/mm/yyyy</a>
+              <a onClick={()=>{setModal(true)}}>day dd/mm/yyyy</a>
             </div>
           </div>
           <div className="row">
@@ -96,15 +103,49 @@ export default function RegistroReserva() {
             </div>
             <div className="row m-2 h-25">
               <Button>Reservar</Button>
-              <Button>Cancelar</Button>
+              <Button >Cancelar</Button>
             </div>
           </div>
         </Card>
       </div>
-      <Modal mostrar={true}>
-      
+     
+      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={esLocale}>
 
+      <Modal titulo={"Edite la fecha o tiempo"}
+      mostrar={modal}
+      >
+        <div className="row">
+            <div className="col-6 text-center"> 
+            <h5>
+              Parqueo desde:
+            </h5>
+            <label className="bg-light rounded-3 p-2">
+            <DateTimePicker/>
+            </label>
+            </div>
+            <div className=" col-6 text-center">
+            <h5>
+              Parqueo hasta:
+            </h5>
+            <label className="bg-light rounded-3 p-2 ">
+            <DateTimePicker/>
+            </label>
+            </div>
+            <div className="row d-flex justify-content-center mt-5 ">
+              <button className="btn btn-primary w-25 my-5 me-2 ">
+                Aceptar
+              </button>
+              <button className="btn btn-primary w-25 my-5 ms-2" onClick={()=>{setModal(false)}}>
+                Cancelar
+              </button>
+            </div>
+
+        </div>
       </Modal>
+
+      </MuiPickersUtilsProvider>
+
+   
     </div>
   );
 }
