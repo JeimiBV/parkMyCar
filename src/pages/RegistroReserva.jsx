@@ -10,7 +10,8 @@ import "../styles/PagesStyles/RegistroReserva.css"
 import { useState } from "react";
 
 export default function RegistroReserva() {
-  const [date, setDate] = useState(new Date());
+  const [dateEntrada, setDateEntrada] = useState(new Date());
+  const [dateSalida, setDateSalida] = useState(new Date());
   const [modal, setModal] = useState(false);
   const [fechaEntrada, setFechaEntrada] = useState("Seleccione la fecha entrada");
   const [fechaSalida, setFechaSalida] = useState("Seleccione la fecha salida");
@@ -26,13 +27,16 @@ export default function RegistroReserva() {
     if (date.getDate() < 10) {
       fecha = dia + " 0" + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     }
-    if (tipo == "Entrada") {
+    if (tipo == true) {
       setFechaEntrada(fecha);
+    }else{
+      setFechaSalida(fecha);
     }
-    setFechaSalida(fecha);
+    console.log(dateEntrada.getMinutes())
+    
   }
 
-  console.log(fechaEntrada)
+  
   return (
     <div className="overflow-y-scroll containerReserva">
       <div className="row w-100 position-relative">
@@ -71,7 +75,7 @@ export default function RegistroReserva() {
                 <p>Duración</p>
               </div>
               <div className="col">
-                <a>{date.duracion}</a>
+                <a>{}</a>
               </div>
             </div>
           </Card>
@@ -141,20 +145,20 @@ export default function RegistroReserva() {
                 <h5>
                   Parqueo desde:
                 </h5>
-                <label className="bg-light rounded-3 p-2" onClick={() => { formatearFecha(date, "Entrada") }}>
-                  <DateTimePicker value={date} onChange={setDate} />
+                <label className="bg-light rounded-3 p-2" onClick={() => { formatearFecha(dateEntrada, true) }}>
+                  <DateTimePicker value={dateEntrada} onChange={setDateEntrada} />
                 </label>
               </div>
               <div className=" col-6 text-center">
                 <h5>
                   Parqueo hasta:
                 </h5>
-                <label className="bg-light rounded-3 p-2 " onClick={() => { formatearFecha(date, "Salida") }} >
-                  <DateTimePicker value={date} onChange={setDate} />
+                <label className="bg-light rounded-3 p-2 " onClick={() => { formatearFecha(dateSalida, false) }} >
+                  <DateTimePicker value={dateSalida} onChange={setDateSalida} />
                 </label>
               </div>
               <div className="row d-flex justify-content-center mt-5 ">
-                <button className="btn btn-primary w-25 my-5 me-2">
+                <button className="btn btn-primary w-25 my-5 me-2" onClick={() => { setModal(false) }}>
                   Aceptar
                 </button>
                 <button className="btn btn-primary w-25 my-5 ms-2" onClick={() => { setModal(false) }}>
