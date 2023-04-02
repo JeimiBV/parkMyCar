@@ -1,10 +1,41 @@
+import { MuiPickersUtilsProvider } from "@material-ui/pickers"
+import DateFnsUtils from "@date-io/date-fns"
+import { DateTimePicker, DatePicker } from "@material-ui/pickers"
+import Modal from "../components/Modal";
+import esLocale from "date-fns/locale/es"
+
 import Card from "../components/Card";
 import Button from "../components/Button";
 import "../styles/PagesStyles/RegistroReserva.css"
+import { useState } from "react";
+
 export default function RegistroReserva() {
+  const [date, setDate] = useState(new Date());
+  const [modal, setModal] = useState(false);
+  const [fechaEntrada, setFechaEntrada] = useState("Seleccione la fecha entrada");
+  const [fechaSalida, setFechaSalida] = useState("Seleccione la fecha salida");
+
+
+  const formatearFecha = (date, tipo) => {
+    const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+    let dia = dias[date.getDay() - 1];
+    let fecha = dia + " " + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    if ((date.getMonth() + 1) < 10) {
+      fecha = dia + " " + date.getDate() + "/0" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    }
+    if (date.getDate() < 10) {
+      fecha = dia + " 0" + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    }
+    if (tipo == "Entrada") {
+      setFechaEntrada(fecha);
+    }
+    setFechaSalida(fecha);
+  }
+
+  console.log(fechaEntrada)
   return (
     <div className="overflow-y-scroll containerReserva">
-      <div className="row w-100">
+      <div className="row w-100 position-relative">
         <h1 className="text-center text-light my-4 ">Reserva</h1>
         <div className="m-3 col-8">
           <Card titulo={"Tiempo de reserva"}>
@@ -17,7 +48,7 @@ export default function RegistroReserva() {
                 <p>Parqueo desde</p>
               </div>
               <div className="col">
-                <a>day dd/mm/yyyy</a>
+                <a className="cursor" onClick={() => { setModal(true) }} >{fechaEntrada}</a>
               </div>
             </div>
             <div className="row">
@@ -29,7 +60,7 @@ export default function RegistroReserva() {
                 <p>Parqueo hasta</p>
               </div>
               <div className="col">
-                <a>day dd/mm/yyyy</a>
+                <a className="cursor" onClick={() => { setModal(true) }} >{fechaSalida}</a>
               </div>
             </div>
             <div className="row">
@@ -40,7 +71,7 @@ export default function RegistroReserva() {
                 <p>Duración</p>
               </div>
               <div className="col">
-                <a>#Horas</a>
+                <a>{date.duracion}</a>
               </div>
             </div>
           </Card>
@@ -100,6 +131,41 @@ export default function RegistroReserva() {
             </div>
           </Card>
         </div>
+        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={esLocale}>
+
+          <Modal titulo={"Edite la fecha o tiempo"}
+            mostrar={modal}
+          >
+            <div className="row">
+              <div className="col-6 text-center">
+                <h5>
+                  Parqueo desde:
+                </h5>
+                <label className="bg-light rounded-3 p-2" onClick={() => { formatearFecha(date, "Entrada") }}>
+                  <DateTimePicker value={date} onChange={setDate} />
+                </label>
+              </div>
+              <div className=" col-6 text-center">
+                <h5>
+                  Parqueo hasta:
+                </h5>
+                <label className="bg-light rounded-3 p-2 " onClick={() => { formatearFecha(date, "Salida") }} >
+                  <DateTimePicker value={date} onChange={setDate} />
+                </label>
+              </div>
+              <div className="row d-flex justify-content-center mt-5 ">
+                <button className="btn btn-primary w-25 my-5 me-2">
+                  Aceptar
+                </button>
+                <button className="btn btn-primary w-25 my-5 ms-2" onClick={() => { setModal(false) }}>
+                  Cancelar
+                </button>
+              </div>
+
+            </div>
+          </Modal>
+
+        </MuiPickersUtilsProvider>
       </div>
     </div>
   );
