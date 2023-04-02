@@ -7,19 +7,24 @@ import esLocale from "date-fns/locale/es"
 import Card from "../components/Card";
 import Button from "../components/Button";
 import "../styles/PagesStyles/RegistroReserva.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function RegistroReserva() {
   const [dateEntrada, setDateEntrada] = useState(new Date());
   const [dateSalida, setDateSalida] = useState(new Date());
   const [modal, setModal] = useState(false);
-  const [fechaEntrada, setFechaEntrada] = useState("Seleccione la fecha entrada");
-  const [fechaSalida, setFechaSalida] = useState("Seleccione la fecha salida");
+  const [fechaEntrada, setFechaEntrada] = useState("");
+  const [fechaSalida, setFechaSalida] = useState("");
+  const [tarifa, setTarifa] = useState(0);
 
+  useEffect( () => {
+    formatearFecha(dateEntrada,true);
+    formatearFecha(dateSalida,false);
+  }, [dateEntrada, dateSalida])
 
   const formatearFecha = (date, tipo) => {
-    const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
-    let dia = dias[date.getDay() - 1];
+    const dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    let dia = dias[date.getDay()];
     let fecha = dia + " " + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     if ((date.getMonth() + 1) < 10) {
       fecha = dia + " " + date.getDate() + "/0" + (date.getMonth() + 1) + "/" + date.getFullYear();
@@ -32,10 +37,13 @@ export default function RegistroReserva() {
     }else{
       setFechaSalida(fecha);
     }
-    console.log(dateEntrada.getMinutes())
     
   }
-
+  const calcularTarifa = (precio) => {
+    let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
+    let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
+    setTarifa((hours + minutes/60)*precio);
+  }
   
   return (
     <div className="overflow-y-scroll containerReserva">
@@ -75,7 +83,7 @@ export default function RegistroReserva() {
                 <p>Duración</p>
               </div>
               <div className="col">
-                <a>{}</a>
+                <a>{Math.abs(dateSalida.getHours()-dateEntrada.getHours())} horas y {Math.abs(dateSalida.getMinutes()-dateEntrada.getMinutes())} minutos</a>
               </div>
             </div>
           </Card>
@@ -105,9 +113,9 @@ export default function RegistroReserva() {
               <div className="d-flex row-2 py-2">
                 <p className="me-5 fs-6 m-0 w-25">Tipo de vehículo:</p>
                 <select className="dropdown w-100">
-                  <option>Seleccione el tipo de motorizado</option>
-                  <option>Vehículo</option>
-                  <option>Moto</option>
+                  <option disabled>Seleccione el tipo de motorizado</option>
+                  <option >Vehículo</option>
+                  <option >Moto</option>
                 </select>
               </div>
             </div>
@@ -124,7 +132,7 @@ export default function RegistroReserva() {
                   <p className="fs-6 ">Plaza:</p>
                 </div>
                 <div className="col">
-                  <p className=" fs-6">000Bs</p>
+                  <p className=" fs-6">{0}</p>
                   <p className=" fs-6">000Bs</p>
                 </div>
               </div>
@@ -145,16 +153,16 @@ export default function RegistroReserva() {
                 <h5>
                   Parqueo desde:
                 </h5>
-                <label className="bg-light rounded-3 p-2" onClick={() => { formatearFecha(dateEntrada, true) }}>
-                  <DateTimePicker value={dateEntrada} onChange={setDateEntrada} />
+                <label className="bg-light rounded-3 p-2">
+                  <DateTimePicker value={dateEntrada} minDate={(new Date)} onChange={setDateEntrada} />
                 </label>
               </div>
               <div className=" col-6 text-center">
                 <h5>
                   Parqueo hasta:
                 </h5>
-                <label className="bg-light rounded-3 p-2 " onClick={() => { formatearFecha(dateSalida, false) }} >
-                  <DateTimePicker value={dateSalida} onChange={setDateSalida} />
+                <label className="bg-light rounded-3 p-2 ">
+                  <DateTimePicker value={dateSalida} minDate={dateEntrada} onChange={setDateSalida} />
                 </label>
               </div>
               <div className="row d-flex justify-content-center mt-5 ">
