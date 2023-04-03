@@ -35,13 +35,13 @@ export default function ListaReserva() {
   return (
     <div className="overflow-y-scroll containerListaReserva">
       <div className="p-2">
-        <div>
+        <a href="/plazaReserva" className="text-decoration-none">
           <Button
             volverButton={true}>
             Volver
             <i class="fa-solid fa-arrow-left"></i>
           </Button>
-        </div>
+        </a>
         <h1 className="text-center text-light">Plaza 1</h1>
 
         <div className="ms-5">

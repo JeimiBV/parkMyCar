@@ -13,12 +13,16 @@ const router = createBrowserRouter([
     element: <div> Landing</div>
   },
   {
-    path: "/listaReserva",
+    path: "/plazaReserva",
     element: <PlazasReserva />
   },
   {
     path: "/reservas",
     element: <RegistroReserva />
+  },
+  {
+    path: "/listaReserva",
+    element: <ListaReserva />
   }
 ])
 
