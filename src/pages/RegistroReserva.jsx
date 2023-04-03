@@ -3,7 +3,6 @@ import DateFnsUtils from "@date-io/date-fns"
 import { DateTimePicker, DatePicker } from "@material-ui/pickers"
 import Modal from "../components/Modal";
 import esLocale from "date-fns/locale/es"
-
 import Card from "../components/Card";
 import Button from "../components/Button";
 import "../styles/PagesStyles/RegistroReserva.css"
@@ -112,10 +111,10 @@ export default function RegistroReserva() {
               </div>
               <div className="d-flex row-2 py-2">
                 <p className="me-5 fs-6 m-0 w-25">Tipo de vehículo:</p>
-                <select className="dropdown w-100">
+                <select onChange={(e)=>{calcularTarifa(e.target.value)}} className="dropdown w-100">
                   <option disabled>Seleccione el tipo de motorizado</option>
-                  <option >Vehículo</option>
-                  <option >Moto</option>
+                  <option value={5}>Vehículo</option>
+                  <option value={2}>Moto</option>
                 </select>
               </div>
             </div>
@@ -132,7 +131,7 @@ export default function RegistroReserva() {
                   <p className="fs-6 ">Plaza:</p>
                 </div>
                 <div className="col">
-                  <p className=" fs-6">{0}</p>
+                  <p className=" fs-6">{tarifa}</p>
                   <p className=" fs-6">000Bs</p>
                 </div>
               </div>
