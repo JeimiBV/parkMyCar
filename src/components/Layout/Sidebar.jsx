@@ -2,7 +2,7 @@ import "../../styles/Sidebar.css"
 import { Link } from "react-router-dom"
 export default function SideBar() {
     return (
-        <div className="main d-lg-inline pt-2">
+        <div className="main d-lg-inline d-none pt-2">
             <ul>
                 <div className="opcion">
                     <a href="/reservas" className="text-decoration-none">

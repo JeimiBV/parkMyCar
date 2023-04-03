@@ -8,10 +8,10 @@ export default function Layout({ children }) {
     <div className="layout ">
       <Navbar />
       <div className="row w-100 mr-0 ml-0">
-        <div className="col-2">
+        <div className="col-lg-2">
           <SideBar />
         </div>
-        <div className="col-10">
+        <div className="col-10 ps-0">
           <Container>
             {children}
           </Container>
