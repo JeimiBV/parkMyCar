@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Parqueo.css";
 
 function Parqueo() {
-  const [plazas, setPlazas] = useState(Array(24).fill({ disponible: true }));
+  const [plazas, setPlazas] = useState(Array(36).fill({ disponible: true }));
   const [entrada, setEntrada] = useState("");
   const [salida, setSalida] = useState("");
 
@@ -45,79 +45,126 @@ function Parqueo() {
 
       <div className="plazas-container">
         <div className="bloques1">
-          <div className="clase-linea">
+          <div className="titulo-auto">Automovil</div>
+          <div className="alinear-columnas">
+            <div className="clase-linea">
+              <div className="plazas-column">
+                {plazas.slice(0, 6).map((plaza, index) => (
+                  <div key={index} className="plaza-container">
+                    <div className="horizontal-line" />
+                    <button
+                      onClick={() => handleClick(index)}
+                      disabled={!plaza.disponible}
+                      className={`plaza-button ${
+                        plaza.disponible ? "disponible" : "ocupado"
+                      }`}
+                    >
+                      {plaza.disponible ? `Plaza ${index + 1}` : "Ocupado"}
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <div className="linea-vertical"></div>
+            </div>
             <div className="plazas-column">
-              {plazas.slice(0, 6).map((plaza, index) => (
-                <div key={index} className="plaza-container">
+              {plazas.slice(6, 12).map((plaza, index) => (
+                <div key={index + 6} className="plaza-container">
                   <div className="horizontal-line" />
                   <button
-                    onClick={() => handleClick(index)}
+                    onClick={() => handleClick(index + 6)}
                     disabled={!plaza.disponible}
                     className={`plaza-button ${
                       plaza.disponible ? "disponible" : "ocupado"
                     }`}
                   >
-                    {plaza.disponible ? `Plaza ${index + 1}` : "Ocupado"}
+                    {plaza.disponible ? `Plaza ${index + 7}` : "Ocupado"}
                   </button>
                 </div>
               ))}
             </div>
-            <div className="linea-vertical"></div>
-          </div>
-
-          <div className="plazas-column">
-            {plazas.slice(6, 12).map((plaza, index) => (
-              <div key={index + 6} className="plaza-container">
-                <div className="horizontal-line" />
-                <button
-                  onClick={() => handleClick(index + 6)}
-                  disabled={!plaza.disponible}
-                  className={`plaza-button ${
-                    plaza.disponible ? "disponible" : "ocupado"
-                  }`}
-                >
-                  {plaza.disponible ? `Plaza ${index + 7}` : "Ocupado"}
-                </button>
-              </div>
-            ))}
           </div>
         </div>
         <div className="bloques2">
-          <div className="clase-linea">
+          <div className="titulo-auto">Automovil</div>
+          <div className="alinear-columnas">
+            <div className="clase-linea">
+              <div className="plazas-column">
+                {plazas.slice(12, 18).map((plaza, index) => (
+                  <div key={index + 12} className="plaza-container">
+                    <div className="horizontal-line" />
+                    <button
+                      onClick={() => handleClick(index + 12)}
+                      disabled={!plaza.disponible}
+                      className={`plaza-button ${
+                        plaza.disponible ? "disponible" : "ocupado"
+                      }`}
+                    >
+                      {plaza.disponible ? `Plaza ${index + 13}` : "Ocupado"}
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <div className="linea-vertical"></div>
+            </div>
+
             <div className="plazas-column">
-              {plazas.slice(12, 18).map((plaza, index) => (
-                <div key={index + 12} className="plaza-container">
+              {plazas.slice(18, 24).map((plaza, index) => (
+                <div key={index + 18} className="plaza-container">
                   <div className="horizontal-line" />
                   <button
-                    onClick={() => handleClick(index + 12)}
+                    onClick={() => handleClick(index + 18)}
                     disabled={!plaza.disponible}
                     className={`plaza-button ${
                       plaza.disponible ? "disponible" : "ocupado"
                     }`}
                   >
-                    {plaza.disponible ? `Plaza ${index + 13}` : "Ocupado"}
+                    {plaza.disponible ? `Plaza ${index + 19}` : "Ocupado"}
                   </button>
                 </div>
               ))}
             </div>
-            <div className="linea-vertical"></div>
           </div>
+        </div>
 
-          <div className="plazas-column">
-            {plazas.slice(18, 24).map((plaza, index) => (
-              <div key={index + 18} className="plaza-container">
-                <div className="horizontal-line" />
-                <button
-                  onClick={() => handleClick(index + 18)}
-                  disabled={!plaza.disponible}
-                  className={`plaza-button ${
-                    plaza.disponible ? "disponible" : "ocupado"
-                  }`}
-                >
-                  {plaza.disponible ? `Plaza ${index + 19}` : "Ocupado"}
-                </button>
+        <div className="bloques3">
+          <div className="titulo-auto">Motocicletas</div>
+          <div className="alinear-columnas">
+            <div className="clase-linea">
+              <div className="plazas-column">
+                {plazas.slice(24, 30).map((plaza, index) => (
+                  <div key={index + 24} className="plaza-container">
+                    <div className="horizontal-line" />
+                    <button
+                      onClick={() => handleClick(index + 24)}
+                      disabled={!plaza.disponible}
+                      className={`plaza-button ${
+                        plaza.disponible ? "disponible" : "ocupado"
+                      }`}
+                    >
+                      {plaza.disponible ? `Plaza ${index + 25}` : "Ocupado"}
+                    </button>
+                  </div>
+                ))}
               </div>
-            ))}
+              <div className="linea-vertical"></div>
+            </div>
+
+            <div className="plazas-column">
+              {plazas.slice(30, 36).map((plaza, index) => (
+                <div key={index + 30} className="plaza-container">
+                  <div className="horizontal-line" />
+                  <button
+                    onClick={() => handleClick(index + 30)}
+                    disabled={!plaza.disponible}
+                    className={`plaza-button ${
+                      plaza.disponible ? "disponible" : "ocupado"
+                    }`}
+                  >
+                    {plaza.disponible ? `Plaza ${index + 31}` : "Ocupado"}
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
