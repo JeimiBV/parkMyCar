@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Parqueo.css";
 
 function Parqueo() {
-  const [plazas, setPlazas] = useState(Array(36).fill({ disponible: true }));
+  const [plazas, setPlazas] = useState(Array(38).fill({ disponible: true }));
   const [entrada, setEntrada] = useState("");
   const [salida, setSalida] = useState("");
 
@@ -161,6 +161,48 @@ function Parqueo() {
                     }`}
                   >
                     {plaza.disponible ? `Plaza ${index + 31}` : "Ocupado"}
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="bloques3">
+          <div className="titulo-auto">prueba</div>
+          <div className="alinear-columnas">
+            <div className="clase-linea">
+              <div className="plazas-column">
+                {plazas.slice(30, 31).map((plaza, index) => (
+                  <div key={index + 30} className="plaza-container">
+                    <div className="horizontal-line" />
+                    <button
+                      onClick={() => handleClick(index + 30)}
+                      disabled={!plaza.disponible}
+                      className={`plaza-button ${
+                        plaza.disponible ? "disponible" : "ocupado"
+                      }`}
+                    >
+                      {plaza.disponible ? `Plaza ${index + 31}` : "Ocupado"}
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <div className="linea-vertical"></div>
+            </div>
+
+            <div className="plazas-column">
+              {plazas.slice(31, 32).map((plaza, index) => (
+                <div key={index + 31} className="plaza-container">
+                  <div className="horizontal-line" />
+                  <button
+                    onClick={() => handleClick(index + 31)}
+                    disabled={!plaza.disponible}
+                    className={`plaza-button ${
+                      plaza.disponible ? "disponible" : "ocupado"
+                    }`}
+                  >
+                    {plaza.disponible ? `Plaza ${index + 32}` : "Ocupado"}
                   </button>
                 </div>
               ))}
