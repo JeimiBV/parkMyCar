@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import ListaReserva from './pages/ListaReserva'
 import RegistroReserva from './pages/RegistroReserva'
+import PlazasReserva from './pages/PlazasReserva'
 import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout/Layout'
 
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/listaReserva",
-    element: <ListaReserva />
+    element: <PlazasReserva />
   },
   {
     path: "/reservas",

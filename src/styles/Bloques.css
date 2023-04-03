@@ -1,0 +1,10 @@
+
+.bloqueEstilo {
+    padding: 50px;
+  }
+@media only screen and (max-width: 1600px) {
+  
+  .bloqueEstilo {
+    padding: 8px;
+  }
+}
