@@ -8,6 +8,7 @@ import PlazasReserva from './pages/PlazasReserva'
 import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout/Layout'
 import { Provider } from 'react-redux'
+import Parqueo from "./pages/Parqueo"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,12 +25,17 @@ const router = createBrowserRouter([
   {
     path: "/listaReserva",
     element: <ListaReserva />
+  },
+  {
+    path: "/parqueo",
+    element:<Parqueo/>
+
   }
 ])
 
 
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <Layout>
