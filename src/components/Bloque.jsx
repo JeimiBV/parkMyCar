@@ -22,7 +22,7 @@ export default function Bloque(){
     const cambiarEstado=(id)=>{
       
     }
-    return(<div className=" row  m-2   bloqueEstilo rounded">
+    return(<div className=" row  m-2  bloqueEstilo rounded">
     {
         plazas.map( plaza=><Plaza
              datos={plaza}
