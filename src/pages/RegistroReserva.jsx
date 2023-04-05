@@ -1,8 +1,8 @@
-import { MuiPickersUtilsProvider } from "@material-ui/pickers"
-import DateFnsUtils from "@date-io/date-fns"
-import { DateTimePicker, DatePicker } from "@material-ui/pickers"
+//import { MuiPickersUtilsProvider } from "@material-ui/pickers"
+//import DateFnsUtils from "@date-io/date-fns"
+//import { DateTimePicker, DatePicker } from "@material-ui/pickers"
 import Modal from "../components/Modal";
-import esLocale from "date-fns/locale/es"
+//import esLocale from "date-fns/locale/es"
 import Card from "../components/Card";
 import Button from "../components/Button";
 import "../styles/PagesStyles/RegistroReserva.css"
@@ -142,7 +142,8 @@ export default function RegistroReserva() {
             </div>
           </Card>
         </div>
-        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={esLocale}>
+        {//<MuiPickersUtilsProvider utils={DateFnsUtils} locale={esLocale}>
+          }
 
           <Modal titulo={"Edite la fecha o tiempo"}
             mostrar={modal}
@@ -153,7 +154,9 @@ export default function RegistroReserva() {
                   Parqueo desde:
                 </h5>
                 <label className="bg-light rounded-3 p-2">
-                  <DateTimePicker value={dateEntrada} minDate={(new Date)} onChange={setDateEntrada} />
+                  {
+                   // <DateTimePicker value={dateEntrada} minDate={(new Date)} onChange={setDateEntrada} />
+                  }
                 </label>
               </div>
               <div className=" col-6 text-center">
@@ -161,7 +164,10 @@ export default function RegistroReserva() {
                   Parqueo hasta:
                 </h5>
                 <label className="bg-light rounded-3 p-2 ">
-                  <DateTimePicker value={dateSalida} minDate={dateEntrada} onChange={setDateSalida} />
+                  {
+                    //                  <DateTimePicker value={dateSalida} minDate={dateEntrada} onChange={setDateSalida} />
+
+                  }
                 </label>
               </div>
               <div className="row d-flex justify-content-center mt-5 ">
@@ -176,7 +182,8 @@ export default function RegistroReserva() {
             </div>
           </Modal>
 
-        </MuiPickersUtilsProvider>
+      {//  </MuiPickersUtilsProvider>
+      }
       </div>
     </div>
   );
