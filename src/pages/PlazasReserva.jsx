@@ -2,6 +2,7 @@ import "../styles/PagesStyles/PlazasReserva.css";
 import { useState } from "react";
 import Bloque from "../components/Bloque";
 import { useSelector } from "react-redux";
+
 export default function () {
   const [bloques, setBloques] = useState([1, 2, ]);
  const taskState= useSelector(state=> state.tasks)
