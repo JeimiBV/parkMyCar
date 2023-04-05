@@ -22,7 +22,7 @@ export default function SideBar() {
                     </a>
                 </div>
                 <div className="opcion">
-                    <a href="/reservas" className="text-decoration-none">
+                    <a href="" className="text-decoration-none">
                         <div className="d-flex py-3  text-decoration-none text-light align-items-center" >
                             <i class="fa-solid fa-user fs-1 me-3 opciones "></i>
                             <h3 className="opciones fs-5">Gestionar</h3>

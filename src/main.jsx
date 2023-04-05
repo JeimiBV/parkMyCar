@@ -9,10 +9,11 @@ import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router
 import Layout from './components/Layout/Layout'
 import { Provider } from 'react-redux'
 import Parqueo from "./pages/Parqueo"
+import Landing from "./pages/Landing"
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div> Landing</div>
+    element: <Landing/>
   },
   {
     path: "/plazaReserva",
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
     path: "/parqueo",
     element:<Parqueo/>
 
-  }
+  },
 ])
 
 

@@ -1,13 +1,14 @@
 import "../../styles/Navbar.css"
 
-
 export default function Navbar() {
     return (
         <div className="navegador d-flex fixed-top">
             <nav class="navbar navbar-expand-lg container-fluid d-flex ">
                 <div class="container-fluid ">
 
-                    <img src="logo.png" width={190} height={60} ></img>
+                    <a href="/">
+                    <img src="logo.png" width={190} height={60}   ></img>
+                    </a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa-sharp fa-solid fa-bars text-light"></i>
