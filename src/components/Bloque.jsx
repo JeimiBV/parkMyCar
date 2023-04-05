@@ -20,7 +20,6 @@ export default function Bloque(){
     ])
 
     const cambiarEstado=(id)=>{
-        console.log(id)
       
     }
     return(<div className=" row  m-2   bloqueEstilo rounded">
