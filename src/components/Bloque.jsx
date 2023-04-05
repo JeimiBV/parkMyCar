@@ -25,7 +25,7 @@ export default function Bloque(){
     return(<div className=" row  m-2   bloqueEstilo rounded">
     {
         plazas.map( plaza=><Plaza
-             datos={plaza}
+             datos={ plaza}
              cambiar={cambiarEstado()}
         /> )
     }
