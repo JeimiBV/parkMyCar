@@ -4,7 +4,7 @@ import Bloque from "../components/Bloque";
 import { useSelector } from "react-redux";
 
 export default function () {
-  const [bloques, setBloques] = useState([1, 2, ]);
+  const [bloques, setBloques] = useState([1, 2, 5]);
  const taskState= useSelector(state=> state.tasks)
 console.log(taskState)
   return (

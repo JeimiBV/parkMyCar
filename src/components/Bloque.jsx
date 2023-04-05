@@ -15,8 +15,6 @@ export default function Bloque(){
         {estado:false, id:10},
         {estado:false, id:11},
         {estado:false, id:12},
-        {estado:false, id:13},
-        {estado:false, id:14}
     ])
 
     const cambiarEstado=(id)=>{
