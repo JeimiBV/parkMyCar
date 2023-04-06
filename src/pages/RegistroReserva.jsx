@@ -7,6 +7,9 @@ import Card from "../components/Card";
 import Button from "../components/Button";
 import "../styles/PagesStyles/RegistroReserva.css"
 import { useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function RegistroReserva() {
   const [dateEntrada, setDateEntrada] = useState(new Date());
@@ -142,6 +145,7 @@ export default function RegistroReserva() {
             </div>
           </Card>
         </div>
+
         {//<MuiPickersUtilsProvider utils={DateFnsUtils} locale={esLocale}>
           }
 
@@ -154,6 +158,8 @@ export default function RegistroReserva() {
                   Parqueo desde:
                 </h5>
                 <label className="bg-light rounded-3 p-2">
+
+                <DatePicker />
                   {
                    // <DateTimePicker value={dateEntrada} minDate={(new Date)} onChange={setDateEntrada} />
                   }
