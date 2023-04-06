@@ -7,6 +7,8 @@ import Card from "../components/Card";
 import Button from "../components/Button";
 import "../styles/PagesStyles/RegistroReserva.css"
 import { useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function RegistroReserva() {
   const [dateEntrada, setDateEntrada] = useState(new Date());
@@ -16,9 +18,9 @@ export default function RegistroReserva() {
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
 
-  useEffect( () => {
-    formatearFecha(dateEntrada,true);
-    formatearFecha(dateSalida,false);
+  useEffect(() => {
+    formatearFecha(dateEntrada, true);
+    formatearFecha(dateSalida, false);
   }, [dateEntrada, dateSalida])
 
   const formatearFecha = (date, tipo) => {
@@ -33,17 +35,21 @@ export default function RegistroReserva() {
     }
     if (tipo == true) {
       setFechaEntrada(fecha);
-    }else{
+    } else {
       setFechaSalida(fecha);
     }
-    
+
   }
   const calcularTarifa = (precio) => {
     let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
     let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
-    setTarifa((hours + minutes/60)*precio);
+    setTarifa((hours + minutes / 60) * precio);
   }
-  
+
+  let handleColor = (time) => {
+    return time.getHours() > 12 ? "text-success" : "text-error";
+  };
+
   return (
     <div className="overflow-y-scroll containerReserva">
       <div className="row w-100 position-relative">
@@ -82,7 +88,7 @@ export default function RegistroReserva() {
                 <p>Duración</p>
               </div>
               <div className="col">
-                <a>{Math.abs(dateSalida.getHours()-dateEntrada.getHours())} horas y {Math.abs(dateSalida.getMinutes()-dateEntrada.getMinutes())} minutos</a>
+                <p>{Math.abs(dateSalida.getTime() - dateEntrada.getTime()) / 3600000} Horas</p>
               </div>
             </div>
           </Card>
@@ -111,7 +117,7 @@ export default function RegistroReserva() {
               </div>
               <div className="d-flex row-2 py-2">
                 <p className="me-5 fs-6 m-0 w-25">Tipo de vehículo:</p>
-                <select onChange={(e)=>{calcularTarifa(e.target.value)}} className="dropdown w-100">
+                <select onChange={(e) => { calcularTarifa(e.target.value) }} className="dropdown w-100">
                   <option disabled>Seleccione el tipo de motorizado</option>
                   <option value={5}>Vehículo</option>
                   <option value={2}>Moto</option>
@@ -142,48 +148,52 @@ export default function RegistroReserva() {
             </div>
           </Card>
         </div>
-        {//<MuiPickersUtilsProvider utils={DateFnsUtils} locale={esLocale}>
-          }
 
-          <Modal titulo={"Edite la fecha o tiempo"}
-            mostrar={modal}
-          >
-            <div className="row">
-              <div className="col-6 text-center">
-                <h5>
-                  Parqueo desde:
-                </h5>
-                <label className="bg-light rounded-3 p-2">
-                  {
-                   // <DateTimePicker value={dateEntrada} minDate={(new Date)} onChange={setDateEntrada} />
-                  }
-                </label>
-              </div>
-              <div className=" col-6 text-center">
-                <h5>
-                  Parqueo hasta:
-                </h5>
-                <label className="bg-light rounded-3 p-2 ">
-                  {
-                    //                  <DateTimePicker value={dateSalida} minDate={dateEntrada} onChange={setDateSalida} />
-
-                  }
-                </label>
-              </div>
-              <div className="row d-flex justify-content-center mt-5 ">
-                <button className="btn btn-primary w-25 my-5 me-2" onClick={() => { setModal(false) }}>
-                  Aceptar
-                </button>
-                <button className="btn btn-primary w-25 my-5 ms-2" onClick={() => { setModal(false) }}>
-                  Cancelar
-                </button>
-              </div>
-
+        <Modal titulo={"Edite la fecha o tiempo"}
+          mostrar={modal}
+        >
+          <div className="row">
+            <div className="col-6 text-center">
+              <h5>
+                Parqueo desde:
+              </h5>
+              <label className="bg-light rounded-3 p-2">
+                <DatePicker
+                  showTimeSelect
+                  selected={dateEntrada}
+                  minDate={(new Date)}
+                  dateFormat="Pp"
+                  onChange={(date) => setDateEntrada(date)}
+                  timeClassName={handleColor}
+                />
+              </label>
             </div>
-          </Modal>
+            <div className=" col-6 text-center">
+              <h5>
+                Parqueo hasta:
+              </h5>
+              <label className="bg-light rounded-3 p-2 ">
+                <DatePicker
+                  showTimeSelect
+                  selected={dateSalida}
+                  minDate={dateEntrada}
+                  dateFormat="Pp"
+                  onChange={(date) => setDateSalida(date)}
+                  timeClassName={handleColor}
+                />
+              </label>
+            </div>
+            <div className="row d-flex justify-content-center mt-5 ">
+              <button className="btn btn-primary w-25 my-5 me-2" onClick={() => { setModal(false) }}>
+                Aceptar
+              </button>
+              <button className="btn btn-primary w-25 my-5 ms-2" onClick={() => { setModal(false) }}>
+                Cancelar
+              </button>
+            </div>
 
-      {//  </MuiPickersUtilsProvider>
-      }
+          </div>
+        </Modal>
       </div>
     </div>
   );
