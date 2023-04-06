@@ -1,32 +1,39 @@
 import "../styles/Bloques.css"
 import { useState } from "react"
 import Plaza from "./Plaza"
-export default function Bloque(){
-    const [plazas, getPlazas]=useState([
-        {estado:false, id:1},
-        {estado:false, id:2},
-        {estado:false, id:3},
-        {estado:false, id:4},
-        {estado:false, id:5},
-        {estado:false, id:6},
-        {estado:false, id:7},
-        {estado:false, id:8},
-        {estado:false, id:9},
-        {estado:false, id:10},
-        {estado:false, id:11},
-        {estado:false, id:12},
-    ])
+import Axios from "axios";
 
-    const cambiarEstado=(id)=>{
-      
+const peticion = Axios({
+    method: 'GET',
+    url: 'http://testingapi12023-001-site1.atempurl.com/places',
+}).then(response => {
+    if (!response.data.error) {
+        console.log(response.data)
+        setPlazas(response.data)
+    } else {
+        console.log(response.data.error[0]);
     }
-    return(<div className=" row  m-2  bloqueEstilo rounded">
-    {
-        plazas.map( plaza=><Plaza
-             datos={plaza}
-             cambiar={cambiarEstado()}
-        /> )
+})
+    .catch(error => {
+        console.log(error);
+    });
+
+export default function Bloque() {
+    const [plazas, setPlazas] = useState([])
+    
+    
+
+    const cambiarEstado = (id) => {
+
     }
+
+    return (<div className=" row  m-2  bloqueEstilo rounded">
+        {
+            plazas.map(plaza => <Plaza
+                datos={plaza}
+                cambiar={cambiarEstado()}
+            />)
+        }
 
     </div>)
 
