@@ -11,10 +11,11 @@ export default function ListaReserva() {
 
   const [reservas, setReservas] = useState([]);
   const [reservaId, setReservaId] = useState([]);
+  const[loading, setLoading]= useState(false);
 
   const buscarId= ()=>{
     let temp=[]
-    reservas.map(reserva=>{
+    reservas?.map(reserva=>{
       if(reserva.placeId==idSeleccionado.datos){
         temp.push(reserva)
     }
@@ -24,6 +25,7 @@ export default function ListaReserva() {
   }
 
   useEffect(() => {
+    setLoading(false)
     axios({
       method: 'GET',
       url: 'http://testingapi12023-001-site1.atempurl.com/reserves',
@@ -35,9 +37,15 @@ export default function ListaReserva() {
       }
     }).catch(error => {
       console.log(error);
-    });
+    })
+    .finally(()=>{ setLoading(true)})
     buscarId();
   }, []);
+
+
+  
+  console.log(loading,"d d")
+
 
   return (
     <div className="overflow-y-scroll containerListaReserva">
@@ -53,7 +61,7 @@ export default function ListaReserva() {
 
         <div className="ms-5">
           {
-            reservaId?.map(reserva =>
+            reservaId.map(reserva =>
               <Table
                 datos={reserva}>
               </Table>)
