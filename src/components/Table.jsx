@@ -2,7 +2,7 @@ import "../styles/Table.css"
 import { useState } from "react"
 export default function Table({ datos }) {
     const [reservado, setReservado]= useState([datos])
-
+    console.log("entra")
     return (
         <div className="ms-5 ps-5 mb-5">
             <section className="fs-4 fecha p-3 rounded-4 text-center mb-4 text-light">
@@ -20,7 +20,7 @@ export default function Table({ datos }) {
                         
                         reservado?.map(dato => 
                             <div className="row p-3">
-                                <p className="col text-center">{dato.hora}</p>
+                                <p className="col text-center">{dato.client.name}</p>
                                 <p className="col text-center">{dato.nombre}</p>
                                 <p className="col text-center">{dato.placa}</p>
                             </div>

@@ -39,11 +39,6 @@ export default function ListaReserva() {
     buscarId();
   }, []);
 
-
-  
-  console.log(reservas)
-
-
   return (
     <div className="overflow-y-scroll containerListaReserva">
       <div className="p-2">
