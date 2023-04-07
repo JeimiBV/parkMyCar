@@ -21,8 +21,8 @@ export default function Table({ datos }) {
                         reservado?.map(dato => 
                             <div className="row p-3">
                                 <p className="col text-center">{dato.hora}</p>
-                                <p className="col text-center">{dato.nombre}</p>
-                                <p className="col text-center">{dato.placa}</p>
+                                <p className="col text-center">{datos.client.name}</p>
+                                <p className="col text-center">{datos.client.vehicle.plate}</p>
                             </div>
                         )
                     }
