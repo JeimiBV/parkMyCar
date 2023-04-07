@@ -21,7 +21,6 @@ export default function ListaReserva() {
       method: "GET",
       url: "http://testingapi12023-001-site1.atempurl.com/reserves",
     }).then((response) => {
-      console.log(response, "respuesta");
       setReservas(response.data);
     });
   }, []);
@@ -41,7 +40,6 @@ export default function ListaReserva() {
 
         <div className="ms-5">
           {reservas.map((reserva) =>
-           
             reserva.placeId == idSeleccionado.datos ? (
               <Table datos={reserva}></Table>
             ) : null

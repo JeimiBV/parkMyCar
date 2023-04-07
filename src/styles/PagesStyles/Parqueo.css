@@ -1,6 +1,7 @@
 .parqueo-container {
   display: flex;
   flex-direction: column;
+  height: 86.9vh;
   
 }
 
