@@ -1,37 +1,49 @@
 import Button from "../components/Button";
 import Table from "../components/Table"
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "../styles/PagesStyles/ListaReserva.css"
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 export default function ListaReserva() {
-  const [datos, setDatos] = useState([
-   {fecha:"31/03/2023",
-    reserva: [
-      {
-        hora: "3:30 - 4:30",
-        nombre: "Alejandro Peralta",
-        placa: "sadasd"
-      },
-      {
-        hora: "4:30 - 6:00",
-        nombre: "Ana Gabilanes",
-        placa: "sadasssd"
-      } 
-    ]},
-    {fecha:"01/04/2023",
-    reserva:[
-      {
-        hora: "3:30 - 4:30",
-        nombre: "Alex Peralta",
-        placa: "sadasd"
-      },
-      {
-        hora: "4:30 - 6:00",
-        nombre: "Anacleto Gabilanes",
-        placa: "sadasssd"
+  const selector= useSelector((state) => state.tasks)
+  var idSeleccionado= selector[0]
+
+  const [reservas, setReservas] = useState([]);
+  const [reservaId, setReservaId] = useState([]);
+
+  const buscarId= ()=>{
+    let temp=[]
+    reservas.map(reserva=>{
+      if(reserva.placeId==idSeleccionado.datos){
+        temp.push(reserva)
+    }
+
+    })
+    setReservaId(temp)
+  }
+
+  useEffect(() => {
+    axios({
+      method: 'GET',
+      url: 'http://testingapi12023-001-site1.atempurl.com/reserves',
+    }).then(response => {
+      if (!response.data.error) {
+        setReservas(response.data)
+      } else {
+        console.log(response.data.error[0]);
       }
-    ]}
-  ])
+    }).catch(error => {
+      console.log(error);
+    });
+    buscarId();
+  }, []);
+
+
+  
+  console.log(reservas)
+
+
   return (
     <div className="overflow-y-scroll containerListaReserva">
       <div className="p-2">
@@ -46,10 +58,9 @@ export default function ListaReserva() {
 
         <div className="ms-5">
           {
-            datos.map(dato =>
+            reservaId?.map(reserva =>
               <Table
-                fecha={dato.fecha}
-                datos={dato.reserva}>
+                datos={reserva}>
               </Table>)
           }
         </div>
