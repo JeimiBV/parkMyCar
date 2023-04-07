@@ -14,7 +14,7 @@ export default function Bloque({espacios}) {
     return (<div className=" row  m-2  bloqueEstilo rounded">
         {
             plazas.map(plaza => <Plaza
-                datos={plaza}
+                datos={plaza.id}
                 cambiar={cambiarEstado()}
             />)
         }
