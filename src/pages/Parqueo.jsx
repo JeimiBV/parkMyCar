@@ -25,7 +25,7 @@ function Parqueo() {
   };
 
   return (
-    <div className="overflow-y-scroll parqueo-container vertical-line">
+    <div className="overflow-y-scroll parqueo-container vertical-line ">
       <h1 className="h1 text-light">Plazas</h1>
       <div className="buscadores">
         <div className="buscador">

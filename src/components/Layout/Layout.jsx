@@ -7,11 +7,11 @@ export default function Layout({ children }) {
   return (
     <div className="layout ">
       <Navbar />
-      <div className="row w-100 mr-0 ml-0">
-        <div className="col-lg-2">
+      <div className="row w-100 layoutSC">
+        <div className="col-lg-2 p-0">
           <SideBar />
         </div>
-        <div className="col-10 ps-0">
+        <div className="col-10 p-0 ">
           <Container>
             {children}
           </Container>
