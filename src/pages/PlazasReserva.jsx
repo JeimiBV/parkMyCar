@@ -23,6 +23,9 @@ export default function () {
     }).catch(error => {
       console.log(error);
     });
+    /*fetch("http://testingapi12023-001-site1.atempurl.com/places")
+    .then(response=>response.json())
+    .then(data=>setBloques(data))*/
   }, []);
 
   for (let i = 0; i < bloques.length; i += 12) {
