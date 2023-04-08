@@ -25,7 +25,7 @@ export default function () {
     });*/
     fetch("http://testingapi12023-001-site1.atempurl.com/places")
     .then(response=>response.json())
-    .then(data=>setBloques(data))
+    .then(setBloques(data))
   }, []);
 
   for (let i = 0; i < bloques.length; i += 12) {
