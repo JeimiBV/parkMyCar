@@ -16,7 +16,7 @@ export default function () {
         return response.json();
       })
       .then((data) => {
-        setPlazas(data);
+        setBloques(data);
       });
   };
 
