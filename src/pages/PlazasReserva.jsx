@@ -10,7 +10,7 @@ export default function () {
   const [bloques, setBloques] = useState([]);
   let array = [];
 
-  useEffect(() => {
+  useEffect(async() => {
    /* Axios({
       method: 'GET',
       url: 'http://testingapi12023-001-site1.atempurl.com/places',
@@ -23,7 +23,7 @@ export default function () {
     }).catch(error => {
       console.log(error);
     });*/
-    fetch("http://testingapi12023-001-site1.atempurl.com/places")
+    await fetch("http://testingapi12023-001-site1.atempurl.com/places")
     .then(response=>response.json())
     .then(data=>setBloques(data))
   }, []);
