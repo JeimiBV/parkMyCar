@@ -10,8 +10,8 @@ export default function () {
   const [bloques, setBloques] = useState([]);
   let array = [];
 
-  useEffect(async() => {
-   /* Axios({
+  useEffect(() => {
+    Axios({
       method: 'GET',
       url: 'http://testingapi12023-001-site1.atempurl.com/places',
     }).then(response => {
@@ -22,10 +22,10 @@ export default function () {
       }
     }).catch(error => {
       console.log(error);
-    });*/
-    await fetch("http://testingapi12023-001-site1.atempurl.com/places")
+    });
+    /*fetch("http://testingapi12023-001-site1.atempurl.com/places")
     .then(response=>response.json())
-    .then(data=>setBloques(data))
+    .then(data=>setBloques(data))*/
   }, []);
 
   for (let i = 0; i < bloques.length; i += 12) {
