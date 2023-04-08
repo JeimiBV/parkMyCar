@@ -10,8 +10,18 @@ export default function () {
   const [bloques, setBloques] = useState([]);
   let array = [];
 
+  const fetchData = () => {
+    fetch("http://testingapi12023-001-site1.atempurl.com/places")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setPlazas(data);
+      });
+  };
+
   useEffect(() => {
-    Axios({
+    /*Axios({
       method: 'GET',
       url: 'http://testingapi12023-001-site1.atempurl.com/places',
     }).then(response => {
@@ -23,10 +33,13 @@ export default function () {
     }).catch(error => {
       console.log(error);
     });
-    /*fetch("http://testingapi12023-001-site1.atempurl.com/places")
-    .then(response=>response.json())
-    .then(data=>setBloques(data))*/
+    fetch("http://testingapi12023-001-site1.atempurl.com/places")
+      .then(response => response.json())
+      .then(data => setBloques(data))*/
+    fetchData();
   }, []);
+
+
 
   for (let i = 0; i < bloques.length; i += 12) {
     const grupo = bloques.slice(i, i + 12);
@@ -39,9 +52,9 @@ export default function () {
       {
         array.map((newArray) => (
           <div className="col-4 ">
-              <Bloque
-                espacios={newArray}/>
-            </div>
+            <Bloque
+              espacios={newArray} />
+          </div>
         ))
       }
     </div>
