@@ -1,4 +1,11 @@
 .plazaC{
     width: 160px;
     height: 80px;
+    background-color: #C3CEDA;
+    
+}
+
+.plazaC:hover{
+    background-color: #738FA7;
+    color: white;
 }

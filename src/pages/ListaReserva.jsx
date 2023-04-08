@@ -2,26 +2,22 @@ import Button from "../components/Button";
 import Table from "../components/Table";
 import { useState, useEffect } from "react";
 import "../styles/PagesStyles/ListaReserva.css";
-import { useSelector } from "react-redux";
+
 import axios from "axios";
 
 export default function ListaReserva() {
-  const selector = useSelector((state) => state.tasks);
-  var idSeleccionado = selector[0];
-
   const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(false);
 
-    const ordenar=(fecha)=>{
-      console.log(fecha)
-    }
+  const ordenar = (fecha) => {
+    console.log(fecha)
+  }
   useEffect(() => {
     setLoading(false);
     axios({
       method: "GET",
-      url: "http://testingapi12023-001-site1.atempurl.com/reserves",
+      url: "http://testingapi12023-001-site1.atempurl.com/reserves/history",
     }).then((response) => {
-      console.log(response, "respuesta");
       setReservas(response.data);
     });
   }, []);
@@ -41,10 +37,7 @@ export default function ListaReserva() {
 
         <div className="ms-5">
           {reservas.map((reserva) =>
-           
-            reserva.placeId == idSeleccionado.datos ? (
-              <Table datos={reserva}></Table>
-            ) : null
+            <Table datos={reserva}></Table>
           )}
           {loading ? <div className="text-light">no hay reservas</div> : null}
         </div>

@@ -1,7 +1,7 @@
 .main {
     background-color: rgba(7 19 48 /80%);
     min-height: 88vh;
-    width: 16.6vw;
+    width: 15.9vw;
     border-right: 3px solid white;
     position: fixed;
     left: 0px;
@@ -11,7 +11,7 @@
 .opcion {
     list-style: none;
     padding: 0 30px;
-    width: 16.5vw;
+    width: 15.9vw;
     margin-left: -32px;
 }
 
