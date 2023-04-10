@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 function Parqueo() {
   const [plazas, setPlazas] = useState(Array(36).fill({ disponible: true }));
+  const [showModal, setShowModal] = useState(false);
+
   const [entrada, setEntrada] = useState("");
   const [salida, setSalida] = useState("");
   const navigate = useNavigate();
@@ -20,15 +22,15 @@ function Parqueo() {
     const totalPlazas = Object.keys(plazas).length;
 
     const newPlazas = [{ disponible: true }, { disponible: true }];
-    
+
     setPlazas(plazas.concat(newPlazas));
   };
-  
+
   const removeBlock = () => {
     const totalPlazas = Object.keys(plazas).length;
     const newPlazas = plazas.slice();
-    newPlazas.splice(totalPlazas-3, 2);
-  
+    newPlazas.splice(totalPlazas - 3, 2);
+
     setPlazas(newPlazas);
   };
   console.log(plazas);
@@ -72,20 +74,19 @@ function Parqueo() {
                 {plazas.slice(0, 6).map((plaza, index) => (
                   <div key={index} className="plaza-container">
                     <div className="horizontal-line" />
-                   
+
                     <button
-                    
                       onClick={() => handleClick(index)}
                       disabled={!plaza.disponible}
-                      className={`plaza-button ${plaza.disponible ? "disponible" : "ocupado"
-                        }`}
+                      className={`plaza-button ${
+                        plaza.disponible ? "disponible" : "ocupado"
+                      }`}
                     >
-                    { index === 0 && (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-person-circle" viewBox="0 0 16 16">
-  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-</svg>
-                    )}
+                      {index === 0 && (
+                        <div >
+                        <i class="fa fa-wheelchair logo-dis " aria-hidden="true"></i>
+                        </div>          
+                      )}
                       {plaza.disponible ? `Plaza ${index + 1}` : "Ocupado"}
                     </button>
                   </div>
@@ -100,14 +101,14 @@ function Parqueo() {
                   <button
                     onClick={() => handleClick(index + 6)}
                     disabled={!plaza.disponible}
-                    className={`plaza-button ${plaza.disponible ? "disponible" : "ocupado"
-                      }`}
+                    className={`plaza-button ${
+                      plaza.disponible ? "disponible" : "ocupado"
+                    }`}
                   >
-                  { index === 0 && (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-person-circle" viewBox="0 0 16 16">
-  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-</svg>
+                    {index === 0 && (
+                      <div>
+                        <i class="fa fa-wheelchair logo-dis " aria-hidden="true"></i>
+                        </div>
                     )}
                     {plaza.disponible ? `Plaza ${index + 7}` : "Ocupado"}
                   </button>
@@ -127,10 +128,10 @@ function Parqueo() {
                     <button
                       onClick={() => handleClick(index + 12)}
                       disabled={!plaza.disponible}
-                      className={`plaza-button ${plaza.disponible ? "disponible" : "ocupado"
-                        }`}
+                      className={`plaza-button ${
+                        plaza.disponible ? "disponible" : "ocupado"
+                      }`}
                     >
-                    
                       {plaza.disponible ? `Plaza ${index + 13}` : "Ocupado"}
                     </button>
                   </div>
@@ -146,8 +147,9 @@ function Parqueo() {
                   <button
                     onClick={() => handleClick(index + 18)}
                     disabled={!plaza.disponible}
-                    className={`plaza-button ${plaza.disponible ? "disponible" : "ocupado"
-                      }`}
+                    className={`plaza-button ${
+                      plaza.disponible ? "disponible" : "ocupado"
+                    }`}
                   >
                     {plaza.disponible ? `Plaza ${index + 19}` : "Ocupado"}
                   </button>
@@ -156,8 +158,6 @@ function Parqueo() {
             </div>
           </div>
         </div>
-
-        
 
         <div className="bloque" key="3">
           <div className="titulo-auto">Automovil</div>
@@ -170,8 +170,9 @@ function Parqueo() {
                     <button
                       onClick={() => handleClick(index + 36)}
                       disabled={!plaza.disponible}
-                      className={`plaza-button ${plaza.disponible ? "disponible" : "ocupado"
-                        }`}
+                      className={`plaza-button ${
+                        plaza.disponible ? "disponible" : "ocupado"
+                      }`}
                     >
                       {plaza.disponible ? `Plaza ${index + 37}` : "Ocupado"}
                     </button>
@@ -188,8 +189,9 @@ function Parqueo() {
                   <button
                     onClick={() => handleClick(index + 42)}
                     disabled={!plaza.disponible}
-                    className={`plaza-button ${plaza.disponible ? "disponible" : "ocupado"
-                      }`}
+                    className={`plaza-button ${
+                      plaza.disponible ? "disponible" : "ocupado"
+                    }`}
                   >
                     {plaza.disponible ? `Plaza ${index + 43}` : "Ocupado"}
                   </button>
@@ -203,17 +205,60 @@ function Parqueo() {
           <button
             className="botonMas m-1"
             disabled={Object.keys(plazas).length === 48}
-            onClick={addBlock}
+            onClick={addBlock}            
           >
             +
           </button>
           <button
             className="botonMas m-1"
             disabled={Object.keys(plazas).length === 36}
-            onClick={removeBlock}
+           
+            data-bs-toggle="modal" 
+            data-bs-target="#staticBackdrop"
           >
             -
           </button>
+        </div>
+
+        <div
+          class="modal fade "
+          id="staticBackdrop"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+          
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                  Desea eliminar los bloques ?
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  
+                ></button>
+              </div>
+              <div class="modal-body">...</div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  No, cancelar 
+                </button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={removeBlock}>
+                  Si, aceptar
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="bloque" key="4">
@@ -227,8 +272,9 @@ function Parqueo() {
                     <button
                       onClick={() => handleClick(index + 24)}
                       disabled={!plaza.disponible}
-                      className={`plaza-button ${plaza.disponible ? "disponible" : "ocupado"
-                        }`}
+                      className={`plaza-button ${
+                        plaza.disponible ? "disponible" : "ocupado"
+                      }`}
                     >
                       {plaza.disponible ? `Plaza ${index + 25}` : "Ocupado"}
                     </button>
@@ -245,8 +291,9 @@ function Parqueo() {
                   <button
                     onClick={() => handleClick(index + 30)}
                     disabled={!plaza.disponible}
-                    className={`plaza-button ${plaza.disponible ? "disponible" : "ocupado"
-                      }`}
+                    className={`plaza-button ${
+                      plaza.disponible ? "disponible" : "ocupado"
+                    }`}
                   >
                     {plaza.disponible ? `Plaza ${index + 31}` : "Ocupado"}
                   </button>
