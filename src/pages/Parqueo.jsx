@@ -64,7 +64,7 @@ function Parqueo() {
           />
         </div>
       </div>
-
+      <div className="container blocks">
       <div className="row">
         <BloqueP
           plazas={plazasAuto}
@@ -136,6 +136,7 @@ function Parqueo() {
           </div>
         </div>
       )}
+      </div>
 
       <div
         class="modal fade"
