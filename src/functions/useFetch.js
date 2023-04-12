@@ -12,3 +12,14 @@ export function UseFetch(url){
       },[])
       return data
 }
+export function postPeticion(url,datos){
+
+  fetch(url,{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify(datos)
+  })
+ 
+}

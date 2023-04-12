@@ -19,6 +19,7 @@ export default function () {
         setBloques(data);
       });
   };
+ 
 
   useEffect(() => {
     /*Axios({
@@ -47,11 +48,11 @@ export default function () {
   }
   //console.log(array)
   return (
-    <div className="overflow-y-scroll containerPlazas row d-flex justify-content-center">
-      <h1 className=" text-center mt-4 text-light"> Historial de reservas</h1>
+    <div className="overflow-y-scroll  containerPlazas row d-flex justify-content-center">
+      <h1 className=" text-center mt-4 text-light "> Historial de reservas</h1>
       {
         array.map((newArray) => (
-          <div className="col-4 ">
+          <div className="col-12 col-sm-6 col-md-4 ms-4 ms-md-0">
             <Bloque
               espacios={newArray} />
           </div>

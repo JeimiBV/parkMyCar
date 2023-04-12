@@ -6,7 +6,7 @@
 }
 
 
-@media (max-width:990px){
+@media screen and (max-width:995px){
     .contenedorC{
         width: 100vw;
         height: 87vh;

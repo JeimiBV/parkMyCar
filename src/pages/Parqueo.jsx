@@ -3,6 +3,7 @@ import "../styles/PagesStyles/Parqueo.css";
 import BloqueP from "../components/BloqueP";
 
 function Parqueo() {
+    
   const [plazasAuto, setPlazasAuto] = useState(
     Array(24)
       .fill({ disponible: true, existe: true })
