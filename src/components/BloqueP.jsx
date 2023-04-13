@@ -1,11 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/PagesStyles/Parqueo.css";
-import { useDispatch } from "react-redux";
 
 export default function BloqueP({ tittle, space, plazas, setPlazas }) {
   const navigate = useNavigate();
-  const selector = useSelector((state) => state.tasks);
-  var idSeleccionado = selector[0];
 
   const handleClick = (index) => {
     const newPlazas = plazas.map((plaza, i) =>
