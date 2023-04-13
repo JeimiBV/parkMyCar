@@ -9,7 +9,7 @@ export default function Plaza({datos}) {
     const dispatch= useDispatch()
     const navigate = useNavigate()
     return (
-        <div className="col-5 m-1">
+        <div className="col-5 m-1 ">
             <button className="btn plazaC fs-1 " onClick={() => { navigate("/listaReserva"); dispatch(addTask({datos})) }}>
                 {datos}
             </button>

@@ -9,3 +9,28 @@
     background-color: #738FA7;
     color: white;
 }
+
+@media (max-width: 376px)  {
+    .plazaC{
+        width: 140px;
+        height: 80px;
+       
+    }
+}
+@media(min-width:377px) and (max-width: 391px) {
+    .plazaC{
+        width: 140px;
+        height: 80px;
+        background-color: #C3CEDA;
+        
+    }
+}
+@media(min-width:392px) and (max-width: 668px) {
+    .plazaC{
+        width: 120px;
+        height: 80px;
+        background-color: #C3CEDA;
+        
+    }
+}
+

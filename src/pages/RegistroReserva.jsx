@@ -17,6 +17,21 @@ export default function RegistroReserva() {
   const [fechaEntrada, setFechaEntrada] = useState("");
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
+  const [datosForm,setDatosForm]= useState({
+    entryDate: "",
+    retirementDate: "",
+    placeId: 0,
+    guardId: 3,
+    client: {
+    name: "",
+    ci: "",
+    phone: 0,
+    vehicle: {
+    plate: "xxxxxx",
+    type: "string"
+    }
+    }
+  })
 
   useEffect(() => {
     formatearFecha(dateEntrada, true);
@@ -50,6 +65,8 @@ export default function RegistroReserva() {
     return time.getHours() > 12 ? "text-success" : "text-error";
   };
 
+  
+  
   return (
     <div className="overflow-y-scroll containerReserva">
       <div className="row w-100 position-relative">
