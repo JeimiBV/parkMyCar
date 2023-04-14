@@ -38,7 +38,11 @@ function Parking() {
     }).then(() => {
       setPlazas((plazas) => [
         ...plazas,
-        { id: plazas.length + 1, type: "Automovil", isBusy: false },
+        {
+          id: plazas[plazas.length - 1],
+          placeNum: plazas.length + 1,
+          isBusy: false,
+        },
       ]);
     });
   };
