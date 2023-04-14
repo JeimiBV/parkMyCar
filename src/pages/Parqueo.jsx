@@ -54,12 +54,18 @@ function Parqueo() {
       const tableRow = (
         <tr key={item1.id}>
           <td className="tdItemOne">
-            <button>{item1.id}</button>
+            <button className={`place ${!item1.isBusy ? "Available" : "Busy"}`}>
+              {item1.id}
+            </button>
           </td>
           {item2 && (
             <>
               <td className="tdItemTwo">
-                <button>{item2.id}</button>
+                <button
+                  className={`place ${!item2.isBusy ? "Available" : "Busy"}`}
+                >
+                  {item2.id}
+                </button>
               </td>
             </>
           )}
@@ -85,7 +91,7 @@ function Parqueo() {
 
   return (
     <div>
-      <h1 className="h1 text-light">Plazas</h1>
+      <h1>Plazas</h1>
       <div className="buscadores">
         <div className="buscador">
           <input
