@@ -1,3 +1,9 @@
+.tables-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .parqueo-container {
   display: flex;
   flex-direction: column;
