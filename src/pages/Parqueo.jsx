@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "../styles/PagesStyles/Parqueo.css";
 import { useNavigate } from "react-router-dom";
+
+import "../styles/PagesStyles/Parqueo.css";
+import TableRow from "./TableRow";
 
 function Parqueo() {
   const [plazas, setPlazas] = useState([]);
@@ -51,26 +53,7 @@ function Parqueo() {
       const item1 = plazas[j];
       const item2 = j + 1 < plazas.length ? plazas[j + 1] : null;
 
-      const tableRow = (
-        <tr key={item1.id}>
-          <td className="tdItemOne">
-            <button className={`place ${!item1.isBusy ? "Available" : "Busy"}`}>
-              {item1.id}
-            </button>
-          </td>
-          {item2 && (
-            <>
-              <td className="tdItemTwo">
-                <button
-                  className={`place ${!item2.isBusy ? "Available" : "Busy"}`}
-                >
-                  {item2.id}
-                </button>
-              </td>
-            </>
-          )}
-        </tr>
-      );
+      const tableRow = <TableRow key={i} item1={item1} item2={item2} />;
       tableRows.push(tableRow);
     }
 
