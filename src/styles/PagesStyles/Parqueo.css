@@ -1,5 +1,7 @@
 .tables-container {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
   flex-wrap: wrap;
   gap: 10px;
 }
@@ -146,4 +148,48 @@
 .blocks{
   background-color:  #738FA770;
   border-radius: 7px;
+}
+
+table {
+  border-collapse: collapse;
+}
+/* 
+th, td {
+  color: aliceblue;
+  background-color: rgb(137 245 137);
+  border-radius: 5%;
+  padding: 20px;
+  border: 2px solid red;
+  border-spacing: 2px;
+  text-align: center;
+} */
+
+th {
+  padding: 10px;
+  color: aliceblue;
+}
+
+.tdItemOne {
+  padding: 10px;
+  text-align: center;
+  border: 2px solid white;
+  border-left: none;
+}
+
+.tdItemTwo {
+  padding: 10px;
+  text-align: center;
+  border: 2px solid white;
+  border-right: none;
+}
+
+button {
+  background-color: rgb(137 245 137);
+  border: none;
+  padding: 10px 35px;
+  border-radius: 5%;
+}
+
+.tittleCentered {
+  text-align: center;
 }

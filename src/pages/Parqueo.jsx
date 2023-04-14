@@ -4,9 +4,18 @@ import { useNavigate } from "react-router-dom";
 
 function Parqueo() {
   const [plazas, setPlazas] = useState([]);
-  /*   const [entrada, setEntrada] = useState("");
+  const [entrada, setEntrada] = useState("");
   const [salida, setSalida] = useState("");
-  const navigate = useNavigate();
+
+  const handleEntradaChange = (event) => {
+    setEntrada(event.target.value);
+  };
+
+  const handleSalidaChange = (event) => {
+    setSalida(event.target.value);
+  };
+
+  /*const navigate = useNavigate();
 
   const handleClick = (index) => {
     const newPlazas = plazas.map((plaza, i) =>
@@ -16,12 +25,7 @@ function Parqueo() {
     navigate("/reservas");
   };
 
-  const handleEntradaChange = (event) => {
-    setEntrada(event.target.value);
-  };
 
-  const handleSalidaChange = (event) => {
-    setSalida(event.target.value);
   }; */
 
   const fetchData = () => {
@@ -49,14 +53,14 @@ function Parqueo() {
 
       const tableRow = (
         <tr key={item1.id}>
-          <td>{item1.id}</td>
-          <td>{item1.type}</td>
-          <td>{item1.isBusy ? "Yes" : "No"}</td>
+          <td className="tdItemOne">
+            <button>{item1.id}</button>
+          </td>
           {item2 && (
             <>
-              <td>{item2.id}</td>
-              <td>{item2.type}</td>
-              <td>{item2.isBusy ? "Yes" : "No"}</td>
+              <td className="tdItemTwo">
+                <button>{item2.id}</button>
+              </td>
             </>
           )}
         </tr>
@@ -68,12 +72,9 @@ function Parqueo() {
       <table key={i}>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Type</th>
-            <th>Is Busy</th>
-            <th>ID</th>
-            <th>Type</th>
-            <th>Is Busy</th>
+            <th colSpan="2" className="tittleCentered">
+              Automovil
+            </th>
           </tr>
         </thead>
         <tbody>{tableRows}</tbody>
@@ -82,7 +83,30 @@ function Parqueo() {
     tables.push(table);
   }
 
-  return <div className="tables-container">{tables}</div>;
+  return (
+    <div>
+      <h1 className="h1 text-light">Plazas</h1>
+      <div className="buscadores">
+        <div className="buscador">
+          <input
+            type="text"
+            value={entrada}
+            onChange={handleEntradaChange}
+            placeholder="Hora de entrada"
+          />
+        </div>
+        <div className="buscador">
+          <input
+            type="text"
+            value={salida}
+            onChange={handleSalidaChange}
+            placeholder="Hora de salida"
+          />
+        </div>
+      </div>
+      <div className="tables-container">{tables}</div>
+    </div>
+  );
 }
 
 export default Parqueo;
