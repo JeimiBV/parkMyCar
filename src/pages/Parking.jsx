@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ParkingSection from "./ParkingSection";
+import ParkingSection from "../components/Parking/ParkingSection";
 import { splitIntoSection } from "../utils/placeUtils";
 
 import "../styles/PagesStyles/Parqueo.css";
