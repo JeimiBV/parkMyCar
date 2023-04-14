@@ -6,11 +6,13 @@ function TableRow({ item1, item2 }) {
           {item1.id}
         </button>
       </td>
-      <td className="tdItemTwo">
-        <button className={`place ${!item2.isBusy ? "Available" : "Busy"}`}>
-          {item2.id}
-        </button>
-      </td>
+      {item2 && (
+        <td className="tdItemTwo">
+          <button className={`place ${!item2.isBusy ? "Available" : "Busy"}`}>
+            {item2.id}
+          </button>
+        </td>
+      )}
     </tr>
   );
 }

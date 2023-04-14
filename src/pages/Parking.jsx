@@ -28,6 +28,21 @@ function Parking() {
       });
   };
 
+  const fetchPostData = () => {
+    fetch("http://testingapi12023-001-site1.atempurl.com/places", {
+      method: "POST",
+      headers: {
+        Accept: "application.json",
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      setPlazas((plazas) => [
+        ...plazas,
+        { id: plazas.length + 1, type: "Automovil", isBusy: false },
+      ]);
+    });
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -57,6 +72,12 @@ function Parking() {
         {tableSection.map((tableData, index) => (
           <ParkingSection key={index} data={tableData} />
         ))}
+      </div>
+      <div className="col-12 d-flex justify-content-end px-5">
+        <button className="AddPlaceButton" onClick={() => fetchPostData()}>
+          +
+        </button>
+        <button className="AddPlaceButton">-</button>
       </div>
     </div>
   );
