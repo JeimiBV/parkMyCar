@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import ParkingSection from "./ParkingSection";
+import { splitIntoSection } from "../utils/placeUtils";
 
 import "../styles/PagesStyles/Parqueo.css";
-import TableRow from "./TableRow";
 
-function Parqueo() {
+function Parking() {
   const [plazas, setPlazas] = useState([]);
   const [entrada, setEntrada] = useState("");
   const [salida, setSalida] = useState("");
+  const tableSection = splitIntoSection(plazas);
 
   const handleEntradaChange = (event) => {
     setEntrada(event.target.value);
@@ -16,19 +17,6 @@ function Parqueo() {
   const handleSalidaChange = (event) => {
     setSalida(event.target.value);
   };
-
-  /*const navigate = useNavigate();
-
-  const handleClick = (index) => {
-    const newPlazas = plazas.map((plaza, i) =>
-      i === index ? { disponible: !plaza.disponible } : plaza
-    );
-    setPlazas(newPlazas);
-    navigate("/reservas");
-  };
-
-
-  }; */
 
   const fetchData = () => {
     fetch("http://testingapi12023-001-site1.atempurl.com/places")
@@ -43,34 +31,6 @@ function Parqueo() {
   useEffect(() => {
     fetchData();
   }, []);
-
-  const tables = [];
-
-  for (let i = 0; i < plazas.length; i += 12) {
-    const tableRows = [];
-
-    for (let j = i; j < i + 12 && j < plazas.length; j += 2) {
-      const item1 = plazas[j];
-      const item2 = j + 1 < plazas.length ? plazas[j + 1] : null;
-
-      const tableRow = <TableRow key={i} item1={item1} item2={item2} />;
-      tableRows.push(tableRow);
-    }
-
-    const table = (
-      <table key={i}>
-        <thead>
-          <tr>
-            <th colSpan="2" className="tittleCentered">
-              Automovil
-            </th>
-          </tr>
-        </thead>
-        <tbody>{tableRows}</tbody>
-      </table>
-    );
-    tables.push(table);
-  }
 
   return (
     <div>
@@ -93,9 +53,13 @@ function Parqueo() {
           />
         </div>
       </div>
-      <div className="tables-container">{tables}</div>
+      <div className="tables-container">
+        {tableSection.map((tableData, index) => (
+          <ParkingSection key={index} data={tableData} />
+        ))}
+      </div>
     </div>
   );
 }
 
-export default Parqueo;
+export default Parking;

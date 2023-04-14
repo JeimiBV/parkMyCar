@@ -1,3 +1,5 @@
+import TableRow from "./TableRow";
+
 function ParkingSection({ data }) {
   const numRows = Math.ceil(data.length / 2);
   const tableRows = [];
