@@ -1,6 +1,8 @@
 import "../../styles/Navbar.css";
 
-export default function Navbar() {
+export default function Navbar({logIn, cambiarE}) {
+  
+
   return (
     <div className="navegador d-flex fixed-top">
       <nav class="navbar navbar-expand-lg container-fluid d-flex ">
@@ -23,10 +25,13 @@ export default function Navbar() {
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
               <li class="nav-item d-none d-md-inline">
+              {logIn?<div className="d-flex align-items-center">
+                  
+                </div>:
                 <div className="d-flex align-items-center">
-                  <p className="text-light mt-3 ms-2">ADMIN</p>
-                  <i class="fa-sharp fa-regular fa-circle-user text-light fs-1 ms-3"></i>
-                </div>
+                <button className="btn text-light mt-3 me-5 accederButton fs-4" onClick={()=>{cambiarE()}}>Acceder</button>
+              </div>
+                }
               </li>
             </ul>
             <ul className="d-lg-none navbar-nav">

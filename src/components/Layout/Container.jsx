@@ -1,8 +1,9 @@
 import "../../styles/Container.css";
 
-export default function Container ({children}){
+export default function Container ({logIn, children}){
+    
     return(
-    <div className="contenedorC " >
+    <div className={logIn?"contenedorC ":"contenedorLogout"} >
         {children}
     </div>)
 }
