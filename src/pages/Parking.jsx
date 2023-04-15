@@ -5,10 +5,10 @@ import { splitIntoSection } from "../utils/placeUtils";
 import "../styles/PagesStyles/Parqueo.css";
 
 function Parking() {
-  const [plazas, setPlazas] = useState([]);
+  const [places, setPlaces] = useState([]);
   const [entrada, setEntrada] = useState("");
   const [salida, setSalida] = useState("");
-  const tableSection = splitIntoSection(plazas);
+  const tableSection = splitIntoSection(places);
 
   const handleEntradaChange = (event) => {
     setEntrada(event.target.value);
@@ -24,7 +24,7 @@ function Parking() {
         return response.json();
       })
       .then((data) => {
-        setPlazas(data);
+        setPlaces(data);
       });
   };
 
@@ -36,7 +36,7 @@ function Parking() {
         return response.json();
       })
       .then((data) => {
-        setPlazas((plazas) => [...plazas, data]);
+        setPlaces((places) => [...places, data]);
       });
   };
 
@@ -48,7 +48,7 @@ function Parking() {
         return response.json();
       })
       .then((data) => {
-        setPlazas((places) => places.filter((place) => place.id !== data));
+        setPlaces((places) => places.filter((place) => place.id !== data));
       });
   };
 
