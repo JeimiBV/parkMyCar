@@ -35,16 +35,13 @@ function Parking() {
         Accept: "application.json",
         "Content-Type": "application/json",
       },
-    }).then(() => {
-      setPlazas((plazas) => [
-        ...plazas,
-        {
-          id: plazas[plazas.length - 1],
-          placeNum: plazas.length + 1,
-          isBusy: false,
-        },
-      ]);
-    });
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setPlazas((plazas) => [...plazas, data]);
+      });
   };
 
   useEffect(() => {
