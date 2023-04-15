@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/PagesStyles/Parqueo.css";
+import { useDispatch } from "react-redux";
+import { addTask } from "../tasks/taskSlice";
 
 export default function BloqueP({ tittle, space, plazas, setPlazas }) {
   const navigate = useNavigate();
+  const dispatch= useDispatch();
 
   const handleClick = (index) => {
     const newPlazas = plazas.map((plaza, i) =>
@@ -10,6 +13,8 @@ export default function BloqueP({ tittle, space, plazas, setPlazas }) {
     );
     setPlazas(newPlazas);
     navigate("/reservas");
+    index++
+    dispatch(addTask({index}))
   };
 
   return (
@@ -25,9 +30,8 @@ export default function BloqueP({ tittle, space, plazas, setPlazas }) {
                   <button
                     onClick={() => handleClick(index + space)}
                     disabled={!plaza.disponible}
-                    className={`plaza-button ${
-                      plaza.disponible ? "disponible" : "ocupado"
-                    }`}
+                    className={`plaza-button ${plaza.disponible ? "disponible" : "ocupado"
+                      }`}
                   >
                     {plaza.disponible
                       ? `Plaza ${index + space + 1}`
@@ -65,9 +69,8 @@ export default function BloqueP({ tittle, space, plazas, setPlazas }) {
                 <button
                   onClick={() => handleClick(index + space + 6)}
                   disabled={!plaza.disponible}
-                  className={`plaza-button ${
-                    plaza.disponible ? "disponible" : "ocupado"
-                  }`}
+                  className={`plaza-button ${plaza.disponible ? "disponible" : "ocupado"
+                    }`}
                 >
                   {plaza.disponible
                     ? `Plaza ${index + space + 6 + 1}`

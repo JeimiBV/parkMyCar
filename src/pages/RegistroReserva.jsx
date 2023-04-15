@@ -9,6 +9,8 @@ import "../styles/PagesStyles/RegistroReserva.css"
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useSelector } from "react-redux";
+import { postPeticion } from "../functions/useFetch";
 
 export default function RegistroReserva() {
   const [dateEntrada, setDateEntrada] = useState(new Date());
@@ -17,21 +19,51 @@ export default function RegistroReserva() {
   const [fechaEntrada, setFechaEntrada] = useState("");
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
-  const [datosForm,setDatosForm]= useState({
+  const selector = useSelector((state) => state.tasks);
+  var idSeleccionado = selector[0];
+  const [datosForm1, setDatosForm1] = useState({
     entryDate: "",
     retirementDate: "",
-    placeId: 0,
+    placeId: idSeleccionado.index,
     guardId: 3,
-    client: {
+    client: {}
+  })
+
+  const [datosForm2, setDatosForm2] = useState({
     name: "",
     ci: "",
     phone: 0,
     vehicle: {
-    plate: "xxxxxx",
-    type: "string"
-    }
+      plate: "",
+      type: ""
     }
   })
+
+  const handleClick = () => {
+    event.preventDefault()
+    postPeticion("http://testingapi12023-001-site1.atempurl.com/reserves", datosForm)
+
+  }
+  const handleChange = (e) => {
+    console.log(e.target.name, e.target.value)
+    if (e.target.name == 'name' || e.target.name == 'ci' || e.target.name == 'phone') {
+      setDatosForm2({
+        ...datosForm2,
+        [e.target.name]: e.target.value
+      })
+    } else {
+      setDatosForm2({
+        ...datosForm2,
+        vehicle: { [e.target.name]: e.target.value }
+        
+      })
+      console.log(e.target.name, e.target.value)
+    }
+
+
+  }
+
+  console.log(datosForm2)
 
   useEffect(() => {
     formatearFecha(dateEntrada, true);
@@ -65,8 +97,8 @@ export default function RegistroReserva() {
     return time.getHours() > 12 ? "text-success" : "text-error";
   };
 
-  
-  
+
+
   return (
     <div className="overflow-y-scroll containerReserva">
       <div className="row w-100 position-relative">
@@ -113,15 +145,15 @@ export default function RegistroReserva() {
             <div className="row">
               <div className="d-flex row-1 py-2 col">
                 <p className="me-5 fs-6 m-0 w-25">Nombre:</p>
-                <input type="text" className=" w-100 h-100" />
+                <input name="name" type="text" className=" w-100 h-100" onChange={handleChange} />
               </div>
               <div className="d-flex row-2 py-2">
                 <p className="me-5 fs-6 m-0 w-25">Teléfono:</p>
-                <input type="text" className=" w-100 h-100" />
+                <input name="phone" type="text" className=" w-100 h-100" onChange={handleChange} />
               </div>
               <div className="d-flex row-3 py-2">
                 <p className="me-5 fs-6 m-0 w-25">Carnet de identidad:</p>
-                <input type="text" className=" w-100 h-100" />
+                <input name="ci" type="text" className=" w-100 h-100" onChange={handleChange} />
               </div>
             </div>
           </Card>
@@ -130,13 +162,13 @@ export default function RegistroReserva() {
             <div className="row">
               <div className="d-flex row-1 py-2 col">
                 <p className="me-5 fs-6 m-0 w-25">Matrícula:</p>
-                <input type="text" className=" w-100 h-100" />
+                <input name="plate" type="text" className=" w-100 h-100" onChange={handleChange} />
               </div>
               <div className="d-flex row-2 py-2">
                 <p className="me-5 fs-6 m-0 w-25">Tipo de vehículo:</p>
-                <select onChange={(e) => { calcularTarifa(e.target.value) }} className="dropdown w-100">
+                <select name="type" onChange={(e) => { calcularTarifa(e.target.value); handleChange }} className="dropdown w-100">
                   <option disabled>Seleccione el tipo de motorizado</option>
-                  <option value={5}>Vehículo</option>
+                  <option value={5} onChange={ handleChange}>Vehículo</option>
                   <option value={2}>Moto</option>
                 </select>
               </div>
@@ -155,11 +187,11 @@ export default function RegistroReserva() {
                 </div>
                 <div className="col">
                   <p className=" fs-6">{tarifa}</p>
-                  <p className=" fs-6">000Bs</p>
+                  <p className=" fs-6">{idSeleccionado.index}</p>
                 </div>
               </div>
               <div className="row m-2 h-25">
-                <Button>Reservar</Button>
+                <Button onClick={() => { handleClick() }} >Reservar</Button>
                 <Button>Cancelar</Button>
               </div>
             </div>
