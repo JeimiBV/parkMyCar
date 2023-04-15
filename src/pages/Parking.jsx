@@ -31,16 +31,24 @@ function Parking() {
   const fetchPostData = () => {
     fetch("http://testingapi12023-001-site1.atempurl.com/places", {
       method: "POST",
-      headers: {
-        Accept: "application.json",
-        "Content-Type": "application/json",
-      },
     })
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setPlazas((plazas) => [...plazas, data]);
+      });
+  };
+
+  const fetchDeleteData = () => {
+    fetch("http://testingapi12023-001-site1.atempurl.com/places", {
+      method: "DELETE",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setPlazas((places) => places.filter((place) => place.id !== data));
       });
   };
 
@@ -78,7 +86,9 @@ function Parking() {
         <button className="AddPlaceButton" onClick={() => fetchPostData()}>
           +
         </button>
-        <button className="AddPlaceButton">-</button>
+        <button className="AddPlaceButton" onClick={() => fetchDeleteData()}>
+          -
+        </button>
       </div>
     </div>
   );
