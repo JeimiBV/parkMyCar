@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ParkingSection from "../components/Parking/ParkingSection";
 import { splitIntoSection } from "../utils/placeUtils";
-
-import "../styles/PagesStyles/Parqueo.css";
 import {
   fetchData,
   fetchDeleteData,
   fetchPostData,
 } from "../functions/fetchPlaces";
+
+import "../styles/PagesStyles/Parqueo.css";
 
 function Parking() {
   const [places, setPlaces] = useState([]);
