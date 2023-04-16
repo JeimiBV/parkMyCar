@@ -48,6 +48,7 @@ export default function RegistroReserva() {
     if (date.getDate() < 10) {
       fecha = dia + " 0" + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     }
+    
     if (tipo == true) {
       setFechaEntrada(fecha);
     } else {
@@ -55,6 +56,10 @@ export default function RegistroReserva() {
     }
 
   }
+  const filtrarFin =(date)=>{
+    const day= date.getDay();
+     return day !== 0 && day!==6;
+  };
   const calcularTarifa = (precio) => {
     let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
     let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
@@ -181,6 +186,7 @@ export default function RegistroReserva() {
                   minDate={(new Date)}
                   dateFormat="Pp"
                   onChange={(date) => setDateEntrada(date)}
+                  filterDate={filtrarFin}
                   timeClassName={handleColor}
                 />
               </label>
@@ -196,6 +202,7 @@ export default function RegistroReserva() {
                   minDate={dateEntrada}
                   dateFormat="Pp"
                   onChange={(date) => setDateSalida(date)}
+                  filterDate={filtrarFin}
                   timeClassName={handleColor}
                 />
               </label>
