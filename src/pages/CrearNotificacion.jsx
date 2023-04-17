@@ -46,7 +46,7 @@ export default function CrearNotificacion() {
           <h3>Crear notificación</h3>
           <div class="row">
             <div class="d-flex row-1 py-2 col">
-              <p class="me-5 fs-6 m-0 w-25">Nombre:</p>
+              <p class="me-5 fs-6 m-0 w-25">Para:</p>
               <input
                 type="text"
                 class=" w-100 h-100"
