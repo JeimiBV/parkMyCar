@@ -1,11 +1,39 @@
 import React, { useState } from "react";
 import "../styles/PagesStyles/Parqueo.css";
+import { fetchData } from "../functions/fetchUsers";
 
 export default function RedactarMensaje() {
   const [nombreDestinatarios, setNombreDestinatarios] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [destinatarios, setDestinatarios] = useState([]);
+  const [users, setUsers] = useState([
+    {
+      userId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      name: "Pedro",
+      email: "Pedro@gmail.com",
+    },
+    {
+      userId: "3ga85f64-5717-4562-b3fc-2c963f66afa6",
+      name: "Ana",
+      email: "Ana@gmail.com",
+    },
+    {
+      userId: "3ha85f64-5717-4562-b3fc-2c963f66afa6",
+      name: "Roberto",
+      email: "Roberto@gmail.com",
+    },
+    {
+      userId: "3ia85f64-5717-4562-b3fc-2c963f66afa6",
+      name: "Nicol",
+      email: "Nicol@gmail.com",
+    },
+    {
+      userId: "3ja85f64-5717-4562-b3fc-2c963f66afa6",
+      name: "Seiya",
+      email: "Seiya@gmail.com",
+    },
+  ]);
 
   const handleChange = (event) => {
     const inputValue = event.target.value.replace(/[^\w\s.,!?¿¡]/gi, "");
@@ -18,7 +46,7 @@ export default function RedactarMensaje() {
     const inputValue = event.target.value;
 
     // Filtrar los contactos que no han sido agregados como destinatarios
-    const filteredContacts = contacts.filter((contact) => {
+    const filteredUsers = users.filter((contact) => {
       const isAlreadySelected = destinatarios.includes(contact.email);
       const matchesInput =
         contact.name.toLowerCase().indexOf(inputValue.toLowerCase()) > -1 ||
@@ -26,13 +54,18 @@ export default function RedactarMensaje() {
       return !isAlreadySelected && matchesInput;
     });
 
-    setSuggestions(filteredContacts);
+    setSuggestions(filteredUsers);
     setNombreDestinatarios(inputValue);
+  };
+
+  const getUsers = async () => {
+    const users = await fetchData();
+    setUsers(users);
   };
 
   const handleSelectSuggestion = (selectedSuggestion) => {
     if (selectedSuggestion.email === "todos@example.com") {
-      const allEmails = contacts.map((contact) => contact.email);
+      const allEmails = users.map((contact) => contact.email);
       setDestinatarios(allEmails);
     } else if (!destinatarios.includes(selectedSuggestion.email)) {
       setDestinatarios([...destinatarios, selectedSuggestion.email]);
@@ -54,14 +87,6 @@ export default function RedactarMensaje() {
     newDestinatarios.splice(index, 1);
     setDestinatarios(newDestinatarios);
   };
-
-  const contacts = [
-    { name: "Juan", email: "juan@example.com" },
-    { name: "Luis", email: "luis@example.com" },
-    { name: "Pedro", email: "pedro@example.com" },
-    { name: "Clara", email: "clara@example.com" },
-    { name: "Piqué", email: "pique@example.com" },
-  ];
 
   return (
     <div>
@@ -116,7 +141,7 @@ export default function RedactarMensaje() {
                         className="dropdown-item"
                         onClick={() =>
                           setDestinatarios(
-                            contacts.map((contact) => contact.email)
+                            users.map((contact) => contact.email)
                           )
                         }
                       >
