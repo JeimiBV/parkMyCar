@@ -10,6 +10,7 @@ import Layout from './components/Layout/Layout'
 import { Provider } from 'react-redux'
 import Parqueo from "./pages/Parqueo"
 import Landing from "./pages/Landing"
+import InicioSesion from "./pages/InicioSesion"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
   {
     path: "/parqueo",
     element:<Parqueo/>
+
+  },
+  {
+    path: "/inicioS",
+    element:<InicioSesion/>
 
   },
 ])

@@ -55,7 +55,7 @@ export default function RegistroReserva() {
       setDatosForm2({
         ...datosForm2,
         vehicle: { [e.target.name]: e.target.value }
-        
+
       })
       console.log(e.target.name, e.target.value)
     }
@@ -87,6 +87,12 @@ export default function RegistroReserva() {
     }
 
   }
+
+  const isWeekday = (date) => {
+    const day = date.getDay();
+    return day !== 0 && day !== 6;
+  };
+
   const calcularTarifa = (precio) => {
     let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
     let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
@@ -168,7 +174,7 @@ export default function RegistroReserva() {
                 <p className="me-5 fs-6 m-0 w-25">Tipo de vehículo:</p>
                 <select name="type" onChange={(e) => { calcularTarifa(e.target.value); handleChange }} className="dropdown w-100">
                   <option disabled>Seleccione el tipo de motorizado</option>
-                  <option value={5} onChange={ handleChange}>Vehículo</option>
+                  <option value={5} onChange={handleChange}>Vehículo</option>
                   <option value={2}>Moto</option>
                 </select>
               </div>
@@ -214,6 +220,7 @@ export default function RegistroReserva() {
                   dateFormat="Pp"
                   onChange={(date) => setDateEntrada(date)}
                   timeClassName={handleColor}
+                  filterDate={isWeekday}
                 />
               </label>
             </div>
