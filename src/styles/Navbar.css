@@ -9,3 +9,10 @@
 .opcionesN{
     color: white;
 }
+
+.accederButton{
+    background-color: #071330;
+}
+.accederButton:hover{
+    background-color: #212d4a;
+}

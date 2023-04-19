@@ -5,6 +5,7 @@
     border-right: 3px solid white;
     position: fixed;
     left: 0px;
+   
     
 }
 
@@ -21,4 +22,14 @@
 
 .opcion:hover .opciones {
     color: white;
+}
+.contenidoSide{
+    height:85vh;
+}
+.logOutButton{
+    background-color: rgba(195 206 218 / 20% );
+}
+.cerrarButton{
+    margin-left: 13vh;
+    background-color: rgba(195 206 218 / 20% );
 }
