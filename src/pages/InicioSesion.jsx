@@ -2,56 +2,31 @@ import "../styles/PagesStyles/InicioSesion.css"
 
 export default function InicioSesion() {
 	return (
-		<div class="container">
-			<div class="row full-height justify-content-center">
-				<div class="col-12 text-center align-self-center py-5">
-					<div class="section pb-5 pt-5 pt-sm-2 text-center">
-						<h1 class="mb-0 pb-3 text-light"><span>Log In </span><span>Sign Up</span></h1>
-						<input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
-						<label for="reg-log"></label>
-						<div class="card-3d-wrap mx-auto">
-							<div class="card-3d-wrapper">
-								<div class="card-front">
-									<div class="center-wrap">
-										<div class="section text-center">
-											<h4 class="mb-4 pb-3 text-light">Log In</h4>
-											<div class="form-group">
-												<input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off" />
-												<i class="input-icon uil uil-at"></i>
-											</div>
-											<div class="form-group mt-2">
-												<input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off" />
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-											<a href="#" class="btn mt-4">submit</a>
-											<p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
-										</div>
-									</div>
-								</div>
-								<div class="card-back">
-									<div class="center-wrap">
-										<div class="section text-center">
-											<h4 class="mb-4 pb-3">Sign Up</h4>
-											<div class="form-group">
-												<input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="off" />
-												<i class="input-icon uil uil-user"></i>
-											</div>
-											<div class="form-group mt-2">
-												<input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off" />
-												<i class="input-icon uil uil-at"></i>
-											</div>
-											<div class="form-group mt-2">
-												<input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off" />
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-											<a href="#" class="btn mt-4">submit</a>
-										</div>
-									</div>
-								</div>
-							</div>
+		<div className="containerInicio p-5">
+			<div class="wrapper">
+				<div class="h2I text-center fs-1 ">Iniciar sesión</div>
+				<form class="pt-3 d-block justify-content-center">
+					<div class="form-group py-2">
+						<p>Ingrese su correo</p>
+						<div class="input-field">
+							<span class="far fa-user p-2"></span>
+							<input className="inputColor" />
 						</div>
 					</div>
-				</div>
+					<div class="form-group py-1 pb-2">
+						<p>Ingrese su contraseña</p>
+						<div class="input-field">
+							<span class="fas fa-lock p-2"></span>
+							<input type="password" className="inputColor" />
+							<button class="btn bg-white text-muted">
+								<span class="far fa-eye-slash"></span>
+							</button>
+						</div>
+					</div>
+					<div className="w-100 text-center">
+						<button class="btn btn-block text-center my-3 rounded">Ingresar</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	);

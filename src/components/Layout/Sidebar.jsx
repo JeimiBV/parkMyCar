@@ -27,7 +27,7 @@ export default function SideBar({cambiarE}) {
               <div className="row py-2">
                 <i class="fa-sharp fa-regular fa-circle-user text-light fs-1 ms-2  col-3"></i>
                 <h4 className="col-8 ">Jeimi Barral</h4>
-              </div >
+              </div>
 
               <button className="btn text-light  cerrarButton" onClick={()=>{cambiarE()}}>Cerrar sesión</button>
             </section>

@@ -5,7 +5,7 @@ import "../../styles/Layout.css";
 import { useState } from "react";
 
 export default function Layout({ children }) {
-  const [logIn, setLogIn]= useState(true)
+  const [logIn, setLogIn]= useState(false)
   const cambiarEstado=()=>{
   setLogIn(!logIn)
   }
