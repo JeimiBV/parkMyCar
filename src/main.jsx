@@ -1,4 +1,4 @@
-import store from '../src/store'
+import {store} from '../src/store'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
