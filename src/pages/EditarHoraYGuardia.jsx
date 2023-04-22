@@ -11,6 +11,8 @@ function EditarHoraYGUardia() {
   const [endDate, setEndDate] = useState(new Date());
   const [selectedDates, setSelectedDates] = useState([]);
   const [selectedGuard, setSelectedGuard] = useState("");
+  const [apertura, setApertura] = useState("06:00");
+  const [cierre, setCierre] = useState("23:00");
   registerLocale("es", es);
   const guardias = [
     { id: 1, name: "Juan" },
@@ -25,7 +27,12 @@ function EditarHoraYGUardia() {
     const lastDate = new Date(endDate);
 
     while (currDate <= lastDate) {
-      dates.push(new Date(currDate));
+      const dayOfWeek = currDate.getDay();
+      const isChecked = dayOfWeek >= 1 && dayOfWeek <= 5; // true for Mon-Fri, false for Sat-Sun
+      dates.push({
+        date: new Date(currDate),
+        isChecked,
+      });
       currDate.setDate(currDate.getDate() + 1);
     }
 
@@ -35,10 +42,15 @@ function EditarHoraYGUardia() {
   const dates = getDatesBetweenDates(startDate, endDate);
 
   const handleDateSelection = (date) => {
-    if (selectedDates.includes(date.toDateString())) {
-      setSelectedDates(selectedDates.filter((d) => d !== date.toDateString()));
-    } else {
-      setSelectedDates([...selectedDates, date.toDateString()]);
+    const selectedDate = dates.find(
+      (d) => d.date.toDateString() === date.toDateString()
+    );
+    if (selectedDate) {
+      selectedDate.isChecked = !selectedDate.isChecked;
+      const selectedDates = dates
+        .filter((d) => d.isChecked)
+        .map((d) => d.date.toDateString());
+      setSelectedDates(selectedDates);
     }
   };
 
@@ -63,24 +75,36 @@ function EditarHoraYGUardia() {
           />
         </div>
       </div>
-      {dates.map((date) => (
-        <div className="peticiones" key={date.getTime()}>
-          <div>{date.toDateString()}</div>
+      {dates.map((item) => (
+        <div className="peticiones" key={item.date.getTime()}>
+          <div>{item.date.toDateString()}</div>
           <div>
             <input
               type="checkbox"
-              checked={selectedDates.includes(date.toDateString())}
+              checked={item.isChecked}
               readOnly
               onClick={() => handleDateSelection(date)}
             />
           </div>
           <div className="apertura">
             <label htmlFor="entrada">Apertura:</label>
-            <input type="time" id="entrada" name="entrada" />
+            <input
+              type="time"
+              id="entrada"
+              name="entrada"
+              value={apertura}
+              onChange={(e) => setApertura(e.target.value)}
+            />
           </div>
           <div className="cierre">
             <label htmlFor="salida">Cierre:</label>
-            <input type="time" id="salida" name="salida" />
+            <input
+              type="time"
+              id="salida"
+              name="salida"
+              value={cierre}
+              onChange={(e) => setCierre(e.target.value)}
+            />
           </div>
           <div>
             <label htmlFor="guardia">Guardia:</label>
