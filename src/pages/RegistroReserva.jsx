@@ -9,6 +9,7 @@ import "../styles/PagesStyles/RegistroReserva.css"
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import QRCode from "react-qr-code";
 
 //import 'moment/locale/en-gb'
 
@@ -16,6 +17,7 @@ export default function RegistroReserva() {
   const [dateEntrada, setDateEntrada] = useState(new Date());
   const [dateSalida, setDateSalida] = useState(new Date());
   const [modal, setModal] = useState(false);
+  const [modalQR, setModalQR] = useState(false);
   const [fechaEntrada, setFechaEntrada] = useState("");
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
@@ -184,13 +186,29 @@ export default function RegistroReserva() {
                 </div>
               </div>
               <div className="row m-2 h-25">
+                <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center" onClick={() => { setModalQR(true) }}>
+                  Generar QR
+                </button>
                 <Button>Reservar</Button>
                 <Button>Cancelar</Button>
               </div>
             </div>
           </Card>
         </div>
+        <Modal titulo={"Código QR"} mostrar={modalQR}>
+          <div className="row">
+            <QRCode value="www.google.com" size={150} />
+            <div className="row d-flex justify-content-center mt-1 ">
+              <button className="btn btn-primary w-25 my-5 me-2" onClick={() => { setModalQR(false) }}>
+                Aceptar
+              </button>
+              <button className="btn btn-primary w-25 my-5 ms-2" onClick={() => { setModalQR(false) }}>
+                Cancelar
+              </button>
+            </div>
 
+          </div>
+        </Modal>
         <Modal titulo={"Edite la fecha o tiempo"}
           mostrar={modal}
         >
@@ -227,8 +245,8 @@ export default function RegistroReserva() {
                   timeCaption="Hora"
                   dateFormat="hh:mm"
                   filterTime={filterSelectedTime}
-                  
-                  
+
+
                 />
               </label>
             </div>
