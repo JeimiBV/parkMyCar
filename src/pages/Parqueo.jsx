@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../styles/PagesStyles/Parqueo.css";
 import BloqueP from "../components/BloqueP";
+import { useSelector } from "react-redux";
 
 function Parqueo() {
+  const usuario = useSelector((state) => state.users);
     
   const [plazasAuto, setPlazasAuto] = useState(
     Array(24)
@@ -120,7 +122,7 @@ function Parqueo() {
         />
       </div>
 
-      {totalPlazas > 24 && (
+      {totalPlazas > 24 &&  (
         <div className="row">
           <div className="col-12 d-flex add-plazas">
             <button

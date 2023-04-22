@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState={
-    nombre:"Jeimi Barral",
-    rol:"usuario",
+    nombre:"Carlos Reyes ",
+    rol:"seguridad",
     estado:true
 }
 

@@ -1,6 +1,20 @@
 import "../styles/PagesStyles/InicioSesion.css"
-
+import { useDispatch } from "react-redux";
+import { iniciarSesion } from "../users/userSlice";
 export default function InicioSesion() {
+	const datos={
+		nombre:"Jeimi Barral",
+		rol:"seguridad",
+		estado:true
+	}
+	const dispatch=useDispatch();
+  	const cambiarEstado=()=>{
+		event.preventDefault()
+  
+	dispatch(iniciarSesion(datos))
+
+   
+  }
 	return (
 		<div className="containerInicio p-5">
 			<div class="wrapper">
@@ -24,7 +38,7 @@ export default function InicioSesion() {
 						</div>
 					</div>
 					<div className="w-100 text-center">
-						<button class="btn btn-block text-center my-3 rounded">Ingresar</button>
+						<button class="btn btn-block text-center my-3 rounded" onClick={cambiarEstado}>Ingresar</button>
 					</div>
 				</form>
 			</div>

@@ -1,6 +1,6 @@
 import "../../styles/Navbar.css";
 
-export default function Navbar({logIn, cambiarE}) {
+export default function Navbar({logIn}) {
   
 
   return (
@@ -29,7 +29,7 @@ export default function Navbar({logIn, cambiarE}) {
                   
                 </div>:
                 <div className="d-flex align-items-center">
-                <button className="btn text-light mt-3 me-5 accederButton fs-4" onClick={()=>{cambiarE()}}>Acceder</button>
+                <a href="/inicioS" className="btn text-light mt-3 me-5 accederButton fs-4" >Acceder</a>
               </div>
                 }
               </li>
