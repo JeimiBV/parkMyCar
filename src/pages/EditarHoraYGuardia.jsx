@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Clock from "react-clock";
-import "react-clock/dist/Clock.css";
 
 function EditarHoraYGUardia() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [selectedDates, setSelectedDates] = useState([]);
+  const [selectedGuard, setSelectedGuard] = useState("");
+
+  const guardias = [
+    { id: 1, name: "Juan" },
+    { id: 2, name: "Pedro" },
+    { id: 3, name: "María" },
+    { id: 4, name: "Ana" },
+  ];
 
   const getDatesBetweenDates = (startDate, endDate) => {
     const dates = [];
@@ -30,6 +36,10 @@ function EditarHoraYGUardia() {
     } else {
       setSelectedDates([...selectedDates, date.toDateString()]);
     }
+  };
+
+  const handleGuardSelection = (event) => {
+    setSelectedGuard(event.target.value);
   };
 
   return (
@@ -69,6 +79,22 @@ function EditarHoraYGUardia() {
           <div style={{ display: "flex", alignItems: "center" }}>
             <label htmlFor="salida">Salida:</label>
             <input type="time" id="salida" name="salida" />
+          </div>
+          <div>
+            <label htmlFor="guardia">Guardia:</label>
+            <select
+              id="guardia"
+              name="guardia"
+              value={selectedGuard}
+              onChange={handleGuardSelection}
+            >
+              <option value="">--Seleccione una guardia--</option>
+              {guardias.map((guardia) => (
+                <option key={guardia.id} value={guardia.name}>
+                  {guardia.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       ))}
