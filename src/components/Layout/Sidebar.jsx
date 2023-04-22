@@ -29,6 +29,14 @@ export default function SideBar() {
             </div>
           </a>
         </div>
+        <div className="opcion">
+          <a href="/editarHorario" className="text-decoration-none">
+            <div className="d-flex py-3  text-decoration-none text-light align-items-center">
+              <i class="fa-solid fa-calendar-check fs-1 me-3 opciones"></i>
+              <h3 className="opciones fs-5">Editar horario atencion</h3>
+            </div>
+          </a>
+        </div>
       </ul>
     </div>
   );

@@ -15,6 +15,7 @@ import { Provider } from "react-redux";
 import Parking from "./pages/Parking";
 import Landing from "./pages/Landing";
 import CrearNotificacion from "./pages/CrearNotificacion";
+import EditarHoraYGuardia from "./pages/EditarHoraYGuardia";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/crearNotificacion",
     element: <CrearNotificacion />,
+  },
+  {
+    path: "/editarHorario",
+    element: <EditarHoraYGuardia />,
   },
 ]);
 
