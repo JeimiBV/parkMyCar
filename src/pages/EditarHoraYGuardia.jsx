@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import NuevoDiv from "./seleccionable";
 
 function EditarHoraYGUardia() {
   const [startDate, setStartDate] = useState(new Date());
@@ -58,11 +59,7 @@ function EditarHoraYGUardia() {
             alignItems: "center",
             justifyContent: "space-between",
             color: "white",
-            backgroundColor: selectedDates.includes(date.toDateString())
-              ? "transparent"
-              : "transparent",
           }}
-          onClick={() => handleDateSelection(date)}
         >
           <div>{date.toDateString()}</div>
           <div>
@@ -70,34 +67,24 @@ function EditarHoraYGUardia() {
               type="checkbox"
               checked={selectedDates.includes(date.toDateString())}
               readOnly
+              onClick={() => handleDateSelection(date)}
             />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <label htmlFor="entrada">Entrada:</label>
+            <label htmlFor="entrada">Apertura:</label>
             <input type="time" id="entrada" name="entrada" />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <label htmlFor="salida">Salida:</label>
+            <label htmlFor="salida">Cierre:</label>
             <input type="time" id="salida" name="salida" />
           </div>
           <div>
             <label htmlFor="guardia">Guardia:</label>
-            <select
-              id="guardia"
-              name="guardia"
-              value={selectedGuard}
-              onChange={handleGuardSelection}
-            >
-              <option value="">--Seleccione una guardia--</option>
-              {guardias.map((guardia) => (
-                <option key={guardia.id} value={guardia.name}>
-                  {guardia.name}
-                </option>
-              ))}
-            </select>
+            <NuevoDiv />
           </div>
         </div>
       ))}
+      <button>guardar</button>
     </div>
   );
 }
