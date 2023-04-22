@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
+import el from "date-fns/locale/el";
 import "react-datepicker/dist/react-datepicker.css";
 import NuevoDiv from "./seleccionable";
+import { es, ja } from "date-fns/locale";
+import "../styles/PagesStyles/EditarHoraYGuardia.css";
 
 function EditarHoraYGUardia() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [selectedDates, setSelectedDates] = useState([]);
   const [selectedGuard, setSelectedGuard] = useState("");
-
+  registerLocale("es", es);
   const guardias = [
     { id: 1, name: "Juan" },
     { id: 2, name: "Pedro" },
@@ -45,22 +48,23 @@ function EditarHoraYGUardia() {
 
   return (
     <div>
-      <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-      />
-      <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
-
+      <div className="prueba">
+        <div className="prueba1">
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            locale="es"
+          />
+        </div>
+        <div>
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+          />
+        </div>
+      </div>
       {dates.map((date) => (
-        <div
-          key={date.getTime()}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            color: "white",
-          }}
-        >
+        <div className="peticiones" key={date.getTime()}>
           <div>{date.toDateString()}</div>
           <div>
             <input
@@ -70,11 +74,11 @@ function EditarHoraYGUardia() {
               onClick={() => handleDateSelection(date)}
             />
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div className="apertura">
             <label htmlFor="entrada">Apertura:</label>
             <input type="time" id="entrada" name="entrada" />
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div className="cierre">
             <label htmlFor="salida">Cierre:</label>
             <input type="time" id="salida" name="salida" />
           </div>
@@ -84,7 +88,9 @@ function EditarHoraYGUardia() {
           </div>
         </div>
       ))}
-      <button>guardar</button>
+      <div className="button1">
+        <button className="btn btn-primary m-2">Guardar</button>
+      </div>
     </div>
   );
 }
