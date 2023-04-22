@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+//import 'moment/locale/en-gb'
+
 export default function RegistroReserva() {
   const [dateEntrada, setDateEntrada] = useState(new Date());
   const [dateSalida, setDateSalida] = useState(new Date());
@@ -36,10 +38,32 @@ export default function RegistroReserva() {
   useEffect(() => {
     formatearFecha(dateEntrada, true);
     formatearFecha(dateSalida, false);
+    calcularTarifa(5);
   }, [dateEntrada, dateSalida])
 
-  const formatearFecha = (date, tipo) => {
-    const dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+  const formatearFecha = (date, flag) => {
+
+    console.log(date.getHours(), date.getMinutes())
+    if (flag == true) {
+      if (date.getMinutes() < 10) {
+        setFechaEntrada(date.getHours() + ":0" + date.getMinutes())
+        console.log("entra")
+      }
+      else {
+        setFechaEntrada(date.getHours() + ":" + date.getMinutes())
+      }
+
+    } else {
+      if (date.getMinutes() < 10) {
+        setFechaSalida(date.getHours() + ":0" + date.getMinutes())
+        console.log("entra")
+      }
+      else {
+        setFechaSalida(date.getHours() + ":" + date.getMinutes())
+      }
+    }
+
+    /*const dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
     let dia = dias[date.getDay()];
     let fecha = dia + " " + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     if ((date.getMonth() + 1) < 10) {
@@ -55,22 +79,25 @@ export default function RegistroReserva() {
       setFechaSalida(fecha);
     }
 
+  */
   }
-  const filtrarFin = (date) => {
-    const day = date.getDay();
-    return day !== 0 && day !== 6;
-  };
   const calcularTarifa = (precio) => {
     let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
     let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
     setTarifa((hours + minutes / 60) * precio);
   }
 
-  let handleColor = (time) => {
-    return time.getHours() > 12 ? "text-success" : "text-error";
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
   };
+  const filterSelectedTime = (time) => {
+    const selectedDate = new Date(time);
 
-
+    return dateEntrada.getTime() < selectedDate.getTime();
+  };
 
   return (
     <div className="overflow-y-scroll containerReserva">
@@ -110,7 +137,7 @@ export default function RegistroReserva() {
                 <p>Duración</p>
               </div>
               <div className="col">
-                <p>{Math.abs(dateSalida.getTime() - dateEntrada.getTime()) / 3600000} Horas</p>
+                <p>{Math.abs(dateSalida.getHours() - dateEntrada.getHours())} Horas</p>
               </div>
             </div>
           </Card>
@@ -137,14 +164,7 @@ export default function RegistroReserva() {
                 <p className="me-5 fs-6 m-0 w-25">Matrícula:</p>
                 <input type="text" className=" w-100 h-100" />
               </div>
-              <div className="d-flex row-2 py-2">
-                <p className="me-5 fs-6 m-0 w-25">Tipo de vehículo:</p>
-                <select onChange={(e) => { calcularTarifa(e.target.value) }} className="dropdown w-100">
-                  <option disabled>Seleccione el tipo de motorizado</option>
-                  <option value={5}>Vehículo</option>
-                  <option value={2}>Moto</option>
-                </select>
-              </div>
+
             </div>
           </Card>
 
@@ -183,11 +203,13 @@ export default function RegistroReserva() {
                 <DatePicker
                   selected={dateEntrada}
                   onChange={(date) => setDateEntrada(date)}
+                  filterTime={filterPassedTime}
                   showTimeSelect
                   showTimeSelectOnly
-                  timeIntervals={15}
-                  timeCaption="Time"
-                  dateFormat="h:mm aa"
+                  timeIntervals={60}
+                  timeCaption="Hora"
+                  dateFormat="HH:mm"
+                  locale="vi"
                 />
               </label>
             </div>
@@ -197,13 +219,16 @@ export default function RegistroReserva() {
               </h5>
               <label className="bg-light rounded-3 p-2 ">
                 <DatePicker
-                  selected={dateEntrada}
+                  selected={dateSalida}
                   onChange={(date) => setDateSalida(date)}
                   showTimeSelect
                   showTimeSelectOnly
-                  timeIntervals={15}
-                  timeCaption="Time"
-                  dateFormat="h:mm aa"
+                  timeIntervals={60}
+                  timeCaption="Hora"
+                  dateFormat="hh:mm"
+                  filterTime={filterSelectedTime}
+                  
+                  
                 />
               </label>
             </div>
