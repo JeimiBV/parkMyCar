@@ -7,12 +7,12 @@ import { useSelector,useDispatch } from "react-redux";
 import { cerrarSesion, iniciarSesion } from "../../users/userSlice";
 export default function Layout({ children }) {
   //const [logIn, setLogIn]= useState(true)
-  const datos={
+  /*const datos={
     nombre:"jaime",
     apellido:"reyes",
     rol:"cliente",
     estado:true
-}
+}*/
   const usuario = useSelector((state) => state.users);
   //var usuario = selector;
   console.log(usuario)
@@ -32,7 +32,8 @@ export default function Layout({ children }) {
       cambiarE={cambiarEstado} />
       <div className="row w-100 layoutSC">
         <div className={usuario.estado?"col-lg-2 p-0":"d-none"}>
-          <SideBar cambiarE={cambiarEstado} />
+          <SideBar cambiarE={cambiarEstado}
+                    nombreUsuario={usuario.nombre} />
         </div>
         <div className="col-10 p-0 ">
           <Container logIn={usuario.estado}>
