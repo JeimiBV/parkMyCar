@@ -1,3 +1,7 @@
+.containerhoras{
+    width: 100%;
+    height: 87vh;
+}
 .prueba{
     display: flex;
     align-items: center;

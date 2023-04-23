@@ -59,7 +59,7 @@ function EditarHoraYGUardia() {
   };
 
   return (
-    <div>
+    <div className="containerhoras">
       <div className="prueba">
         <div className="prueba1">
           <DatePicker
