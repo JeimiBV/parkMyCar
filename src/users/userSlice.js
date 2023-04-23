@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState={
-    nombre:"Carlos Reyes ",
+    nombre:"Jeimi",
     rol:"seguridad",
     estado:true
 }
@@ -17,13 +17,11 @@ export const userSlice= createSlice({
         },
         iniciarSesion:(state, action)=>{
             state.nombre=action.payload.nombre    
-            state.apellido=action.payload.apellido
             state.rol=action.payload.rol
             state.estado=action.payload.estado
         },
         cerrarSesion:(state,action)=>{
             state.nombre=""
-            state.apellido=""
             state.rol=""
             state.estado=false
         }
