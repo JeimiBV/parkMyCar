@@ -10,10 +10,13 @@ import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import QRCode from "react-qr-code";
+import { useSelector } from "react-redux";
 
 //import 'moment/locale/en-gb'
 
 export default function RegistroReserva() {
+  const selector = useSelector((state) => state.tasks);
+  var idSeleccionado = selector[0];
   const [dateEntrada, setDateEntrada] = useState(new Date());
   const [dateSalida, setDateSalida] = useState(new Date());
   const [modal, setModal] = useState(false);
@@ -178,11 +181,11 @@ export default function RegistroReserva() {
               <div className="row h-75">
                 <div className="col">
                   <p className=" fs-6">Tarifa:</p>
-                  <p className="fs-6 ">Plaza:</p>
+                  <p className="fs-6 ">Nro de plaza:</p>
                 </div>
                 <div className="col">
                   <p className=" fs-6">{tarifa}</p>
-                  <p className=" fs-6">000Bs</p>
+                  <p className=" fs-6">{idSeleccionado.index}</p>
                 </div>
               </div>
               <div className="row m-2 h-25">
@@ -221,8 +224,10 @@ export default function RegistroReserva() {
                 <DatePicker
                   selected={dateEntrada}
                   onChange={(date) => setDateEntrada(date)}
-                  filterTime={filterPassedTime}
                   showTimeSelect
+                  timeFormat="HH:mm"
+                  filterTime={filterPassedTime}
+                  //showTimeSelect
                   showTimeSelectOnly
                   timeIntervals={60}
                   timeCaption="Hora"
@@ -240,13 +245,15 @@ export default function RegistroReserva() {
                   selected={dateSalida}
                   onChange={(date) => setDateSalida(date)}
                   showTimeSelect
+                  timeFormat="HH:mm"
+                  //showTimeSelect
                   showTimeSelectOnly
                   timeIntervals={60}
                   timeCaption="Hora"
-                  dateFormat="hh:mm"
+                  dateFormat="HH:mm"
                   filterTime={filterSelectedTime}
-
-
+                  
+                  
                 />
               </label>
             </div>
