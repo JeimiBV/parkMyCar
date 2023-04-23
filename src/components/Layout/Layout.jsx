@@ -8,9 +8,9 @@ import { cerrarSesion } from "../../users/userSlice";
 export default function Layout({ children }) {
   //const [logIn, setLogIn]= useState(true)
 
-  const usuario = useSelector((state) => state.users);
+  const usuario = useSelector((state) => state.users).userState;
   //var usuario = selector;
-  console.log(usuario)
+  console.log(usuario.userState,"este es user")
 
   const dispatch=useDispatch();
   const cambiarEstado=()=>{
