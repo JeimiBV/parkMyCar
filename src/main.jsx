@@ -31,12 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/parqueo",
     element:<Parqueo/>
-
   },
   {
     path: "/inicioS",
     element:<InicioSesion/>
-
   },
 ])
 
