@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 //import 'moment/locale/en-gb'
 
 export default function RegistroReserva() {
+  const usuario = useSelector((state) => state.users).userState;
   const selector = useSelector((state) => state.tasks);
   var idSeleccionado = selector[0];
   const [dateEntrada, setDateEntrada] = useState(new Date());
@@ -25,34 +26,39 @@ export default function RegistroReserva() {
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
   const [datosForm, setDatosForm] = useState({
-    entryDate: "",
-    retirementDate: "",
-    placeId: 0,
-    guardId: 3,
-    client: {
+    
+      entryDate: "",
+      retirementDate: "",
       name: "",
-      ci: "",
-      phone: 0,
-      vehicle: {
-        plate: "xxxxxx",
-        type: "string"
-      }
-    }
+      nit: "",
+      plate: "",
+      phone: null,
+      placeId: null,
+      guardId: null
+    
   })
+
+  const handleChange=(e)=>{
+    setDatosForm({...datosForm, [e.target.name]: e.target.value})
+  }
+  const handlePost=()=>{
+    console.log(datosForm, dateEntrada.toISOString(),"datos para enviar")
+  }
 
   useEffect(() => {
     formatearFecha(dateEntrada, true);
     formatearFecha(dateSalida, false);
     calcularTarifa(5);
+    setDatosForm({...datosForm, entryDate: dateEntrada.toISOString(), retirementDate: dateSalida.toISOString(), placeId:idSeleccionado })
   }, [dateEntrada, dateSalida])
 
   const formatearFecha = (date, flag) => {
 
-    console.log(date.getHours(), date.getMinutes())
+   // console.log(date.getHours(), date.getMinutes())
     if (flag == true) {
       if (date.getMinutes() < 10) {
         setFechaEntrada(date.getHours() + ":0" + date.getMinutes())
-        console.log("entra")
+      //  console.log("entra")
       }
       else {
         setFechaEntrada(date.getHours() + ":" + date.getMinutes())
@@ -61,30 +67,14 @@ export default function RegistroReserva() {
     } else {
       if (date.getMinutes() < 10) {
         setFechaSalida(date.getHours() + ":0" + date.getMinutes())
-        console.log("entra")
+        //console.log("entra")
       }
       else {
         setFechaSalida(date.getHours() + ":" + date.getMinutes())
       }
     }
 
-    /*const dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-    let dia = dias[date.getDay()];
-    let fecha = dia + " " + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-    if ((date.getMonth() + 1) < 10) {
-      fecha = dia + " " + date.getDate() + "/0" + (date.getMonth() + 1) + "/" + date.getFullYear();
-    }
-    if (date.getDate() < 10) {
-      fecha = dia + " 0" + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-    }
 
-    if (tipo == true) {
-      setFechaEntrada(fecha);
-    } else {
-      setFechaSalida(fecha);
-    }
-
-  */
   }
   const calcularTarifa = (precio) => {
     let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
@@ -150,15 +140,15 @@ export default function RegistroReserva() {
             <div className="row">
               <div className="d-flex row-1 py-2 col">
                 <p className="me-5 fs-6 m-0 w-25">Nombre:</p>
-                <input type="text" className=" w-100 h-100" />
+                <input type="text" name="name" className=" w-100 h-100" onChange={handleChange} />
               </div>
               <div className="d-flex row-2 py-2">
                 <p className="me-5 fs-6 m-0 w-25">Teléfono:</p>
-                <input type="text" className=" w-100 h-100" />
+                <input type="text" name="phone" className=" w-100 h-100" onChange={handleChange} />
               </div>
               <div className="d-flex row-3 py-2">
                 <p className="me-5 fs-6 m-0 w-25">Carnet de identidad:</p>
-                <input type="text" className=" w-100 h-100" />
+                <input type="text" name="nit" className=" w-100 h-100" onChange={handleChange}/>
               </div>
             </div>
           </Card>
@@ -167,7 +157,7 @@ export default function RegistroReserva() {
             <div className="row">
               <div className="d-flex row-1 py-2 col">
                 <p className="me-5 fs-6 m-0 w-25">Matrícula:</p>
-                <input type="text" className=" w-100 h-100" />
+                <input type="text" name="plate" className=" w-100 h-100" onChange={handleChange}/>
               </div>
 
             </div>
@@ -192,8 +182,8 @@ export default function RegistroReserva() {
                 <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center" onClick={() => { setModalQR(true) }}>
                   Generar QR
                 </button>
-                <Button>Reservar</Button>
-                <Button>Cancelar</Button>
+                <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center" onClick={()=>{handlePost()}}>Reservar</button>
+                <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center">Cancelar</button>
               </div>
             </div>
           </Card>
@@ -223,7 +213,7 @@ export default function RegistroReserva() {
               <label className="bg-light rounded-3 p-2">
                 <DatePicker
                   selected={dateEntrada}
-                  onChange={(date) => setDateEntrada(date)}
+                  onChange={(date) => {setDateEntrada(date) }}
                   showTimeSelect
                   timeFormat="HH:mm"
                   filterTime={filterPassedTime}
