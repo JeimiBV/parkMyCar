@@ -2,10 +2,13 @@ import "../styles/PagesStyles/InicioSesion.css"
 import { useDispatch } from "react-redux";
 import { iniciarSesion } from "../users/userSlice";
 export default function InicioSesion() {
+
+	
 	const datos={
 		nombre:"Jeimi Barral",
 		rol:"seguridad",
-		estado:true
+		estado:true,
+		guardId:1
 	}
 	const dispatch=useDispatch();
   	const cambiarEstado=()=>{

@@ -2,9 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState={
-    nombre:"Jeimi",
-    rol:"seguridad",
-    estado:true
+    nombre:"",
+    rol:"",
+    estado:false,
+    guardId:null
+
 }
 
 export const userSlice= createSlice({
@@ -19,11 +21,13 @@ export const userSlice= createSlice({
             state.nombre=action.payload.nombre    
             state.rol=action.payload.rol
             state.estado=action.payload.estado
+            state.guardId=action.payload.guardId
         },
         cerrarSesion:(state,action)=>{
             state.nombre=""
             state.rol=""
             state.estado=false
+            state.guardId=null
         }
 
     }
