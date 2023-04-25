@@ -1,6 +1,8 @@
 import "../styles/PagesStyles/InicioSesion.css"
 import { useDispatch } from "react-redux";
 import { iniciarSesion } from "../users/userSlice";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 export default function InicioSesion() {
 
 	
@@ -10,14 +12,12 @@ export default function InicioSesion() {
 		estado:true,
 		guardId:1
 	}
-	const dispatch=useDispatch();
-  	const cambiarEstado=()=>{
+	const dispatch = useDispatch();
+	const cambiarEstado = () => {
 		event.preventDefault()
-  
-	dispatch(iniciarSesion(datos))
-
-   
-  }
+		dispatch(iniciarSesion(datos))
+		navigate("/parqueo");
+	}
 	return (
 		<div className="containerInicio p-5">
 			<div class="wrapper">
@@ -34,10 +34,10 @@ export default function InicioSesion() {
 						<p>Ingrese su contraseña</p>
 						<div class="input-field">
 							<span class="fas fa-lock p-2"></span>
-							<input type="password" className="inputColor" />
-							<button class="btn bg-white text-muted">
-								<span class="far fa-eye-slash"></span>
-							</button>
+							<input type={showPwd ? "text" : "password"} className="inputColor" />
+							<div class="btn text-muted" onClick={() => setShowPwd(!showPwd)}>
+								{showPwd ? <i class="fa-solid fa-eye eyecolor"></i> : <i class="fa-solid fa-eye-slash eyecolor"></i>}
+							</div>
 						</div>
 					</div>
 					<div className="w-100 text-center">
