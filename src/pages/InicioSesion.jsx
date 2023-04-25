@@ -4,12 +4,13 @@ import { iniciarSesion } from "../users/userSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 export default function InicioSesion() {
-	const [showPwd, setShowPwd] = useState(false);
-	const navigate = useNavigate();
-	const datos = {
-		nombre: "Jeimi Barral",
-		rol: "seguridad",
-		estado: true
+
+	
+	const datos={
+		nombre:"Jeimi Barral",
+		rol:"seguridad",
+		estado:true,
+		guardId:1
 	}
 	const dispatch = useDispatch();
 	const cambiarEstado = () => {

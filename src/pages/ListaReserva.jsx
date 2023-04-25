@@ -10,7 +10,6 @@ export default function ListaReserva() {
   const [loading, setLoading] = useState(false);
   const selector = useSelector((state) => state.tasks);
   var idSeleccionado = selector[0];
-
   useEffect(() => {
     setLoading(false);
     axios({
@@ -20,7 +19,7 @@ export default function ListaReserva() {
       setReservas(response.data);
     });
   }, []);
-
+  console.log(reservas,"esta es la reserva")
   return (
     <div className="overflow-y-scroll containerListaReserva">
       <div className="p-2">
