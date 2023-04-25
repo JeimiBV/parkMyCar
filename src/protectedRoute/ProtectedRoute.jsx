@@ -1,6 +1,5 @@
 import {Navigate, Outlet} from "react-router-dom"
-export const ProtectedRoute=()=>{
-    let rol="seguridad";
+export const ProtectedRoute=({rol})=>{
     console.log(rol,"este es rol")
     if(rol!="seguridad"){
         return <Navigate to="/"/>

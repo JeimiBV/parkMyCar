@@ -12,7 +12,7 @@ import { ProtectedRoute } from "./protectedRoute/ProtectedRoute";
 import { useSelector,useDispatch } from "react-redux";
 
 function App() {
-    const usuario = useSelector((state) => state.users);
+    const usuario = useSelector((state) => state.users).userState;
     console.log(usuario.rol, "aaaa");
     
     
