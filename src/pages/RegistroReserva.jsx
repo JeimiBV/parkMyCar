@@ -11,6 +11,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import QRCode from "react-qr-code";
 import { useSelector } from "react-redux";
+import { UseFetch } from "../functions/useFetch";
 
 //import 'moment/locale/en-gb'
 
@@ -25,19 +26,14 @@ export default function RegistroReserva() {
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
   const [datosForm, setDatosForm] = useState({
-    entryDate: "",
-    retirementDate: "",
-    placeId: 0,
-    guardId: 3,
-    client: {
-      name: "",
-      ci: "",
-      phone: 0,
-      vehicle: {
-        plate: "xxxxxx",
-        type: "string"
-      }
-    }
+    entryDate: "2023-04-24T14:46:01.244Z",
+    retirementDate: "2023-04-24T14:46:01.244Z",
+    name: "Ramiro Perez",
+    nit: "12345",
+    plate: "123CKB",
+    phone: 70700562,
+    placeId: 1,
+    guardId: 1
   })
 
   useEffect(() => {
@@ -103,6 +99,10 @@ export default function RegistroReserva() {
 
     return dateEntrada.getTime() < selectedDate.getTime();
   };
+
+  const handleSubmit = () =>{
+    
+  }
 
   return (
     <div className="overflow-y-scroll containerReserva">
@@ -252,8 +252,8 @@ export default function RegistroReserva() {
                   timeCaption="Hora"
                   dateFormat="HH:mm"
                   filterTime={filterSelectedTime}
-                  
-                  
+
+
                 />
               </label>
             </div>
