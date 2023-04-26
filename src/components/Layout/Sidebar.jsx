@@ -1,5 +1,5 @@
 import "../../styles/Sidebar.css"
-import { Link } from "react-router-dom"
+
 export default function SideBar({ cambiarE, nombreUsuario, rol }) {
     return (
         <div className="main d-lg-inline d-none pt-2 ">
@@ -31,7 +31,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
                         <h4 className="col-8 ">{nombreUsuario}</h4>
                     </div>
 
-                    <button className="btn text-light  cerrarButton" onClick={() => { cambiarE() }}>Cerrar sesión</button>
+                    <button className="btn text-light  cerrarButton">Cerrar sesión</button>
                 </section>
             </div>
         </div>

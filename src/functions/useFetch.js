@@ -12,7 +12,7 @@ export function UseFetch(url){
       },[])
       return data
 }
-export function postPeticion(url,datos){
+export async function  postPeticion(url,datos){
 
   fetch(url,{
     method:'POST',

@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { iniciarSesion } from "../users/userSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-export default function InicioSesion() {
-
-	
+export default function InicioSesion(){
+	const [showPwd, setShowPwd]=useState(false);
+	const navigate = useNavigate();
 	const datos={
 		nombre:"Jeimi Barral",
 		rol:"seguridad",

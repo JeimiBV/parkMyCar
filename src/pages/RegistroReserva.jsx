@@ -4,14 +4,16 @@
 import Modal from "../components/Modal";
 //import esLocale from "date-fns/locale/es"
 import Card from "../components/Card";
-import Button from "../components/Button";
 import "../styles/PagesStyles/RegistroReserva.css"
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import QRCode from "react-qr-code";
-import { useSelector } from "react-redux";
-import { UseFetch } from "../functions/useFetch";
+import { useSelector } from "react-redux"
+import { espaciosVacios, validarInput } from "../functions/validaciones";
+import { postPeticion } from "../functions/useFetch";
+import { useNavigate } from "react-router-dom";
+
 
 //import 'moment/locale/en-gb'
 
@@ -26,37 +28,42 @@ export default function RegistroReserva() {
   const [fechaEntrada, setFechaEntrada] = useState("");
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
+  const navigate = useNavigate();
   const [datosForm, setDatosForm] = useState({
     entryDate: "",
-      retirementDate: "",
-      name: "",
-      nit: "",
-      plate: "",
-      phone: null,
-      placeId: null,
-      guardId: null
+    retirementDate: "",
+    name: "",
+    nit: "",
+    plate: "",
+    phone: null,
+    placeId: null,
+    guardId: null
   })
-  const handleChange=(e)=>{
-    setDatosForm({...datosForm, [e.target.name]: e.target.value})
+  const handleChange = (e) => {
+    setDatosForm({ ...datosForm, [e.target.name]: e.target.value })
+    
   }
-  const handlePost=()=>{
-    console.log(datosForm, dateEntrada.toISOString(),"datos para enviar")
+ 
+  const handlePost = (e) => {
+    e.preventDefault();
+     postPeticion("http://testingapi12023-001-site1.atempurl.com/reserves", datosForm)
+    console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
   }
 
   useEffect(() => {
     formatearFecha(dateEntrada, true);
     formatearFecha(dateSalida, false);
     calcularTarifa(5);
-    setDatosForm({...datosForm, entryDate: dateEntrada.toISOString(), retirementDate: dateSalida.toISOString(), placeId:idSeleccionado })
+    setDatosForm({ ...datosForm, entryDate: dateEntrada, retirementDate: dateSalida, placeId: idSeleccionado, guardId: usuario.guardId })
   }, [dateEntrada, dateSalida])
 
   const formatearFecha = (date, flag) => {
 
-   // console.log(date.getHours(), date.getMinutes())
+    // console.log(date.getHours(), date.getMinutes())
     if (flag == true) {
       if (date.getMinutes() < 10) {
         setFechaEntrada(date.getHours() + ":0" + date.getMinutes())
-      //  console.log("entra")
+        //  console.log("entra")
       }
       else {
         setFechaEntrada(date.getHours() + ":" + date.getMinutes())
@@ -71,8 +78,6 @@ export default function RegistroReserva() {
         setFechaSalida(date.getHours() + ":" + date.getMinutes())
       }
     }
-
-
   }
   const calcularTarifa = (precio) => {
     let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
@@ -135,30 +140,25 @@ export default function RegistroReserva() {
             </div>
           </Card>
           <Card titulo={"Información del propietario"}>
-            <div className="row">
+            <form id="myform" className="row" onSubmit={e=>handlePost(e)}>
               <div className="d-flex row-1 py-2 col">
                 <p className="me-5 fs-6 m-0 w-25">Nombre:</p>
-                <input type="text" name="name" className=" w-100 h-100" onChange={handleChange} />
+                <input type="text" name="name" className=" w-100 h-100" onChange={handleChange} required pattern="[a-zA-Z\s]+"/>
               </div>
               <div className="d-flex row-2 py-2">
                 <p className="me-5 fs-6 m-0 w-25">Teléfono:</p>
-                <input type="text" name="phone" className=" w-100 h-100" onChange={handleChange} />
+                <input type="text" name="phone" className=" w-100 h-100" onChange={handleChange} required pattern="[0-9]{8}" />
               </div>
               <div className="d-flex row-3 py-2">
                 <p className="me-5 fs-6 m-0 w-25">Carnet de identidad:</p>
-                <input type="text" name="nit" className=" w-100 h-100" onChange={handleChange}/>
+                <input type="text" name="nit" className=" w-100 h-100" onChange={handleChange} required pattern="[a-zA-Z0-9]+"/>
               </div>
-            </div>
-          </Card>
-
-          <Card titulo={"Información del vehículo"}>
-            <div className="row">
-              <div className="d-flex row-1 py-2 col">
+              <h3 className=" mt-4">Información del vehículo</h3>
+              <div className="d-flex row-1 pt-1 col">
                 <p className="me-5 fs-6 m-0 w-25">Matrícula:</p>
-                <input type="text" name="plate" className=" w-100 h-100" onChange={handleChange}/>
+                <input type="text" name="plate" className=" w-100 h-100" onChange={handleChange} required pattern="[a-zA-Z0-9]{6}"/>
               </div>
-
-            </div>
+            </form>
           </Card>
 
         </div>
@@ -180,8 +180,8 @@ export default function RegistroReserva() {
                 <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center" onClick={() => { setModalQR(true) }}>
                   Generar QR
                 </button>
-                <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center" onClick={()=>{handlePost()}}>Reservar</button>
-                <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center">Cancelar</button>
+                <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center" form="myform" type="submit" >Reservar</button>
+                <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center" onClick={navigate("/parqueo")}>Cancelar</button>
               </div>
             </div>
           </Card>
@@ -201,8 +201,7 @@ export default function RegistroReserva() {
           </div>
         </Modal>
         <Modal titulo={"Edite la fecha o tiempo"}
-          mostrar={modal}
-        >
+          mostrar={modal}>
           <div className="row">
             <div className="col-6 text-center">
               <h5>
@@ -211,7 +210,7 @@ export default function RegistroReserva() {
               <label className="bg-light rounded-3 p-2">
                 <DatePicker
                   selected={dateEntrada}
-                  onChange={(date) => {setDateEntrada(date) }}
+                  onChange={(date) => { setDateEntrada(date) }}
                   showTimeSelect
                   timeFormat="HH:mm"
                   filterTime={filterPassedTime}

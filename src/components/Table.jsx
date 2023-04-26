@@ -20,7 +20,7 @@ export default function Table({ datos }) {
                     {
                        datos.reserves?.map(dato =>
                             <div className="row p-3">
-                                <p className="col text-center">{dato.entryDate.slice(12,16)+" - "+ dato.retirementDate.slice(12,16)}</p>
+                                <p className="col text-center">{dato.entryDate.slice(11,16)+" - "+ dato.retirementDate.slice(11,16)}</p>
                                 <p className="col text-center">{dato.name}</p>
                                 <p className="col text-center">{dato.plate}</p>
                             </div>

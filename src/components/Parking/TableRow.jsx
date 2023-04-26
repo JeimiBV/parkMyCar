@@ -9,19 +9,19 @@ function TableRow({ item1, item2 }) {
     <tr key={item1.id}>
       <td className="tdItemOne">
         <button
-          onClick={() => {navigate("/reservas"); dispatch(addTask(item1.num))}}
+          onClick={() => {!item1.isBusy? navigate("/reservas"):""; dispatch(addTask(item1.num))}}
           className={`place ${!item1.isBusy ? "Available" : "Busy"}`}
         >
-          {item1.placeNum}
+          {item1.num}
         </button>
       </td>
       {item2 && (
         <td className="tdItemTwo">
           <button
-            onClick={() => {navigate("/reservas"); dispatch(addTask(item2.num))}}
+            onClick={() => { !item2.isBusy? navigate("/reservas"):""; dispatch(addTask(item2.num))}}
             className={`place ${!item2.isBusy ? "Available" : "Busy"}`}
           >
-            {item2.placeNum}
+            {item2.num}
           </button>
         </td>
       )}

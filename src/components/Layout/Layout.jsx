@@ -7,7 +7,7 @@ import { useSelector,useDispatch } from "react-redux";
 import { cerrarSesion } from "../../users/userSlice";
 export default function Layout({ children }) {
   //const [logIn, setLogIn]= useState(true)
-
+  const [showButton,setShowButton]=useState(true)
   const usuario = useSelector((state) => state.users).userState;
   //var usuario = selector;
   console.log(usuario.userState,"este es user")
@@ -19,6 +19,7 @@ export default function Layout({ children }) {
   return (
     <div className="layout ">
       <Navbar logIn={usuario.estado}
+              showButton={showButton}
        />
       <div className="row w-100 layoutSC">
         <div className={usuario.estado?"col-lg-2 p-0":"d-none"}>

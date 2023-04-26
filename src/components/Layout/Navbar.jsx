@@ -1,8 +1,6 @@
 import "../../styles/Navbar.css";
 
-export default function Navbar({logIn}) {
-  
-
+export default function Navbar({ logIn, showButton }) {
   return (
     <div className="navegador d-flex fixed-top">
       <nav class="navbar navbar-expand-lg container-fluid d-flex ">
@@ -25,12 +23,12 @@ export default function Navbar({logIn}) {
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
               <li class="nav-item d-none d-md-inline">
-              {logIn?<div className="d-flex align-items-center">
-                  
-                </div>:
-                <div className="d-flex align-items-center">
-                <a href="/inicioS" className="btn text-light mt-3 me-5 accederButton fs-4" >Acceder</a>
-              </div>
+                {logIn  ?<div className="d-flex align-items-center">
+                </div> :
+                
+                  <div className="d-flex align-items-center">
+                    <a href="/inicioS" className="btn text-light mt-3 me-5 accederButton fs-4">Acceder</a>
+                  </div>
                 }
               </li>
             </ul>
