@@ -60,7 +60,7 @@ function EditarHoraYGUardia() {
 
   return (
     <div className="containerhoras">
-      <div className="prueba">
+      <div className="pruebaJavier">
         <div className="prueba1">
           <DatePicker
             selected={startDate}

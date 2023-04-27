@@ -8,6 +8,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Parking from "./pages/Parking";
 import Landing from "./pages/Landing";
+import CrearNotificacion from "./pages/CrearNotificacion"
+import EditarHoraYGuardia  from "./pages/EditarHoraYGuardia"
 import { ProtectedRoute } from "./protectedRoute/ProtectedRoute";
 import { useSelector,useDispatch } from "react-redux";
 
@@ -27,7 +29,12 @@ function App() {
                         <Route path="/reservas" element={<RegistroReserva />} />
                         <Route path="/listaReserva" element={<ListaReserva />} />
                         <Route path="/parqueo" element={<Parking />} />
+                        <Route path="/crearNotificacion" element={<CrearNotificacion />}/>
+                        <Route path="/editarHorario" element={ <EditarHoraYGuardia />}/>
+                        
                     </Route>
+                    
+ 
                 </Routes>
             </BrowserRouter>
         </Layout>

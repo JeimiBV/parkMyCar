@@ -20,6 +20,7 @@ export async function  postPeticion(url,datos){
       'Content-Type':'application/json'
     },
     body:JSON.stringify(datos)
+   
   })
- 
+  
 }
