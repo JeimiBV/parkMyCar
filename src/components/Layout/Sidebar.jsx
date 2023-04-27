@@ -31,7 +31,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
                         <h4 className="col-8 ">{nombreUsuario}</h4>
                     </div>
 
-                    <button className="btn text-light  cerrarButton">Cerrar sesión</button>
+                    <button className="btn text-light  cerrarButton" onClick={() => { cambiarE() }}>Cerrar sesión</button>
                 </section>
             </div>
         </div>
