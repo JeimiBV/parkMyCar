@@ -181,7 +181,7 @@ export default function RegistroReserva() {
                   Generar QR
                 </button>
                 <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center" form="myform" type="submit" >Reservar</button>
-                <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center" onClick={navigate("/parqueo")}>Cancelar</button>
+                <button className="btn btn-primary m-2 d-flex justify-content-center align-items-center" onClick={() => {navigate("/parqueo")}}>Cancelar</button>
               </div>
             </div>
           </Card>
