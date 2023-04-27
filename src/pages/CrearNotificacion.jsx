@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import "../styles/PagesStyles/CrearNotificacion.css";
-import axios from "axios";
 
 const CrearNotificacion = () => {
   const options = [

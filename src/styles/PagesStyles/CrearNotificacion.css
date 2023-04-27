@@ -1,8 +1,11 @@
-
+.contenedorNot{
+    height: 86.6vh;
+    width: 82vw;
+}
 
 .tituloNoti{
     color: white;
-    font-size: 400%;
+    font-size: 300%;
     text-align: center;
 }
 
