@@ -15,6 +15,9 @@ import { Provider } from "react-redux";
 import Parking from "./pages/Parking";
 import Landing from "./pages/Landing";
 import CrearNotificacion from "./pages/CrearNotificacion";
+import MisReservas from "./pages/MisReservas";
+import VerQrdos from "./pages/verQr";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +43,14 @@ const router = createBrowserRouter([
     path: "/crearNotificacion",
     element: <CrearNotificacion />,
   },
+  {
+    path: "/MisReservas",
+    element: <MisReservas />,
+  },
+  {
+    path: "/verQr",
+    element: <VerQrdos />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
