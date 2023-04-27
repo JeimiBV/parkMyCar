@@ -12,9 +12,9 @@ export function UseFetch(url){
       },[])
       return data
 }
-export async function  postPeticion(url,datos){
+export async function postPeticion(url,datos){
 
-  fetch(url,{
+  await fetch(url,{
     method:'POST',
     headers:{
       'Content-Type':'application/json'

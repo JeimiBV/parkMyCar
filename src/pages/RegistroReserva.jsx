@@ -44,10 +44,11 @@ export default function RegistroReserva() {
     
   }
  
-  const handlePost = (e) => {
+  const handlePost = async (e) => {
     e.preventDefault();
-     postPeticion("http://testingapi12023-001-site1.atempurl.com/reserves", datosForm)
-    console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
+     await postPeticion("http://testingapi12023-001-site1.atempurl.com/reserves", datosForm);
+     navigate("/parqueo");
+    //console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
   }
 
   useEffect(() => {
