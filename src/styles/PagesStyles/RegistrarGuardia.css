@@ -1,0 +1,34 @@
+.cuadroRegGuardia {
+    background-color: rgba(195 206 218 /70%);
+    width: 90%;
+    border-radius: 10px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 1%;
+}
+.tituloGuardia{
+    color: white;
+    padding-left: 50px;
+    height: 50px;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.buttonGuardia{
+    display: flex;
+    justify-content: end;
+}
+.contenidoQueja{
+    color: rgb(0, 0, 0);
+    padding-left: 5%;
+    display: flex;
+    background-color: white;
+    width: 85%;
+    margin-left: 6%;
+    font-size: 2.5vh;
+}
+.cuadro{
+    width: 50%;
+    margin: 0 auto;
+}

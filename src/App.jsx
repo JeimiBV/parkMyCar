@@ -14,6 +14,7 @@ import { ProtectedRoute } from "./protectedRoute/ProtectedRoute";
 import { useSelector, useDispatch } from "react-redux";
 import QuejasReclamosUser from "./pages/QuejasReclamosUser";
 import QuejasReclamosAdmin from "./pages/QuejasReclamosAdmin";
+import RegistrarGuardia from "./pages/RegistrarGuardia";
 
 function App() {
   const usuario = useSelector((state) => state.users).userState;
@@ -34,6 +35,7 @@ function App() {
             <Route path="/editarHorario" element={<EditarHoraYGuardia />} />
             <Route path="/reclamosUser" element={<QuejasReclamosUser />} />
             <Route path="/reclamosAdmin" element={<QuejasReclamosAdmin />} />
+            <Route path="/registrarGuardia" element={<RegistrarGuardia />} />
           </Route>
         </Routes>
       </BrowserRouter>

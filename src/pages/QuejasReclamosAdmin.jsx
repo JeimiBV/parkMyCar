@@ -5,7 +5,7 @@ const QuejasReclamosAdmin = () => {
   return (
     <div className="contenedorNot">
       <div>
-        <div className="tituloNoti">Crear Queja o Reclamo</div>
+        <div className="tituloNoti">Reclamos de usuarios</div>
         <div className="cuadroQ ">
           <div>
             <div>
