@@ -1,20 +1,59 @@
-.btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-  }
+.contenedorNot{
+    height: 86.6vh;
+    width: 82vw;
+}
+
+.tituloNoti{
+    color: white;
+    font-size: 300%;
+    text-align: center;
+}
+
+.tituloPara{
+    color: white;
+    padding-left: 50px;
+    height: 50px;
+}
+
+.tituloDes{
+    color: white;
+    padding-left: 50px;
+    height: 50px;
+}
+
+.contDes{
   
-  .description-counter {
-    margin-left: auto;
-  }
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.Descripcion{
+    resize: none;
+    height: 150px;
     
+}
+
+.opcionesNot{
+    width: 800px;
+    padding-left: 65px;
+    
+}
+
+.botonDes{
+    background-color: #738FA7;
+    float: right;
+    width: 120px;
+    font-size: 20px;
+    border-color: #738FA7;
+}
+
+.botonDes:hover{
+    background-color: #486781;
+    border-color: #486781;
+}
+
+.contSelect{
+    height: 80px;
+}
+
+
