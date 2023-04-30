@@ -17,10 +17,10 @@ export const userSlice= createSlice({
             state.push(action.payload)
         },
         iniciarSesion:(state, action)=>{
-            state.nombre=action.payload.nombre    
-            state.rol=action.payload.rol
-            state.estado=action.payload.estado
-            state.guardId=action.payload.guardId
+            state.nombre=action.payload.aud    
+            state.rol=action.payload.role
+            state.estado=action.payload.iss
+            state.guardId=action.payload.id
         },
         cerrarSesion:(state,action)=>{
             state.nombre=""

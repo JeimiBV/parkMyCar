@@ -13,14 +13,26 @@ export function UseFetch(url){
       return data
 }
 export async function postPeticion(url,datos){
-
   await fetch(url,{
     method:'POST',
     headers:{
       'Content-Type':'application/json'
     },
     body:JSON.stringify(datos)
-   
+  })
+  .then((res) => {console.log(res),"gggggg"})
+  .then((data) => {console.log(data,"55555")})
+}
+
+export async function postAuthorization(url){
+
+  await fetch(url,{
+    method:'POST',
+    headers:{
+      'authorization':token
+    }
+  }).then((res) => res.json()).then(data => {
+    console.log(data)
   })
   
 }

@@ -5,7 +5,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
         <div className="main d-lg-inline d-none pt-2 ">
             <div className=" d-flex flex-column justify-content-between contenidoSide">
                 <ul>
-                    {rol == "seguridad" || "cliente" ?
+                    {rol == "seguridad" ||"admin" ?
                         <div className="opcion">
                             <a href="/parqueo" className="text-decoration-none">
                                 <div className="d-flex py-3 text-decoration-none text-light align-items-center" >
@@ -15,7 +15,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
                             </a>
                         </div> : <></>}
 
-                    {rol == "seguridad" ? <div className="opcion">
+                    {rol == "seguridad" ||"admin" ? <div className="opcion">
                         <a href="/plazaReserva" className="text-decoration-none">
                             <div className="d-flex py-3  text-decoration-none text-light align-items-center" >
                                 <i class="fa-solid fa-calendar-days fs-1 me-3 opciones"></i>
