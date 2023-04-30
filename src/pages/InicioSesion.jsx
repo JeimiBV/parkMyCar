@@ -42,23 +42,14 @@ export default function InicioSesion() {
 			})
 			.then(data => {
 				const token = data;
-				console.log(token,); // El token JWT obtenido de la API
+				const decodedToken = jwt_decode(token);
+				console.log(decodedToken, "token");
+				dispatch(iniciarSesion(decodedToken));
+				navigate("/parqueo");
 			})
 			.catch(error => {
 				console.error(error);
 			});
-		/*const token = await postPeticion("http://testingapi12023-001-site1.atempurl.com/Authentication", data);
-		if (token) {
-		  console.log(token);
-		} else {
-		  console.error("Error al obtener el token");
-		}*/
-
-
-		//const decodedToken = jwt_decode(token);
-		//console.log(decodedToken,"token")
-		//dispatch(iniciarSesion(decodedToken))
-		//navigate("/parqueo");
 
 	}
 	return (
