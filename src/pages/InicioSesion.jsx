@@ -26,13 +26,7 @@ export default function InicioSesion() {
 	const dispatch = useDispatch();
 	const cambiarEstado = async (event) => {
 		event.preventDefault();
-		fetch('http://testingapi12023-001-site1.atempurl.com/Authentication', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(data)
-		})
+		const fetch = await postPeticion("http://testingapi12023-001-site1.atempurl.com/Authentication", data)
 			.then(response => {
 				if (response.ok) {
 					return response.text();

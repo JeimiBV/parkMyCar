@@ -20,8 +20,6 @@ export async function postPeticion(url,datos){
     },
     body:JSON.stringify(datos)
   })
-  .then((res) => {console.log(res),"gggggg"})
-  .then((data) => {console.log(data,"55555")})
 }
 
 export async function postAuthorization(url){
