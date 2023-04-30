@@ -12,6 +12,7 @@ import CrearNotificacion from "./pages/CrearNotificacion"
 import EditarHoraYGuardia  from "./pages/EditarHoraYGuardia"
 import { ProtectedRoute } from "./protectedRoute/ProtectedRoute";
 import { useSelector,useDispatch } from "react-redux";
+import RegistroUsuario from "./pages/RegistroUsuario"
 
 function App() {
     const usuario = useSelector((state) => state.users).userState;
@@ -24,6 +25,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Landing />} />
                     <Route path="/inicioS" element={<InicioSesion />} />
+                    <Route path="/registroUsuario" element={ <RegistroUsuario />}/>
                     <Route element={<ProtectedRoute rol={usuario.rol} />}>
                         <Route path="/plazaReserva" element={<PlazasReserva />} />
                         <Route path="/reservas" element={<RegistroReserva />} />
@@ -31,7 +33,6 @@ function App() {
                         <Route path="/parqueo" element={<Parking />} />
                         <Route path="/crearNotificacion" element={<CrearNotificacion />}/>
                         <Route path="/editarHorario" element={ <EditarHoraYGuardia />}/>
-                        
                     </Route>
                     
  

@@ -1,0 +1,42 @@
+.containerRegistro {
+    height: 87vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapperRegistro {
+    background-color: #C3CEDA;
+    border-radius: 10px;
+    width: 50vw;
+}
+
+.groupRegistro {
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #071330;
+    color: #071330;
+}
+
+.groupRegistro:hover {
+    color: #0C4160;
+    border: 1px solid #0C4160
+}
+
+.inputRegistro {
+    background-color: #C3CEDA;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: #071330;
+    letter-spacing: 1px;
+}
+
+.btnR1{
+    margin-right: 550px;
+}
+  

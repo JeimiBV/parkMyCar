@@ -27,6 +27,7 @@ export default function Navbar({ logIn, showButton }) {
                 </div> :
                 
                   <div className="d-flex align-items-center">
+                  <a href="/registroUsuario" className="btn text-light mt-3 me-5 accederButton fs-4">Crear cuenta</a>
                     <a href="/inicioS" className="btn text-light mt-3 me-5 accederButton fs-4">Acceder</a>
                   </div>
                 }
