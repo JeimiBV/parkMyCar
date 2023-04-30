@@ -20,7 +20,7 @@ export default function NuevoDiv() {
         value={selectedGuard}
         onChange={handleGuardSelection}
       >
-        <option value="">--Seleccione una guardia--</option>
+        <option value="">--Seleccione un guardia--</option>
         {guardias.map((guardia) => (
           <option key={guardia.id} value={guardia.name}>
             {guardia.name}
