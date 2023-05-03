@@ -1,0 +1,53 @@
+.contenedorGuardia{
+    height: 87vh;
+}
+
+.cuadroRegGuardia {
+    background-color: #C3CEDA;
+    width: 60vw;
+    border-radius: 10px;
+}
+.tituloGuardia{
+    color: #071330;
+}
+
+.groupRG{
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #071330;
+    color: #071330;
+}
+
+.buttonGuardia{
+    display: flex;
+    justify-content: end;
+}
+.contenidoQueja{
+    color: rgb(0, 0, 0);
+    padding-left: 5%;
+    display: flex;
+    background-color: white;
+    width: 85%;
+    margin-left: 6%;
+    font-size: 2.5vh;
+}
+.cuadro{
+    width: 50%;
+    margin: 0 auto;
+}
+.cuadroG{
+    width: 95%;
+    background-color: #C3CEDA;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: #071330;
+    letter-spacing: 1px;
+}
+.btnG{
+    margin-right: 550px;
+}
+

@@ -1,7 +1,7 @@
 import {Navigate, Outlet} from "react-router-dom"
-export const ProtectedRoute=({rol})=>{
-    console.log(rol,"este es rol")
-    if(rol!="admin"){
+export const ProtectedRoute=({isAllowed})=>{
+    console.log(isAllowed,"este es rol")
+    if(!isAllowed){
         return <Navigate to="/"/>
     }
     return <Outlet/>
