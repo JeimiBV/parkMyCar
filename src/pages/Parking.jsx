@@ -43,7 +43,7 @@ function Parking() {
   }, []);
 
   return (
-    <div>
+    <div className="containerParqueo">
       <h1>Plazas</h1>
       <div className="buscadores">
         <div className="buscador">

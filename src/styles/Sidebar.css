@@ -20,6 +20,10 @@
     background-color: rgba(195 206 218 / 20% );
 }
 
+.opcion:active {
+    background-color: rgba(195 206 218 / 20% );
+}
+
 .opcion:hover .opciones {
     color: white;
 }
