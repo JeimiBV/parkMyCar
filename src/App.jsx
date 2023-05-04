@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 import QuejasReclamosUser from "./pages/QuejasReclamosUser";
 import QuejasReclamosAdmin from "./pages/QuejasReclamosAdmin";
 import RegistrarGuardia from "./pages/RegistrarGuardia";
+import RegistroUsuario from "./pages/RegistroUsuario"
 import MisReservas from "./pages/MisReservas";
 import VerQr from "./pages/verQr";
 
@@ -28,6 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/inicioS" element={<InicioSesion />} />
+          <Route path="/registroUsuario" element={<RegistroUsuario />} />
           <Route
             element={
               <ProtectedRoute isAllowed={usuario.rol == "seguridad" || usuario.rol == "admin" || usuario.rol == "client"? true:false} />
