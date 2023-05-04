@@ -42,7 +42,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           ) : (
             <></>
           )}
-          {rol == "seguridad" ? (
+          {rol == "admin" ? (
             <div className="opcion">
               <a href="/editarHorario" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -54,7 +54,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           ) : (
             <></>
           )}
-          {rol == "admin" ? (
+          {rol == "adminn" ? (
             <div className="opcion">
               <a href="/reclamosAdmin" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -78,7 +78,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           ) : (
             <></>
           )}
-          {rol == "admin" ? (
+          {rol == "adminn" ? (
             <div className="opcion">
               <a href="/registrarGuardia" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
