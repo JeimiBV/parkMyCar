@@ -69,7 +69,7 @@ function App() {
 
           <Route
             element={
-              <ProtectedRoute isAllowed={usuario.rol == "seguridad"? true:false} />
+              <ProtectedRoute isAllowed={usuario.rol == "admin"? true:false} />
             }
            >
             <Route path="/editarHorario" element={<EditarHoraYGuardia />} />
