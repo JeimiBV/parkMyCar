@@ -15,6 +15,8 @@ import { useSelector, useDispatch } from "react-redux";
 import QuejasReclamosUser from "./pages/QuejasReclamosUser";
 import QuejasReclamosAdmin from "./pages/QuejasReclamosAdmin";
 import RegistrarGuardia from "./pages/RegistrarGuardia";
+import MisReservas from "./pages/MisReservas";
+import VerQr from "./pages/VerQr";
 
 function App() {
   const usuario = useSelector((state) => state.users).userState;
@@ -28,7 +30,7 @@ function App() {
           <Route path="/inicioS" element={<InicioSesion />} />
           <Route
             element={
-              <ProtectedRoute isAllowed={usuario.rol == "seguridad" || usuario.rol == "admin" || usuario.rol == "cliente"? true:false} />
+              <ProtectedRoute isAllowed={usuario.rol == "seguridad" || usuario.rol == "admin" || usuario.rol == "client"? true:false} />
             }
           >
             <Route path="/plazaReserva" element={<PlazasReserva />} />
@@ -44,9 +46,11 @@ function App() {
 
           <Route
             element={
-              <ProtectedRoute isAllowed={usuario.rol == "cliente"? true:false} />
+              <ProtectedRoute isAllowed={usuario.rol == "client"? true:false} />
             }
            >
+            <Route path="/verQr" element={<VerQr/>}></Route>
+            <Route path="/misReservas" element={<MisReservas/>}> </Route>
             <Route path="/reclamosUser" element={<QuejasReclamosUser />} />
           </Route>
 

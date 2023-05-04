@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ParkingSection from "../components/Parking/ParkingSection";
 import { splitIntoSection } from "../utils/placeUtils";
+import { useSelector } from "react-redux";
 import {
   fetchData,
   fetchDeleteData,
@@ -14,7 +15,7 @@ function Parking() {
   const [entrada, setEntrada] = useState("");
   const [salida, setSalida] = useState("");
   const tableSection = splitIntoSection(places);
-
+  const usuario = useSelector((state) => state.users).userState;
   const handleEntradaChange = (event) => {
     setEntrada(event.target.value);
   };
@@ -68,7 +69,7 @@ function Parking() {
           <ParkingSection key={index} data={tableData} />
         ))}
       </div>
-      <div className="col-12 d-flex justify-content-end px-5">
+      <div className={usuario.rol=="admin"?"col-12 d-flex justify-content-end px-5":"d-none"}>
         <button className="AddPlaceButton" onClick={() => CreatePlace()}>
           +
         </button>
