@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addTask } from "../../tasks/taskSlice";
+import {  addTask } from "../../tasks/taskSlice";
 
 function TableRow({ item1, item2 }) {
   const dispatch = useDispatch();
@@ -9,7 +9,10 @@ function TableRow({ item1, item2 }) {
     <tr key={item1.id}>
       <td className="tdItemOne">
         <button
-          onClick={() => {!item1.isBusy? navigate("/reservas"):""; dispatch(addTask(item1.id))}}
+          onClick={() => {!item1.isBusy? navigate("/reservas"):""; dispatch(addTask({
+            "plaza":item1.num,
+            "id":item1.id
+          }))}}
           className={`place ${!item1.isBusy ? "Available" : "Busy"}`}
         >
           {item1.num}
@@ -18,7 +21,10 @@ function TableRow({ item1, item2 }) {
       {item2 && (
         <td className="tdItemTwo">
           <button
-            onClick={() => { !item2.isBusy? navigate("/reservas"):""; dispatch(addTask(item2.id))}}
+            onClick={() => { !item2.isBusy? navigate("/reservas"):""; dispatch(addTask({
+              "plaza":item2.num,
+              "id":item2.id
+            }))}}
             className={`place ${!item2.isBusy ? "Available" : "Busy"}`}
           >
             {item2.num}

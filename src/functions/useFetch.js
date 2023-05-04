@@ -14,16 +14,16 @@ export function UseFetch(url) {
   }, []);
   return data;
 }
-export async function postPeticion(url, datos) {
-  await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+export async function  postPeticion(url,datos){
+
+  await fetch(url,{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json'
     },
-    body: JSON.stringify(datos),
+    body:JSON.stringify(datos)
   })
-    .then((res) => JSON.parse(res))
-    .then(console.log(res, "55555"));
+ 
 }
 
 export async function postLogin(url, datos) {

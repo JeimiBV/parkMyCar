@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 export default function RegistroReserva() {
   const usuario = useSelector((state) => state.users).userState;
   const selector = useSelector((state) => state.tasks);
-  var idSeleccionado = selector[0];
+  console.log(selector,"aaaaaaaaaaaaaaaaaaaa")
   const [dateEntrada, setDateEntrada] = useState(new Date());
   const [dateSalida, setDateSalida] = useState(new Date());
   const [modal, setModal] = useState(false);
@@ -60,7 +60,7 @@ export default function RegistroReserva() {
       ...datosForm,
       entryDate: dateEntrada,
       retirementDate: dateSalida,
-      placeId: idSeleccionado,
+      placeId: selector.id,
       guardId: usuario.guardId,
     });
   }, [dateEntrada, dateSalida]);
@@ -220,7 +220,7 @@ export default function RegistroReserva() {
                 </div>
                 <div className="col">
                   <p className=" fs-6">{tarifa}</p>
-                  <p className=" fs-6">{idSeleccionado}</p>
+                  <p className=" fs-6">{selector.plaza}</p>
                 </div>
               </div>
               <div className="row m-2 h-25">

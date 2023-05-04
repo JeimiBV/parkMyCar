@@ -37,7 +37,7 @@ export default function RegistroUsuario() {
                             <i class="fa-solid fa-car me-2 pe-2"></i>
                             <input className="inputRegistro w-100" />
                         </div>
-                        <a href="#">+ añadir otro vehículo</a>
+                        <a href="#" >+ añadir otro vehículo</a>
                     </div>
                 </div>
                 <div className="form-group mb-4 p-2 d-flex align-items-center">
@@ -58,7 +58,7 @@ export default function RegistroUsuario() {
                     </div>
                 </div>
                 <div className="w-100">
-                    <button class="btn btnR1 btn-block text-center my-3 rounded">Cancelar</button>
+                    <button class="btn btnR1 btn-block text-center my-3 rounded" onClick={()=>{navigate("/")}}>Cancelar</button>
 
                     <button class="btn btn-block text-center my-3 rounded me-0">Crear cuenta</button>
                 </div>

@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [1] 
+const initialState = {
+   plaza:"",
+   id:""
+}
 /*[
    {
       id: "",
@@ -23,9 +26,10 @@ export const taskSlice = createSlice({
    initialState,
    reducers: {
       addTask: (state, action) =>{
-         state.splice(state.indexOf(0),1)
-         state.push(action.payload);
+         state.plaza=action.payload.plaza    
+         state.id=action.payload.id
       }
+      
    }
 })
 export const {addTask} = taskSlice.actions;
