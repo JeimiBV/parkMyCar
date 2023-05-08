@@ -6,15 +6,15 @@ import "../styles/PagesStyles/EditarHoraYGuardia.css";
 function EditarHoraYGUardia() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const [selectedDates, setSelectedDates] = useState([]);
+  const [dates, setDates] = useState([]);
 
-  const getDatesBetweenDates = (startDate, endDate) => {
-    const dates = [];
+  const getDatesBetweenDates = () => {
+    const datesGenerated = [];
     const currDate = new Date(startDate);
     const lastDate = new Date(endDate);
 
     while (currDate <= lastDate) {
-      dates.push({
+      datesGenerated.push({
         guardId: 0,
         startDate: new Date(currDate),
         endDate: new Date(currDate),
@@ -22,10 +22,19 @@ function EditarHoraYGUardia() {
       currDate.setDate(currDate.getDate() + 1);
     }
 
-    return dates;
+    return datesGenerated;
   };
 
-  const dates = getDatesBetweenDates(startDate, endDate);
+  const handleGenerateDates = () => {
+    setDates(getDatesBetweenDates());
+  };
+
+  const handleSelectDate = (startDateItem) => {
+    const currentDates = dates.filter(
+      (item) => item.startDate !== startDateItem
+    );
+    setDates(currentDates);
+  };
 
   return (
     <div className="containerhoras">
@@ -42,9 +51,13 @@ function EditarHoraYGUardia() {
             onChange={(date) => setEndDate(date)}
           />
         </div>
+        <button onClick={() => handleGenerateDates()}>Generate Dates</button>
       </div>
       {dates.map((item) => (
-        <NuevoDiv item={item} selectDate={setSelectedDates} />
+        <NuevoDiv
+          item={item}
+          selectDate={() => handleSelectDate(item.startDate)}
+        />
       ))}
       <div className="button1">
         <button
