@@ -15,9 +15,11 @@ import { useSelector, useDispatch } from "react-redux";
 import QuejasReclamosUser from "./pages/QuejasReclamosUser";
 import QuejasReclamosAdmin from "./pages/QuejasReclamosAdmin";
 import RegistrarGuardia from "./pages/RegistrarGuardia";
-import RegistroUsuario from "./pages/RegistroUsuario"
+import RegistroUsuario from "./pages/RegistroUsuario";
 import MisReservas from "./pages/MisReservas";
 import VerQr from "./pages/verQr";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const usuario = useSelector((state) => state.users).userState;
@@ -25,6 +27,7 @@ function App() {
 
   return (
     <Layout>
+      <ToastContainer />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -32,7 +35,15 @@ function App() {
           <Route path="/registroUsuario" element={<RegistroUsuario />} />
           <Route
             element={
-              <ProtectedRoute isAllowed={usuario.rol == "seguridad" || usuario.rol == "admin" || usuario.rol == "client"? true:false} />
+              <ProtectedRoute
+                isAllowed={
+                  usuario.rol == "seguridad" ||
+                  usuario.rol == "admin" ||
+                  usuario.rol == "client"
+                    ? true
+                    : false
+                }
+              />
             }
           >
             <Route path="/plazaReserva" element={<PlazasReserva />} />
@@ -41,26 +52,40 @@ function App() {
           </Route>
 
           <Route
-            element={<ProtectedRoute isAllowed={usuario.rol == "admin" || usuario.rol == "seguridad"? true:false} />}
+            element={
+              <ProtectedRoute
+                isAllowed={
+                  usuario.rol == "admin" || usuario.rol == "seguridad"
+                    ? true
+                    : false
+                }
+              />
+            }
           >
             <Route path="/listaReserva" element={<ListaReserva />} />
           </Route>
 
           <Route
             element={
-              <ProtectedRoute isAllowed={usuario.rol == "client"? true:false} />
+              <ProtectedRoute
+                isAllowed={usuario.rol == "client" ? true : false}
+              />
             }
-           >
-            <Route path="/verQr" element={<VerQr/>}></Route>
-            <Route path="/misReservas" element={<MisReservas/>}> </Route>
+          >
+            <Route path="/verQr" element={<VerQr />}></Route>
+            <Route path="/misReservas" element={<MisReservas />}>
+              {" "}
+            </Route>
             <Route path="/reclamosUser" element={<QuejasReclamosUser />} />
           </Route>
 
           <Route
             element={
-              <ProtectedRoute isAllowed={usuario.rol == "admin"? true:false} />
+              <ProtectedRoute
+                isAllowed={usuario.rol == "admin" ? true : false}
+              />
             }
-           >
+          >
             <Route path="/reclamosUser" element={<QuejasReclamosUser />} />
             <Route path="/crearNotificacion" element={<CrearNotificacion />} />
             <Route path="/reclamosAdmin" element={<QuejasReclamosAdmin />} />
@@ -69,9 +94,11 @@ function App() {
 
           <Route
             element={
-              <ProtectedRoute isAllowed={usuario.rol == "admin"? true:false} />
+              <ProtectedRoute
+                isAllowed={usuario.rol == "admin" ? true : false}
+              />
             }
-           >
+          >
             <Route path="/editarHorario" element={<EditarHoraYGuardia />} />
           </Route>
         </Routes>

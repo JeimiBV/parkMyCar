@@ -2,16 +2,25 @@ import React, { useState, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { SelectMulti } from "../components/MultiSelect";
 import "../styles/PagesStyles/CrearNotificacion.css";
+import {toast} from "react-toastify";
 
 const CrearNotificacion = () => {
   const [reserves, setReserves] = useState([]);
   const [phonesValues, setPhonesValues] = useState([]);
 
   useEffect(() => {
-    fetch("/data/reservas.json")
-      .then((response) => response.json())
-      .then((data) => setReserves(data.reserves));
+    getReserves();
   }, []);
+  
+  const getReserves = async () => {
+    await fetch("https://localhost:44307/Reserves")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      setReserves(data);
+    });
+  }
 
   const methods = useForm();
 
@@ -19,7 +28,8 @@ const CrearNotificacion = () => {
     handleSubmit,
     register,
     setValue,
-    formState: { errors },
+    reset,
+    formState: { errors, isValid },
   } = methods;
 
   const optionsMapped = reserves.map((reserve) => ({
@@ -29,11 +39,27 @@ const CrearNotificacion = () => {
 
   const handleSelectValues = (opts) => {
     setPhonesValues(opts);
-    setValue("phones", { ...opts.map((opt) => opt.value) });
+    setValue("phones", [ ...opts.map((opt) => opt.value.toString()) ]);
   };
 
-  const onSubmit = (data) => {
-    console.log(data); //enviar data
+  const onSubmit = async (data) => {
+    await fetch("https://localhost:44307/Notification",{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(data)
+    })
+    .then((data) => {
+      console.log(data);
+      toast.success('notificaciones enviadas con exito', { theme: "colored", autoClose: 3000});
+      setPhonesValues([]);
+      reset();
+    })
+    .catch((error) => {
+      toast.error('error al enviar las notificaciones', { theme: "colored", autoClose: 3000});
+      console.error(error);
+    });
   };
 
   return (
@@ -62,17 +88,17 @@ const CrearNotificacion = () => {
           <h3 className="tituloDes">Descripcion: </h3>
           <div className="contDes">
             <textarea
-              name="description"
+              name="message"
               className="form-control Descripcion"
               placeholder="Escriba el mensaje"
-              {...register("description", {
+              {...register("message", {
                 required: {
                   value: true,
                   message: "El campo es requerido",
                 },
 
                 pattern: {
-                  value: /^[a-zA-Z0-9]+$/,
+                  value: /^[a-zA-Z0-9 ]+$/,
                   message: "El formato no es  el correcto",
                 },
 
@@ -89,12 +115,13 @@ const CrearNotificacion = () => {
             />
 
             <span className="text-danger text-small d-block mb-2">
-              {errors?.description?.message}
+              {errors?.message?.message}
             </span>
           </div>
           <div className="m-2">
             <button
               type="button"
+              disabled={!isValid}
               className="btn btn-primary botonDes"
               data-bs-toggle="modal"
               data-bs-target="#staticBackdrop"
