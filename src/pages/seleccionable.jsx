@@ -1,23 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import DatePicker from "react-datepicker";
+import { fetchData } from "../functions/fetchGuards";
 
 export default function NuevoDiv({ item, selectDate }) {
+  const [guards, setGuards] = useState([]);
   const [startHour, setStartHour] = useState(new Date());
   const [endHour, setEndHour] = useState(new Date());
-  const guardias = [
-    { id: 1, name: "Juan" },
-    { id: 2, name: "Pedro" },
-    { id: 3, name: "María" },
-    { id: 4, name: "Ana" },
-  ];
   const [selectedGuard, setSelectedGuard] = useState("");
-  const handleGuardSelection = (event) => {
+
+  const handleSelectGuard = (event) => {
+    item.guardId = event.target.value;
     setSelectedGuard(event.target.value);
   };
 
-  const handleSelectDate = () => {
-    console.log(item);
+  const getGuards = async () => {
+    const guards = await fetchData();
+    setGuards(guards);
   };
 
   const handleSelectStart = (date) => {
@@ -30,11 +29,17 @@ export default function NuevoDiv({ item, selectDate }) {
     setEndHour(date);
   };
 
+  useEffect(() => {
+    getGuards();
+  }, []);
+
   return (
     <div className="peticiones">
       <div>{item.startDate.toDateString()}</div>
       <div>
-        <input type="checkbox" onClick={() => handleSelectDate()} />
+        <button type="checkbox" onClick={() => selectDate()}>
+          Remove
+        </button>
       </div>
       <div className="apertura">
         <label htmlFor="entrada">Apertura:</label>
@@ -68,12 +73,12 @@ export default function NuevoDiv({ item, selectDate }) {
           id="guardia"
           name="guardia"
           value={selectedGuard}
-          onChange={handleGuardSelection}
+          onChange={handleSelectGuard}
         >
           <option value="">--Seleccione un guardia--</option>
-          {guardias.map((guardia) => (
-            <option key={guardia.id} value={guardia.name}>
-              {guardia.name}
+          {guards.map((guard) => (
+            <option key={guard.id} value={guard.id}>
+              {guard.name}
             </option>
           ))}
         </select>
