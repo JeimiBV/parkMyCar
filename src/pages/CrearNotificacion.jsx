@@ -1,71 +1,97 @@
 import React, { useState, useEffect } from "react";
-import Select from "react-select";
+import { FormProvider, useForm } from "react-hook-form";
+import { SelectMulti } from "../components/MultiSelect";
 import "../styles/PagesStyles/CrearNotificacion.css";
-import reserves from "../../public/data/reservas.json";
 
 const CrearNotificacion = () => {
   const [reserves, setReserves] = useState([]);
+  const [phonesValues, setPhonesValues] = useState([]);
 
   useEffect(() => {
-    fetch("../../public/data/reservas.json")
+    fetch("/data/reservas.json")
       .then((response) => response.json())
       .then((data) => setReserves(data.reserves));
   }, []);
+
+  const methods = useForm();
+
+  const {
+    handleSubmit,
+    register,
+    setValue,
+    formState: { errors },
+  } = methods;
 
   const optionsMapped = reserves.map((reserve) => ({
     value: reserve.phone,
     label: `${reserve.phone} - ${reserve.plate}`,
   }));
 
-  const [text, setText] = useState("");
-  const [options, setOptions] = useState([]);
-
-  useEffect(() => {
-    setOptions(optionsMapped);
-  }, [reserves]);
-
-  const handleChange = (event) => {
-    let inputText = event.target.value;
-    inputText = inputText.replace(/[^a-zA-Z0-9]/g, "").substr(0, 150);
-    setText(inputText);
+  const handleSelectValues = (opts) => {
+    setPhonesValues(opts);
+    setValue("phones", { ...opts.map((opt) => opt.value) });
   };
-  console.log(options);
 
-  const handleOption = (state) => {
-    setOptions(state);
+  const onSubmit = (data) => {
+    console.log(data); //enviar data
   };
 
   return (
-    
     <div className="contenedorNot">
       <div className="tituloNoti">Crear Notificación</div>
-      <h3 className="tituloPara">Para: </h3>
 
-      <div className="contSelect">
-        <Select
-          className="opcionesNot"
-          options={[{ label: "Select All", value: "all" }, ...optionsMapped]}
-          value = {options}
-          isMulti
-          onChange={(selected) => {
-            selected.length && selected.find((opt) => opt.value === "all")
-              ? setOptions(optionsMapped.slice(0))
-              : setOptions(selected);
-          }}
-        />
-      </div>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h3 className="tituloPara">Para: </h3>
+          <div className="contSelect">
+            <SelectMulti
+              name="phones"
+              options={[
+                { label: "Seleccionar todo", value: "all" },
+                ...optionsMapped,
+              ]}
+              values={phonesValues}
+              handleSelect={handleSelectValues}
+              rules={{ required: "En necesario seleccionar un numero " }}
+            />
+            <span className="text-danger text-small d-block mb-2">
+              {errors?.phones?.message}
+            </span>
+          </div>
 
-      <div>
-        <h3 className="tituloDes">Descripcion: </h3>
+          <h3 className="tituloDes">Descripcion: </h3>
+          <div className="contDes">
+            <textarea
+              name="description"
+              className="form-control Descripcion"
+              placeholder="Escriba el mensaje"
+              {...register("description", {
+                required: {
+                  value: true,
+                  message: "El campo es requerido",
+                },
 
-        <div className="contDes">
-          <textarea
-            value={text}
-            className="form-control Descripcion "
-            placeholder="Escriba el mensaje"
-            id="floatingTextarea2"
-            onChange={handleChange}
-          ></textarea>
+                pattern: {
+                  value: /^[a-zA-Z0-9]+$/,
+                  message: "El formato no es  el correcto",
+                },
+
+                minLength: {
+                  value: 15,
+                  message: "Escriba por lo menos 15 caracteres",
+                },
+
+                maxLength: {
+                  value: 150,
+                  message: "Solo puede escribir 150 caracteres",
+                },
+              })}
+            />
+
+            <span className="text-danger text-small d-block mb-2">
+              {errors?.description?.message}
+            </span>
+          </div>
           <div className="m-2">
             <button
               type="button"
@@ -76,8 +102,8 @@ const CrearNotificacion = () => {
               Enviar
             </button>
           </div>
-        </div>
-      </div>
+        </form>
+      </FormProvider>
 
       <div
         class="modal fade"
@@ -115,7 +141,8 @@ const CrearNotificacion = () => {
                 Cerrar
               </button>
               <button
-                type="button"
+                type="submit"
+                onClick={handleSubmit(onSubmit)}
                 class="btn btn-primary"
                 data-bs-dismiss="modal"
               >
