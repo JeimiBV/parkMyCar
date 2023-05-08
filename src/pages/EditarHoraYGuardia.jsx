@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import NuevoDiv from "./seleccionable";
 import "../styles/PagesStyles/EditarHoraYGuardia.css";
+import { fetchPostData } from "../functions/fetchSchedules";
 
 function EditarHoraYGUardia() {
   const [startDate, setStartDate] = useState(new Date());
@@ -27,6 +28,10 @@ function EditarHoraYGUardia() {
 
   const handleGenerateDates = () => {
     setDates(getDatesBetweenDates());
+  };
+
+  const createSchedules = async (schedules) => {
+    await fetchPostData(schedules);
   };
 
   const handleSelectDate = (startDateItem) => {
@@ -62,7 +67,7 @@ function EditarHoraYGUardia() {
       <div className="button1">
         <button
           className="btn btn-primary m-2"
-          onClick={() => console.log(dates)}
+          onClick={() => createSchedules(dates)}
         >
           Guardar
         </button>
