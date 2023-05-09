@@ -5,8 +5,8 @@ import { fetchData } from "../functions/fetchGuards";
 
 export default function NuevoDiv({ item, selectDate }) {
   const [guards, setGuards] = useState([]);
-  const [startHour, setStartHour] = useState(new Date());
-  const [endHour, setEndHour] = useState(new Date());
+  const [startHour, setStartHour] = useState(item.startDate);
+  const [endHour, setEndHour] = useState(item.endDate);
   const [selectedGuard, setSelectedGuard] = useState("");
 
   const handleSelectGuard = (event) => {
