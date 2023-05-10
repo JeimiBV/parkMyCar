@@ -1,0 +1,60 @@
+{
+    "reserves": [
+        {
+            "id": 1,
+            "entryDate": "2023-04-24T14:46:01.243",
+            "retirementDate": "2023-04-24T14:46:01.243",
+            "name": "Ramiro Perez",
+            "nit": "12345",
+            "plate": "123CKB",
+            "phone": 70700562,
+            "guard": {
+                "id": 1,
+                "name": "Juan Perez"
+            },
+            "place": {
+                "id": 1,
+                "num": 1,
+                "isBusy": true
+            }
+        },
+        {
+            "id": 2,
+            "entryDate": "2023-04-24T14:46:01.243",
+            "retirementDate": "2023-04-24T14:46:01.243",
+            "name": "Maria gonzalez",
+            "nit": "12345",
+            "plate": "456ABC",
+            "phone": 68547228,
+            "guard": {
+                "id": 2,
+                "name": "Juan Perez"
+            },
+            "place": {
+                "id": 2,
+                "num": 2,
+                "isBusy": true
+            }
+        },
+        {
+            "id": 3,
+            "entryDate": "2023-04-24T14:46:01.243",
+            "retirementDate": "2023-04-24T14:46:01.243",
+            "name": "Raul Lopez",
+            "nit": "12345",
+            "plate": "104ABC",
+            "phone": 62461582,
+            "guard": {
+                "id": 3,
+                "name": "Juan Perez"
+            },
+            "place": {
+                "id": 3,
+                "num": 3,
+                "isBusy": true
+            }
+        }
+    ]
+}
+
+
