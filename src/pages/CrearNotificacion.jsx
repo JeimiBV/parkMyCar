@@ -13,7 +13,7 @@ const CrearNotificacion = () => {
   }, []);
   
   const getReserves = async () => {
-    await fetch("https://localhost:44307/Reserves")
+    await fetch("http://testingapi12023-001-site1.atempurl.com/reserves")
     .then((response) => {
       return response.json();
     })
@@ -43,7 +43,7 @@ const CrearNotificacion = () => {
   };
 
   const onSubmit = async (data) => {
-    await fetch("https://localhost:44307/Notification",{
+    await fetch("http://testingapi12023-001-site1.atempurl.com/Notification",{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
