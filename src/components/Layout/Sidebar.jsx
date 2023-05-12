@@ -5,7 +5,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
     <div className="main d-lg-inline d-none pt-2 ">
       <div className=" d-flex flex-column justify-content-between contenidoSide">
         <ul>
-          {rol=="seguridad" || rol=="admin" || rol=="client" ? (
+          {rol == "seguridad" || rol == "admin" || rol == "client" ? (
             <div className="opcion">
               <a href="/parqueo" className="text-decoration-none">
                 <div className="d-flex py-3 text-decoration-none text-light align-items-center">
@@ -18,7 +18,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
             <></>
           )}
 
-          {rol == "seguridad" || rol== "admin"? (
+          {rol == "seguridad" || rol == "admin" ? (
             <div className="opcion">
               <a href="/plazaReserva" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -90,16 +90,33 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           ) : (
             <></>
           )}
-
-         {rol=="client"? (<div>
-        <a href="/MisReservas" className="text-decoration-none">
-            <div className="d-flex py-3 opcion text-decoration-none text-light align-items-center">
-              <i class="fa-solid fas fa-grip fs-1 me-3 opciones"></i>
-              <h3 className="opciones fs-5">Mis Reservas</h3>
+          {rol == "admin" ? (
+            <div className="opcion">
+              <a href="/administrarInfo" className="text-decoration-none">
+                <div className="d-flex py-3  text-decoration-none text-light align-items-center">
+                  <i class="fa-sharp fa-solid fa-users-gear fs-1 me-3 opciones"></i>
+                  <h3 className="opciones fs-5">
+                    Administrar información cliente
+                  </h3>
+                </div>
+              </a>
             </div>
-          </a>
-        </div>):(<></>)}
+          ) : (
+            <></>
+          )}
 
+          {rol == "client" ? (
+            <div>
+              <a href="/MisReservas" className="text-decoration-none">
+                <div className="d-flex py-3 opcion text-decoration-none text-light align-items-center">
+                  <i class="fa-solid fas fa-grip fs-1 me-3 opciones"></i>
+                  <h3 className="opciones fs-5">Mis Reservas</h3>
+                </div>
+              </a>
+            </div>
+          ) : (
+            <></>
+          )}
         </ul>
         <section className="text-light fs-4 px-1 py-2 logOutButton ">
           <div className="row py-2">

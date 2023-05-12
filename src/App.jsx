@@ -20,6 +20,7 @@ import MisReservas from "./pages/MisReservas";
 import VerQr from "./pages/verQr";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdministrarInfo from "./pages/AdministrarInfo";
 
 function App() {
   const usuario = useSelector((state) => state.users).userState;
@@ -90,6 +91,7 @@ function App() {
             <Route path="/crearNotificacion" element={<CrearNotificacion />} />
             <Route path="/reclamosAdmin" element={<QuejasReclamosAdmin />} />
             <Route path="/registrarGuardia" element={<RegistrarGuardia />} />
+            <Route path="/administrarInfo" element={<AdministrarInfo />} />
           </Route>
 
           <Route
