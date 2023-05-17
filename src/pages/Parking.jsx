@@ -3,15 +3,17 @@ import ParkingSection from "../components/Parking/ParkingSection";
 import { splitIntoSection } from "../utils/placeUtils";
 import { useSelector } from "react-redux";
 import {
-  fetchData,
-  fetchDeleteData,
-  fetchPostData,
+  fetchCreatePlace,
+  fetchDeletePlace,
+  fetchPlaceHistory,
+  fetchPlaces,
 } from "../functions/fetchPlaces";
 
 import "../styles/PagesStyles/Parqueo.css";
 
 function Parking() {
   const [places, setPlaces] = useState([]);
+  const [historyPlace, setHistoryPlace] = useState([]);
   const [entryDate, setEntryDate] = useState("");
   const [retirementDate, setRetirementDate] = useState("");
   const [entryTime, setEntryTime] = useState("");
@@ -20,24 +22,29 @@ function Parking() {
   const usuario = useSelector((state) => state.users).userState;
 
   const getPlaces = async () => {
-    const places = await fetchData();
+    const places = await fetchPlaces();
     setPlaces(places);
   };
 
   const CreatePlace = async () => {
-    const place = await fetchPostData();
+    const place = await fetchCreatePlace();
     setPlaces((places) => [...places, place]);
   };
 
   const DeletePlace = async () => {
-    const id = await fetchDeleteData();
+    const id = await fetchDeletePlace();
     setPlaces((places) => places.filter((place) => place.id !== id));
   };
 
+  const getPlaceHistory = async () => {
+    const historyPlace = await fetchPlaceHistory();
+    setHistoryPlace(historyPlace);
+  };
+
   const handleSearch = () => {
-    const availablePlaces = placesData.Places.filter((place) => {
+    const availablePlaces = places.Places.filter((place) => {
       // Check if there are any history entries for this place that overlap with the specified time range
-      const overlappingHistory = historyData.History.some((history) => {
+      const overlappingHistory = historyPlace.History.some((history) => {
         return (
           history.placeId === place.id &&
           history.entryDate <= retirementDate &&
@@ -54,6 +61,7 @@ function Parking() {
 
   useEffect(() => {
     getPlaces();
+    getPlaceHistory();
   }, []);
 
   return (
