@@ -65,18 +65,18 @@ export default function RegistroReserva() {
         let dia = dias[date.getDay()];
         let fecha = dia + " " + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
         if ((date.getMonth() + 1) < 10) {
-          fecha = dia + " " + date.getDate() + "/0" + (date.getMonth() + 1) + "/" + date.getFullYear();
+            fecha = dia + " " + date.getDate() + "/0" + (date.getMonth() + 1) + "/" + date.getFullYear();
         }
         if (date.getDate() < 10) {
-          fecha = dia + " 0" + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+            fecha = dia + " 0" + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
         }
         if (tipo == true) {
-          setFechaEntrada(fecha);
+            setFechaEntrada(fecha);
         } else {
-          setFechaSalida(fecha);
+            setFechaSalida(fecha);
         }
-    
-      }
+
+    }
     const calcularTarifa = (precio) => {
         let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
         let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
@@ -85,7 +85,7 @@ export default function RegistroReserva() {
 
     let handleColor = (time) => {
         return time.getHours() > 12 ? "text-success" : "text-error";
-      };
+    };
 
     return (
         <div className="overflow-y-scroll containerReserva">
@@ -230,27 +230,27 @@ export default function RegistroReserva() {
                         <div className="col-6 text-center">
                             <h5>Parqueo desde:</h5>
                             <label className="bg-light rounded-3 p-2">
-                            <DatePicker
-                  showTimeSelect
-                  selected={dateEntrada}
-                  minDate={(new Date)}
-                  dateFormat="Pp"
-                  onChange={(date) => setDateEntrada(date)}
-                  timeClassName={handleColor}
-                />
+                                <DatePicker
+                                    showTimeSelect
+                                    selected={dateEntrada}
+                                    minDate={(new Date)}
+                                    dateFormat="Pp"
+                                    onChange={(date) => setDateEntrada(date)}
+                                    timeClassName={handleColor}
+                                />
                             </label>
                         </div>
                         <div className=" col-6 text-center">
                             <h5>Parqueo hasta:</h5>
                             <label className="bg-light rounded-3 p-2 ">
-                            <DatePicker
-                  showTimeSelect
-                  selected={dateSalida}
-                  minDate={dateEntrada}
-                  dateFormat="Pp"
-                  onChange={(date) => setDateSalida(date)}
-                  timeClassName={handleColor}
-                />
+                                <DatePicker
+                                    showTimeSelect
+                                    selected={dateSalida}
+                                    minDate={dateEntrada}
+                                    dateFormat="Pp"
+                                    onChange={(date) => setDateSalida(date)}
+                                    timeClassName={handleColor}
+                                />
                             </label>
                         </div>
                         <div className="row d-flex justify-content-center mt-5 ">

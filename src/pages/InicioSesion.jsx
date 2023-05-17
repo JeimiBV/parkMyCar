@@ -94,7 +94,7 @@ export default function InicioSesion() {
           </div>
           <div className="w-100 text-center">
             <button
-              class="btn btn-block text-center my-3 rounded"
+              class="btn btn-block text-center my-3 rounded btnInicio"
               onClick={(event) => {
                 cambiarEstado(event);
               }}
