@@ -36,14 +36,14 @@ function Parking() {
     setPlaces((places) => places.filter((place) => place.id !== id));
   };
 
-  const getPlaceHistory = async () => {
+  const getPlaceHistory = async (date) => {
+    setRetirementDate(date);
     const historyPlace = await fetchPlaceHistory();
     setHistoryPlace(historyPlace);
   };
 
   const handleSearch = () => {
-    const availablePlaces = places.Places.filter((place) => {
-      // Check if there are any history entries for this place that overlap with the specified time range
+    const availablePlaces = places.filter((place) => {
       const overlappingHistory = historyPlace.History.some((history) => {
         return (
           history.placeId === place.id &&
@@ -53,7 +53,7 @@ function Parking() {
           history.retirementTime >= entryTime
         );
       });
-      // Return true if there are no overlapping history entries for this place
+
       return !overlappingHistory;
     });
     setPlaces(availablePlaces);
@@ -61,7 +61,6 @@ function Parking() {
 
   useEffect(() => {
     getPlaces();
-    getPlaceHistory();
   }, []);
 
   return (
@@ -81,7 +80,7 @@ function Parking() {
           <input
             type="date"
             value={retirementDate}
-            onChange={(e) => setRetirementDate(e.target.value)}
+            onChange={(e) => getPlaceHistory(e.target.value)}
           />
         </div>
         <div>
