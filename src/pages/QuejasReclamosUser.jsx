@@ -3,7 +3,7 @@ import "../styles/PagesStyles/QuejasReclamosUsers.css";
 
 const QuejasReclamosUser = () => {
   return (
-    <div className="contenedorNot">
+    <div className="contenedorNot overflow-y-scroll">
       <div>
         <div className="tituloNoti">Crear Queja o Reclamo</div>
         <div className="cuadroQad ">

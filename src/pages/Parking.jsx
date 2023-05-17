@@ -44,7 +44,7 @@ function Parking() {
   }, []);
 
   return (
-    <div className="containerParqueo">
+    <div className="containerParqueo overflow-y-scroll">
       <h1>Plazas</h1>
       <div className="buscadores">
         <div className="buscador">

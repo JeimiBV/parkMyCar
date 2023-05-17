@@ -17,11 +17,28 @@
     color: white;
 }
 
+.botonReporte:hover{
+    background-color: #0C4160;
+    color: white;
+}
+
 .cardTable{
     background-color: #738FA7;
+    display: block;
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 9vh;
+    padding: 2rem;
 }
 
 .bg-date{
     background-color:#738FA7;
     border: none;
+    color: white;
+    
+}
+
+.tabla{
+    background-color: #C3CEDA;
+    height: 100%;
 }
