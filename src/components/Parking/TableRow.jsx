@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {  addTask } from "../../tasks/taskSlice";
 
 function TableRow({ item1, item2 }) {
   const dispatch = useDispatch();
+  const usuario = useSelector((state) => state.users).userState;
+  console.log(usuario,"fffffffffff");
   const navigate = useNavigate();
   return (
     <tr key={item1.id}>
       <td className="tdItemOne">
         <button
-          onClick={() => {!item1.isBusy? navigate("/reservas"):""; dispatch(addTask({
+          onClick={() => {!item1.isBusy? navigate(usuario.rol=="client"?"/reservaCliente":"/reservas"):""; dispatch(addTask({
             "plaza":item1.num,
             "id":item1.id
           }))}}
@@ -21,7 +23,7 @@ function TableRow({ item1, item2 }) {
       {item2 && (
         <td className="tdItemTwo">
           <button
-            onClick={() => { !item2.isBusy? navigate("/reservas"):""; dispatch(addTask({
+            onClick={() => { !item2.isBusy? navigate(usuario.rol=="client"?"/reservaCliente":"/reservas"):""; dispatch(addTask({
               "plaza":item2.num,
               "id":item2.id
             }))}}

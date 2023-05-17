@@ -17,9 +17,12 @@ import QuejasReclamosAdmin from "./pages/QuejasReclamosAdmin";
 import RegistrarGuardia from "./pages/RegistrarGuardia";
 import RegistroUsuario from "./pages/RegistroUsuario";
 import MisReservas from "./pages/MisReservas";
+import RegistroReservaCliente from "./pages/RegistroReservaCliente";
 import VerQr from "./pages/verQr";
+import generarReporte from "./pages/generarReporte";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import GenerarReporte from "./pages/generarReporte";
 
 function App() {
   const usuario = useSelector((state) => state.users).userState;
@@ -77,6 +80,7 @@ function App() {
               {" "}
             </Route>
             <Route path="/reclamosUser" element={<QuejasReclamosUser />} />
+            <Route path="/reservaCliente" element={<RegistroReservaCliente />} />
           </Route>
 
           <Route
@@ -90,6 +94,7 @@ function App() {
             <Route path="/crearNotificacion" element={<CrearNotificacion />} />
             <Route path="/reclamosAdmin" element={<QuejasReclamosAdmin />} />
             <Route path="/registrarGuardia" element={<RegistrarGuardia />} />
+            <Route path="/generarReporte" element={<GenerarReporte />} />
           </Route>
 
           <Route

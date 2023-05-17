@@ -100,6 +100,19 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           </a>
         </div>):(<></>)}
 
+        {rol == "admin" ? (
+            <div className="opcion">
+              <a href="/generarReporte" className="text-decoration-none">
+                <div className="d-flex py-3  text-decoration-none text-light align-items-center">
+                  <i class="fa-solid fa-envelope-open-text fs-1 me-3 opciones"></i>
+                  <h3 className="opciones fs-5">Generar Reporte</h3>
+                </div>
+              </a>
+            </div>
+          ) : (
+            <></>
+          )}
+
         </ul>
         <section className="text-light fs-4 px-1 py-2 logOutButton ">
           <div className="row py-2">
