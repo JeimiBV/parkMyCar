@@ -22,6 +22,7 @@ import VerQr from "./pages/verQr";
 import generarReporte from "./pages/generarReporte";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdministrarInfo from "./pages/AdministrarInfo";
 import GenerarReporte from "./pages/generarReporte";
 
 function App() {
@@ -41,8 +42,8 @@ function App() {
               <ProtectedRoute
                 isAllowed={
                   usuario.rol == "seguridad" ||
-                  usuario.rol == "admin" ||
-                  usuario.rol == "client"
+                    usuario.rol == "admin" ||
+                    usuario.rol == "client"
                     ? true
                     : false
                 }
@@ -94,16 +95,8 @@ function App() {
             <Route path="/crearNotificacion" element={<CrearNotificacion />} />
             <Route path="/reclamosAdmin" element={<QuejasReclamosAdmin />} />
             <Route path="/registrarGuardia" element={<RegistrarGuardia />} />
+            <Route path="/administrarInfo" element={<AdministrarInfo />} />
             <Route path="/generarReporte" element={<GenerarReporte />} />
-          </Route>
-
-          <Route
-            element={
-              <ProtectedRoute
-                isAllowed={usuario.rol == "admin" ? true : false}
-              />
-            }
-          >
             <Route path="/editarHorario" element={<EditarHoraYGuardia />} />
           </Route>
         </Routes>

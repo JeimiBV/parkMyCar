@@ -1,0 +1,53 @@
+.tituloInfo{
+    color: white;
+    font-size: 300%;
+    text-align: center;
+}
+.encapsularContenido{
+    background-color: rgba(195 206 218 /70%);
+    width: 90%;
+    border-radius: 10px;
+    height: 100%;
+    margin-left: 7%;
+    margin-block-end: 2%;
+    padding: 1.5% 1.5% 3% 1.5%;
+}
+.tituloCliente{
+    color: white;
+    padding-left: 50px;
+    height: 50px;
+    align-items: center;
+    display: flex;
+}
+.contenidoInfoCliente{
+    color: rgb(0, 0, 0);
+    padding-left: 5%;
+    display: flex;
+    background-color: white;
+    width: 85%;
+    margin-left: 6%;
+    font-size: 2.5vh;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    justify-content: space-around;
+}
+.avatar{
+    border-radius: 50%;
+    width: 50px;
+}
+.usuarioUnidoID{
+    display: flex;
+    align-items: flex-start;
+    
+}
+.usuarioFinal{
+    border-color: black;
+}
+.usuarioIzq{
+    padding-top: 5%;
+}
+.botonUsuario{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}

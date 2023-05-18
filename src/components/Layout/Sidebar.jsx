@@ -113,6 +113,21 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
             <></>
           )}
 
+          {rol == "admin" ? (
+            <div className="opcion">
+              <a href="/administrarInfo" className="text-decoration-none">
+                <div className="d-flex py-3  text-decoration-none text-light align-items-center">
+                  <i class="fa-sharp fa-solid fa-users-gear fs-1 me-3 opciones"></i>
+                  <h3 className="opciones fs-5">
+                    Administrar información cliente
+                  </h3>
+                </div>
+              </a>
+            </div>
+          ) : (
+            <></>
+          )}
+
         </ul>
         <section className="text-light fs-4 px-1 py-2 logOutButton ">
           <div className="row py-2">
