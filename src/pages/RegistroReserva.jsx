@@ -13,13 +13,14 @@ import { useSelector } from "react-redux";
 import { espaciosVacios, validarInput } from "../functions/validaciones";
 import { postPeticion } from "../functions/useFetch";
 import { useNavigate } from "react-router-dom";
+import { getMinutes } from "date-fns";
 
 //import 'moment/locale/en-gb'
 
 export default function RegistroReserva() {
   const usuario = useSelector((state) => state.users).userState;
   const selector = useSelector((state) => state.tasks);
-  console.log(selector,"aaaaaaaaaaaaaaaaaaaa")
+  console.log(selector, "aaaaaaaaaaaaaaaaaaaa")
   const [dateEntrada, setDateEntrada] = useState(new Date());
   const [dateSalida, setDateSalida] = useState(new Date());
   const [modal, setModal] = useState(false);
@@ -28,6 +29,7 @@ export default function RegistroReserva() {
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
   const navigate = useNavigate();
+  // Returns 2011-10-05T14:48:00.000Z
   const [datosForm, setDatosForm] = useState({
     entryDate: "",
     retirementDate: "",
@@ -44,11 +46,12 @@ export default function RegistroReserva() {
 
   const handlePost = async (e) => {
     e.preventDefault();
-    await postPeticion(
+    console.log(datosForm);
+    /*await postPeticion(
       "http://testingapi12023-001-site1.atempurl.com/reserves",
       datosForm
     );
-    navigate("/parqueo");
+    navigate("/parqueo");*/
     //console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
   };
 
@@ -58,11 +61,12 @@ export default function RegistroReserva() {
     calcularTarifa(5);
     setDatosForm({
       ...datosForm,
-      entryDate: dateEntrada,
-      retirementDate: dateSalida,
+      entryDate: dateEntrada.toISOString(),
+      retirementDate: dateSalida.toISOString(),
       placeId: selector.id,
       guardId: usuario.guardId,
     });
+    console.log(dateEntrada, dateSalida)
   }, [dateEntrada, dateSalida]);
 
   const formatearFecha = (date, flag) => {
