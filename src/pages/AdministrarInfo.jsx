@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/PagesStyles/AdministrarInfo.css";
+import { Navigate } from "react-router-dom";
 
 const AdministrarInfo = () => {
   const usuarios = [
@@ -27,6 +28,10 @@ const AdministrarInfo = () => {
       correo: "guard@gmail.com",
     },
   ];
+  const editarUsuario = (nombre) => {
+    window.location = "/registroUsuario"
+    console.log("Editando usuario:", nombre);
+  };
   const eliminarUsuario = (nombre) => {
     console.log("Eliminando usuario:", nombre);
   };
@@ -57,6 +62,12 @@ const AdministrarInfo = () => {
                       </div>
                     </div>
                     <div className="botonUsuario">
+                    <button
+                        class="btn btn-primary m-2"
+                        onClick={() => editarUsuario(usuario.nombre)}
+                      >
+                        Editar
+                      </button>
                       <button
                         class="btn btn-primary m-2"
                         onClick={() => eliminarUsuario(usuario.nombre)}
@@ -87,6 +98,12 @@ const AdministrarInfo = () => {
                       </div>
                     </div>
                     <div className="botonUsuario">
+                    <button
+                        class="btn btn-primary m-2"
+                        onClick={() => editarUsuario(usuario.nombre)}
+                      >
+                        Editar
+                      </button>
                       <button
                         class="btn btn-primary m-2"
                         onClick={() => eliminarUsuario(usuario.nombre)}
