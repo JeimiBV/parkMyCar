@@ -7,26 +7,24 @@ import { postPeticion, postAuthorization } from "../functions/useFetch";
 import jwt_decode from "jwt-decode";
 
 export default function InicioSesion() {
+  const [logInFail, setLoginFail]=useState(false);
   const [showPwd, setShowPwd] = useState(false);
   const [data, setData] = useState({
     email: "",
     password: "",
   });
+  // redireccionar la pagina de ser necesario
   const navigate = useNavigate();
-  //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE2ODI1NDcyMTcsImlzcyI6IlBhcmtNeUNhciIsImF1ZCI6IlBhcmtNeUNhciJ9._8h8Oo3fSPS4bWsXPcA1WDRBqqfRDBfjMEl7Ch6DapE";
+
+  //obtener todos los datos de inputs y guardarlas en el estado 'data'
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-  const datos = {
-    nombre: "Jeimi Barral",
-    rol: "seguridad",
-    estado: true,
-    guardId: 1,
-  };
+
   const dispatch = useDispatch();
+
   const cambiarEstado = async (event) => {
     event.preventDefault();
-
     fetch("http://testingapi12023-001-site1.atempurl.com/Authentication", {
       method: "POST",
       headers: {
@@ -51,6 +49,7 @@ export default function InicioSesion() {
       })
       .catch((error) => {
         console.error(error);
+        setLoginFail(true);
       });
   };
   return (
@@ -60,7 +59,7 @@ export default function InicioSesion() {
         <form class="pt-3 d-block justify-content-center">
           <div class="form-group py-2">
             <p>Ingrese su correo</p>
-            <div class="input-field">
+            <div class={logInFail?"input-field border-danger":"input-field "}>
               <span class="far fa-user p-2"></span>
               <input
                 name="email"
@@ -73,12 +72,12 @@ export default function InicioSesion() {
           </div>
           <div class="form-group py-1 pb-2">
             <p>Ingrese su contraseña</p>
-            <div class="input-field">
+            <div class={logInFail?"input-field border-danger":"input-field "}>
               <span class="fas fa-lock p-2"></span>
               <input
                 name="password"
                 type={showPwd ? "text" : "password"}
-                className="inputColor"
+                className="inputColor "
                 onChange={(e) => {
                   handleChange(e);
                 }}
@@ -93,6 +92,9 @@ export default function InicioSesion() {
             </div>
           </div>
           <div className="w-100 text-center">
+            <p className={logInFail? "text-danger":"d-none"}>
+              Por favor verifique sus credenciales y vuelva a intentar
+            </p>
             <button
               class="btn btn-block text-center my-3 rounded btnInicio"
               onClick={(event) => {

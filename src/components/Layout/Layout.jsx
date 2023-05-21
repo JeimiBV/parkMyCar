@@ -17,7 +17,7 @@ export default function Layout({ children }) {
     dispatch(cerrarSesion())
   }
   return (
-    <div className="layout ">
+    <div className="layout overflow-x-hidden">
       <Navbar logIn={usuario.estado}
               showButton={showButton}
        />

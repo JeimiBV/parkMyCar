@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/Land.css"
 const Landing =() =>{
   return (
-    <div className="prueba">
+    <div className="prueba ">
         <div id="parallax-world-of-ugg">
   
         {/* <section>

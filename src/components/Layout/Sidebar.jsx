@@ -2,7 +2,7 @@ import "../../styles/Sidebar.css";
 
 export default function SideBar({ cambiarE, nombreUsuario, rol }) {
   return (
-    <div className="main d-lg-inline d-none pt-2 ">
+    <div className="main d-lg-inline d-none pt-2 overflow-y-auto overflow-x-hidden">
       <div className=" d-flex flex-column justify-content-between contenidoSide">
         <ul>
           {rol=="seguridad" || rol=="admin" || rol=="client" ? (
@@ -59,7 +59,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
               <a href="/reclamosAdmin" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
                   <i class="fa-solid fa-envelope-circle-check fs-1 me-3 opciones"></i>
-                  <h3 className="opciones fs-5">Quejas o Reclamos</h3>
+                  <h3 className="opciones fs-5">Sugerencias o Reclamos</h3>
                 </div>
               </a>
             </div>
