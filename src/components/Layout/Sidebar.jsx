@@ -59,7 +59,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
               <a href="/reclamosAdmin" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
                   <i class="fa-solid fa-envelope-circle-check fs-1 me-3 opciones"></i>
-                  <h3 className="opciones fs-5">Sugerencias o Reclamos</h3>
+                  <h3 className="opciones fs-5">Sugerencias y reclamos</h3>
                 </div>
               </a>
             </div>
