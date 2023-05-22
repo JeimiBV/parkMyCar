@@ -35,19 +35,19 @@ export default function Navbar({ logIn, showButton }) {
             </ul>
             <ul className="d-lg-none navbar-nav">
               <li>
-                <a href="/parqueo" className="text-decoration-none">
+                <a href="/registroUsuario" className="text-decoration-none">
                   <div className="d-flex py-3 text-decoration-none text-dark opcionesN">
-                    <i class="fa-solid fa-square-parking fs-1 me-3 opcionesN"></i>
-                    <h3 className="opciones text-light">Plazas</h3>
+                  <i class="fa-solid fa-user-plus fs-1 me-3 opcionesN"></i>
+                    <h3 className="opciones text-light">Crear cuenta</h3>
                   </div>
                 </a>
               </li>
 
               <li>
-                <a href="/plazaReserva" className="text-decoration-none">
+                <a href="/inicioS" className="text-decoration-none">
                   <div className="d-flex py-3  text-decoration-none text-dark opcionesN">
-                    <i class="fa-solid fa-calendar-days fs-1 me-3 opcionesN"></i>
-                    <h3 className="opciones text-light">Reservas</h3>
+                  <i class="fa-solid fa-right-to-bracket fs-1 me-3 opcionesN"></i>
+                    <h3 className="opciones text-light">Acceder</h3>
                   </div>
                 </a>
               </li>

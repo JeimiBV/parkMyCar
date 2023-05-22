@@ -60,7 +60,7 @@ export default function InicioSesion() {
           <div class="form-group py-2">
             <p>Ingrese su correo</p>
             <div class={logInFail?"input-field border-danger":"input-field "}>
-              <span class="far fa-user p-2"></span>
+            <i class="fa-solid fa-user p-2"></i>
               <input
                 name="email"
                 className="inputColor"
