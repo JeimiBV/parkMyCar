@@ -1,17 +1,26 @@
-
-.containerInicio{
+.containerInicio {
   height: 87vh;
   width: 100%;
 }
 
-.wrapper {
-  background-color: #C3CEDA;
-  max-width: 500px;
-  border-radius: 10px;
-  margin: 50px auto;
-  padding: 30px 40px;
+.welcomeb {
+  border-radius: 50px 0px 0px 50px;
+  background: linear-gradient(90deg, #071330, #0C4160, #738FA7);
+  border-right: 2px solid #C3CEDA;
 }
 
+.wrapper {
+  background: linear-gradient(90deg, #738FA7, #C3CEDA);
+  width: 40vw;
+}
+
+.wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.wrapper::-webkit-scrollbar-thumb{
+  background: rgba(7, 19, 48, 30%);
+}
 .h2I {
   font-weight: bold;
   color: #071330;
@@ -37,12 +46,10 @@
 }
 
 .inputColor {
-  background-color: #C3CEDA;
+  background: inherit;
   border: none;
   outline: none;
   box-shadow: none;
-  width: 100%;
-  padding: 0px 2px;
   color: #071330;
   letter-spacing: 1px;
 }
@@ -56,41 +63,41 @@
   background-color: #0C4160
 }
 
-.eyecolor{
-  color:#071330
+.eyecolor {
+  color: #071330
 }
 
 @media(max-width: 575px) {
   .wrapper {
-      margin: 10px
+    margin: 10px
   }
 }
 
 @media(max-width:424px) {
   .wrapper {
-      padding: 30px 10px;
-      margin: 5px
+    padding: 30px 10px;
+    margin: 5px
   }
 
   .option {
-      position: relative;
-      padding-left: 22px
+    position: relative;
+    padding-left: 22px
   }
 
   .option label.text-muted {
-      font-size: 0.95rem
+    font-size: 0.95rem
   }
 
   .checkmark {
-      position: absolute;
-      top: 2px
+    position: absolute;
+    top: 2px
   }
 
   .option .checkmark:after {
-      top: 50%
+    top: 50%
   }
 
   #forgot {
-      font-size: 0.95rem
+    font-size: 0.95rem
   }
 }
