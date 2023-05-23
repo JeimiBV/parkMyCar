@@ -36,4 +36,13 @@
     letter-spacing: 1px;
     
 }
+
+@media(min-width: 375px) and (max-width: 675px) {
+    
+    .wrapperRegistro {
+        background-color: #C3CEDA;
+        border-radius: 10px;
+        width: 100%;
+    }
+  }
   

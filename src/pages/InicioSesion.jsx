@@ -1,4 +1,5 @@
 import "../styles/PagesStyles/InicioSesion.css";
+import Spinner from "../components/Spinner";
 import { useDispatch } from "react-redux";
 import { iniciarSesion } from "../users/userSlice";
 import { useState } from "react";
@@ -7,6 +8,7 @@ import { postPeticion, postAuthorization } from "../functions/useFetch";
 import jwt_decode from "jwt-decode";
 
 export default function InicioSesion() {
+  const [loading, setLoading]=useState(false);
   const [logInFail, setLoginFail]=useState(false);
   const [showPwd, setShowPwd] = useState(false);
   const [data, setData] = useState({
@@ -25,6 +27,7 @@ export default function InicioSesion() {
 
   const cambiarEstado = async (event) => {
     event.preventDefault();
+    setLoading(true);
     fetch("http://testingapi12023-001-site1.atempurl.com/Authentication", {
       method: "POST",
       headers: {
@@ -33,11 +36,14 @@ export default function InicioSesion() {
       body: JSON.stringify(data),
     })
       .then((response) => {
+        
         if (response) {
           return response.text();
         } else {
           throw new Error("error al obtener el token");
+          
         }
+        
       })
       .then((data) => {
         const token = data;
@@ -46,11 +52,14 @@ export default function InicioSesion() {
         console.log(decodedToken, "token");
         dispatch(iniciarSesion(decodedToken));
         navigate("/parqueo");
+        setLoading(false);
       })
       .catch((error) => {
         console.error(error);
+        setLoading(false);
         setLoginFail(true);
       });
+      
   };
   return (
     <div className="containerInicio p-5">
@@ -95,7 +104,8 @@ export default function InicioSesion() {
             <p className={logInFail? "text-danger":"d-none"}>
               Por favor verifique sus credenciales y vuelva a intentar
             </p>
-            <button
+            {
+              loading?<Spinner/>:<button
               class="btn btn-block text-center my-3 rounded btnInicio"
               onClick={(event) => {
                 cambiarEstado(event);
@@ -103,6 +113,9 @@ export default function InicioSesion() {
             >
               Ingresar
             </button>
+            }
+            
+            
           </div>
         </form>
       </div>
