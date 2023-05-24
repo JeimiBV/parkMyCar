@@ -5,7 +5,6 @@ import {  addTask } from "../../tasks/taskSlice";
 function TableRow({ item1, item2 }) {
   const dispatch = useDispatch();
   const usuario = useSelector((state) => state.users).userState;
-  console.log(usuario,"fffffffffff");
   const navigate = useNavigate();
   return (
     <tr key={item1.id}>

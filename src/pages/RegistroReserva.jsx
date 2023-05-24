@@ -10,10 +10,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import QRCode from "react-qr-code";
 import { useSelector } from "react-redux";
-import { espaciosVacios, validarInput } from "../functions/validaciones";
-import { postPeticion } from "../functions/useFetch";
 import { useNavigate } from "react-router-dom";
-import { getMinutes } from "date-fns";
 
 //import 'moment/locale/en-gb'
 
@@ -37,7 +34,8 @@ export default function RegistroReserva() {
     plate: "",
     phone: null,
     placeId: null,
-    guardId: null
+    guardId: null,
+    price:0
   });
   const handleChange = (e) => {
     setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
@@ -45,7 +43,7 @@ export default function RegistroReserva() {
 
   const handlePost = async (e) => {
     e.preventDefault();
-    console.log(datosForm);
+    console.log(datosForm)
     /*await postPeticion(
       "http://testingapi12023-001-site1.atempurl.com/reserves",
       datosForm
@@ -57,7 +55,7 @@ export default function RegistroReserva() {
   useEffect(() => {
     formatearFecha(dateEntrada, true);
     formatearFecha(dateSalida, false);
-    calcularTarifa(5);
+    calcularTarifa(5);;
     setDatosForm({
       ...datosForm,
       entryDate: dateEntrada.toISOString(),
@@ -66,7 +64,7 @@ export default function RegistroReserva() {
       guardId: usuario.guardId,
       price: tarifa
     });
-    console.log(dateEntrada, dateSalida)
+    console.log(dateEntrada, dateSalida, datosForm.price)
   }, [dateEntrada, dateSalida]);
 
   const formatearFecha = (date, flag) => {

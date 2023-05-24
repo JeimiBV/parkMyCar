@@ -1,7 +1,7 @@
 import "../styles/PagesStyles/RegistroUsuario.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postPeticion, postAuthorization } from "../functions/useFetch";
+import { postPeticion } from "../functions/useFetch";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 

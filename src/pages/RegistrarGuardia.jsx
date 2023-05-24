@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/PagesStyles/RegistrarGuardia.css";
 import Spinner from "../components/Spinner";
+import { postPeticion } from "../functions/useFetch";
 
 const RegistrarGuardia = () => {
   const [showPwd, setShowPwd] = useState(false);
@@ -9,7 +10,14 @@ const RegistrarGuardia = () => {
   const [ci, setCI] = useState("");
   const [telefono, setTelefono] = useState("");
   const [correo, setCorreo] = useState("");
-
+  const [contrasenia, setContrasenia] = useState("");
+  const [datosForm, setDatosForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    nit: "",
+    phone: 0,
+  });
   function handleNombreChange(event) {
     const nuevoNombre = event.target.value.replace(/[^a-zA-Z\s]/gi, ""); // Solo permite letras y espacios
     setNombre(nuevoNombre);
@@ -29,24 +37,50 @@ const RegistrarGuardia = () => {
     setCorreo(event.target.value);
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log("Nombre:", nombre);
-    console.log("CI:", ci);
-    console.log("Teléfono:", telefono);
-    console.log("Correo electrónico:", correo);
-    //console.log("Contraseña:", contrasenia);
+  function handleContraseniaChange(event) {
+    setContrasenia(event.target.value);
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    datos()
+    setLoading(true);
+    await postPeticion(
+      "http://testingapi12023-001-site1.atempurl.com/users/guard",
+      datosForm
+    );
+    limpiarInputs()
+    setLoading(false);
+  }
+
+  const datos = () => {
+    setDatosForm({
+      ...datosForm,
+      name: nombre,
+      email: correo,
+      password: contrasenia,
+      phone: telefono,
+    });
+  }
+
+  const limpiarInputs = () => {
+    setNombre("");
+    setCI("");
+    setTelefono("");
+    setCorreo("");
+    setContrasenia('');
+  }
+
   return (
-    <div className="contenedorGuardia w-100 p-4 d-flex align-items-center flex-column ">
+    <div className="contenedorGuardia w-100 p-4 d-flex align-items-center flex-column overflow-y-scroll">
       <div className="tituloNoti mb-4">Registrar un nuevo guardia</div>
       <div className="cuadroRegGuardia p-4 ">
-        <form onSubmit={handleSubmit} className="mt-4">
-          <div className="tituloGuardia w-100 mb-4  d-flex">
-            <label htmlFor="nombre" className="me-2">
+        <form onSubmit={(e) => handleSubmit(e)} className="mt-4">
+          <div className="tituloGuardia w-100 mb-4 d-flex align-items-center">
+            <label htmlFor="nombre" className="labelRG">
               Nombre completo:
             </label>
-            <div className="w-75  ms-auto me-4 groupRG">
+            <div className="inputRG me-0 groupRG d-flex">
               <i class="fa-solid fa-user me-3"></i>
               <input
                 className="cuadroG"
@@ -58,9 +92,9 @@ const RegistrarGuardia = () => {
               />
             </div>
           </div>
-          <div className="tituloGuardia w-100 mb-4  d-flex ">
-            <label htmlFor="ci">Carnet de identidad:</label>
-            <div className="w-75  ms-auto me-4 groupRG">
+          <div className="tituloGuardia w-100 mb-4  d-flex align-items-center">
+            <label htmlFor="ci" className="labelRG">Carnet de identidad:</label>
+            <div className="inputRG me-0 groupRG">
               <i class="fa-regular fa-id-card me-3"></i>
               <input
                 className="cuadroG"
@@ -72,9 +106,9 @@ const RegistrarGuardia = () => {
               />
             </div>
           </div>
-          <div className="tituloGuardia w-100 mb-4 d-flex">
-            <label htmlFor="telefono">Teléfono celular:</label>
-            <div className="w-75   ms-auto me-4 groupRG">
+          <div className="tituloGuardia w-100 mb-4 d-flex align-items-center">
+            <label htmlFor="telefono" className="labelRG">Teléfono celular:</label>
+            <div className="inputRG me-0 groupRG">
               <i class="fa-solid fa-phone me-3"></i>
               <input
                 className="cuadroG"
@@ -86,9 +120,9 @@ const RegistrarGuardia = () => {
               />
             </div>
           </div>
-          <div className="tituloGuardia w-100 mb-4 d-flex">
-            <label htmlFor="correo">Correo electrónico:</label>
-            <div className="w-75  ms-auto me-4 groupRG">
+          <div className="tituloGuardia w-100 mb-4 d-flex align-items-center">
+            <label htmlFor="correo" className="labelRG">Correo electrónico:</label>
+            <div className="inputRG me-0 groupRG">
               <i class="fa-solid fa-at me-3"></i>
               <input
                 className="cuadroG "
@@ -101,14 +135,16 @@ const RegistrarGuardia = () => {
               />
             </div>
           </div>
-          <div className="tituloGuardia w-100 d-flex">
-            <label htmlFor="correo">Contraseña:</label>
-            <div className="w-75  ms-auto me-4 groupRG">
+          <div className="tituloGuardia w-100 d-flex align-items-center">
+            <label htmlFor="correo" className="labelRG">Contraseña:</label>
+            <div className="inputRG me-0 groupRG">
               <i class="fa-solid fa-lock me-3"></i>
               <input
                 className="cuadroG "
                 type={showPwd ? "text" : "password"}
                 id="contrasenia"
+                value={contrasenia}
+                onChange={handleContraseniaChange}
                 required
               />
               <div class="me-0" onClick={() => setShowPwd(!showPwd)}>
@@ -121,15 +157,15 @@ const RegistrarGuardia = () => {
             </div>
           </div>
           {
-            loading?<Spinner/>:
-            <div className="buttonGuardia">
-            <button
-              className=" btn btnG btn-block ms-auto me-auto mt-5"
-              type="submit"
-            >
-              Registrar
-            </button>
-          </div>
+            loading ? <Spinner /> :
+              <div className="buttonGuardia">
+                <button
+                  className=" btn btnG btn-block ms-auto me-auto mt-5"
+                  type="submit"
+                >
+                  Registrar
+                </button>
+              </div>
           }
         </form>
       </div>
