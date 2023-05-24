@@ -21,10 +21,10 @@ export default function RegistroUsuario() {
 
     const handlePost = async (e) => {
         e.preventDefault();
-        /*await postPeticion(
+        await postPeticion(
             "http://testingapi12023-001-site1.atempurl.com/users/client",
             datosForm
-        );*/
+        );
         toast.success('Registrando usuario', { theme: "colored", autoClose: 3000});
         //navigate("/");
     };
