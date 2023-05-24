@@ -151,16 +151,14 @@ export default function RegistroReserva() {
                     </Card>
                     <Card titulo={"Información del vehículo"}>
                         <form id="myform" className="row" onSubmit={(e) => handlePost(e)}>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown button
-                                </button>
-                                <ul class="dropdown-menu" name="plate" aria-labelledby="dropdownMenuButton1" onChange={handleChange}>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
+                             <label htmlFor="" className="ms-2 col-3">
+                                Placa del vehiculo
+                             </label>
+                              <input type="text"  name="plate" className=" col-4" onChange={handleChange}
+                              required
+                              pattern="[a-zA-Z0-9]{6}"
+                              placeholder="Debe ingresar 6 caracteres"
+                              />
                         </form>
                     </Card>
                 </div>
