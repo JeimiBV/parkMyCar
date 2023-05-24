@@ -187,6 +187,7 @@ export default function RegistroReserva() {
                   onChange={handleChange}
                   required
                   pattern="[0-9]{8}"
+                  placeholder=" Este espacio debe contener una cadena de 8 caracteres"
                 />
               </div>
               <div className="d-flex row-3 py-2">
@@ -198,6 +199,7 @@ export default function RegistroReserva() {
                   onChange={handleChange}
                   required
                   pattern="[a-zA-Z0-9]+"
+                  placeholder=" Este espacio debe contener una cadena de 9 caracteres"
                 />
               </div>
               <h3 className=" mt-4">Información del vehículo</h3>
@@ -210,6 +212,7 @@ export default function RegistroReserva() {
                   onChange={handleChange}
                   required
                   pattern="[a-zA-Z0-9]{6}"
+                  placeholder=" Este espacio debe contener una cadena de 6 caracteres"
                 />
               </div>
             </form>
