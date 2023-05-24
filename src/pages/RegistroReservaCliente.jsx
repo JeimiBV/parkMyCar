@@ -31,7 +31,9 @@ export default function RegistroReserva() {
     const [datosForm, setDatosForm] = useState({
         entryDate: "",
         retirementDate: "",
-        plate: ""
+        plate: "",
+        price: tarifa
+
     });
     const handleChange = (e) => {
         setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
@@ -57,6 +59,7 @@ export default function RegistroReserva() {
             retirementDate: dateSalida,
             placeId: selector.id,
             guardId: usuario.guardId,
+            price: tarifa
         });
     }, [dateEntrada, dateSalida]);
 

@@ -23,9 +23,6 @@ export async function  postPeticion(url,datos){
     },
     body:JSON.stringify(datos)
   })
-  .catch((error) => {
-    console.error(error);
-  });
 }
 
 export async function postLogin(url, datos) {

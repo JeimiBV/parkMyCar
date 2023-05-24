@@ -20,7 +20,6 @@ import { getMinutes } from "date-fns";
 export default function RegistroReserva() {
   const usuario = useSelector((state) => state.users).userState;
   const selector = useSelector((state) => state.tasks);
-  console.log(selector, "aaaaaaaaaaaaaaaaaaaa")
   const [dateEntrada, setDateEntrada] = useState(new Date());
   const [dateSalida, setDateSalida] = useState(new Date());
   const [modal, setModal] = useState(false);
@@ -38,7 +37,7 @@ export default function RegistroReserva() {
     plate: "",
     phone: null,
     placeId: null,
-    guardId: null,
+    guardId: null
   });
   const handleChange = (e) => {
     setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
@@ -65,6 +64,7 @@ export default function RegistroReserva() {
       retirementDate: dateSalida.toISOString(),
       placeId: selector.id,
       guardId: usuario.guardId,
+      price: tarifa
     });
     console.log(dateEntrada, dateSalida)
   }, [dateEntrada, dateSalida]);

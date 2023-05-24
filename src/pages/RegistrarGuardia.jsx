@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../styles/PagesStyles/RegistrarGuardia.css";
+import Spinner from "../components/Spinner";
 
 const RegistrarGuardia = () => {
   const [showPwd, setShowPwd] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [nombre, setNombre] = useState("");
   const [ci, setCI] = useState("");
   const [telefono, setTelefono] = useState("");
@@ -33,7 +35,7 @@ const RegistrarGuardia = () => {
     console.log("CI:", ci);
     console.log("Teléfono:", telefono);
     console.log("Correo electrónico:", correo);
-    console.log("Contraseña:", password);
+    //console.log("Contraseña:", contrasenia);
   }
   return (
     <div className="contenedorGuardia w-100 p-4 d-flex align-items-center flex-column ">
@@ -47,7 +49,7 @@ const RegistrarGuardia = () => {
             <div className="w-75  ms-auto me-4 groupRG">
               <i class="fa-solid fa-user me-3"></i>
               <input
-                className="cuadroG "
+                className="cuadroG"
                 type="text"
                 id="nombre"
                 value={nombre}
@@ -118,14 +120,17 @@ const RegistrarGuardia = () => {
               </div>
             </div>
           </div>
-          <div className="buttonGuardia">
+          {
+            loading?<Spinner/>:
+            <div className="buttonGuardia">
             <button
               className=" btn btnG btn-block ms-auto me-auto mt-5"
               type="submit"
             >
-              Guardar
+              Registrar
             </button>
           </div>
+          }
         </form>
       </div>
     </div>

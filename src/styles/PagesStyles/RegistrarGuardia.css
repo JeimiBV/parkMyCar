@@ -3,7 +3,7 @@
 }
 
 .cuadroRegGuardia {
-    background-color: #C3CEDA;
+    background: linear-gradient(90deg, #738FA7, #C3CEDA);
     width: 60vw;
     border-radius: 10px;
 }
@@ -40,7 +40,7 @@
 }
 .cuadroG{
     width: 95%;
-    background-color: #C3CEDA;
+    background-color: inherit;
     border: none;
     outline: none;
     box-shadow: none;

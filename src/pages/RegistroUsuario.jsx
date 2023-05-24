@@ -2,10 +2,12 @@ import "../styles/PagesStyles/RegistroUsuario.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postPeticion, postAuthorization } from "../functions/useFetch";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
+import Spinner from "../components/Spinner";
 
 export default function RegistroUsuario() {
     const [showPwd, setShowPwd] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [datosForm, setDatosForm] = useState({
         name: "",
         email: "",
@@ -21,12 +23,14 @@ export default function RegistroUsuario() {
 
     const handlePost = async (e) => {
         e.preventDefault();
+        setLoading(true);
         await postPeticion(
             "http://testingapi12023-001-site1.atempurl.com/users/client",
             datosForm
         );
-        toast.success('Registrando usuario', { theme: "colored", autoClose: 3000});
-        //navigate("/");
+        setLoading(false);
+        //toast.success('Registrando usuario', { theme: "colored", autoClose: 3000});
+        navigate("/inicioS");
     };
 
     return (
@@ -89,11 +93,14 @@ export default function RegistroUsuario() {
                         <button class="btn col-md-4 col-5 btn-block text-center my-3 rounded" onClick={() => { navigate("/") }}>Cancelar</button>
                         <div className="col-md-4 col-2"></div>
 
-                        <button data-bs-toggle="modal" type="submit" class="btn btn-block col-md-4 col-5 text-center my-3 rounded me-0">Crear cuenta</button>
+                        {
+                            loading ? <Spinner /> : <button type="submit" class="btn btn-block col-md-4 col-5 text-center my-3 rounded me-0">Crear cuenta</button>
+                        }
+
                     </div>
                 </form>
 
-                
+
             </div>
         </div>
     );
