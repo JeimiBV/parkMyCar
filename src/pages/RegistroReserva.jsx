@@ -28,6 +28,7 @@ export default function RegistroReserva() {
   const [fechaEntrada, setFechaEntrada] = useState("");
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
+  const [factura, setFactura]= useState("");
   const navigate = useNavigate();
   // Returns 2011-10-05T14:48:00.000Z
   const [datosForm, setDatosForm] = useState({
@@ -109,7 +110,7 @@ export default function RegistroReserva() {
     <div className="overflow-y-scroll containerReserva">
       <div className="row w-100 position-relative">
         <h1 className="text-center text-light my-4 ">Reserva</h1>
-        <div className="m-3 col-8">
+        <div className="mx-3 col-md-8 col-12">
           <Card titulo={"Tiempo de reserva"}>
             <div className="row">
               <div className="my-2 col">
@@ -214,10 +215,10 @@ export default function RegistroReserva() {
             </form>
           </Card>
         </div>
-        <div className="col-3 mt-3">
+        <div className="col-12 col-md-3 ms-3 ms-md-0  mt-md-3 mt-0">
           <Card titulo={"Detalle de la tarifa"} vertical={true}>
             <div className="col h-100">
-              <div className="row h-75">
+              <div className="row alturaVertical">
                 <div className="col">
                   <p className=" fs-6">Tarifa:</p>
                   <p className="fs-6 ">Nro de plaza:</p>
@@ -236,13 +237,20 @@ export default function RegistroReserva() {
                 >
                   Generar QR
                 </button>
-                <button
+                
+                 
+                { factura?<button
                   className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                   form="myform"
                   type="submit"
                 >
                   Reservar
-                </button>
+                </button>:
+                <input className=" btn btn-danger m-2 d-flex justify-content-center align-items-center"
+                id="image-upload" type="file" accept="image/*" placeholder=""
+                onChange={e=>setFactura(e.target.value)}
+                />
+                }
                 <button
                   className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                   onClick={() => {
@@ -280,7 +288,7 @@ export default function RegistroReserva() {
         </Modal>
         <Modal titulo={"Edite la fecha o tiempo"} mostrar={modal}>
           <div className="row">
-            <div className="col-6 text-center">
+            <div className="col col-md-6 text-center">
               <h5>Parqueo desde:</h5>
               <label className="bg-light rounded-3 p-2">
                 <DatePicker
@@ -300,7 +308,7 @@ export default function RegistroReserva() {
                 />
               </label>
             </div>
-            <div className=" col-6 text-center">
+            <div className=" col col-md-6 mt-4 mt-md-0 text-center">
               <h5>Parqueo hasta:</h5>
               <label className="bg-light rounded-3 p-2 ">
                 <DatePicker

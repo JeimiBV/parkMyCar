@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     tableCol: {
-        width: "20%",
+        width: "13%",
         borderStyle: "solid",
         borderWidth: 1,
         borderLeftWidth: 0,
@@ -51,26 +51,17 @@ const styles = StyleSheet.create({
     }
 });
 
-const PDFDocument = () => {
-    const [data, setData] = useState([
-        {
-
-            "dia": "12/05/2022",
-            "id": "1",
-            "nombre": "Jeimi Alejandra",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
+const PDFDocument = ({datae}) => {
+    
 
 
+   console.log(datae, "datos")
 
-
-    ]);
     return (
-        <Document
-        orientation="landscape" 
+    <Document
+      
         >
-            <Page size="LETTER" style={styles.page}>
+            <Page size="LETTER" style={styles.page} orientation="landscape">
                 <View style={styles.section}>
                     <Text style={styles.tittle}>Reporte de ingresos</Text>
                     <View style={styles.table}>
@@ -96,32 +87,40 @@ const PDFDocument = () => {
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>Hora de salida</Text>
                             </View>
+                            <View style={styles.tableCol}>
+                                <Text style={styles.tableCell}>Placa vehicular</Text>
+                            </View>
                         </View>
                         <View style={styles.container}>
-                            {
-                                data.map((dato) => (
+                            { 
+                              
+                                datae.map((dato) => (
                                     <View style={styles.tableRowBody}>
                                         <View style={styles.tableColID}>
-                                            <Text style={styles.tableCell}>{dato.id}</Text>
+                                            <Text style={styles.tableCell}>{dato.place.num}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.dia}</Text>
+                                            <Text style={styles.tableCell}>{dato.name}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.nombre}</Text>
+                                            <Text style={styles.tableCell}>{dato.nit}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.nombre}</Text>
+                                            <Text style={styles.tableCell}>{dato.phone}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.nombre}</Text>
+                                            <Text style={styles.tableCell}>{dato.entryDate.slice(0,10)}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.apellido}</Text>
+                                            <Text style={styles.tableCell}>{dato.entryDate.slice(11,19)}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.UserName}</Text>
+                                            <Text style={styles.tableCell}>{dato.retirementDate.slice(11,19)}</Text>
                                         </View>
+                                        <View style={styles.tableCol}>
+                                            <Text style={styles.tableCell}>{dato.plate}</Text>
+                                        </View>
+                                        
                                     </View>
 
                                 ))
@@ -131,6 +130,8 @@ const PDFDocument = () => {
                 </View>
             </Page>
         </Document>
+
+       
     );
 };
 

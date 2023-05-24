@@ -8,3 +8,12 @@
     width: 100%;
     height: 86.7vh;
 }
+
+
+@media(max-width: 575px) {
+    .cardV {
+        background-color: rgba(195 206 218 /70%);
+        width: 100%;
+        height: 75%;
+    }
+  }
