@@ -30,13 +30,13 @@ export default function RegistroUsuario() {
     };
 
     return (
-        <div className="containerRegistro p-5">
-            <div className="d-flex w-75">
-                <div class="welcome bg-danger h-100 d-flex flex-column justify-content-center align-items-center p-5 text-center w-50">
+        <div className="containerRegistro p-0 p-md-5">
+            <div className="d-flex contenedorRegistroA">
+                <div class="welcome d-none bg-danger h-100 d-md-flex flex-column justify-content-center align-items-center p-5 text-center w-50">
                     <h1>Bienvenido!</h1>
                     <p className="text-light">Ingresa tus datos personales y comienza a reservar con nosotros </p>
                 </div>
-                <form class="wrapperRegistro p-5 pt-1 pb-1 h-100 overflow-y-scroll w-50" onSubmit={(e) => handlePost(e)}>
+                <form class="wrapperRegistro px-3 px-md-5 pt-1 pb-1 h-100  " onSubmit={(e) => handlePost(e)}>
                     <h2 className="mt-2 h2I text-center fs-1 mb-4">Crear cuenta</h2>
                     <div className="form-group p-2 d-block ">
                         <p className="w-100 mb-1">Nombre</p>
@@ -86,10 +86,10 @@ export default function RegistroUsuario() {
                         </div>
                     </div>
                     <div className="w-100 row ms-1">
-                        <button class="btn col-4  btn-block text-center my-3 rounded" onClick={() => { navigate("/") }}>Cancelar</button>
-                        <div className="col-4"></div>
+                        <button class="btn col-md-4 col-5 btn-block text-center my-3 rounded" onClick={() => { navigate("/") }}>Cancelar</button>
+                        <div className="col-md-4 col-2"></div>
 
-                        <button data-bs-toggle="modal" type="submit" class="btn btn-block col-4 text-center my-3 rounded me-0">Crear cuenta</button>
+                        <button data-bs-toggle="modal" type="submit" class="btn btn-block col-md-4 col-5 text-center my-3 rounded me-0">Crear cuenta</button>
                     </div>
                 </form>
 

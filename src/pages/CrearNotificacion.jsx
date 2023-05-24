@@ -64,7 +64,7 @@ const CrearNotificacion = () => {
 
   return (
     <div className="contenedorNot">
-      <div className="tituloNoti">Crear Notificación</div>
+      <div className="tituloNoti fs-1 ">Crear Notificación</div>
 
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>

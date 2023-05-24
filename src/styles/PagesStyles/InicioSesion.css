@@ -8,10 +8,13 @@
   background: linear-gradient(90deg, #071330, #0C4160, #738FA7);
   border-right: 2px solid #C3CEDA;
 }
+.contenedorInicio{
+  width: 75%;
+}
 
 .wrapper {
   background: linear-gradient(90deg, #738FA7, #C3CEDA);
-  width: 40vw;
+  width: 50%;
 }
 
 .wrapper::-webkit-scrollbar {
@@ -69,12 +72,17 @@
 
 @media(max-width: 575px) {
   .wrapper {
-    margin: 10px
+    margin: 10px;
+    width: 100%;
+  }
+  .contenedorInicio{
+    width: 100%;
   }
 }
 
 @media(max-width:424px) {
   .wrapper {
+    width: 100%;
     padding: 30px 10px;
     margin: 5px
   }

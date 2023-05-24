@@ -4,5 +4,20 @@
 .fecha{
     background-color: rgba(115 143 167 / 80%) ;
     width: 20%;
+}
 
+@media (min-width:456px) and  (max-width:1111px) {
+    .fecha{
+        background-color:  rgba(115 143 167 / 80%) ;
+        width: 50%;
+    }
+    
+}
+
+@media   (max-width:456px) {
+    .fecha{
+        background-color: rgba(115 143 167 / 80%) ;
+        width: 90%;
+    }
+    
 }

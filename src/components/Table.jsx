@@ -5,12 +5,12 @@ import { useState } from "react"
 export default function Table({ datos }) {
     const [reservado, setReservado] = useState([datos])
     return (
-        <div className="ms-5 ps-5 mb-5">
+        <div className="ms-md-5 ps-md-5 mb-5">
             <section className="fs-4 fecha p-3 rounded-4 text-center mb-4 text-light">
                 {datos.date.slice(0, 10)}
             </section>
             <div>
-                <section className="tablaContenedor w-75 rounded-4">
+                <section className="tablaContenedor w-75 ms-md-5 rounded-4 ms-4 ms-md-0">
                     <div className=" row p-3 border-bottom border-dark">
                         <h4 className="col text-center"> Hora </h4>
                         <h4 className="col text-center"> Nombre </h4>
