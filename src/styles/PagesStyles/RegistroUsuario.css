@@ -1,15 +1,31 @@
 .containerRegistro {
-    height: 87vh;
+    height: 100%;
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+}
+.contenedorRegistroA{
+    width: 75%;
 }
 
+.welcome{
+    border-radius: 50px 0px 0px 50px;
+    background: linear-gradient(90deg, #071330, #0C4160, #738FA7);
+    border-right: 2px solid #C3CEDA;
+}
+
+
 .wrapperRegistro {
-    background-color: #C3CEDA;
-    border-radius: 10px;
-    width: 50vw;
+    background: linear-gradient(90deg, #738FA7, #C3CEDA );
+    width: 50%;
+}
+
+.wrapperRegistro::-webkit-scrollbar {
+    width: 8px;
+}
+
+.wrapperRegistro::-webkit-scrollbar-thumb{
+    background: rgba(7, 19, 48, 30%);
 }
 
 .groupRegistro {
@@ -28,7 +44,7 @@
 }
 
 .inputRegistro {
-    background-color: #C3CEDA;
+    background : inherit; 
     border: none;
     outline: none;
     box-shadow: none;
@@ -44,5 +60,8 @@
         border-radius: 10px;
         width: 100%;
     }
-  }
+    .contenedorRegistro{
+        width: 100%;
+    }
+}
   

@@ -62,464 +62,39 @@ const PDFDocument = () => {
             "UserName": "@JeimiBV"
         },
 
-        {
-            "dia": "14/05/2022",
-            "id": "2",
-            "nombre": "Edwin Ramiro",
-            "apellido": "Garcia Chambilla",
-            "UserName": "ramiro777"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-
-            "dia": "12/05/2022",
-            "id": "1",
-            "nombre": "Jeimi Alejandra",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-
-        {
-            "dia": "14/05/2022",
-            "id": "2",
-            "nombre": "Edwin Ramiro",
-            "apellido": "Garcia Chambilla",
-            "UserName": "ramiro777"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-
-            "dia": "12/05/2022",
-            "id": "1",
-            "nombre": "Jeimi Alejandra",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-
-        {
-            "dia": "14/05/2022",
-            "id": "2",
-            "nombre": "Edwin Ramiro",
-            "apellido": "Garcia Chambilla",
-            "UserName": "ramiro777"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-        {
-
-            "dia": "12/05/2022",
-            "id": "1",
-            "nombre": "Jeimi Alejandra",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-
-        {
-            "dia": "14/05/2022",
-            "id": "2",
-            "nombre": "Edwin Ramiro",
-            "apellido": "Garcia Chambilla",
-            "UserName": "ramiro777"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-
-            "dia": "12/05/2022",
-            "id": "1",
-            "nombre": "Jeimi Alejandra",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-
-        {
-            "dia": "14/05/2022",
-            "id": "2",
-            "nombre": "Edwin Ramiro",
-            "apellido": "Garcia Chambilla",
-            "UserName": "ramiro777"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-
-            "dia": "12/05/2022",
-            "id": "1",
-            "nombre": "Jeimi Alejandra",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-
-        {
-            "dia": "14/05/2022",
-            "id": "2",
-            "nombre": "Edwin Ramiro",
-            "apellido": "Garcia Chambilla",
-            "UserName": "ramiro777"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-        {
-
-            "dia": "12/05/2022",
-            "id": "1",
-            "nombre": "Jeimi Alejandra",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-
-        {
-            "dia": "14/05/2022",
-            "id": "2",
-            "nombre": "Edwin Ramiro",
-            "apellido": "Garcia Chambilla",
-            "UserName": "ramiro777"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-
-            "dia": "12/05/2022",
-            "id": "1",
-            "nombre": "Jeimi Alejandra",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-
-        {
-            "dia": "14/05/2022",
-            "id": "2",
-            "nombre": "Edwin Ramiro",
-            "apellido": "Garcia Chambilla",
-            "UserName": "ramiro777"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-            "dia": "12/05/2022",
-            "id": "3",
-            "nombre": "Ale",
-            "apellido": "Alañes",
-            "UserName": "@homie"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "4",
-            "nombre": "Xaver",
-            "apellido": "Montaño",
-            "UserName": "@xavi"
-        },
-
-        {
-            "dia": "12/05/2022",
-            "id": "5",
-            "nombre": "Jeimi ",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-        {
-
-            "dia": "12/05/2022",
-            "id": "1",
-            "nombre": "Jeimi Alejandra",
-            "apellido": "Barral Valverde",
-            "UserName": "@JeimiBV"
-        },
-
-        {
-            "dia": "14/05/2022",
-            "id": "2",
-            "nombre": "Edwin Ramiro",
-            "apellido": "Garcia Chambilla",
-            "UserName": "ramiro777"
-        },
 
 
 
     ]);
     return (
-        <Document>
+        <Document
+        orientation="landscape" 
+        >
             <Page size="LETTER" style={styles.page}>
                 <View style={styles.section}>
                     <Text style={styles.tittle}>Reporte de ingresos</Text>
                     <View style={styles.table}>
                         <View style={styles.tableRowHead}>
                             <View style={styles.tableColID}>
-                                <Text style={styles.tableCell}>ID</Text>
+                                <Text style={styles.tableCell}>Plaza</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>Nombre</Text>
+                                <Text style={styles.tableCell}>Nombre completo</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>Apellido</Text>
+                                <Text style={styles.tableCell}>Carnet de indentidad</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>UserName</Text>
+                                <Text style={styles.tableCell}>Telefono</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>Fecha de reserva</Text>
+                                <Text style={styles.tableCell}>Fecha</Text>
+                            </View>
+                            <View style={styles.tableCol}>
+                                <Text style={styles.tableCell}>Hora de ingreso</Text>
+                            </View>
+                            <View style={styles.tableCol}>
+                                <Text style={styles.tableCell}>Hora de salida</Text>
                             </View>
                         </View>
                         <View style={styles.container}>
@@ -531,6 +106,12 @@ const PDFDocument = () => {
                                         </View>
                                         <View style={styles.tableCol}>
                                             <Text style={styles.tableCell}>{dato.dia}</Text>
+                                        </View>
+                                        <View style={styles.tableCol}>
+                                            <Text style={styles.tableCell}>{dato.nombre}</Text>
+                                        </View>
+                                        <View style={styles.tableCol}>
+                                            <Text style={styles.tableCell}>{dato.nombre}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
                                             <Text style={styles.tableCell}>{dato.nombre}</Text>
