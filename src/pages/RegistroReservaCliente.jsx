@@ -29,14 +29,15 @@ export default function RegistroReserva() {
     const [tarifa, setTarifa] = useState(0);
     const navigate = useNavigate();
     const [datosForm, setDatosForm] = useState({
-        entryDate: "",
-        retirementDate: "",
-        plate: "",
-        price: tarifa
+        name:usuario.nombre,
+        phone:usuario.telefono,
+        nit:usuario.nit,
 
     });
     const handleChange = (e) => {
-        setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
+        setDatosForm({  ...datosForm, [e.target.name]: e.target.value });
+       // console.log(datosForm, 'esteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+        
     };
 
     const handlePost = async (e) => {

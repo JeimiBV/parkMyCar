@@ -10,7 +10,7 @@ function TableRow({ item1, item2 }) {
     <tr key={item1.id}>
       <td className="tdItemOne">
         <button
-          onClick={() => {!item1.isBusy? navigate(usuario.rol=="client"?"/reservaCliente":"/reservas"):""; dispatch(addTask({
+          onClick={() => {!item1.isBusy? navigate(usuario.rol=="Client"?"/reservaCliente":"/reservas"):""; dispatch(addTask({
             "plaza":item1.num,
             "id":item1.id
           }))}}
