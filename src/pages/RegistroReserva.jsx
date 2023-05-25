@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import QRCode from "react-qr-code";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { postPeticion } from "../functions/useFetch";
 
 //import 'moment/locale/en-gb'
 
@@ -45,12 +46,12 @@ export default function RegistroReserva() {
   const handlePost = async (e) => {
     e.preventDefault();
     console.log(datosForm)
-    /*await postPeticion(
+    await postPeticion(
       "http://testingapi12023-001-site1.atempurl.com/reserves",
       datosForm
     );
-    navigate("/parqueo");*/
-    //console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
+    navigate("/parqueo");
+    console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
   };
 
   useEffect(() => {

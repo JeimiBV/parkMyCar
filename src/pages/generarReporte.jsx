@@ -29,7 +29,7 @@ export default function () {
                     
                    
                     <div className="col d-flex justify-content-center row">
-                    <input type="text" placeholder="Buscar placa" id="buscadorPlaca" className="w-25 me-3" name="placa" onChange={e =>{setPlaca(e.target.value)}} />
+                    <input type="text" placeholder="Buscar nombre o placa" id="buscadorPlaca" className="w-25 me-3" name="placa" onChange={e =>{setPlaca(e.target.value)}} />
                         <button type="button" class="btn botonReporte w-25" onClick={()=>{handlePlate()}}>
                             <i class="fa-solid fa-magnifying-glass me-2"></i>
                             Buscar
