@@ -36,6 +36,52 @@ export default function () {
                         </button>
                     </div>
                 </div>
+                <div className="row w-100 me-0 ms-0 mb-5">
+                    <div className="col row d-flex justify-content-center align-items-center">
+                        <label className="col">Fecha inicial</label>
+                        <div className="col">
+                            <DatePicker
+                                selected={dateEntrada}
+                                onChange={(date) => {
+                                    setDateEntrada(date);
+                                }}
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={60}
+                                timeCaption="Hora"
+                                dateFormat="Pp"
+                                locale="vi"
+                                className="bg-date p-2 rounded"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="col row d-flex justify-content-center align-items-center">
+                        <label className="col">Fecha final</label>
+                        <div className="col">
+                            <DatePicker
+                                selected={dateSalida}
+                                onChange={(date) => {
+                                    setDateSalida(date);
+                                }}
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={60}
+                                timeCaption="Hora"
+                                dateFormat="Pp"
+                                locale="vi"
+                                className="bg-date p-2 rounded"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="col d-flex justify-content-center row">
+                        <button type="button" class="btn botonReporte w-50">
+                            <i class="fa-solid fa-magnifying-glass me-2"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
                 {  datae?
                     <PDFViewer style={{ width: "100%", height: "80%" }}>
                     <DocumentPDF
