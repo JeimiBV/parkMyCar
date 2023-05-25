@@ -77,9 +77,7 @@ function App() {
             }
           >
             <Route path="/verQr" element={<VerQr />}></Route>
-            <Route path="/misReservas" element={<MisReservas />}>
-              {" "}
-            </Route>
+            <Route path="/misReservas" element={<MisReservas />} />
             <Route path="/reclamosUser" element={<QuejasReclamosUser />} />
             <Route path="/reservaCliente" element={<RegistroReservaCliente />} />
           </Route>

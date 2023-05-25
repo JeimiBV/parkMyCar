@@ -5,12 +5,13 @@ import Modal from "../components/Modal";
 //import esLocale from "date-fns/locale/es"
 import Card from "../components/Card";
 import "../styles/PagesStyles/RegistroReserva.css";
-import { useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
+import { useEffect, useRef, useState } from "react";
+import DatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import QRCode from "react-qr-code";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { postPeticion } from "../functions/useFetch";
 
 //import 'moment/locale/en-gb'
 
@@ -24,7 +25,7 @@ export default function RegistroReserva() {
   const [fechaEntrada, setFechaEntrada] = useState("");
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
-  const [factura, setFactura]= useState("");
+  const [factura, setFactura] = useState("");
   const navigate = useNavigate();
   // Returns 2011-10-05T14:48:00.000Z
   const [datosForm, setDatosForm] = useState({
@@ -36,7 +37,7 @@ export default function RegistroReserva() {
     phone: null,
     placeId: null,
     guardId: null,
-    price:0
+    price: 0
   });
   const handleChange = (e) => {
     setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
@@ -45,42 +46,42 @@ export default function RegistroReserva() {
   const handlePost = async (e) => {
     e.preventDefault();
     console.log(datosForm)
-    /*await postPeticion(
+    await postPeticion(
       "http://testingapi12023-001-site1.atempurl.com/reserves",
       datosForm
     );
-    navigate("/parqueo");*/
+    navigate("/parqueo");
     //console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
   };
 
-  useEffect(() => {
-    formatearFecha(dateEntrada, true);
-    formatearFecha(dateSalida, false);
-    calcularTarifa(5);;
+  const handleAceptar = () => {
+    calcularTarifa(5);
     setDatosForm({
       ...datosForm,
-      entryDate: dateEntrada.getUTCDate(),
-      retirementDate: dateSalida.getUTCDate(),
+      entryDate: dateEntrada.toUTCString(),
+      retirementDate: dateSalida.toUTCString(),
       placeId: selector.id,
       guardId: usuario.guardId,
       price: tarifa
     });
-    console.log(dateEntrada, dateSalida, datosForm.price)
+
+  }
+  useEffect(() => {
+    formatearFecha(dateEntrada, true);
+    formatearFecha(dateSalida, false);
+    handleAceptar();
   }, [dateEntrada, dateSalida]);
 
   const formatearFecha = (date, flag) => {
-    // console.log(date.getHours(), date.getMinutes())
     if (flag == true) {
       if (date.getMinutes() < 10) {
         setFechaEntrada(date.getHours() + ":0" + date.getMinutes());
-        //  console.log("entra")
       } else {
         setFechaEntrada(date.getHours() + ":" + date.getMinutes());
       }
     } else {
       if (date.getMinutes() < 10) {
         setFechaSalida(date.getHours() + ":0" + date.getMinutes());
-        //console.log("entra")
       } else {
         setFechaSalida(date.getHours() + ":" + date.getMinutes());
       }
@@ -95,12 +96,10 @@ export default function RegistroReserva() {
   const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
-
     return currentDate.getTime() < selectedDate.getTime();
   };
   const filterSelectedTime = (time) => {
     const selectedDate = new Date(time);
-
     return dateEntrada.getTime() < selectedDate.getTime();
   };
 
@@ -192,7 +191,7 @@ export default function RegistroReserva() {
                 <p className="me-5 fs-6 m-0 w-25">Carnet de identidad:</p>
                 <input
                   type="text"
-                  name="nit"
+                  name="ci"
                   className=" w-100 h-100"
                   onChange={handleChange}
                   required
@@ -238,19 +237,19 @@ export default function RegistroReserva() {
                 >
                   Generar QR
                 </button>
-                
-                 
-                { factura?<button
+
+
+                {factura ? <button
                   className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                   form="myform"
                   type="submit"
                 >
                   Reservar
-                </button>:
-                <input className=" btn btn-danger m-2 d-flex justify-content-center align-items-center"
-                id="image-upload" type="file" accept="image/*" placeholder=""
-                onChange={e=>setFactura(e.target.value)}
-                />
+                </button> :
+                  <input className=" btn btn-danger m-2 d-flex justify-content-center align-items-center"
+                    id="image-upload" type="file" accept="image/*" placeholder=""
+                    onChange={e => setFactura(e.target.value)}
+                  />
                 }
                 <button
                   className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
@@ -299,7 +298,7 @@ export default function RegistroReserva() {
                   }}
                   showTimeSelect
                   timeFormat="HH:mm"
-                  filterTime={filterPassedTime}
+                  //filterTime={filterPassedTime}
                   //showTimeSelect
                   showTimeSelectOnly
                   timeIntervals={60}
@@ -322,7 +321,7 @@ export default function RegistroReserva() {
                   timeIntervals={60}
                   timeCaption="Hora"
                   dateFormat="HH:mm"
-                  filterTime={filterSelectedTime}
+                //filterTime={filterSelectedTime}
                 />
               </label>
             </div>
@@ -331,6 +330,7 @@ export default function RegistroReserva() {
                 className="btn btn-primary w-25 my-5 me-2"
                 onClick={() => {
                   setModal(false);
+
                 }}
               >
                 Aceptar
