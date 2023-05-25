@@ -15,7 +15,7 @@ const RegistrarGuardia = () => {
     name: "",
     email: "",
     password: "",
-    nit: "",
+    ci: "",
     phone: 0,
   });
   function handleNombreChange(event) {
@@ -43,7 +43,8 @@ const RegistrarGuardia = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    datos()
+    datos();
+    console.log(datosForm)
     setLoading(true);
     await postPeticion(
       "http://testingapi12023-001-site1.atempurl.com/users/guard",
@@ -60,6 +61,7 @@ const RegistrarGuardia = () => {
       email: correo,
       password: contrasenia,
       phone: telefono,
+      ci:ci
     });
   }
 

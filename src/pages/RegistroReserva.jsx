@@ -59,8 +59,8 @@ export default function RegistroReserva() {
     calcularTarifa(5);;
     setDatosForm({
       ...datosForm,
-      entryDate: dateEntrada.toISOString(),
-      retirementDate: dateSalida.toISOString(),
+      entryDate: dateEntrada.getUTCDate(),
+      retirementDate: dateSalida.getUTCDate(),
       placeId: selector.id,
       guardId: usuario.guardId,
       price: tarifa

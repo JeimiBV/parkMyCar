@@ -27,7 +27,7 @@ import GenerarReporte from "./pages/generarReporte";
 
 function App() {
   const usuario = useSelector((state) => state.users).userState;
-  console.log(usuario.rol, "aaaa");
+  //console.log(usuario.rol, "aaaa");
 
   return (
     <Layout>
@@ -41,9 +41,9 @@ function App() {
             element={
               <ProtectedRoute
                 isAllowed={
-                  usuario.rol == "seguridad" ||
-                    usuario.rol == "admin" ||
-                    usuario.rol == "client"
+                  usuario.rol == "Guard" ||
+                    usuario.rol == "Admin" ||
+                    usuario.rol == "Client"
                     ? true
                     : false
                 }
@@ -59,7 +59,7 @@ function App() {
             element={
               <ProtectedRoute
                 isAllowed={
-                  usuario.rol == "admin" || usuario.rol == "seguridad"
+                  usuario.rol == "Admin" || usuario.rol == "Guard"
                     ? true
                     : false
                 }
@@ -72,7 +72,7 @@ function App() {
           <Route
             element={
               <ProtectedRoute
-                isAllowed={usuario.rol == "client" ? true : false}
+                isAllowed={usuario.rol == "Client" ? true : false}
               />
             }
           >
@@ -87,7 +87,7 @@ function App() {
           <Route
             element={
               <ProtectedRoute
-                isAllowed={usuario.rol == "admin" ? true : false}
+                isAllowed={usuario.rol == "Admin" ? true : false}
               />
             }
           >

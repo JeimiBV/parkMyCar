@@ -5,7 +5,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
     <div className="main d-lg-inline d-none pt-2 overflow-y-auto overflow-x-hidden">
       <div className=" d-flex flex-column justify-content-between contenidoSide">
         <ul>
-          {rol=="seguridad" || rol=="admin" || rol=="client" ? (
+          {rol=="Guard" || rol=="Admin" || rol=="Client" ? (
             <div className="opcion">
               <a href="/parqueo" className="text-decoration-none">
                 <div className="d-flex py-3 text-decoration-none text-light align-items-center">
@@ -18,7 +18,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
             <></>
           )}
 
-          {rol == "seguridad" || rol== "admin"? (
+          {rol == "Guard" || rol== "Admin"? (
             <div className="opcion">
               <a href="/plazaReserva" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -30,7 +30,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           ) : (
             <></>
           )}
-          {rol == "admin" ? (
+          {rol == "Admin" ? (
             <div className="opcion">
               <a href="/crearNotificacion" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -42,7 +42,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           ) : (
             <></>
           )}
-          {rol == "admin" ? (
+          {rol == "Admin" ? (
             <div className="opcion">
               <a href="/editarHorario" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -54,7 +54,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           ) : (
             <></>
           )}
-          {rol == "admin" ? (
+          {rol == "Admin" ? (
             <div className="opcion">
               <a href="/reclamosAdmin" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -66,7 +66,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           ) : (
             <></>
           )}
-          {rol == "client" ? (
+          {rol == "Client" ? (
             <div className="opcion">
               <a href="/reclamosUser" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -78,7 +78,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           ) : (
             <></>
           )}
-          {rol == "admin" ? (
+          {rol == "Admin" ? (
             <div className="opcion">
               <a href="/registrarGuardia" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -91,7 +91,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
             <></>
           )}
 
-         {rol=="client"? (<div>
+         {rol=="Client"? (<div>
         <a href="/MisReservas" className="text-decoration-none">
             <div className="d-flex py-3 opcion text-decoration-none text-light align-items-center">
               <i class="fa-solid fas fa-grip fs-1 me-3 opciones"></i>
@@ -100,7 +100,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           </a>
         </div>):(<></>)}
 
-        {rol == "admin" ? (
+        {rol == "Admin" ? (
             <div className="opcion">
               <a href="/generarReporte" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -113,7 +113,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
             <></>
           )}
 
-          {rol == "admin" ? (
+          {rol == "Admin" ? (
             <div className="opcion">
               <a href="/administrarInfo" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -129,7 +129,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
           )}
 
         </ul>
-        <section className="text-light fs-4 px-1 py-2 logOutButton ">
+        <section className="text-light fs-4 px-1 pt-2 logOutButton ">
           <div className="row py-2">
             <i class="fa-sharp fa-regular fa-circle-user text-light fs-1 ms-2  col-3"></i>
             <h4 className="col-8 ">{nombreUsuario}</h4>

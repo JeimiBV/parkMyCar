@@ -94,17 +94,17 @@ export default function RegistroReserva() {
         <div className="overflow-y-scroll containerReserva">
             <div className="row w-100 position-relative">
                 <h1 className="text-center text-light my-4 ">Reserva</h1>
-                <div className="m-3 col-8">
+                <div className="mx-3 my-0 my-md-3 col-md-8 col-12">
                     <Card titulo={"Tiempo de reserva"}>
                         <div className="row">
-                            <div className="my-2 col">
+                            <div className="my-md-2 my-0 col">
                                 <i class="fa-solid fa-car me-2"></i>
                                 <i class="fa-solid fa-arrow-right"> </i>
                             </div>
-                            <div className="col">
+                            <div className="col my-md-2 my-0">
                                 <p>Parqueo desde</p>
                             </div>
-                            <div className="col">
+                            <div className="col my-md-2 my-0">
                                 <a
                                     className="cursor"
                                     onClick={() => {
@@ -116,14 +116,14 @@ export default function RegistroReserva() {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="my-2 col">
+                            <div className="my-md-2 my-0 col">
                                 <i class="fa-solid fa-car me-2"></i>
                                 <i class="fa-solid fa-arrow-left"></i>
                             </div>
-                            <div className="col">
+                            <div className="col my-md-2 my-0">
                                 <p>Parqueo hasta</p>
                             </div>
-                            <div className="col">
+                            <div className="col my-md-2 my-0">
                                 <a
                                     className="cursor"
                                     onClick={() => {
@@ -135,13 +135,13 @@ export default function RegistroReserva() {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="my-2 col">
+                            <div className="col my-md-2 my-0 ">
                                 <i class="fa-regular fa-clock"></i>
                             </div>
-                            <div className="col">
+                            <div className="col my-md-2 my-0">
                                 <p>Duración</p>
                             </div>
-                            <div className="col">
+                            <div className="col my-md-2 my-0">
                                 <p>
                                     {Math.abs(dateSalida.getHours() - dateEntrada.getHours())}{" "}
                                     Horas
@@ -150,11 +150,11 @@ export default function RegistroReserva() {
                         </div>
                     </Card>
                     <Card titulo={"Información del vehículo"}>
-                        <form id="myform" className="row" onSubmit={(e) => handlePost(e)}>
-                             <label htmlFor="" className="ms-2 col-3">
+                        <form id="myform" className="row d-flex align-items-center" onSubmit={(e) => handlePost(e)}>
+                             <label htmlFor="" className="col-6 col-md-3">
                                 Placa del vehiculo
                              </label>
-                              <input type="text"  name="plate" className=" col-4" onChange={handleChange}
+                              <input type="text"  name="plate" className="col-6 col-md-9" onChange={handleChange}
                               required
                               pattern="[a-zA-Z0-9]{6}"
                               placeholder="Debe ingresar 6 caracteres"
@@ -162,12 +162,12 @@ export default function RegistroReserva() {
                         </form>
                     </Card>
                 </div>
-                <div className="col-3 mt-3 ">
+                <div className="ms-3 ms-md-0 col-md-3 mt-0 mt-md-3 col-12">
                     <Card titulo={"Detalle de la tarifa"} vertical={true}>
                         <div className="col h-100">
-                            <div className="row h-50">
+                            <div className="row m-0 h-50">
                                 <div className="col">
-                                    <p className=" fs-6">Tarifa:</p>
+                                    <p className="fs-6">Tarifa:</p>
                                     <p className="fs-6 ">Nro de plaza:</p>
                                 </div>
                                 <div className="col">
@@ -175,9 +175,9 @@ export default function RegistroReserva() {
                                     <p className=" fs-6">{selector.plaza}</p>
                                 </div>
                             </div>
-                            <div className="row m-2 h-25">
+                            <div className="row m-0 h-50">
                                 <button
-                                    className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
+                                    className="btn btn-primary mb-2 d-flex justify-content-center align-items-center"
                                     onClick={() => {
                                         setModalQR(true);
                                     }}
@@ -185,14 +185,14 @@ export default function RegistroReserva() {
                                     Generar QR
                                 </button>
                                 <button
-                                    className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
+                                    className="btn btn-primary mb-2 d-flex justify-content-center align-items-center"
                                     form="myform"
                                     type="submit"
                                 >
                                     Reservar
                                 </button>
                                 <button
-                                    className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
+                                    className="btn btn-primary mb-2 d-flex justify-content-center align-items-center"
                                     onClick={() => {
                                         navigate("/parqueo");
                                     }}
