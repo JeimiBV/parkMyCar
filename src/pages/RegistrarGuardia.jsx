@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import "../styles/PagesStyles/RegistrarGuardia.css";
 import Spinner from "../components/Spinner";
 import { postPeticion } from "../functions/useFetch";
-import { useNavigate } from "react-router-dom";
 
 const RegistrarGuardia = () => {
   const [showPwd, setShowPwd] = useState(false);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
   const [datosForm, setDatosForm] = useState({
     name: "",
     email: "",
@@ -29,7 +27,6 @@ const RegistrarGuardia = () => {
       datosForm
     );
     setLoading(false);
-    navigate("/registrarGuardia")
   }
 
   return (
@@ -121,6 +118,7 @@ const RegistrarGuardia = () => {
                 <button
                   className=" btn btnG btn-block ms-auto me-auto mt-5"
                   type="submit"
+                  onClick={handleSubmit}
                 >
                   Registrar
                 </button>

@@ -29,7 +29,7 @@ export default function ListaReserva() {
             <i class="fa-solid fa-arrow-left"></i>
           </Button>
         </a>
-        <h1 className="text-center text-light fs-1 fs-md-0">Plaza {selector.plaza}</h1>
+        <h1 className="text-center text-light fs-1 fs-md-0">Plaza {selector.id}</h1>
 
         <div className="ms-md-5 ms-3">
           {reservas.map((reserva) => (

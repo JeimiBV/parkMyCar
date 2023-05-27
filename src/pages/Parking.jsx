@@ -27,6 +27,7 @@ function Parking() {
   const getPlaces = async () => {
     const places = await fetchData();
     setPlaces(places);
+    console.log(places, "espaciooossssssssssssss")
   };
 
   const CreatePlace = async () => {
