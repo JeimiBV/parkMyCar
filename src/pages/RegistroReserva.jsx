@@ -54,21 +54,25 @@ export default function RegistroReserva() {
     //console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
   };
 
+  const modificarDate = (currentDate) => {
+    return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
+  }
+
   const handleAceptar = () => {
+    formatearFecha(dateEntrada, true);
+    formatearFecha(dateSalida, false);
     calcularTarifa(5);
     setDatosForm({
       ...datosForm,
-      entryDate: dateEntrada.toUTCString(),
-      retirementDate: dateSalida.toUTCString(),
+      entryDate: modificarDate(dateEntrada),
+      retirementDate: modificarDate(dateSalida),
       placeId: selector.id,
       guardId: usuario.guardId,
       price: tarifa
     });
-
   }
+
   useEffect(() => {
-    formatearFecha(dateEntrada, true);
-    formatearFecha(dateSalida, false);
     handleAceptar();
   }, [dateEntrada, dateSalida]);
 
@@ -191,7 +195,7 @@ export default function RegistroReserva() {
                 <p className="me-5 fs-6 m-0 w-25">Carnet de identidad:</p>
                 <input
                   type="text"
-                  name="ci"
+                  name="nit"
                   className=" w-100 h-100"
                   onChange={handleChange}
                   required
@@ -330,7 +334,7 @@ export default function RegistroReserva() {
                 className="btn btn-primary w-25 my-5 me-2"
                 onClick={() => {
                   setModal(false);
-
+                  handleAceptar();
                 }}
               >
                 Aceptar
