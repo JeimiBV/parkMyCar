@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/PagesStyles/AdministrarInfo.css";
 import { Navigate } from "react-router-dom";
+import User from "./User";
 
 const AdministrarInfo = () => {
   const usuarios = [
@@ -29,7 +30,7 @@ const AdministrarInfo = () => {
     },
   ];
   const editarUsuario = (nombre) => {
-    window.location = "/registroUsuario"
+    window.location = "/registroUsuario";
     console.log("Editando usuario:", nombre);
   };
   const eliminarUsuario = (nombre) => {
@@ -46,36 +47,7 @@ const AdministrarInfo = () => {
               {usuarios
                 .filter((usuario) => usuario.tipo === "cliente")
                 .map((usuario) => (
-                  <div key={usuario.nombre} className="usuarioFinal">
-                    <div className="usuarioUnidoID">
-                      <div className="usuarioIzq">
-                        <i class="fa-solid fa-user fs-1 me-3 opciones"></i>
-                      </div>
-                      <div className="usuarioDer">
-                        <div className="datosUsuario">
-                          <p>Nombre: {usuario.nombre}</p>
-                          <p>CI: {usuario.ci}</p>
-                          <p>Teléfono: {usuario.telefono}</p>
-                          <p>Placa: {usuario.placa}</p>
-                          <p>Correo: {usuario.correo}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="botonUsuario">
-                    <button
-                        class="btn btn-primary m-2"
-                        onClick={() => editarUsuario(usuario.nombre)}
-                      >
-                        Editar
-                      </button>
-                      <button
-                        class="btn btn-primary m-2"
-                        onClick={() => eliminarUsuario(usuario.nombre)}
-                      >
-                        Eliminar
-                      </button>
-                    </div>
-                  </div>
+                  <User usuario={usuario} />
                 ))}
             </div>
             <h3 className="tituloCliente">Guardias:</h3>
@@ -98,7 +70,7 @@ const AdministrarInfo = () => {
                       </div>
                     </div>
                     <div className="botonUsuario">
-                    <button
+                      <button
                         class="btn btn-primary m-2"
                         onClick={() => editarUsuario(usuario.nombre)}
                       >
