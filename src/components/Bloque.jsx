@@ -10,7 +10,7 @@ export default function Bloque({espacios}) {
     return (<div className="row m-1 bloqueEstilo rounded">
         {
             plazas.map(plaza => <Plaza
-                datos={plaza.num}
+                datos={plaza}
             />)
         }
 
