@@ -13,31 +13,32 @@ import { useSelector } from "react-redux";
 import { espaciosVacios, validarInput } from "../functions/validaciones";
 import { postPeticion } from "../functions/useFetch";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 //import 'moment/locale/en-gb'
 
 export default function RegistroReserva() {
     const usuario = useSelector((state) => state.users).userState;
     const selector = useSelector((state) => state.tasks);
+    // const date= useSelector((state) => state.date);
     console.log(selector, "aaaaaaaaaaaaaaaaaaaa")
-    const [dateEntrada, setDateEntrada] = useState(new Date());
-    const [dateSalida, setDateSalida] = useState(new Date());
-    const [modal, setModal] = useState(false);
+    const [dateEntrada, setDateEntrada] = useState(moment(`${selector.entryDate} ${selector.entryTime}`).toDate());
+    const [dateSalida, setDateSalida] = useState(moment(`${selector.entryDate} ${selector.retirementTime}`).toDate());
     const [modalQR, setModalQR] = useState(false);
     const [fechaEntrada, setFechaEntrada] = useState("");
     const [fechaSalida, setFechaSalida] = useState("");
     const [tarifa, setTarifa] = useState(0);
     const navigate = useNavigate();
     const [datosForm, setDatosForm] = useState({
-        name:usuario.nombre,
-        phone:usuario.telefono,
-        nit:usuario.nit,
+        name: usuario.nombre,
+        phone: usuario.telefono,
+        nit: usuario.nit,
 
     });
     const handleChange = (e) => {
-        setDatosForm({  ...datosForm, [e.target.name]: e.target.value });
-       // console.log(datosForm, 'esteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
-        
+        setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
+        // console.log(datosForm, 'esteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+
     };
 
     const handlePost = async (e) => {
@@ -47,10 +48,11 @@ export default function RegistroReserva() {
             datosForm
         );
         navigate("/parqueo");
-        //console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
+        console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
     };
 
     useEffect(() => {
+
         formatearFecha(dateEntrada, true);
         formatearFecha(dateSalida, false);
         calcularTarifa(5);
@@ -86,11 +88,6 @@ export default function RegistroReserva() {
         let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
         setTarifa((hours + minutes / 60) * precio);
     };
-
-    let handleColor = (time) => {
-        return time.getHours() > 12 ? "text-success" : "text-error";
-    };
-
     return (
         <div className="overflow-y-scroll containerReserva">
             <div className="row w-100 position-relative">
@@ -106,14 +103,9 @@ export default function RegistroReserva() {
                                 <p>Parqueo desde</p>
                             </div>
                             <div className="col my-md-2 my-0">
-                                <a
-                                    className="cursor"
-                                    onClick={() => {
-                                        setModal(true);
-                                    }}
-                                >
-                                    {fechaEntrada}
-                                </a>
+
+                                {fechaEntrada} : {selector.entryTime}
+
                             </div>
                         </div>
                         <div className="row">
@@ -125,14 +117,8 @@ export default function RegistroReserva() {
                                 <p>Parqueo hasta</p>
                             </div>
                             <div className="col my-md-2 my-0">
-                                <a
-                                    className="cursor"
-                                    onClick={() => {
-                                        setModal(true);
-                                    }}
-                                >
-                                    {fechaSalida}
-                                </a>
+
+                                {fechaSalida} : {selector.retirementTime}
                             </div>
                         </div>
                         <div className="row">
@@ -144,7 +130,7 @@ export default function RegistroReserva() {
                             </div>
                             <div className="col my-md-2 my-0">
                                 <p>
-                                    {Math.abs(dateSalida.getHours() - dateEntrada.getHours())}{" "}
+                                    {parseInt(selector.retirementTime) - parseInt(selector.entryTime)}{" "}
                                     Horas
                                 </p>
                             </div>
@@ -152,14 +138,14 @@ export default function RegistroReserva() {
                     </Card>
                     <Card titulo={"Información del vehículo"}>
                         <form id="myform" className="row d-flex align-items-center" onSubmit={(e) => handlePost(e)}>
-                             <label htmlFor="" className="col-6 col-md-3">
+                            <label htmlFor="" className="col-6 col-md-3">
                                 Placa del vehiculo
-                             </label>
-                              <input type="text"  name="plate" className="col-6 col-md-9" onChange={handleChange}
-                              required
-                              pattern="[a-zA-Z0-9]{6}"
-                              placeholder="Debe ingresar 6 caracteres"
-                              />
+                            </label>
+                            <input type="text" name="plate" className="col-6 col-md-9" onChange={handleChange}
+                                required
+                                pattern="[a-zA-Z0-9]{6}"
+                                placeholder="Debe ingresar 6 caracteres"
+                            />
                         </form>
                     </Card>
                 </div>
@@ -227,54 +213,7 @@ export default function RegistroReserva() {
                         </div>
                     </div>
                 </Modal>
-                <Modal titulo={"Edite la fecha o tiempo"} mostrar={modal}>
-                    <div className="row">
-                        <div className="col-6 text-center">
-                            <h5>Parqueo desde:</h5>
-                            <label className="bg-light rounded-3 p-2">
-                                <DatePicker
-                                    showTimeSelect
-                                    selected={dateEntrada}
-                                    minDate={(new Date)}
-                                    dateFormat="Pp"
-                                    onChange={(date) => setDateEntrada(date)}
-                                    timeClassName={handleColor}
-                                />
-                            </label>
-                        </div>
-                        <div className=" col-6 text-center">
-                            <h5>Parqueo hasta:</h5>
-                            <label className="bg-light rounded-3 p-2 ">
-                                <DatePicker
-                                    showTimeSelect
-                                    selected={dateSalida}
-                                    minDate={dateEntrada}
-                                    dateFormat="Pp"
-                                    onChange={(date) => setDateSalida(date)}
-                                    timeClassName={handleColor}
-                                />
-                            </label>
-                        </div>
-                        <div className="row d-flex justify-content-center mt-5 ">
-                            <button
-                                className="btn btn-primary w-25 my-5 me-2"
-                                onClick={() => {
-                                    setModal(false);
-                                }}
-                            >
-                                Aceptar
-                            </button>
-                            <button
-                                className="btn btn-primary w-25 my-5 ms-2"
-                                onClick={() => {
-                                    setModal(false);
-                                }}
-                            >
-                                Cancelar
-                            </button>
-                        </div>
-                    </div>
-                </Modal>
+
             </div>
         </div>
     );

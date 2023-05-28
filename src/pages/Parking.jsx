@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import ParkingSection from "../components/Parking/ParkingSection";
 import { splitIntoSection } from "../utils/placeUtils";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import moment from 'moment';
 import {
   fetchCreatePlace,
   fetchDeletePlace,
   fetchPlaceHistory,
   fetchPlaces,
+  fetchReserves,
 } from "../functions/fetchPlaces";
 
 import "../styles/PagesStyles/Parqueo.css";
+import { addDate } from "../tasks/dateSlice";
 
 function Parking() {
+  const [actualDate, setActualDate]= useState()
   const [places, setPlaces] = useState([]);
+  const [reserves, setReserves] = useState([]);
   const [historyPlace, setHistoryPlace] = useState([]);
   const [entryDate, setEntryDate] = useState("");
   const [retirementDate, setRetirementDate] = useState("");
@@ -20,11 +25,17 @@ function Parking() {
   const [retirementTime, setRetirementTime] = useState("");
   const tableSection = splitIntoSection(places);
   const usuario = useSelector((state) => state.users).userState;
-
+  const dispatch= useDispatch();
+  const [unAvailablePlaces, setUnAvailablePlaces] = useState([]);
   const getPlaces = async () => {
     const places = await fetchPlaces();
     setPlaces(places);
-    console.log(places, "espaciooossssssssssssss")
+  };
+
+  const getReserves= async ()=> {
+    const reserves= await fetchReserves();
+    setReserves(reserves);
+
   };
 
   const CreatePlace = async () => {
@@ -44,25 +55,33 @@ function Parking() {
   };
 
   const handleSearch = () => {
-    const availablePlaces = places.filter((place) => {
-      const overlappingHistory = historyPlace.History.some((history) => {
-        return (
-          history.placeId === place.id &&
-          history.entryDate <= retirementDate &&
-          history.retirementDate >= entryDate &&
-          history.entryTime <= retirementTime &&
-          history.retirementTime >= entryTime
-        );
-      });
-
-      return !overlappingHistory;
+    getReserves();
+    setActualDate({ "entryDate": entryDate, "entryTime": entryTime, "retirementTime": retirementTime });
+    setUnAvailablePlaces([]);
+  
+    reserves.forEach((reserve) => {
+      const reserveEntryTime = reserve.entryDate.slice(11, 16);
+      const reserveRetirementTime = reserve.retirementDate.slice(11, 16);
+      //console.log(reserve,"aaaaaaaaaaaaaaaaaaaaaaaaaaa")
+      const isEntryDateEqual = moment(entryDate).isSame(reserve.entryDate.slice(0, 10), 'day');
+      const isEntryTimeInRange =
+        (entryTime > reserveEntryTime && entryTime < reserveRetirementTime) ||
+        (entryTime < reserveEntryTime && retirementTime > reserveEntryTime);
+  
+      const isRetirementTimeInRange =
+        (retirementTime > reserveEntryTime && retirementTime <= reserveRetirementTime) ||
+        (entryTime < reserveRetirementTime && retirementTime >= reserveRetirementTime);
+  
+      if (isEntryDateEqual && (isEntryTimeInRange || isRetirementTimeInRange)) {
+        setUnAvailablePlaces((prev) => [...prev, reserve.place.num]);
+      }
     });
-    setPlaces(availablePlaces);
   };
 
   useEffect(() => {
     getPlaces();
-  }, []);
+    getReserves();
+  }, [entryTime, entryDate]);
 
   return (
     <div className="containerParqueo overflow-y-scroll">
@@ -100,11 +119,12 @@ function Parking() {
             onChange={(e) => setRetirementTime(e.target.value)}
           />
         </div>
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={()=>{handleSearch()}}>Search</button>
       </div>
       <div className="tables-container">
         {tableSection.map((tableData, index) => (
-          <ParkingSection key={index} data={tableData} />
+          <ParkingSection key={index} data={tableData} ocuped={unAvailablePlaces} actualDate={actualDate} />
+          
         ))}
       </div>
       <div

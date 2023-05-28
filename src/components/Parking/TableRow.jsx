@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {  addTask } from "../../tasks/taskSlice";
+import { addDate } from "../../tasks/dateSlice";
 
-function TableRow({ item1, item2 }) {
+function TableRow({ item1, item2, ocuped, actualDate }) {
   const dispatch = useDispatch();
   const usuario = useSelector((state) => state.users).userState;
   const navigate = useNavigate();
@@ -10,11 +11,15 @@ function TableRow({ item1, item2 }) {
     <tr key={item1.id}>
       <td className="tdItemOne">
         <button
-          onClick={() => {!item1.isBusy? navigate(usuario.rol=="Client"?"/reservaCliente":"/reservas"):""; dispatch(addTask({
+          onClick={() => {!ocuped.includes(item1.num)? navigate(usuario.rol=="Client"?"/reservaCliente":"/reservas"):""; dispatch(addTask({
             "plaza":item1.num,
-            "id":item1.id
-          }))}}
-          className={`place ${!item1.isBusy ? "Available" : "Busy"}`}
+            "id":item1.id,
+            "entryDate":actualDate.entryDate,
+            "entryTime":actualDate.entryTime,
+            "retirementTime":actualDate.retirementTime
+          }))
+        }}
+          className={`place ${!ocuped.includes(item1.num) ? "Available" : "Busy"}`}
         >
           {item1.num}
         </button>
@@ -22,11 +27,14 @@ function TableRow({ item1, item2 }) {
       {item2 && (
         <td className="tdItemTwo">
           <button
-            onClick={() => { !item2.isBusy? navigate(usuario.rol=="client"?"/reservaCliente":"/reservas"):""; dispatch(addTask({
+            onClick={() => { !ocuped.includes(item2.num)? navigate(usuario.rol=="Client"?"/reservaCliente":"/reservas"):""; dispatch(addTask({
               "plaza":item2.num,
-              "id":item2.id
+              "id":item2.id,
+              "entryDate":actualDate.entryDate,
+              "entryTime":actualDate.entryTime,
+              "retirementTime":actualDate.retirementTime
             }))}}
-            className={`place ${!item2.isBusy ? "Available" : "Busy"}`}
+            className={`place ${!ocuped.includes(item2.num) ? "Available" : "Busy"}`}
           >
             {item2.num}
           </button>

@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
 import taskReducer from "./tasks/taskSlice"
+import  addReducer  from "./tasks/dateSlice"
 import userReducer from "./users/userSlice"
 import storage from "redux-persist/lib/storage"
 import {persistReducer} from "redux-persist"
@@ -23,6 +24,7 @@ export const store = configureStore({
     reducer: {
         tasks: taskReducer,
         users:persistedReducer,
+        dates:addReducer,
         middleware:[thunk]
 
     }

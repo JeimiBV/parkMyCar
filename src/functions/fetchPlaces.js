@@ -5,6 +5,13 @@ export const fetchPlaces = async () => {
   return await response.json();
 };
 
+export const fetchReserves = async () => {
+  const response = await fetch(
+    "http://testingapi12023-001-site1.atempurl.com/reserves"
+  );
+  return await response.json();
+};
+
 export const fetchCreatePlace = async () => {
   const response = await fetch(
     "http://testingapi12023-001-site1.atempurl.com/places",
