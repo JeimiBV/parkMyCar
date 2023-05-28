@@ -29,15 +29,15 @@ export default function RegistroReserva() {
     const [tarifa, setTarifa] = useState(0);
     const navigate = useNavigate();
     const [datosForm, setDatosForm] = useState({
-        name:usuario.nombre,
-        phone:usuario.telefono,
-        nit:usuario.nit,
+        name: usuario.nombre,
+        phone: usuario.telefono,
+        nit: usuario.nit,
 
     });
     const handleChange = (e) => {
-        setDatosForm({  ...datosForm, [e.target.name]: e.target.value });
-       // console.log(datosForm, 'esteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
-        
+        setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
+        // console.log(datosForm, 'esteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+
     };
 
     const handlePost = async (e) => {
@@ -50,14 +50,18 @@ export default function RegistroReserva() {
         //console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
     };
 
+    const modificarDate = (currentDate) => {
+        return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
+    }
+
     useEffect(() => {
         formatearFecha(dateEntrada, true);
         formatearFecha(dateSalida, false);
         calcularTarifa(5);
         setDatosForm({
             ...datosForm,
-            entryDate: dateEntrada,
-            retirementDate: dateSalida,
+            entryDate: modificarDate(dateEntrada),
+            retirementDate: modificarDate(dateSalida),
             placeId: selector.id,
             guardId: usuario.guardId,
             price: tarifa
@@ -152,14 +156,14 @@ export default function RegistroReserva() {
                     </Card>
                     <Card titulo={"Información del vehículo"}>
                         <form id="myform" className="row d-flex align-items-center" onSubmit={(e) => handlePost(e)}>
-                             <label htmlFor="" className="col-6 col-md-3">
+                            <label htmlFor="" className="col-6 col-md-3">
                                 Placa del vehiculo
-                             </label>
-                              <input type="text"  name="plate" className="col-6 col-md-9" onChange={handleChange}
-                              required
-                              pattern="[a-zA-Z0-9]{6}"
-                              placeholder="Debe ingresar 6 caracteres"
-                              />
+                            </label>
+                            <input type="text" name="plate" className="col-6 col-md-9" onChange={handleChange}
+                                required
+                                pattern="[a-zA-Z0-9]{6}"
+                                placeholder="Debe ingresar 6 caracteres"
+                            />
                         </form>
                     </Card>
                 </div>
