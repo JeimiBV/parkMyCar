@@ -20,7 +20,6 @@ import moment from "moment";
 export default function RegistroReserva() {
     const usuario = useSelector((state) => state.users).userState;
     const selector = useSelector((state) => state.tasks);
-    // const date= useSelector((state) => state.date);
     console.log(selector, "aaaaaaaaaaaaaaaaaaaa")
     const [dateEntrada, setDateEntrada] = useState(moment(`${selector.entryDate} ${selector.entryTime}`).toDate());
     const [dateSalida, setDateSalida] = useState(moment(`${selector.entryDate} ${selector.retirementTime}`).toDate());
@@ -37,8 +36,6 @@ export default function RegistroReserva() {
     });
     const handleChange = (e) => {
         setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
-        // console.log(datosForm, 'esteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
-
     };
 
     const handlePost = async (e) => {

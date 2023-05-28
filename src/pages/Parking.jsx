@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ParkingSection from "../components/Parking/ParkingSection";
 import { splitIntoSection } from "../utils/placeUtils";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import moment from 'moment';
 import {
   fetchCreatePlace,
@@ -12,8 +12,6 @@ import {
 } from "../functions/fetchPlaces";
 
 import "../styles/PagesStyles/Parqueo.css";
-import { addDate } from "../tasks/dateSlice";
-
 function Parking() {
   const [actualDate, setActualDate]= useState()
   const [places, setPlaces] = useState([]);
@@ -25,7 +23,6 @@ function Parking() {
   const [retirementTime, setRetirementTime] = useState("");
   const tableSection = splitIntoSection(places);
   const usuario = useSelector((state) => state.users).userState;
-  const dispatch= useDispatch();
   const [unAvailablePlaces, setUnAvailablePlaces] = useState([]);
   const getPlaces = async () => {
     const places = await fetchPlaces();
@@ -35,7 +32,6 @@ function Parking() {
   const getReserves= async ()=> {
     const reserves= await fetchReserves();
     setReserves(reserves);
-
   };
 
   const CreatePlace = async () => {
@@ -62,7 +58,6 @@ function Parking() {
     reserves.forEach((reserve) => {
       const reserveEntryTime = reserve.entryDate.slice(11, 16);
       const reserveRetirementTime = reserve.retirementDate.slice(11, 16);
-      //console.log(reserve,"aaaaaaaaaaaaaaaaaaaaaaaaaaa")
       const isEntryDateEqual = moment(entryDate).isSame(reserve.entryDate.slice(0, 10), 'day');
       const isEntryTimeInRange =
         (entryTime > reserveEntryTime && entryTime < reserveRetirementTime) ||

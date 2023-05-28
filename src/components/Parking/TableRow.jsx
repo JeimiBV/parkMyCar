@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {  addTask } from "../../tasks/taskSlice";
-import { addDate } from "../../tasks/dateSlice";
 
 function TableRow({ item1, item2, ocuped, actualDate }) {
   const dispatch = useDispatch();
   const usuario = useSelector((state) => state.users).userState;
   const navigate = useNavigate();
+  console.log(ocuped,"dar", actualDate)
   return (
     <tr key={item1.id}>
       <td className="tdItemOne">
