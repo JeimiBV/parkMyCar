@@ -17,9 +17,12 @@ export default function Layout({ children }) {
     dispatch(cerrarSesion())
   }
   return (
-    <div className="layout ">
+    <div className="layout overflow-x-hidden">
       <Navbar logIn={usuario.estado}
               showButton={showButton}
+              cambiarE={cambiarEstado}
+              nombreUsuario={usuario.nombre}
+              rol={usuario.rol}
        />
       <div className="row w-100 layoutSC">
         <div className={usuario.estado?"col-lg-2 p-0":"d-none"}>

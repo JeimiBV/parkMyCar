@@ -36,7 +36,7 @@ const AdministrarInfo = () => {
     console.log("Eliminando usuario:", nombre);
   };
   return (
-    <div className="contenedorNot">
+    <div className="contenedorNot overflow-y-scroll">
       <div>
         <div className="tituloInfo">Administrar información del cliente</div>
         <div className="encapsularContenido">

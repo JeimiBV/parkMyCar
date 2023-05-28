@@ -5,21 +5,20 @@ import Modal from "../components/Modal";
 //import esLocale from "date-fns/locale/es"
 import Card from "../components/Card";
 import "../styles/PagesStyles/RegistroReserva.css";
-import { useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
+import { useEffect, useRef, useState } from "react";
+import DatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import QRCode from "react-qr-code";
 import { useSelector } from "react-redux";
-import { espaciosVacios, validarInput } from "../functions/validaciones";
-import { postPeticion } from "../functions/useFetch";
 import { useNavigate } from "react-router-dom";
+import { postPeticion } from "../functions/useFetch";
+
 
 //import 'moment/locale/en-gb'
 
 export default function RegistroReserva() {
   const usuario = useSelector((state) => state.users).userState;
   const selector = useSelector((state) => state.tasks);
-  console.log(selector,"aaaaaaaaaaaaaaaaaaaa")
   const [dateEntrada, setDateEntrada] = useState(new Date());
   const [dateSalida, setDateSalida] = useState(new Date());
   const [modal, setModal] = useState(false);
@@ -27,7 +26,9 @@ export default function RegistroReserva() {
   const [fechaEntrada, setFechaEntrada] = useState("");
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
+  const [factura, setFactura] = useState("");
   const navigate = useNavigate();
+  // Returns 2011-10-05T14:48:00.000Z
   const [datosForm, setDatosForm] = useState({
     entryDate: "",
     retirementDate: "",
@@ -37,6 +38,7 @@ export default function RegistroReserva() {
     phone: null,
     placeId: null,
     guardId: null,
+    price: 0
   });
   const handleChange = (e) => {
     setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
@@ -44,40 +46,48 @@ export default function RegistroReserva() {
 
   const handlePost = async (e) => {
     e.preventDefault();
+    console.log(datosForm)
+
     await postPeticion(
       "http://testingapi12023-001-site1.atempurl.com/reserves",
       datosForm
     );
     navigate("/parqueo");
-    //console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
+    console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
   };
 
-  useEffect(() => {
+  const modificarDate = (currentDate) => {
+    return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
+  }
+
+  const handleAceptar = () => {
     formatearFecha(dateEntrada, true);
     formatearFecha(dateSalida, false);
     calcularTarifa(5);
     setDatosForm({
       ...datosForm,
-      entryDate: dateEntrada,
-      retirementDate: dateSalida,
+      entryDate: modificarDate(dateEntrada),
+      retirementDate: modificarDate(dateSalida),
       placeId: selector.id,
       guardId: usuario.guardId,
+      price: tarifa
     });
+  }
+
+  useEffect(() => {
+    handleAceptar();
   }, [dateEntrada, dateSalida]);
 
   const formatearFecha = (date, flag) => {
-    // console.log(date.getHours(), date.getMinutes())
     if (flag == true) {
       if (date.getMinutes() < 10) {
         setFechaEntrada(date.getHours() + ":0" + date.getMinutes());
-        //  console.log("entra")
       } else {
         setFechaEntrada(date.getHours() + ":" + date.getMinutes());
       }
     } else {
       if (date.getMinutes() < 10) {
         setFechaSalida(date.getHours() + ":0" + date.getMinutes());
-        //console.log("entra")
       } else {
         setFechaSalida(date.getHours() + ":" + date.getMinutes());
       }
@@ -92,12 +102,10 @@ export default function RegistroReserva() {
   const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
-
     return currentDate.getTime() < selectedDate.getTime();
   };
   const filterSelectedTime = (time) => {
     const selectedDate = new Date(time);
-
     return dateEntrada.getTime() < selectedDate.getTime();
   };
 
@@ -105,7 +113,7 @@ export default function RegistroReserva() {
     <div className="overflow-y-scroll containerReserva">
       <div className="row w-100 position-relative">
         <h1 className="text-center text-light my-4 ">Reserva</h1>
-        <div className="m-3 col-8">
+        <div className="mx-3 col-md-8 col-12">
           <Card titulo={"Tiempo de reserva"}>
             <div className="row">
               <div className="my-2 col">
@@ -182,6 +190,7 @@ export default function RegistroReserva() {
                   onChange={handleChange}
                   required
                   pattern="[0-9]{8}"
+                  placeholder=" Este espacio debe contener una cadena de 8 caracteres"
                 />
               </div>
               <div className="d-flex row-3 py-2">
@@ -193,6 +202,7 @@ export default function RegistroReserva() {
                   onChange={handleChange}
                   required
                   pattern="[a-zA-Z0-9]+"
+                  placeholder=" Este espacio debe contener una cadena de 9 caracteres"
                 />
               </div>
               <h3 className=" mt-4">Información del vehículo</h3>
@@ -205,15 +215,16 @@ export default function RegistroReserva() {
                   onChange={handleChange}
                   required
                   pattern="[a-zA-Z0-9]{6}"
+                  placeholder=" Este espacio debe contener una cadena de 6 caracteres"
                 />
               </div>
             </form>
           </Card>
         </div>
-        <div className="col-3 mt-3">
+        <div className="col-12 col-md-3 ms-3 ms-md-0  mt-md-3 mt-0">
           <Card titulo={"Detalle de la tarifa"} vertical={true}>
             <div className="col h-100">
-              <div className="row h-75">
+              <div className="row alturaVertical">
                 <div className="col">
                   <p className=" fs-6">Tarifa:</p>
                   <p className="fs-6 ">Nro de plaza:</p>
@@ -232,13 +243,20 @@ export default function RegistroReserva() {
                 >
                   Generar QR
                 </button>
-                <button
+
+
+                {factura ? <button
                   className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                   form="myform"
                   type="submit"
                 >
                   Reservar
-                </button>
+                </button> :
+                  <input className=" btn btn-danger m-2 d-flex justify-content-center align-items-center"
+                    id="image-upload" type="file" accept="image/*" placeholder=""
+                    onChange={e => setFactura(e.target.value)}
+                  />
+                }
                 <button
                   className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                   onClick={() => {
@@ -276,7 +294,7 @@ export default function RegistroReserva() {
         </Modal>
         <Modal titulo={"Edite la fecha o tiempo"} mostrar={modal}>
           <div className="row">
-            <div className="col-6 text-center">
+            <div className="col col-md-6 text-center">
               <h5>Parqueo desde:</h5>
               <label className="bg-light rounded-3 p-2">
                 <DatePicker
@@ -286,7 +304,7 @@ export default function RegistroReserva() {
                   }}
                   showTimeSelect
                   timeFormat="HH:mm"
-                  filterTime={filterPassedTime}
+                  //filterTime={filterPassedTime}
                   //showTimeSelect
                   showTimeSelectOnly
                   timeIntervals={60}
@@ -296,7 +314,7 @@ export default function RegistroReserva() {
                 />
               </label>
             </div>
-            <div className=" col-6 text-center">
+            <div className=" col col-md-6 mt-4 mt-md-0 text-center">
               <h5>Parqueo hasta:</h5>
               <label className="bg-light rounded-3 p-2 ">
                 <DatePicker
@@ -309,7 +327,7 @@ export default function RegistroReserva() {
                   timeIntervals={60}
                   timeCaption="Hora"
                   dateFormat="HH:mm"
-                  filterTime={filterSelectedTime}
+                //filterTime={filterSelectedTime}
                 />
               </label>
             </div>
@@ -318,6 +336,7 @@ export default function RegistroReserva() {
                 className="btn btn-primary w-25 my-5 me-2"
                 onClick={() => {
                   setModal(false);
+                  handleAceptar();
                 }}
               >
                 Aceptar

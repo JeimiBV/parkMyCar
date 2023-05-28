@@ -1,0 +1,19 @@
+.containerReserva{
+    height: 86.9vh;
+}
+
+.cursor{
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(17, 16, 16);
+}
+
+.cursor:hover{
+    color: white;
+}
+
+@media(min-width: 375px) and (max-width: 675px) {
+    .cardTiempoyDur{
+        width: 100%;
+    }
+}

@@ -17,14 +17,17 @@ import QuejasReclamosAdmin from "./pages/QuejasReclamosAdmin";
 import RegistrarGuardia from "./pages/RegistrarGuardia";
 import RegistroUsuario from "./pages/RegistroUsuario";
 import MisReservas from "./pages/MisReservas";
+import RegistroReservaCliente from "./pages/RegistroReservaCliente";
 import VerQr from "./pages/verQr";
+import generarReporte from "./pages/generarReporte";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdministrarInfo from "./pages/AdministrarInfo";
+import GenerarReporte from "./pages/generarReporte";
 
 function App() {
   const usuario = useSelector((state) => state.users).userState;
-  console.log(usuario.rol, "aaaa");
+  //console.log(usuario.rol, "aaaa");
 
   return (
     <Layout>
@@ -38,9 +41,9 @@ function App() {
             element={
               <ProtectedRoute
                 isAllowed={
-                  usuario.rol == "seguridad" ||
-                  usuario.rol == "admin" ||
-                  usuario.rol == "client"
+                  usuario.rol == "Guard" ||
+                    usuario.rol == "Admin" ||
+                    usuario.rol == "Client"
                     ? true
                     : false
                 }
@@ -56,7 +59,7 @@ function App() {
             element={
               <ProtectedRoute
                 isAllowed={
-                  usuario.rol == "admin" || usuario.rol == "seguridad"
+                  usuario.rol == "Admin" || usuario.rol == "Guard"
                     ? true
                     : false
                 }
@@ -69,21 +72,20 @@ function App() {
           <Route
             element={
               <ProtectedRoute
-                isAllowed={usuario.rol == "client" ? true : false}
+                isAllowed={usuario.rol == "Client" ? true : false}
               />
             }
           >
             <Route path="/verQr" element={<VerQr />}></Route>
-            <Route path="/misReservas" element={<MisReservas />}>
-              {" "}
-            </Route>
+            <Route path="/misReservas" element={<MisReservas />} />
             <Route path="/reclamosUser" element={<QuejasReclamosUser />} />
+            <Route path="/reservaCliente" element={<RegistroReservaCliente />} />
           </Route>
 
           <Route
             element={
               <ProtectedRoute
-                isAllowed={usuario.rol == "admin" ? true : false}
+                isAllowed={usuario.rol == "Admin" ? true : false}
               />
             }
           >
@@ -92,15 +94,7 @@ function App() {
             <Route path="/reclamosAdmin" element={<QuejasReclamosAdmin />} />
             <Route path="/registrarGuardia" element={<RegistrarGuardia />} />
             <Route path="/administrarInfo" element={<AdministrarInfo />} />
-          </Route>
-
-          <Route
-            element={
-              <ProtectedRoute
-                isAllowed={usuario.rol == "admin" ? true : false}
-              />
-            }
-          >
+            <Route path="/generarReporte" element={<GenerarReporte />} />
             <Route path="/editarHorario" element={<EditarHoraYGuardia />} />
           </Route>
         </Routes>

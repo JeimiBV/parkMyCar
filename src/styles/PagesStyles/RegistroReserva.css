@@ -10,3 +10,16 @@
 .cursor:hover{
     color: white;
 }
+.alturaVertical{
+    height: 73%;
+}
+#image-upload::-webkit-file-upload-button {
+    display: none;
+  }
+
+
+@media(max-width: 575px) {
+    .alturaVertical{
+        height: 25%;
+    }
+  }

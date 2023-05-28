@@ -3,12 +3,16 @@
 }
 
 .cuadroRegGuardia {
-    background-color: #C3CEDA;
+    background: linear-gradient(90deg, #738FA7, #C3CEDA);
     width: 60vw;
     border-radius: 10px;
 }
-.tituloGuardia{
-    color: #071330;
+
+.labelRG{
+    width: 25%;
+}
+.inputRG{
+    width: 75%;
 }
 
 .groupRG{
@@ -40,7 +44,7 @@
 }
 .cuadroG{
     width: 95%;
-    background-color: #C3CEDA;
+    background-color: inherit;
     border: none;
     outline: none;
     box-shadow: none;
@@ -49,5 +53,22 @@
 }
 .btnG{
     margin-right: 550px;
+}
+
+@media(min-width: 375px) and (max-width: 675px) {
+    .tituloNoti{
+        font-size: 1.7em;
+    }
+    .cuadroRegGuardia {
+        width: 90vw;
+    }
+    .labelRG{
+        font-size: small;
+        width: 30%;
+        margin-right: 1em;
+    }
+    .inputRG{
+        width: 70%;
+    }
 }
 

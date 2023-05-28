@@ -59,7 +59,7 @@ function EditarHoraYGUardia() {
   };
 
   return (
-    <div className="containerhoras">
+    <div className="containerhoras overflow-y-scroll">
       <div className="pruebaJavier">
         <div className="prueba1">
           <DatePicker

@@ -1,3 +1,4 @@
+import { da } from "date-fns/locale";
 import { useState, useEffect } from "react";
 
 export function UseFetch(url) {
@@ -9,10 +10,11 @@ export function UseFetch(url) {
       .then((response) => response.json())
       .then((data) => {
         setData(data);
+        console.log(data,"esta es la data")
       })
       .finally(() => setLoading(false));
   }, []);
-  return data;
+
 }
 export async function  postPeticion(url,datos){
 
@@ -23,7 +25,6 @@ export async function  postPeticion(url,datos){
     },
     body:JSON.stringify(datos)
   })
- 
 }
 
 export async function postLogin(url, datos) {

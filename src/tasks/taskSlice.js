@@ -2,7 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
    plaza:"",
-   id:""
+   id:"", 
+   entryDate:"",
+   retirementDate:"",
+   retirementTime:"",
+   entryTime:""
 }
 /*[
    {
@@ -28,6 +32,9 @@ export const taskSlice = createSlice({
       addTask: (state, action) =>{
          state.plaza=action.payload.plaza    
          state.id=action.payload.id
+         state.entryDate=action.payload.entryDate
+         state.entryTime=action.payload.entryTime
+         state.retirementTime=action.payload.retirementTime
       }
       
    }
