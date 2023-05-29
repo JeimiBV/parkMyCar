@@ -60,12 +60,18 @@ const AdministrarInfo = () => {
         <div className="encapsularContenido">
           <div>
             <h3 className="tituloCliente">Clientes:</h3>
-            <div className="contenidoInfoCliente">
+            <div className="container">
+              <div className="col">
+              <div className="my-2 col">
+              <div className="contenidoInfoCliente">
               {usuarios
                 .filter((usuario) => usuario.role === "Client")
                 .map((usuario) => (
                   <User usuario={usuario} />
                 ))}
+            </div>
+              </div>
+              </div>
             </div>
             <h3 className="tituloCliente">Guardias:</h3>
             <div className="contenidoInfoCliente">
