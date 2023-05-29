@@ -3,8 +3,9 @@ import "../styles/PagesStyles/AdministrarInfo.css";
 import { Navigate } from "react-router-dom";
 
 const User = ({ usuario }) => {
-  const [name, setName] = useState(usuario.nombre);
-  const editarUsuario = (nombre) => {
+  const [name, setName] = useState(usuario.name);
+  const [isEditing, SetIsEditing] = useState(false);
+  const editarUsuario = (name) => {
     console.log("Editando usuario:", nombre);
   };
   const eliminarUsuario = (nombre) => {
@@ -26,7 +27,7 @@ const User = ({ usuario }) => {
               }}
             >
               <p>Nombre: </p>
-              <input disabled type="text" value={usuario.nombre} />
+              <input disabled={!isEditing} type="text" value={name} />
             </div>
             <div
               style={{
@@ -36,7 +37,7 @@ const User = ({ usuario }) => {
               }}
             >
               <p>CI: </p>
-              <input disabled type="text" value={usuario.ci} />
+              <input disabled type="text" value={usuario.nit} />
             </div>
             <div
               style={{
@@ -46,7 +47,7 @@ const User = ({ usuario }) => {
               }}
             >
               <p>Teléfono: </p>
-              <input disabled type="text" value={usuario.telefono} />
+              <input disabled type="text" value={usuario.phone} />
             </div>
             <div
               style={{
@@ -56,7 +57,7 @@ const User = ({ usuario }) => {
               }}
             >
               <p>Correo: </p>
-              <input disabled type="text" value={usuario.correo} />
+              <input disabled type="text" value={usuario.email} />
             </div>
           </div>
         </div>

@@ -6,27 +6,44 @@ import User from "./User";
 const AdministrarInfo = () => {
   const usuarios = [
     {
-      tipo: "cliente",
-      nombre: "Luis",
-      ci: "654621",
-      telefono: "615415451",
-      placa: "OFK210",
-      correo: "Luis@gmail.com",
+      id: 3,
+      name: "Javier",
+      email: "xavi@gmail.com",
+      nit: "512388976",
+      phone: "68548948",
+      role: "Client",
     },
     {
-      tipo: "cliente",
-      nombre: "Juan",
-      ci: "665421",
-      telefono: "6654165",
-      placa: "OOU400",
-      correo: "Juan@gmail.com",
+      id: 42,
+      name: "Sabela Chaparro",
+      email: "schaparro@gmail.com",
+      nit: "7845692",
+      phone: "78451235",
+      role: "Client",
     },
     {
-      tipo: "guardia",
-      nombre: "Fernando",
-      ci: "652161",
-      telefono: "6165161",
-      correo: "guard@gmail.com",
+      id: 57,
+      name: "Juanito",
+      email: "juanito@hotmail.com",
+      nit: "6954412",
+      phone: "68530714",
+      role: "Client",
+    },
+    {
+      id: 4,
+      name: "Guardia",
+      email: "guard@gmail.com",
+      nit: "562312132",
+      phone: "77858523",
+      role: "Guard",
+    },
+    {
+      id: 43,
+      name: "test",
+      email: "test",
+      nit: "",
+      phone: "123terst",
+      role: "Guard",
     },
   ];
   const editarUsuario = (nombre) => {
@@ -45,7 +62,7 @@ const AdministrarInfo = () => {
             <h3 className="tituloCliente">Clientes:</h3>
             <div className="contenidoInfoCliente">
               {usuarios
-                .filter((usuario) => usuario.tipo === "cliente")
+                .filter((usuario) => usuario.role === "Client")
                 .map((usuario) => (
                   <User usuario={usuario} />
                 ))}
@@ -53,7 +70,7 @@ const AdministrarInfo = () => {
             <h3 className="tituloCliente">Guardias:</h3>
             <div className="contenidoInfoCliente">
               {usuarios
-                .filter((usuario) => usuario.tipo === "guardia")
+                .filter((usuario) => usuario.role === "Guard")
                 .map((usuario) => (
                   <div key={usuario.nombre} className="usuarioFinal">
                     <div className="usuarioUnidoID">
@@ -62,10 +79,10 @@ const AdministrarInfo = () => {
                       </div>
                       <div className="usuarioDer">
                         <div className="datosUsuario">
-                          <p>Nombre: {usuario.nombre}</p>
-                          <p>CI: {usuario.ci}</p>
-                          <p>Teléfono: {usuario.telefono}</p>
-                          <p>Correo: {usuario.correo}</p>
+                          <p>Nombre: {usuario.name}</p>
+                          <p>CI: {usuario.nit}</p>
+                          <p>Teléfono: {usuario.phone}</p>
+                          <p>Correo: {usuario.email}</p>
                         </div>
                       </div>
                     </div>
