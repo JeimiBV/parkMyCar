@@ -3,7 +3,7 @@ import "../styles/PagesStyles/AdministrarInfo.css";
 import { Navigate } from "react-router-dom";
 import { EditData } from "../functions/fetchUsers";
 
-const User = ({ usuario }) => {
+const User = ({ usuario, deleteUser }) => {
   const [name, setName] = useState(usuario.name);
   const [nit, setNit] = useState(usuario.nit);
   const [phone, setPhone] = useState(usuario.phone);
@@ -14,10 +14,6 @@ const User = ({ usuario }) => {
   const editarUsuario = async () => {
     await EditData(name, nit, phone, email);
     SetIsEditing(false);
-  };
-
-  const eliminarUsuario = (nombre) => {
-    console.log("Eliminando usuario:", nombre);
   };
 
   return (
@@ -100,18 +96,12 @@ const User = ({ usuario }) => {
             Editar
           </button>
         ) : (
-          <button
-            class="btn btn-primary m-2"
-            onClick={() => editarUsuario(usuario.nombre)}
-          >
+          <button class="btn btn-primary m-2" onClick={() => editarUsuario()}>
             Finalizar
           </button>
         )}
 
-        <button
-          class="btn btn-primary m-2"
-          onClick={() => eliminarUsuario(usuario.nombre)}
-        >
+        <button class="btn btn-primary m-2" onClick={() => deleteUser()}>
           Eliminar
         </button>
       </div>

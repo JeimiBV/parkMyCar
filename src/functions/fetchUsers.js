@@ -19,9 +19,26 @@ export const EditData = async (id, newName, newNit, newPhone, newEmail) => {
   return await response.json();
 };
 
-export const DeleteData = async () => {
+export const DeleteData = async (id) => {
   const response = await fetch(
-    "http://testingapi12023-001-site1.atempurl.com/users"
+    `http://testingapi12023-001-site1.atempurl.com/users/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
+  return await response.json();
+};
+
+export const fetchClients = async () => {
+  const response = await fetch(
+    "http://testingapi12023-001-site1.atempurl.com/users/client"
+  );
+  return await response.json();
+};
+
+export const fetchGuards = async () => {
+  const response = await fetch(
+    "http://testingapi12023-001-site1.atempurl.com/users/guard"
   );
   return await response.json();
 };
