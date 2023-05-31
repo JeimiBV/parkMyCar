@@ -12,7 +12,7 @@ const User = ({ usuario, deleteUser }) => {
   const [isEditing, SetIsEditing] = useState(false);
 
   const editarUsuario = async () => {
-    await EditData(name, nit, phone, email);
+    await EditData(usuario.id, name, nit, phone, email);
     SetIsEditing(false);
   };
 

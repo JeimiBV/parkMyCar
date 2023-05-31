@@ -3,7 +3,6 @@ import "../styles/PagesStyles/AdministrarInfo.css";
 import { Navigate } from "react-router-dom";
 import User from "./User";
 import { fetchClients, fetchGuards } from "../functions/fetchUsers";
-import Guard from "./Guard";
 import { DeleteData } from "../functions/fetchUsers";
 
 const AdministrarInfo = () => {
@@ -48,6 +47,7 @@ const AdministrarInfo = () => {
                   <div className="contenidoInfoCliente">
                     {clients.map((usuario) => (
                       <User
+                        key={usuario.id}
                         usuario={usuario}
                         deleteUser={() => deleteClient(usuario.id)}
                       />
@@ -60,6 +60,7 @@ const AdministrarInfo = () => {
             <div className="contenidoInfoCliente">
               {guards.map((usuario) => (
                 <User
+                  key={usuario.id}
                   usuario={usuario}
                   deleteUser={() => deleteGuard(usuario.id)}
                 />
