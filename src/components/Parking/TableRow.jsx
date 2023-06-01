@@ -18,7 +18,11 @@ function TableRow({ item1, item2, ocuped, actualDate }) {
             "entryTime":actualDate.entryTime,
             "retirementTime":actualDate.retirementTime
           }))
-        }}
+          console.log(item1.id,"aaaaaaaaaaaaaaaquiiii manda");
+        }
+        
+        
+        }
           className={`place ${!ocuped.includes(item1.num) ? "Available" : "Busy"}`}
         >
           {item1.num}

@@ -1,32 +1,44 @@
-.containerhoras{
+.containerhoras {
     width: 100%;
     height: 87vh;
 }
-.pruebaJavier{
+
+.pruebaJavier {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
-.prueba1{
+
+.prueba1 {
     display: flex;
     justify-content: space-around;
 }
-.peticiones{
+
+.peticiones {
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: #ffffff;
 }
-.button1{
+
+.button1 {
     display: flex;
     justify-content: end;
     align-items: center;
 }
-.apertura{
+
+.apertura {
     display: flex;
     align-items: center;
 }
-.cierre{
+
+.cierre {
     display: flex;
     align-items: center;
+}
+
+.date {
+    background-color: #C3CEDA;
+    border-radius: 12px;
+    border: none;
 }

@@ -22,7 +22,6 @@ function EditarHoraYGUardia() {
       });
       currDate.setDate(currDate.getDate() + 1);
     }
-
     return datesGenerated;
   };
 
@@ -42,21 +41,23 @@ function EditarHoraYGUardia() {
   };
 
   return (
-    <div className="containerhoras overflow-y-scroll">
-      <div className="pruebaJavier">
+    <div className="containerhoras p-5 overflow-y-scroll">
+      <div className="pruebaJavier mb-5">
         <div className="prueba1">
           <DatePicker
+            className="date p-1"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
           />
         </div>
         <div>
           <DatePicker
+            className="date p-1"
             selected={endDate}
             onChange={(date) => setEndDate(date)}
           />
         </div>
-        <button onClick={() => handleGenerateDates()}>Generate Dates</button>
+        <button className="btn btn-block" onClick={() => handleGenerateDates()}>Buscar datos</button>
       </div>
       {dates.map((item) => (
         <NuevoDiv
@@ -66,7 +67,7 @@ function EditarHoraYGUardia() {
       ))}
       <div className="button1">
         <button
-          className="btn btn-primary m-2"
+          className="btn btn-block m-2"
           onClick={() => createSchedules(dates)}
         >
           Guardar
