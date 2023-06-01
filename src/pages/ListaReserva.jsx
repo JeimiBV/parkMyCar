@@ -14,7 +14,7 @@ export default function ListaReserva() {
     setLoading(false);
     axios({
       method: "GET",
-      url: `http://testingapi12023-001-site1.atempurl.com/reserves/history?placeId=${selector.id}`,
+      url: `http://parkmycar-001-site1.atempurl.com/reserves/history?placeId=${selector.id}`,
     }).then((response) => {
       setReservas(response.data);
     });

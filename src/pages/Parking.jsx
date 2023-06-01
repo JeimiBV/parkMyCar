@@ -42,6 +42,7 @@ function Parking() {
   const DeletePlace = async () => {
     const id = await fetchDeletePlace();
     setPlaces((places) => places.filter((place) => place.id !== id));
+    console.log(places)
   };
 
   const getPlaceHistory = async (date) => {
@@ -79,12 +80,13 @@ function Parking() {
   }, [entryTime, entryDate]);
 
   return (
-    <div className="containerParqueo overflow-y-scroll">
+    <div className="containerParqueo overflow-y-scroll p-3">
       <h1>Plazas</h1>
-      <div className="buscadores">
+      <div className="buscadores mt-5 mb-4">
         <div>
-          <label>Entry date:</label>
+          <label className="text-light me-2">Entry date:</label>
           <input
+            className="h-100 buscador p-1"
             type="date"
             min={new Date().toISOString().slice(0, 10)}
             value={entryDate}
@@ -92,23 +94,24 @@ function Parking() {
           />
         </div>
         <div>
-          <label>Entry time:</label>
+          <label className="text-light me-2">Entry time:</label>
           <input
+            className="h-100 buscador p-1"
             type="time"
-            step="3600"
             value={entryTime}
             onChange={(e) => setEntryTime(e.target.value)}
           />
         </div>
         <div>
-          <label className="text-body-emphasis">Retirement time:</label>
+          <label className="text-light me-2">Retirement time:</label>
           <input
+            className="h-100 buscador p-1"
             type="time"
             value={retirementTime}
             onChange={(e) => setRetirementTime(e.target.value)}
           />
         </div>
-        <button onClick={() => { handleSearch() }}>Search</button>
+        <button className="btn btn-block" onClick={() => { handleSearch() }}>Search</button>
       </div>
       <div className="tables-container">
         {tableSection.map((tableData, index) => (
@@ -117,7 +120,7 @@ function Parking() {
       </div>
       <div
         className={
-          usuario.rol == "admin"
+          usuario.rol == "Admin"
             ? "col-12 d-flex justify-content-end px-5"
             : "d-none"
         }

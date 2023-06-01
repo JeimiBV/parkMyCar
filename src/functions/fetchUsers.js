@@ -1,6 +1,6 @@
 export const fetchData = async () => {
   const response = await fetch(
-    "http://testingapi12023-001-site1.atempurl.com/users"
+    "http://parkmycar-001-site1.atempurl.com/users"
   );
   return await response.json();
 };

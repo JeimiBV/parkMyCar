@@ -5,7 +5,7 @@ const QuejasReclamosAdmin = () => {
   return (
     <div className="contenedorNot overflow-y-scroll">
       <div>
-        <div className="tituloNoti">Reclamos de usuarios</div>
+        <h1 className="text-light pb-4">Reclamos de usuarios</h1>
         <div className="cuadroQ ">
           <div>
             <div>

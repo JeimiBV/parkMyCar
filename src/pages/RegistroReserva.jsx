@@ -49,7 +49,7 @@ export default function RegistroReserva() {
     console.log(datosForm)
 
     await postPeticion(
-      "http://testingapi12023-001-site1.atempurl.com/reserves",
+      "http://parkmycar-001-site1.atempurl.com/reserves",
       datosForm
     );
     navigate("/parqueo");

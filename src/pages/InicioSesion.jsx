@@ -27,7 +27,7 @@ export default function InicioSesion() {
   const cambiarEstado = async (event) => {
     event.preventDefault();
     setLoading(true);
-    fetch("http://testingapi12023-001-site1.atempurl.com/Authentication", {
+    fetch("http://parkmycar-001-site1.atempurl.com/Authentication", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

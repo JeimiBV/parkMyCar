@@ -6,7 +6,7 @@ function TableRow({ item1, item2, ocuped, actualDate }) {
   const dispatch = useDispatch();
   const usuario = useSelector((state) => state.users).userState;
   const navigate = useNavigate();
-  console.log(ocuped,"dar", actualDate)
+  //console.log(ocuped,"dar", actualDate)
   return (
     <tr key={item1.id}>
       <td className="tdItemOne">
