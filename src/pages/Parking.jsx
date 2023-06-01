@@ -84,7 +84,7 @@ function Parking() {
       <h1>Plazas</h1>
       <div className="buscadores mt-5 mb-4">
         <div>
-          <label className="text-light me-2">Entry date:</label>
+          <label className="text-light me-2">Fecha de ingreso:</label>
           <input
             className="h-100 buscador p-1"
             type="date"
@@ -94,7 +94,7 @@ function Parking() {
           />
         </div>
         <div>
-          <label className="text-light me-2">Entry time:</label>
+          <label className="text-light me-2">Hora de ingreso:</label>
           <input
             className="h-100 buscador p-1"
             type="time"
@@ -103,7 +103,7 @@ function Parking() {
           />
         </div>
         <div>
-          <label className="text-light me-2">Retirement time:</label>
+          <label className="text-light me-2">Hora de salida:</label>
           <input
             className="h-100 buscador p-1"
             type="time"
