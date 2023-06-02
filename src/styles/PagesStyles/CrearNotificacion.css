@@ -1,28 +1,24 @@
 .contenedorNot{
     height: 86.6vh;
-    width: 82vw;
+    width: 100%;
 }
 
 .tituloNoti{
     color: white;
-    font-size: 300%;
-    text-align: center;
 }
 
 .tituloPara{
     color: white;
-    padding-left: 50px;
     height: 50px;
 }
 
 .tituloDes{
     color: white;
-    padding-left: 50px;
     height: 50px;
 }
 
 .contDes{
-  
+
     padding-left: 65px;
     padding-right: 50px;
 }
@@ -34,8 +30,9 @@
 }
 
 .opcionesNot{
-    width: 800px;
+    width: 100%;
     padding-left: 65px;
+    padding-right: 50px;
     
 }
 

@@ -14,7 +14,7 @@ export default function ListaReserva() {
     setLoading(false);
     axios({
       method: "GET",
-      url: `http://testingapi12023-001-site1.atempurl.com/reserves/history?placeId=${selector.id}`,
+      url: `http://parkmycar-001-site1.atempurl.com/reserves/history?placeId=${selector.id}`,
     }).then((response) => {
       setReservas(response.data);
     });
@@ -29,7 +29,7 @@ export default function ListaReserva() {
             <i class="fa-solid fa-arrow-left"></i>
           </Button>
         </a>
-        <h1 className="text-center text-light fs-1 fs-md-0">Plaza {selector.id}</h1>
+        <h1 className="text-center text-light fs-1 fs-md-0">Plaza {selector.plaza}</h1>
 
         <div className="ms-md-5 ms-3">
           {reservas.map((reserva) => (

@@ -13,7 +13,7 @@ import {
 
 import "../styles/PagesStyles/Parqueo.css";
 function Parking() {
-  const [actualDate, setActualDate]= useState()
+  const [actualDate, setActualDate] = useState()
   const [places, setPlaces] = useState([]);
   const [reserves, setReserves] = useState([]);
   const [historyPlace, setHistoryPlace] = useState([]);
@@ -29,8 +29,8 @@ function Parking() {
     setPlaces(places);
   };
 
-  const getReserves= async ()=> {
-    const reserves= await fetchReserves();
+  const getReserves = async () => {
+    const reserves = await fetchReserves();
     setReserves(reserves);
   };
 
@@ -42,6 +42,7 @@ function Parking() {
   const DeletePlace = async () => {
     const id = await fetchDeletePlace();
     setPlaces((places) => places.filter((place) => place.id !== id));
+    console.log(places)
   };
 
   const getPlaceHistory = async (date) => {
@@ -54,7 +55,7 @@ function Parking() {
     getReserves();
     setActualDate({ "entryDate": entryDate, "entryTime": entryTime, "retirementTime": retirementTime });
     setUnAvailablePlaces([]);
-  
+
     reserves.forEach((reserve) => {
       const reserveEntryTime = reserve.entryDate.slice(11, 16);
       const reserveRetirementTime = reserve.retirementDate.slice(11, 16);
@@ -62,11 +63,11 @@ function Parking() {
       const isEntryTimeInRange =
         (entryTime > reserveEntryTime && entryTime < reserveRetirementTime) ||
         (entryTime < reserveEntryTime && retirementTime > reserveEntryTime);
-  
+
       const isRetirementTimeInRange =
         (retirementTime > reserveEntryTime && retirementTime <= reserveRetirementTime) ||
         (entryTime < reserveRetirementTime && retirementTime >= reserveRetirementTime);
-  
+
       if (isEntryDateEqual && (isEntryTimeInRange || isRetirementTimeInRange)) {
         setUnAvailablePlaces((prev) => [...prev, reserve.place.num]);
       }
@@ -77,54 +78,54 @@ function Parking() {
     getPlaces();
     getReserves();
   }, [entryTime, entryDate]);
+  
+  const modificarDate = (currentDate) => {
+    return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
+  }
+
 
   return (
-    <div className="containerParqueo overflow-y-scroll">
+    <div className="containerParqueo overflow-y-scroll p-3">
       <h1>Plazas</h1>
-      <div className="buscadores">
+      <div className="buscadores mt-5 mb-4">
         <div>
-          <label>Entry date:</label>
+          <label className="text-light me-2">Fecha de ingreso:</label>
           <input
+            className="h-100 buscador p-1"
             type="date"
+            min={modificarDate(new Date()).slice(0,10)}
             value={entryDate}
             onChange={(e) => setEntryDate(e.target.value)}
           />
         </div>
         <div>
-          <label>Retirement date:</label>
+          <label className="text-light me-2">Hora de ingreso:</label>
           <input
-            type="date"
-            value={retirementDate}
-            onChange={(e) => getPlaceHistory(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Entry time:</label>
-          <input
+            className="h-100 buscador p-1"
             type="time"
             value={entryTime}
             onChange={(e) => setEntryTime(e.target.value)}
           />
         </div>
         <div>
-          <label>Retirement time:</label>
+          <label className="text-light me-2">Hora de salida:</label>
           <input
+            className="h-100 buscador p-1"
             type="time"
             value={retirementTime}
             onChange={(e) => setRetirementTime(e.target.value)}
           />
         </div>
-        <button onClick={()=>{handleSearch()}}>Search</button>
+        <button className="btn btn-block" onClick={() => { handleSearch() }}>Search</button>
       </div>
       <div className="tables-container">
         {tableSection.map((tableData, index) => (
           <ParkingSection key={index} data={tableData} ocuped={unAvailablePlaces} actualDate={actualDate} />
-          
         ))}
       </div>
       <div
         className={
-          usuario.rol == "admin"
+          usuario.rol == "Admin"
             ? "col-12 d-flex justify-content-end px-5"
             : "d-none"
         }

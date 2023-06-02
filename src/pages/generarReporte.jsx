@@ -13,7 +13,7 @@ export default function () {
     const datos= useRef({})
     console.log(datae, "datpopos")
     const handlePlate = () => {
-        fetch(`http://testingapi12023-001-site1.atempurl.com/Reserves/Plate/${placa}`)
+        fetch(`http://parkmycar-001-site1.atempurl.com/Reserves/Plate/${placa}`)
             .then((response) => response.json())
             .then((datos) => {
                 setData(datos)

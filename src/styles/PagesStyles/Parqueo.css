@@ -15,7 +15,6 @@
   display: flex;
   justify-content: space-around;
   margin: 2vh;
-  border-radius: 50%;
 }
 
 h1 {
@@ -25,7 +24,9 @@ h1 {
 }
 
 .buscador{
-  border-radius: 50%;
+  background-color: #C3CEDA;
+  border-radius: 12px;
+  border: none;
 }
 
 th {
@@ -67,8 +68,10 @@ th {
 
 .AddPlaceButton{
   border-radius: 20px;
+  margin: 3px;
   width: 30px;
   font-weight: bold;
   align-items: center;
-  border-color: rgba(195 206 218 /70%);
+  border: none;
 }
+

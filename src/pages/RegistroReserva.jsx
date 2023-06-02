@@ -47,9 +47,9 @@ export default function RegistroReserva() {
   const handlePost = async (e) => {
     e.preventDefault();
     console.log(datosForm)
-
+    console.log(selector,"aaaaaaaaaaaaaqui recive")
     await postPeticion(
-      "http://testingapi12023-001-site1.atempurl.com/reserves",
+      "http://parkmycar-001-site1.atempurl.com/reserves",
       datosForm
     );
     navigate("/parqueo");
@@ -59,7 +59,7 @@ export default function RegistroReserva() {
   const modificarDate = (currentDate) => {
     return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
   }
-
+  console.log(usuario,"oidbfoifbowib")
   const handleAceptar = () => {
     formatearFecha(dateEntrada, true);
     formatearFecha(dateSalida, false);
@@ -69,7 +69,7 @@ export default function RegistroReserva() {
       entryDate: modificarDate(dateEntrada),
       retirementDate: modificarDate(dateSalida),
       placeId: selector.id,
-      guardId: usuario.guardId,
+      guardId:"1",
       price: tarifa
     });
   }
@@ -99,16 +99,6 @@ export default function RegistroReserva() {
     setTarifa((hours + minutes / 60) * precio);
   };
 
-  const filterPassedTime = (time) => {
-    const currentDate = new Date();
-    const selectedDate = new Date(time);
-    return currentDate.getTime() < selectedDate.getTime();
-  };
-  const filterSelectedTime = (time) => {
-    const selectedDate = new Date(time);
-    return dateEntrada.getTime() < selectedDate.getTime();
-  };
-
   return (
     <div className="overflow-y-scroll containerReserva">
       <div className="row w-100 position-relative">
@@ -124,14 +114,7 @@ export default function RegistroReserva() {
                 <p>Parqueo desde</p>
               </div>
               <div className="col">
-                <a
-                  className="cursor"
-                  onClick={() => {
-                    setModal(true);
-                  }}
-                >
-                  {fechaEntrada}
-                </a>
+              {selector.entryDate} : {selector.entryTime}
               </div>
             </div>
             <div className="row">
@@ -143,14 +126,7 @@ export default function RegistroReserva() {
                 <p>Parqueo hasta</p>
               </div>
               <div className="col">
-                <a
-                  className="cursor"
-                  onClick={() => {
-                    setModal(true);
-                  }}
-                >
-                  {fechaSalida}
-                </a>
+              {selector.entryDate} : {selector.retirementTime}
               </div>
             </div>
             <div className="row">
@@ -161,10 +137,8 @@ export default function RegistroReserva() {
                 <p>Duración</p>
               </div>
               <div className="col">
-                <p>
-                  {Math.abs(dateSalida.getHours() - dateEntrada.getHours())}{" "}
-                  Horas
-                </p>
+              {parseInt(selector.retirementTime) - parseInt(selector.entryTime)}{" "}
+                                    Horas
               </div>
             </div>
           </Card>
@@ -225,11 +199,13 @@ export default function RegistroReserva() {
           <Card titulo={"Detalle de la tarifa"} vertical={true}>
             <div className="col h-100">
               <div className="row alturaVertical">
-                <div className="col">
+                <div className="col-7">
+                  <p className=" fs-6">Costo por hora:</p>
                   <p className=" fs-6">Tarifa:</p>
                   <p className="fs-6 ">Nro de plaza:</p>
                 </div>
-                <div className="col">
+                <div className="col-5">
+                  <p className=" fs-6">{5}</p>
                   <p className=" fs-6">{tarifa}</p>
                   <p className=" fs-6">{selector.plaza}</p>
                 </div>
@@ -246,7 +222,7 @@ export default function RegistroReserva() {
 
 
                 {factura ? <button
-                  className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
+                  className="btn btn-success m-2 d-flex justify-content-center align-items-center"
                   form="myform"
                   type="submit"
                 >
@@ -272,7 +248,7 @@ export default function RegistroReserva() {
         <Modal titulo={"Código QR"} mostrar={modalQR}>
           <div className="row">
             <QRCode value="www.google.com" size={150} />
-            <div className="row d-flex justify-content-center mt-1 ">
+            <div className="row d-flex justify-content-center mt-1">
               <button
                 className="btn btn-primary w-25 my-5 me-2"
                 onClick={() => {
@@ -292,66 +268,7 @@ export default function RegistroReserva() {
             </div>
           </div>
         </Modal>
-        <Modal titulo={"Edite la fecha o tiempo"} mostrar={modal}>
-          <div className="row">
-            <div className="col col-md-6 text-center">
-              <h5>Parqueo desde:</h5>
-              <label className="bg-light rounded-3 p-2">
-                <DatePicker
-                  selected={dateEntrada}
-                  onChange={(date) => {
-                    setDateEntrada(date);
-                  }}
-                  showTimeSelect
-                  timeFormat="HH:mm"
-                  //filterTime={filterPassedTime}
-                  //showTimeSelect
-                  showTimeSelectOnly
-                  timeIntervals={60}
-                  timeCaption="Hora"
-                  dateFormat="HH:mm"
-                  locale="vi"
-                />
-              </label>
-            </div>
-            <div className=" col col-md-6 mt-4 mt-md-0 text-center">
-              <h5>Parqueo hasta:</h5>
-              <label className="bg-light rounded-3 p-2 ">
-                <DatePicker
-                  selected={dateSalida}
-                  onChange={(date) => setDateSalida(date)}
-                  showTimeSelect
-                  timeFormat="HH:mm"
-                  //showTimeSelect
-                  showTimeSelectOnly
-                  timeIntervals={60}
-                  timeCaption="Hora"
-                  dateFormat="HH:mm"
-                //filterTime={filterSelectedTime}
-                />
-              </label>
-            </div>
-            <div className="row d-flex justify-content-center mt-5 ">
-              <button
-                className="btn btn-primary w-25 my-5 me-2"
-                onClick={() => {
-                  setModal(false);
-                  handleAceptar();
-                }}
-              >
-                Aceptar
-              </button>
-              <button
-                className="btn btn-primary w-25 my-5 ms-2"
-                onClick={() => {
-                  setModal(false);
-                }}
-              >
-                Cancelar
-              </button>
-            </div>
-          </div>
-        </Modal>
+        
       </div>
     </div>
   );

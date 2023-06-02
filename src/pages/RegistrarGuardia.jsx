@@ -23,7 +23,7 @@ const RegistrarGuardia = () => {
     console.log(datosForm);
     setLoading(true);
     await postPeticion(
-      "http://testingapi12023-001-site1.atempurl.com/users/guard",
+      "http://parkmycar-001-site1.atempurl.com/users/guard",
       datosForm
     );
     setLoading(false);
@@ -31,7 +31,7 @@ const RegistrarGuardia = () => {
 
   return (
     <div className="contenedorGuardia w-100 p-4 d-flex align-items-center flex-column overflow-y-scroll">
-      <div className="tituloNoti mb-4">Registrar un nuevo guardia</div>
+      <h1 className="tituloNoti mb-4">Registrar un nuevo guardia</h1>
       <div className="cuadroRegGuardia p-4 ">
         <form onSubmit={(e) => handleSubmit(e)} className="mt-4">
           <div className="tituloGuardia w-100 mb-4 d-flex align-items-center">

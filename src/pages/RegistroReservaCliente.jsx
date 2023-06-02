@@ -27,6 +27,7 @@ export default function RegistroReserva() {
     const [fechaEntrada, setFechaEntrada] = useState("");
     const [fechaSalida, setFechaSalida] = useState("");
     const [tarifa, setTarifa] = useState(0);
+    const [factura, setFactura] = useState("");
     const navigate = useNavigate();
     const [datosForm, setDatosForm] = useState({
         name: usuario.nombre,
@@ -41,12 +42,16 @@ export default function RegistroReserva() {
     const handlePost = async (e) => {
         e.preventDefault();
         await postPeticion(
-            "http://testingapi12023-001-site1.atempurl.com/reserves",
+            "http://parkmycar-001-site1.atempurl.com/reserves",
             datosForm
         );
         navigate("/parqueo");
         console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
     };
+
+    const modificarDate = (currentDate) => {
+        return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
+    }
 
     useEffect(() => {
 
@@ -55,8 +60,8 @@ export default function RegistroReserva() {
         calcularTarifa(5);
         setDatosForm({
             ...datosForm,
-            entryDate: dateEntrada,
-            retirementDate: dateSalida,
+            entryDate: modificarDate(dateEntrada),
+            retirementDate: modificarDate(dateSalida),
             placeId: selector.id,
             guardId: usuario.guardId,
             price: tarifa
@@ -150,33 +155,40 @@ export default function RegistroReserva() {
                     <Card titulo={"Detalle de la tarifa"} vertical={true}>
                         <div className="col h-100">
                             <div className="row m-0 h-50">
-                                <div className="col">
-                                    <p className="fs-6">Tarifa:</p>
+                                <div className="col-7">
+                                    <p className=" fs-6">Costo por hora:</p>
+                                    <p className=" fs-6">Tarifa:</p>
                                     <p className="fs-6 ">Nro de plaza:</p>
                                 </div>
-                                <div className="col">
+                                <div className="col-5">
+                                    <p className=" fs-6">{5}</p>
                                     <p className=" fs-6">{tarifa}</p>
                                     <p className=" fs-6">{selector.plaza}</p>
                                 </div>
                             </div>
                             <div className="row m-0 h-50">
                                 <button
-                                    className="btn btn-primary mb-2 d-flex justify-content-center align-items-center"
+                                    className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                                     onClick={() => {
                                         setModalQR(true);
                                     }}
                                 >
                                     Generar QR
                                 </button>
-                                <button
-                                    className="btn btn-primary mb-2 d-flex justify-content-center align-items-center"
+                                {factura ? <button
+                                    className="btn btn-success m-2 d-flex justify-content-center align-items-center"
                                     form="myform"
                                     type="submit"
                                 >
                                     Reservar
-                                </button>
+                                </button> :
+                                    <input className=" btn btn-danger m-2 d-flex justify-content-center align-items-center"
+                                        id="image-upload" type="file" accept="image/*" placeholder=""
+                                        onChange={e => setFactura(e.target.value)}
+                                    />
+                                }
                                 <button
-                                    className="btn btn-primary mb-2 d-flex justify-content-center align-items-center"
+                                    className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                                     onClick={() => {
                                         navigate("/parqueo");
                                     }}

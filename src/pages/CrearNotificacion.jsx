@@ -43,7 +43,7 @@ const CrearNotificacion = () => {
   };
 
   const onSubmit = async (data) => {
-    await fetch("http://testingapi12023-001-site1.atempurl.com/Notification",{
+    await fetch("http://parkmycar-001-site1.atempurl.com/Notification",{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
@@ -63,12 +63,13 @@ const CrearNotificacion = () => {
   };
 
   return (
-    <div className="contenedorNot">
-      <div className="tituloNoti fs-1 ">Crear Notificación</div>
+    <div className="contenedorNot pt-4">
+      <h1 className=" me-auto d-md-block d-none">Crear Notificación</h1>
+      <div className="fs-1 d-md-none text-light text-center">Crear Notificación</div>
 
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h3 className="tituloPara">Para: </h3>
+          <h3 className="text-light ps-5">Para: </h3>
           <div className="contSelect">
             <SelectMulti
               name="phones"
@@ -85,7 +86,7 @@ const CrearNotificacion = () => {
             </span>
           </div>
 
-          <h3 className="tituloDes">Descripcion: </h3>
+          <h3 className="text-light ps-5">Descripción: </h3>
           <div className="contDes">
             <textarea
               name="message"
@@ -122,7 +123,7 @@ const CrearNotificacion = () => {
             <button
               type="button"
               disabled={!isValid}
-              className="btn btn-primary botonDes"
+              className="btn btn-primary botonDes me-5"
               data-bs-toggle="modal"
               data-bs-target="#staticBackdrop"
             >

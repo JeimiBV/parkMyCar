@@ -11,7 +11,7 @@ export default function () {
   let array = [];
 
   const fetchData = () => {
-    fetch("http://testingapi12023-001-site1.atempurl.com/places")
+    fetch("http://parkmycar-001-site1.atempurl.com/places")
       .then((response) => {
         return response.json();
       })

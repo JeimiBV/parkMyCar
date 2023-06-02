@@ -17,7 +17,7 @@ export function UseFetch(url) {
 
 }
 export async function  postPeticion(url,datos){
-
+  console.log(datos, "fetchhhhhhhhhhhh", url)
   await fetch(url,{
     method:'POST',
     headers:{

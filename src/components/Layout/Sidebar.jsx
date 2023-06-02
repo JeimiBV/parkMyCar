@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../../styles/Sidebar.css";
 
 export default function SideBar({ cambiarE, nombreUsuario, rol }) {
@@ -5,8 +6,8 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
     <div className="main d-lg-inline d-none pt-2 overflow-y-auto overflow-x-hidden">
       <div className=" d-flex flex-column justify-content-between contenidoSide">
         <ul>
-          {rol=="Guard" || rol=="Admin" || rol=="Client" ? (
-            <div className="opcion">
+          {rol == "Guard" || rol == "Admin" || rol == "Client" ? (
+            <div>
               <a href="/parqueo" className="text-decoration-none">
                 <div className="d-flex py-3 text-decoration-none text-light align-items-center">
                   <i class="fa-solid fa-square-parking fs-1 me-3 opciones"></i>
@@ -18,7 +19,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
             <></>
           )}
 
-          {rol == "Guard" || rol== "Admin"? (
+          {rol == "Guard" || rol == "Admin" ? (
             <div className="opcion">
               <a href="/plazaReserva" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -47,7 +48,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
               <a href="/editarHorario" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
                   <i class="fa-solid fa-calendar-check fs-1 me-3 opciones"></i>
-                  <h3 className="opciones fs-5">Editar horario atencion</h3>
+                  <h3 className="opciones fs-5">Editar horario atención</h3>
                 </div>
               </a>
             </div>
@@ -91,16 +92,16 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
             <></>
           )}
 
-         {rol=="Client"? (<div>
-        <a href="/MisReservas" className="text-decoration-none">
-            <div className="d-flex py-3 opcion text-decoration-none text-light align-items-center">
-              <i class="fa-solid fas fa-grip fs-1 me-3 opciones"></i>
-              <h3 className="opciones fs-5">Mis Reservas</h3>
-            </div>
-          </a>
-        </div>):(<></>)}
+          {rol == "Client" ? (<div>
+            <a href="/MisReservas" className="text-decoration-none">
+              <div className="d-flex py-3 opcion text-decoration-none text-light align-items-center">
+                <i class="fa-solid fas fa-grip fs-1 me-3 opciones"></i>
+                <h3 className="opciones fs-5">Mis Reservas</h3>
+              </div>
+            </a>
+          </div>) : (<></>)}
 
-        {rol == "Admin" ? (
+          {rol == "Admin" ? (
             <div className="opcion">
               <a href="/generarReporte" className="text-decoration-none">
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
@@ -134,7 +135,9 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
             <i class="fa-sharp fa-regular fa-circle-user text-light fs-1 ms-2  col-3"></i>
             <h4 className="col-8 ">{nombreUsuario}</h4>
           </div>
-
+            <small>
+              {rol}
+            </small>
           <button
             className="btn text-light  cerrarButton"
             onClick={() => {

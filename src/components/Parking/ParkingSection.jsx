@@ -14,7 +14,7 @@ function ParkingSection({ data, ocuped, actualDate }) {
       <thead>
         <tr>
           <th colSpan="2" className="tittleCentered">
-            Automovil
+            Automóvil
           </th>
         </tr>
       </thead>
