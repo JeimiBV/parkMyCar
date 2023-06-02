@@ -199,11 +199,13 @@ export default function RegistroReserva() {
           <Card titulo={"Detalle de la tarifa"} vertical={true}>
             <div className="col h-100">
               <div className="row alturaVertical">
-                <div className="col">
+                <div className="col-7">
+                  <p className=" fs-6">Costo por hora:</p>
                   <p className=" fs-6">Tarifa:</p>
                   <p className="fs-6 ">Nro de plaza:</p>
                 </div>
-                <div className="col">
+                <div className="col-5">
+                  <p className=" fs-6">{5}</p>
                   <p className=" fs-6">{tarifa}</p>
                   <p className=" fs-6">{selector.plaza}</p>
                 </div>
@@ -220,7 +222,7 @@ export default function RegistroReserva() {
 
 
                 {factura ? <button
-                  className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
+                  className="btn btn-success m-2 d-flex justify-content-center align-items-center"
                   form="myform"
                   type="submit"
                 >
@@ -246,7 +248,7 @@ export default function RegistroReserva() {
         <Modal titulo={"Código QR"} mostrar={modalQR}>
           <div className="row">
             <QRCode value="www.google.com" size={150} />
-            <div className="row d-flex justify-content-center mt-1 ">
+            <div className="row d-flex justify-content-center mt-1">
               <button
                 className="btn btn-primary w-25 my-5 me-2"
                 onClick={() => {

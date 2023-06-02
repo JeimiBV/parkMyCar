@@ -42,3 +42,27 @@
     border-radius: 12px;
     border: none;
 }
+
+.dateA {
+    background-color: #C3CEDA;
+    border-radius: 9px;
+    border: none;
+}
+
+.dateC{
+    background-color: #C3CEDA;
+    border-radius: 9px;
+    border: none;
+}
+
+.drop{
+    background-color: #C3CEDA;
+    border-radius: 9px;
+    border: none;
+}
+
+@media(max-width: 575px) {
+    .date{
+        background-color: #C3CEDA;
+    }
+  }

@@ -11,6 +11,9 @@
 .cursor:hover{
     color: white;
 }
+#image-upload::-webkit-file-upload-button {
+    display: none;
+  }
 
 @media(min-width: 375px) and (max-width: 675px) {
     .cardTiempoyDur{

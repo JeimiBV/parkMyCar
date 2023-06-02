@@ -1,31 +1,29 @@
+.contenedorQ{
+    height: 87vh;
+    width: 100%;
+}
 .cuadroQ {
-    background-color: rgba(195 206 218 /70%);
-    width: 90%;
+    background-image: linear-gradient(to right, #738FA7, #C3CEDA, #738FA7);
     border-radius: 10px;
     height: 100%;
-    margin-left: 7%;
-    margin-block-end: 2%;
-    padding: 1.5% 1.5% 3% 1.5%;
+    margin-top: 6vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
 }
-.tituloUser1{
-    color: white;
-    padding-left: 50px;
+.tituloUserA{
     height: 50px;
-    align-items: center;
-    display: flex;
 }
 .button{
     display: flex;
     justify-content: end;
 }
-.contenidoQueja{
+.contenidoQuejaA{
     color: rgb(0, 0, 0);
-    padding-left: 5%;
     display: flex;
-    background-color: white;
-    width: 85%;
-    margin-left: 6%;
-    font-size: 2.5vh;
+    font-size: 2vh;
     font-family: Arial, Helvetica, sans-serif;
-    border-radius: 10px;
+}
+
+.iconoClaim{
+    font-size: 8rem;
 }

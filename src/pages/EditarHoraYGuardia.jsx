@@ -41,20 +41,27 @@ function EditarHoraYGUardia() {
   };
 
   return (
-    <div className="containerhoras p-5 overflow-y-scroll">
+    <div className="containerhoras p-3 overflow-y-scroll">
+      <h1 className="pb-3">Editar horario de atención</h1>
       <div className="pruebaJavier mb-5">
         <div className="prueba1">
           <DatePicker
-            className="date p-1"
+            showIcon
+            className="date p-2"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
+            dateFormat="MMMM d, yyyy"
+            minDate={startDate}
           />
+
         </div>
         <div>
           <DatePicker
-            className="date p-1"
+            className="date p-2"
             selected={endDate}
             onChange={(date) => setEndDate(date)}
+            dateFormat="MMMM d, yyyy"
+            minDate={startDate}
           />
         </div>
         <button className="btn btn-block" onClick={() => handleGenerateDates()}>Buscar datos</button>
@@ -67,7 +74,7 @@ function EditarHoraYGUardia() {
       ))}
       <div className="button1">
         <button
-          className="btn btn-block m-2"
+          className="btn btn-block m-3"
           onClick={() => createSchedules(dates)}
         >
           Guardar

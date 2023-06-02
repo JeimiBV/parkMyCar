@@ -11,7 +11,7 @@
     color: white;
 }
 .alturaVertical{
-    height: 73%;
+    height: 65%;
 }
 #image-upload::-webkit-file-upload-button {
     display: none;
@@ -20,6 +20,6 @@
 
 @media(max-width: 575px) {
     .alturaVertical{
-        height: 25%;
+        height: 50%;
     }
   }

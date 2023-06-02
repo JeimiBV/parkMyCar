@@ -13,7 +13,7 @@ export const EditData = async (id, newName, newNit, newPhone, newEmail) => {
     phone: newPhone,
   };
   const response = await fetch(
-    `http://testingapi12023-001-site1.atempurl.com/users/${id}`,
+    `http://parkmycar-001-site1.atempurl.com/users/${id}`,
     {
       method: "PUT",
       body: JSON.stringify(userData),
@@ -27,7 +27,7 @@ export const EditData = async (id, newName, newNit, newPhone, newEmail) => {
 
 export const DeleteData = async (id) => {
   const response = await fetch(
-    `http://testingapi12023-001-site1.atempurl.com/users/${id}`,
+    `http://parkmycar-001-site1.atempurl.com/users/${id}`,
     {
       method: "DELETE",
     }
@@ -37,14 +37,14 @@ export const DeleteData = async (id) => {
 
 export const fetchClients = async () => {
   const response = await fetch(
-    "http://testingapi12023-001-site1.atempurl.com/users/client"
+    "http://parkmycar-001-site1.atempurl.com/users/client"
   );
   return await response.json();
 };
 
 export const fetchGuards = async () => {
   const response = await fetch(
-    "http://testingapi12023-001-site1.atempurl.com/users/guard"
+    "http://parkmycar-001-site1.atempurl.com/users/guard"
   );
   return await response.json();
 };
