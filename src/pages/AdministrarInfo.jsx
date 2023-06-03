@@ -38,12 +38,11 @@ const AdministrarInfo = () => {
     <div className="contenedorNot overflow-y-scroll">
       <div>
         <div className="tituloInfo">Administrar información del cliente</div>
-        <div className="encapsularContenido">
           <div>
-            <h3 className="tituloCliente">Clientes:</h3>
             <div className="container">
               <div className="col">
                 <div className="my-2 col">
+                <h3 className="tituloCliente">Clientes:</h3>
                   <div className="contenidoInfoCliente">
                     {clients.map((usuario) => (
                       <User
@@ -52,19 +51,22 @@ const AdministrarInfo = () => {
                         deleteUser={() => deleteClient(usuario.id)}
                       />
                     ))}
-                  </div>
+          
                 </div>
               </div>
-            </div>
+           
+            
+         
             <h3 className="tituloCliente">Guardias:</h3>
-            <div className="contenidoInfoCliente">
-              {guards.map((usuario) => (
-                <User
-                  key={usuario.id}
-                  usuario={usuario}
-                  deleteUser={() => deleteGuard(usuario.id)}
-                />
-              ))}
+              <div className="contenidoInfoCliente">
+                {guards.map((usuario) => (
+                  <User
+                    key={usuario.id}
+                    usuario={usuario}
+                    deleteUser={() => deleteGuard(usuario.id)}
+                  />
+                ))}
+                </div>
             </div>
           </div>
         </div>

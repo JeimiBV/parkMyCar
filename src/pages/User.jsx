@@ -17,10 +17,10 @@ const User = ({ usuario, deleteUser }) => {
   };
 
   return (
-    <div key={usuario.nombre} className="usuarioFinal">
-      <div className="usuarioUnidoID">
+    <div key={usuario.nombre} className="usuarioFinal p-2 m-3">
+      <div className="usuarioUnidoID m-3">
         <div className="usuarioIzq">
-          <i class="fa-solid fa-user fs-1 me-3 opciones"></i>
+          <i class="fa-solid fa-user fs-1 me-3 opciones iconoUser"></i>
         </div>
         <div className="usuarioDer">
           <div className="datosUsuario">
@@ -31,7 +31,7 @@ const User = ({ usuario, deleteUser }) => {
                 alignItems: "center",
               }}
             >
-              <p>Nombre: </p>
+              <p className="datosUser">Nombre: </p>
               <input
                 disabled={!isEditing}
                 type="text"
@@ -46,7 +46,7 @@ const User = ({ usuario, deleteUser }) => {
                 alignItems: "center",
               }}
             >
-              <p>CI: </p>
+              <p className="datosUser">CI: </p>
               <input
                 disabled={!isEditing}
                 type="text"
@@ -61,7 +61,7 @@ const User = ({ usuario, deleteUser }) => {
                 alignItems: "center",
               }}
             >
-              <p>Teléfono: </p>
+              <p className="datosUser">Teléfono: </p>
               <input
                 disabled={!isEditing}
                 type="text"
@@ -76,8 +76,8 @@ const User = ({ usuario, deleteUser }) => {
                 alignItems: "center",
               }}
             >
-              <p>Correo: </p>
-              <input
+              <p className="datosUser">Correo: </p>
+              <input             
                 disabled={!isEditing}
                 type="text"
                 value={email}
@@ -90,18 +90,18 @@ const User = ({ usuario, deleteUser }) => {
       <div className="botonUsuario">
         {!isEditing ? (
           <button
-            class="btn btn-primary m-2"
+            class="btn btn-primary m-2 botonUser"
             onClick={() => SetIsEditing(true)}
           >
             Editar
           </button>
         ) : (
-          <button class="btn btn-primary m-2" onClick={() => editarUsuario()}>
+          <button class="btn btn-primary m-2 botonUser" onClick={() => editarUsuario()}>
             Finalizar
           </button>
         )}
 
-        <button class="btn btn-primary m-2" onClick={() => deleteUser()}>
+        <button class="btn btn-primary m-2 botonUser" onClick={() => deleteUser()}>
           Eliminar
         </button>
       </div>
