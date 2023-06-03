@@ -5,9 +5,11 @@ export default function RedactarMensaje() {
   return (
     <div className="containerMisReservas overflow-y-scroll">
       <h1>Mis reservas</h1>
-      <div className="row w-75">
-      <div className="col-3 bg-success"></div>
-        <div className="col-9 bg-danger">
+      <div className="row w-75 mx-auto rounded bg-danger py-4">
+      <div className="col-3 ">
+      <i class="fa-solid fa-cards-blank"></i>
+      </div>
+        <div className="col-9 ">
           <h2>Informacion de la plaza</h2>
           <div className="my-2 col" >
             <h4 className="col"><i class="fas fa-car"></i> Parquear desde</h4>

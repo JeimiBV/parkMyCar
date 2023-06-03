@@ -133,11 +133,12 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
         <section className="text-light fs-4 px-1 pt-2 logOutButton ">
           <div className="row py-2">
             <i class="fa-sharp fa-regular fa-circle-user text-light fs-1 ms-2  col-3"></i>
-            <h4 className="col-8 ">{nombreUsuario}</h4>
-          </div>
-            <small>
+            <h4 className="col-8 fs-3 ">{nombreUsuario}</h4>
+            <small className=" ms-1">
               {rol}
             </small>
+          </div>
+            
           <button
             className="btn text-light  cerrarButton"
             onClick={() => {

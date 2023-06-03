@@ -78,11 +78,25 @@ function Parking() {
     getPlaces();
     getReserves();
   }, [entryTime, entryDate]);
-  
   const modificarDate = (currentDate) => {
     return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
   }
 
+  const getActualTime = () => {
+
+    setEntryTime(modificarDate(new Date()).slice(11,16));
+    setRetirementTime(modificarDate(new Date()).slice(11,16));
+  }
+  const getActuelDate = () => {
+    setEntryDate(modificarDate(new Date()).slice(0,10))
+  }
+  useEffect(() => {
+    getActualTime()
+    getActuelDate()
+
+  }, [])
+
+ 
 
   return (
     <div className="containerParqueo overflow-y-scroll p-3">
@@ -93,7 +107,7 @@ function Parking() {
           <input
             className="h-100 buscador p-1"
             type="date"
-            min={modificarDate(new Date()).slice(0,10)}
+            min={modificarDate(new Date()).slice(0, 10)}
             value={entryDate}
             onChange={(e) => setEntryDate(e.target.value)}
           />
@@ -105,6 +119,7 @@ function Parking() {
             type="time"
             value={entryTime}
             onChange={(e) => setEntryTime(e.target.value)}
+            
           />
         </div>
         <div>
