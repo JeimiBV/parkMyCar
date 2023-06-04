@@ -34,3 +34,30 @@ export const fetchPlaceHistory = async () => {
   );
   return await response.json();
 };
+
+export const fetchHidePlace = async (num) => {
+  const response = await fetch(
+    `http://parkmycar-001-site1.atempurl.com/places/hide/${num}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }
+  );
+  return await response.json();
+};
+
+export const fetchShowPlace = async (num) => {
+  const response = await fetch(
+    `http://parkmycar-001-site1.atempurl.com/places/show/${num}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }
+  );
+  console.log(await response.json(), "api");
+  return await response.json();
+};
