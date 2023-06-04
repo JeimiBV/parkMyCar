@@ -20,18 +20,16 @@
     align-items: center;
     display: flex;
 }
-.contenidoInfoCliente{
-    color: rgb(0, 0, 0);
-    padding-left: 5%;
+.contenidoInfoCliente{ 
     display: flex;
     flex-wrap: wrap;
-    background-color: white;
-    width: 85%;
-    margin-left: 6%;
+   /* background-color: rgba(195 206 218 /70%);*/
+    background-color: #C3CEDA;
+    border-radius: 10px;
     font-size: 2.5vh;
     font-family: Arial, Helvetica, sans-serif;
-    border-radius: 10px;
     justify-content: space-around;
+    margin: 10px;
 }
 .contenidoInfoCliente > div{
     flex-basis: 33.33%;
@@ -47,6 +45,8 @@
 }
 .usuarioFinal{
     border-color: black;
+    background-color:  #738FA7;
+    border-radius: 10px;
 }
 .usuarioIzq{
     padding-top: 5%;
@@ -56,4 +56,15 @@
     display: row;
     justify-content: end;
     align-items: center;
+}
+
+.iconoUser{
+    color: #0c4160;
+}
+.datosUser{
+    margin: 5px;
+}
+
+.botonUser{
+   float: right;
 }
