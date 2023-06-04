@@ -7,7 +7,7 @@ export const fetchGetSchedules = async () => {
 
 export const fetchGetScheduleToday = async () => {
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/schedules"
+    "http://parkmycar-001-site1.atempurl.com/schedules/today"
   );
   return await response.json();
 };

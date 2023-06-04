@@ -1,18 +1,46 @@
+import { useState } from "react";
 import "../styles/Land.css";
 
 import React from "react";
+import { fetchGetScheduleToday } from "../functions/fetchSchedules";
+import { useEffect } from "react";
 
 const Landing = () => {
+  const [todaySchedule, setTodaySchedule] = useState(null);
+
+  const getTodaySchedule = async () => {
+    const todaySchedule = await fetchGetScheduleToday();
+    setTodaySchedule(todaySchedule);
+  };
+
+  console.log(todaySchedule);
+
+  useEffect(() => {
+    getTodaySchedule();
+  }, []);
+
   return (
     <div className="prueba ">
       <div id="parallax-world-of-ugg">
         <section>
+          <div style={{ textAlign: "center", color: "white" }}>
+            {todaySchedule
+              ? `Horario de Atención hoy ${todaySchedule.startDate.substring(
+                  11,
+                  13
+                )}: ${todaySchedule.startDate.substring(
+                  14,
+                  16
+                )} Hasta ${todaySchedule.endDate.substring(
+                  11,
+                  13
+                )}: ${todaySchedule.endDate.substring(14, 16)} `
+              : "No hay Atención el día de hoy"}
+          </div>
           <div class="parallax-one">
             <h2>PARK MY CAR</h2>
           </div>
         </section>
-
-        <div>Horario de Atención Hoy: </div>
 
         <section className="blok">
           <div class="block">
