@@ -58,9 +58,7 @@ const PDFDocument = ({datae}) => {
    console.log(datae, "datos")
 
     return (
-    <Document
-      
-        >
+    <Document>
             <Page size="LETTER" style={styles.page} orientation="landscape">
                 <View style={styles.section}>
                     <Text style={styles.tittle}>Reporte de ingresos</Text>
@@ -129,9 +127,7 @@ const PDFDocument = ({datae}) => {
                     </View>
                 </View>
             </Page>
-        </Document>
-
-       
+        </Document>  
     );
 };
 

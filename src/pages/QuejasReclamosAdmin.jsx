@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
 import "../styles/PagesStyles/QuejasReclamosAdmin.css";
+
+import React, { useState, useEffect } from "react";
 
 const QuejasReclamosAdmin = () => {
   return (

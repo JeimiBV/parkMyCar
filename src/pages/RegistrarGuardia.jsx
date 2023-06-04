@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
 import "../styles/PagesStyles/RegistrarGuardia.css";
+
 import Spinner from "../components/Spinner";
+
+import React, { useEffect, useState } from "react";
 import { postPeticion } from "../functions/useFetch";
 
 const RegistrarGuardia = () => {

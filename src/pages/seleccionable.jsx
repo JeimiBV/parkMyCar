@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-
 import DatePicker from "react-datepicker";
+
 import { fetchData } from "../functions/fetchGuards";
+import { useEffect, useState } from "react";
 
 export default function NuevoDiv({ item, selectDate }) {
   const [guards, setGuards] = useState([]);
@@ -36,7 +36,7 @@ export default function NuevoDiv({ item, selectDate }) {
   return (
     <div className="peticiones row mb-2">
       <div className="col-md-2 text-center">{item.startDate.toDateString()}</div>
-      
+
       <div className="apertura col-3 ">
         <label className="me-2" htmlFor="entrada">Apertura:</label>
         <DatePicker

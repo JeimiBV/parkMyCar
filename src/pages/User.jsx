@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
 import "../styles/PagesStyles/AdministrarInfo.css";
-import { Navigate } from "react-router-dom";
+
+import React, { useState, useEffect } from "react";
 import { EditData } from "../functions/fetchUsers";
 
 const User = ({ usuario, deleteUser }) => {
@@ -8,7 +8,6 @@ const User = ({ usuario, deleteUser }) => {
   const [nit, setNit] = useState(usuario.nit);
   const [phone, setPhone] = useState(usuario.phone);
   const [email, setEmail] = useState(usuario.email);
-
   const [isEditing, SetIsEditing] = useState(false);
 
   const editarUsuario = async () => {

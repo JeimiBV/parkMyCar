@@ -1,34 +1,32 @@
-//import { MuiPickersUtilsProvider } from "@material-ui/pickers"
-//import DateFnsUtils from "@date-io/date-fns"
-//import { DateTimePicker, DatePicker } from "@material-ui/pickers"
-import Modal from "../components/Modal";
-//import esLocale from "date-fns/locale/es"
-import Card from "../components/Card";
 import "../styles/PagesStyles/RegistroReserva.css";
-import { useEffect, useRef, useState } from "react";
-import DatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
+import Modal from "../components/Modal";
+import Card from "../components/Card";
+import Spinner from "../components/Spinner";
 import QRCode from "react-qr-code";
+import moment from "moment";
+
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postPeticion } from "../functions/useFetch";
+import { uploadFile } from "../firebase/config";
 
-
-//import 'moment/locale/en-gb'
 
 export default function RegistroReserva() {
   const usuario = useSelector((state) => state.users).userState;
   const selector = useSelector((state) => state.tasks);
-  const [dateEntrada, setDateEntrada] = useState(new Date());
-  const [dateSalida, setDateSalida] = useState(new Date());
-  const [modal, setModal] = useState(false);
+  const navigate = useNavigate();
+
+  const [dateEntrada, setDateEntrada] = useState(moment(`${selector.entryDate} ${selector.entryTime}`).toDate());
+  const [dateSalida, setDateSalida] = useState(moment(`${selector.entryDate} ${selector.retirementTime}`).toDate());
   const [modalQR, setModalQR] = useState(false);
   const [fechaEntrada, setFechaEntrada] = useState("");
   const [fechaSalida, setFechaSalida] = useState("");
   const [tarifa, setTarifa] = useState(0);
   const [factura, setFactura] = useState("");
-  const navigate = useNavigate();
-  // Returns 2011-10-05T14:48:00.000Z
+  const [loading, setLoading] = useState(true);
   const [datosForm, setDatosForm] = useState({
     entryDate: "",
     retirementDate: "",
@@ -38,28 +36,28 @@ export default function RegistroReserva() {
     phone: null,
     placeId: null,
     guardId: null,
-    price: 0
+    price: 0,
+    url: ""
   });
+
   const handleChange = (e) => {
     setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
   };
 
   const handlePost = async (e) => {
     e.preventDefault();
-    console.log(datosForm)
-    console.log(selector,"aaaaaaaaaaaaaqui recive")
+    setDatosForm({ ...datosForm, url: factura })
     await postPeticion(
       "http://parkmycar-001-site1.atempurl.com/reserves",
       datosForm
     );
     navigate("/parqueo");
-    console.log(datosForm, dateEntrada.toString(), dateSalida.toISOString(), "datos para enviar")
   };
 
   const modificarDate = (currentDate) => {
     return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
   }
-  console.log(usuario,"oidbfoifbowib")
+
   const handleAceptar = () => {
     formatearFecha(dateEntrada, true);
     formatearFecha(dateSalida, false);
@@ -69,14 +67,24 @@ export default function RegistroReserva() {
       entryDate: modificarDate(dateEntrada),
       retirementDate: modificarDate(dateSalida),
       placeId: selector.id,
-      guardId:"1",
-      price: tarifa
+      guardId: "1",
+      price: tarifa,
+      url: factura
     });
+  }
+
+  const handleUpload = async (e) => {
+    setLoading(false)
+    await uploadFile(e.target.files[0]).then(
+      (url) => {
+        setFactura(url.toString());
+      }
+    );
   }
 
   useEffect(() => {
     handleAceptar();
-  }, [dateEntrada, dateSalida]);
+  }, [dateEntrada, dateSalida, factura]);
 
   const formatearFecha = (date, flag) => {
     if (flag == true) {
@@ -93,6 +101,7 @@ export default function RegistroReserva() {
       }
     }
   };
+
   const calcularTarifa = (precio) => {
     let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
     let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
@@ -114,7 +123,7 @@ export default function RegistroReserva() {
                 <p>Parqueo desde</p>
               </div>
               <div className="col">
-              {selector.entryDate} : {selector.entryTime}
+                {selector.entryDate} : {selector.entryTime}
               </div>
             </div>
             <div className="row">
@@ -126,7 +135,7 @@ export default function RegistroReserva() {
                 <p>Parqueo hasta</p>
               </div>
               <div className="col">
-              {selector.entryDate} : {selector.retirementTime}
+                {selector.entryDate} : {selector.retirementTime}
               </div>
             </div>
             <div className="row">
@@ -137,8 +146,8 @@ export default function RegistroReserva() {
                 <p>Duración</p>
               </div>
               <div className="col">
-              {parseInt(selector.retirementTime) - parseInt(selector.entryTime)}{" "}
-                                    Horas
+                {parseInt(selector.retirementTime) - parseInt(selector.entryTime)}{" "}
+                Horas
               </div>
             </div>
           </Card>
@@ -228,10 +237,12 @@ export default function RegistroReserva() {
                 >
                   Reservar
                 </button> :
-                  <input className=" btn btn-danger m-2 d-flex justify-content-center align-items-center"
-                    id="image-upload" type="file" accept="image/*" placeholder=""
-                    onChange={e => setFactura(e.target.value)}
-                  />
+
+                  !loading && !factura ? <Spinner /> :
+                    <input className=" btn btn-danger m-2 text-center"
+                      id="image-upload" type="file" accept="image/*" placeholder=""
+                      onChange={e => handleUpload(e)}
+                    />
                 }
                 <button
                   className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
@@ -268,7 +279,7 @@ export default function RegistroReserva() {
             </div>
           </div>
         </Modal>
-        
+
       </div>
     </div>
   );

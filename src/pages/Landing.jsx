@@ -1,17 +1,12 @@
-import React from "react";
 import "../styles/Land.css"
-const Landing =() =>{
+
+import React from "react";
+
+const Landing = () => {
   return (
     <div className="prueba ">
         <div id="parallax-world-of-ugg">
-  
-        {/* <section>
-          <div class="title">
-            <h3>2023</h3>
-            <h1>BIENVENIDOS</h1>
-          </div>
-        </section> */}
-  
+ 
           <section>
               <div class="parallax-one">
                 <h2>PARK MY CAR</h2>

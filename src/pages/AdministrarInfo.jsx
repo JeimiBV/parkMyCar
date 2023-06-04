@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
 import "../styles/PagesStyles/AdministrarInfo.css";
-import { Navigate } from "react-router-dom";
+
 import User from "./User";
+
+import React, { useState, useEffect } from "react";
 import { fetchClients, fetchGuards } from "../functions/fetchUsers";
 import { DeleteData } from "../functions/fetchUsers";
 

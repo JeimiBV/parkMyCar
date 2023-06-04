@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import "../styles/PagesStyles/EditarHoraYGuardia.css";
+
 import DatePicker from "react-datepicker";
 import NuevoDiv from "./seleccionable";
-import "../styles/PagesStyles/EditarHoraYGuardia.css";
+
+import React, { useState } from "react";
 import { fetchPostData } from "../functions/fetchSchedules";
 
 function EditarHoraYGUardia() {

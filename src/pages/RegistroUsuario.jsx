@@ -1,9 +1,10 @@
 import "../styles/PagesStyles/RegistroUsuario.css"
+
+import Spinner from "../components/Spinner";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postPeticion } from "../functions/useFetch";
-import { toast } from "react-toastify";
-import Spinner from "../components/Spinner";
 
 export default function RegistroUsuario() {
     const [showPwd, setShowPwd] = useState(false);
@@ -29,7 +30,6 @@ export default function RegistroUsuario() {
             datosForm
         );
         setLoading(false);
-        //toast.success('Registrando usuario', { theme: "colored", autoClose: 3000});
         navigate("/inicioS");
     };
 

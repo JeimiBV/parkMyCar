@@ -1,8 +1,9 @@
+import "../styles/PagesStyles/CrearNotificacion.css";
+
 import React, { useState, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { SelectMulti } from "../components/MultiSelect";
-import "../styles/PagesStyles/CrearNotificacion.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 const CrearNotificacion = () => {
   const [reserves, setReserves] = useState([]);
@@ -11,15 +12,15 @@ const CrearNotificacion = () => {
   useEffect(() => {
     getReserves();
   }, []);
-  
+
   const getReserves = async () => {
-    await fetch("http://testingapi12023-001-site1.atempurl.com/reserves")
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      setReserves(data);
-    });
+    await fetch("http://parkmycar-001-site1.atempurl.com/reserves")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setReserves(data);
+      });
   }
 
   const methods = useForm();
@@ -39,27 +40,27 @@ const CrearNotificacion = () => {
 
   const handleSelectValues = (opts) => {
     setPhonesValues(opts);
-    setValue("phones", [ ...opts.map((opt) => opt.value.toString()) ]);
+    setValue("phones", [...opts.map((opt) => opt.value.toString())]);
   };
 
   const onSubmit = async (data) => {
-    await fetch("http://parkmycar-001-site1.atempurl.com/Notification",{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'
+    await fetch("http://parkmycar-001-site1.atempurl.com/Notification", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
       },
-      body:JSON.stringify(data)
+      body: JSON.stringify(data)
     })
-    .then((data) => {
-      console.log(data);
-      toast.success('notificaciones enviadas con exito', { theme: "colored", autoClose: 3000});
-      setPhonesValues([]);
-      reset();
-    })
-    .catch((error) => {
-      toast.error('error al enviar las notificaciones', { theme: "colored", autoClose: 3000});
-      console.error(error);
-    });
+      .then((data) => {
+        console.log(data);
+        toast.success('notificaciones enviadas con exito', { theme: "colored", autoClose: 3000 });
+        setPhonesValues([]);
+        reset();
+      })
+      .catch((error) => {
+        toast.error('error al enviar las notificaciones', { theme: "colored", autoClose: 3000 });
+        console.error(error);
+      });
   };
 
   return (

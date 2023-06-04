@@ -1,15 +1,18 @@
+import "../styles/PagesStyles/ListaReserva.css";
+
 import Button from "../components/Button";
 import Table from "../components/Table";
-import { useState, useEffect } from "react";
-import "../styles/PagesStyles/ListaReserva.css";
-import { useSelector } from "react-redux";
 import axios from "axios";
 
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+
 export default function ListaReserva() {
+  const selector = useSelector((state) => state.tasks);
+
   const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(false);
-  const selector = useSelector((state) => state.tasks);
-  console.log(selector,"sssssssssssssssssssssss")
+  
   useEffect(() => {
     setLoading(false);
     axios({

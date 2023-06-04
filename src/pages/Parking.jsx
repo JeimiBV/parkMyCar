@@ -1,8 +1,11 @@
+import "../styles/PagesStyles/Parqueo.css";
+
 import React, { useEffect, useState } from "react";
 import ParkingSection from "../components/Parking/ParkingSection";
+import moment from 'moment';
+
 import { splitIntoSection } from "../utils/placeUtils";
 import { useSelector } from "react-redux";
-import moment from 'moment';
 import {
   fetchCreatePlace,
   fetchDeletePlace,
@@ -11,8 +14,9 @@ import {
   fetchReserves,
 } from "../functions/fetchPlaces";
 
-import "../styles/PagesStyles/Parqueo.css";
+
 function Parking() {
+  
   const [actualDate, setActualDate] = useState()
   const [places, setPlaces] = useState([]);
   const [reserves, setReserves] = useState([]);
@@ -21,9 +25,11 @@ function Parking() {
   const [retirementDate, setRetirementDate] = useState("");
   const [entryTime, setEntryTime] = useState("");
   const [retirementTime, setRetirementTime] = useState("");
+  const [unAvailablePlaces, setUnAvailablePlaces] = useState([]);
+
   const tableSection = splitIntoSection(places);
   const usuario = useSelector((state) => state.users).userState;
-  const [unAvailablePlaces, setUnAvailablePlaces] = useState([]);
+
   const getPlaces = async () => {
     const places = await fetchPlaces();
     setPlaces(places);
@@ -77,26 +83,26 @@ function Parking() {
   useEffect(() => {
     getPlaces();
     getReserves();
+    
   }, [entryTime, entryDate]);
+
   const modificarDate = (currentDate) => {
     return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
   }
 
   const getActualTime = () => {
 
-    setEntryTime(modificarDate(new Date()).slice(11,16));
-    setRetirementTime(modificarDate(new Date()).slice(11,16));
+    setEntryTime(modificarDate(new Date()).slice(11, 16));
+    setRetirementTime(modificarDate(new Date()).slice(11, 16));
   }
   const getActuelDate = () => {
-    setEntryDate(modificarDate(new Date()).slice(0,10))
+    setEntryDate(modificarDate(new Date()).slice(0, 10))
   }
   useEffect(() => {
     getActualTime()
     getActuelDate()
-
+    handleSearch()
   }, [])
-
- 
 
   return (
     <div className="containerParqueo overflow-y-scroll p-3">
@@ -119,7 +125,7 @@ function Parking() {
             type="time"
             value={entryTime}
             onChange={(e) => setEntryTime(e.target.value)}
-            
+
           />
         </div>
         <div>

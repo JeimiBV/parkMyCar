@@ -1,28 +1,29 @@
 import "../styles/PagesStyles/InicioSesion.css";
+
 import Spinner from "../components/Spinner";
+import jwt_decode from "jwt-decode";
+
 import { useDispatch } from "react-redux";
 import { iniciarSesion } from "../users/userSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
 
 export default function InicioSesion() {
-  const [loading, setLoading]=useState(false);
-  const [logInFail, setLoginFail]=useState(false);
+  const [loading, setLoading] = useState(false);
+  const [logInFail, setLoginFail] = useState(false);
   const [showPwd, setShowPwd] = useState(false);
   const [data, setData] = useState({
     email: "",
     password: "",
   });
-  // redireccionar la pagina de ser necesario
-  const navigate = useNavigate();
 
-  //obtener todos los datos de inputs y guardarlas en el estado 'data'
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-
-  const dispatch = useDispatch();
 
   const cambiarEstado = async (event) => {
     event.preventDefault();
@@ -35,14 +36,14 @@ export default function InicioSesion() {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        
+
         if (response) {
           return response.text();
         } else {
           throw new Error("error al obtener el token");
-          
+
         }
-        
+
       })
       .then((data) => {
         const token = data;
@@ -58,7 +59,7 @@ export default function InicioSesion() {
         setLoading(false);
         setLoginFail(true);
       });
-      
+
   };
   return (
     <div className="containerInicio p-4 d-flex justify-content-center">
@@ -109,18 +110,16 @@ export default function InicioSesion() {
                 Por favor verifique sus credenciales y vuelva a intentar
               </p>
               {
-                loading?<Spinner/>:
-                <button
-                class="btn btn-block text-center my-3 rounded btnInicio"
-                onClick={(event) => {
-                  cambiarEstado(event);
-                }}
-              >
-                Ingresar
-              </button>
+                loading ? <Spinner /> :
+                  <button
+                    class="btn btn-block text-center my-3 rounded btnInicio"
+                    onClick={(event) => {
+                      cambiarEstado(event);
+                    }}
+                  >
+                    Ingresar
+                  </button>
               }
-
-              
             </div>
           </form>
         </div>
