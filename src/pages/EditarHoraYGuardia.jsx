@@ -21,6 +21,7 @@ function EditarHoraYGUardia() {
         guardId: 0,
         startDate: new Date(currDate),
         endDate: new Date(currDate),
+        price: 5,
       });
       currDate.setDate(currDate.getDate() + 1);
     }
@@ -55,7 +56,6 @@ function EditarHoraYGUardia() {
             dateFormat="MMMM d, yyyy"
             minDate={startDate}
           />
-
         </div>
         <div>
           <DatePicker
@@ -66,7 +66,9 @@ function EditarHoraYGUardia() {
             minDate={startDate}
           />
         </div>
-        <button className="btn btn-block" onClick={() => handleGenerateDates()}>Buscar datos</button>
+        <button className="btn btn-block" onClick={() => handleGenerateDates()}>
+          Buscar datos
+        </button>
       </div>
       {dates.map((item) => (
         <NuevoDiv
