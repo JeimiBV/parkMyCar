@@ -2,10 +2,14 @@ import { useState } from "react";
 import "../styles/Land.css";
 
 import React from "react";
-import { fetchGetScheduleToday } from "../functions/fetchSchedules";
+import {
+  fetchGetScheduleToday,
+  fetchGetSchedules,
+} from "../functions/fetchSchedules";
 import { useEffect } from "react";
 
 const Landing = () => {
+  const [schedules, setSchedules] = useState([]);
   const [todaySchedule, setTodaySchedule] = useState(null);
 
   const getTodaySchedule = async () => {
@@ -13,10 +17,14 @@ const Landing = () => {
     setTodaySchedule(todaySchedule);
   };
 
-  console.log(todaySchedule);
+  const getSchedules = async () => {
+    const schedules = await fetchGetSchedules();
+    setSchedules(schedules);
+  };
 
   useEffect(() => {
     getTodaySchedule();
+    getSchedules();
   }, []);
 
   return (
@@ -37,6 +45,17 @@ const Landing = () => {
                 )}: ${todaySchedule.endDate.substring(14, 16)} `
               : "No hay Atención el día de hoy"}
           </div>
+          <select className="col-8 w-25 drop p-1" id="guardia" name="guardia">
+            <option value="">Ver Horarios Disponibles</option>
+            {schedules.map((schedule) => (
+              <option key={schedule.id} value={schedule.id}>
+                {schedule.startDate.substring(0, 10)}{" "}
+                {schedule.startDate.substring(11, 16)} Hasta{" "}
+                {schedule.endDate.substring(0, 10)}{" "}
+                {schedule.endDate.substring(11, 16)}
+              </option>
+            ))}
+          </select>
           <div class="parallax-one">
             <h2>PARK MY CAR</h2>
           </div>
