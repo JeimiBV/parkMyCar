@@ -1,4 +1,7 @@
-export const fetchPostSuggestion = async (suggestion) => {
+export const fetchCreateSuggestion = async (description) => {
+  const suggestion = {
+    description: description,
+  };
   const response = await fetch(
     "http://testingapi12023-001-site1.atempurl.com/suggestions",
     {
