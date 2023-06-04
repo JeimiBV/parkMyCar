@@ -11,9 +11,11 @@ export default function () {
     const [dateSalida, setDateSalida] = useState(new Date());
     const [placa, setPlaca] = useState("");
     const [datae, setData] = useState();
+    const datos = useRef("");
+
 
     const handlePlate = () => {
-        fetch(`http://parkmycar-001-site1.atempurl.com/Reserves/Plate/${placa}`)
+        fetch(`http://parkmycar-001-site1.atempurl.com/Reserves/Plate/${datos.current.value}`)
             .then((response) => response.json())
             .then((datos) => {
                 setData(datos)
@@ -68,7 +70,7 @@ export default function () {
                         </div>
                     </div>
                     <input type="text" placeholder="Buscar nombre o placa" id="buscadorPlaca" ref={datos} className="col-md-2 " name="placa" onChange={e => {
-                        setPlaca(e.target.value)
+                        //setPlaca(e.target.value)
                         console.log(datos.current.value, "ref")
                     }} />
                     <button type="button" class="btn botonReporte col-md-2 ms-1" onClick={() => { handlePlate() }}>
