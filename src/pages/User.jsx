@@ -8,10 +8,22 @@ const User = ({ usuario, deleteUser }) => {
   const [nit, setNit] = useState(usuario.nit);
   const [phone, setPhone] = useState(usuario.phone);
   const [email, setEmail] = useState(usuario.email);
+  const [vehicles, setVehicles] = useState(usuario.vehicles);
   const [isEditing, SetIsEditing] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const handlePlateChange = (event, index) => {
+    const updatedVehicles = [...vehicles];
+    updatedVehicles[index].plate = event.target.value;
+    setVehicles(updatedVehicles);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
   const editarUsuario = async () => {
-    await EditData(usuario.id, name, nit, phone, email);
+    await EditData(usuario.id, name, nit, phone, email, vehicles);
     SetIsEditing(false);
   };
 
@@ -76,13 +88,37 @@ const User = ({ usuario, deleteUser }) => {
               }}
             >
               <p className="datosUser">Correo: </p>
-              <input             
+              <input
                 disabled={!isEditing}
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+            {usuario.role === "Client" ? (
+              <div className="col-8 w-25 drop p-1">
+                <div className="select-wrapper">
+                  <div className="selected-option" onClick={toggleDropdown}>
+                    Vehiculos
+                  </div>
+                  {isDropdownOpen && (
+                    <ul className="options-list">
+                      {vehicles.map((vehicle, index) => (
+                        <li key={vehicle.id}>
+                          <input
+                            type="text"
+                            value={vehicle.plate}
+                            onChange={(event) =>
+                              handlePlateChange(event, index)
+                            }
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -95,12 +131,18 @@ const User = ({ usuario, deleteUser }) => {
             Editar
           </button>
         ) : (
-          <button class="btn btn-primary m-2 botonUser" onClick={() => editarUsuario()}>
+          <button
+            class="btn btn-primary m-2 botonUser"
+            onClick={() => editarUsuario()}
+          >
             Finalizar
           </button>
         )}
 
-        <button class="btn btn-primary m-2 botonUser" onClick={() => deleteUser()}>
+        <button
+          class="btn btn-primary m-2 botonUser"
+          onClick={() => deleteUser()}
+        >
           Eliminar
         </button>
       </div>
