@@ -1,8 +1,14 @@
+import { fetchCreateSuggestion } from "../functions/fetchSuggestions";
 import "../styles/PagesStyles/QuejasReclamosUsers.css";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const QuejasReclamosUser = () => {
+  const [text, setText] = useState("");
+
+  const handleCreate = async () => {
+    await fetchCreateSuggestion(text);
+  };
   return (
     <div className="contenedorNot overflow-y-scroll">
       <div>
@@ -17,12 +23,14 @@ const QuejasReclamosUser = () => {
                   className="form-control Descripcion "
                   placeholder="Escriba el mensaje"
                   id="floatingTextarea2"
-                ></textarea>
+                  onChange={(e) => setText(e.target.value)}
+                />
                 <div className="button">
                   <button
                     className=" btn btn-primary m-2"
                     form="myform"
                     type="submit"
+                    onClick={() => handleCreate()}
                   >
                     Enviar
                   </button>
