@@ -3,25 +3,38 @@ import "../styles/PagesStyles/generarReporte.css"
 import DatePicker from "react-datepicker";
 import DocumentPDF from "../components/DocumentPDF";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { PDFViewer } from "@react-pdf/renderer";
+import { postPeticion } from "../functions/useFetch";
 
 export default function () {
     const [dateEntrada, setDateEntrada] = useState(new Date());
     const [dateSalida, setDateSalida] = useState(new Date());
-    const [placa, setPlaca] = useState("");
+    const [dataForm, setDataForm] = useState({
+        plateId: "",
+        fromDate: "",
+        toDate: ""
+    });
     const [datae, setData] = useState();
-    const datos = useRef("");
 
+    const handleNotification = () => {
+        toast.warning('¡las fechas no son validas!', { autoClose: 2000 });
+    };
 
-    const handlePlate = () => {
-        fetch(`http://parkmycar-001-site1.atempurl.com/Reserves/Plate/${datos.current.value}`)
-            .then((response) => response.json())
-            .then((datos) => {
-                setData(datos)
-                console.log(datae)
-            })
+    const llenarForm = (e) => {
+        setDataForm({ ...dataForm, [e.target.name]: e.target.value })
     }
+
+    const handlePost = async () => {
+        if (dataForm.toDate > dataForm.fromDate) {
+            setData(await postPeticion("http://parkmycar-001-site1.atempurl.com/Reserves/Plate", dataForm))
+        }
+        else {
+            handleNotification()
+        }
+    };
 
     return (
         <div className="containerReporte overflow-y-scroll">
@@ -31,49 +44,40 @@ export default function () {
                 <div className="row w-100 me-0 ms-0 mb-5">
 
                     <div className="col-md-4 row d-flex justify-content-center align-items-center">
-                        <label className="col"> inicial</label>
+                        <label className="col-md-5"> Fecha inicial</label>
                         <div className="col">
-                            <DatePicker
-                                selected={dateEntrada}
-                                onChange={(date) => {
-                                    setDateEntrada(date);
-                                }}
-                                showTimeSelect
-                                timeFormat="HH:mm"
-                                timeIntervals={60}
-                                timeCaption="Hora"
-                                dateFormat="Pp"
-                                locale="vi"
+                            <input
+                                type="date"
+                                name="fromDate"
+                                onChange={e => llenarForm(e)}
                                 className="bg-date p-2 rounded"
                             />
                         </div>
                     </div>
 
                     <div className="col-md-4  row d-flex align-items-center">
-                        <label className="col-md-3"> final</label>
+                        <label className="col-md-4">Fecha final</label>
                         <div className="col">
-                            <DatePicker
-                                selected={dateSalida}
-                                onChange={(date) => {
-                                    setDateSalida(date);
-
-                                }}
-                                showTimeSelect
-                                timeFormat="HH:mm"
-                                timeIntervals={60}
-                                timeCaption="Hora"
-                                dateFormat="Pp"
-                                locale="vi"
+                            <input
+                                type="date"
+                                name="toDate"
+                                selected={dateEntrada}
+                                onChange={e => llenarForm(e)}
                                 className="bg-date p-2 rounded"
-
                             />
                         </div>
                     </div>
-                    <input type="text" placeholder="Buscar nombre o placa" id="buscadorPlaca" ref={datos} className="col-md-2 " name="placa" onChange={e => {
-                        //setPlaca(e.target.value)
-                        console.log(datos.current.value, "ref")
-                    }} />
-                    <button type="button" class="btn botonReporte col-md-2 ms-1" onClick={() => { handlePlate() }}>
+                    <input type="text"
+                        placeholder="Buscar placa"
+                        id="buscadorPlaca"
+                        className="col-md-2 "
+                        name="plateId"
+                        required
+                        maxlength="6"
+                        onChange={e => {
+                            llenarForm(e)
+                        }} />
+                    <button type="button" class="btn botonReporte col-md-2 ms-1" onClick={() => { handlePost() }}>
                         <i class="fa-solid fa-magnifying-glass me-2"></i>
                         Buscar
                     </button>

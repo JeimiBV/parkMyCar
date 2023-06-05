@@ -18,13 +18,16 @@ export function UseFetch(url) {
 }
 export async function  postPeticion(url,datos){
   console.log(datos, "fetchhhhhhhhhhhh", url)
-  await fetch(url,{
+  const response =await fetch(url,{
     method:'POST',
     headers:{
       'Content-Type':'application/json'
     },
     body:JSON.stringify(datos)
   })
+  //agregado para generar reportes si algo falla es esto
+  console.log(response)
+  return await response.json();
 }
 
 export async function postLogin(url, datos) {
