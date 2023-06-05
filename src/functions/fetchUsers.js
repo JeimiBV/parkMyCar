@@ -1,16 +1,22 @@
 export const fetchData = async () => {
-  const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/users"
-  );
+  const response = await fetch("http://parkmycar-001-site1.atempurl.com/users");
   return await response.json();
 };
 
-export const EditData = async (id, newName, newNit, newPhone, newEmail) => {
+export const EditData = async (
+  id,
+  newName,
+  newNit,
+  newPhone,
+  newEmail,
+  newVehicles
+) => {
   const userData = {
     name: newName,
     email: newEmail,
     nit: newNit,
     phone: newPhone,
+    vehicles: newVehicles,
   };
   const response = await fetch(
     `http://parkmycar-001-site1.atempurl.com/users/${id}`,
