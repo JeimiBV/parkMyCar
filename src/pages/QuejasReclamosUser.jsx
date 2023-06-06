@@ -1,28 +1,41 @@
+import { fetchCreateSuggestion } from "../functions/fetchSuggestions";
 import "../styles/PagesStyles/QuejasReclamosUsers.css";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const QuejasReclamosUser = () => {
+  const [text, setText] = useState("");
+
+  const handleCreate = async () => {
+    await fetchCreateSuggestion(text);
+  };
   return (
     <div className="contenedorNot overflow-y-scroll">
-      <h1 className="tituloNoti my-4">Crear Queja o Reclamo</h1>
-      <div className="cuadroQad w-75 mx-auto">
-        <div className="p-2">
-          <h3 className="tituloUser ms-3">Descripción: </h3>
-          <div className="contDes p-0 mx-3 my-3">
-            <textarea
-              className="form-control Descripcion"
-              placeholder="Escriba el mensaje"
-              id="floatingTextarea2"
-            ></textarea>
-            <div className="button">
-              <button
-                className=" btn btn-block mt-4"
-                form="myform"
-                type="submit"
-              >
-                Enviar
-              </button>
+      <div>
+        <div className="tituloNoti">Crear Queja o Reclamo</div>
+        <div className="cuadroQad ">
+          <div>
+            <div>
+              <h3 className="tituloUser">Descripción: </h3>
+
+              <div className="contDes">
+                <textarea
+                  className="form-control Descripcion "
+                  placeholder="Escriba el mensaje"
+                  id="floatingTextarea2"
+                  onChange={(e) => setText(e.target.value)}
+                />
+                <div className="button">
+                  <button
+                    className=" btn btn-primary m-2"
+                    form="myform"
+                    type="submit"
+                    onClick={() => handleCreate()}
+                  >
+                    Enviar
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
