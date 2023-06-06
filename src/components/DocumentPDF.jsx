@@ -71,10 +71,7 @@ const PDFDocument = ({datae}) => {
                                 <Text style={styles.tableCell}>Nombre completo</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>Carnet de indentidad</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>Telefono</Text>
+                                <Text style={styles.tableCell}>Monto cobrado</Text>
                             </View>
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>Fecha</Text>
@@ -84,6 +81,9 @@ const PDFDocument = ({datae}) => {
                             </View>
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>Hora de salida</Text>
+                            </View>
+                            <View style={styles.tableCol}>
+                                <Text style={styles.tableCell}>Tiempo estacionado</Text>
                             </View>
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>Placa vehicular</Text>
@@ -101,9 +101,6 @@ const PDFDocument = ({datae}) => {
                                             <Text style={styles.tableCell}>{dato.name}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.nit}</Text>
-                                        </View>
-                                        <View style={styles.tableCol}>
                                             <Text style={styles.tableCell}>{dato.phone}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
@@ -114,6 +111,9 @@ const PDFDocument = ({datae}) => {
                                         </View>
                                         <View style={styles.tableCol}>
                                             <Text style={styles.tableCell}>{dato.retirementDate.slice(11,19)}</Text>
+                                        </View>
+                                        <View style={styles.tableCol}>
+                                            <Text style={styles.tableCell}>{Math.abs(dato.entryDate.slice(11,13)-dato.retirementDate.slice(11,13))}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
                                             <Text style={styles.tableCell}>{dato.plate}</Text>

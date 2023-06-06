@@ -37,7 +37,7 @@ export default function RegistroReserva() {
         placeId: null,
         guardId: null,
         price: 0,
-        url: ""
+        qrCode: ""
     });
 
     const handleChange = (e) => {
@@ -46,13 +46,13 @@ export default function RegistroReserva() {
 
     const handlePost = async (e) => {
         e.preventDefault();
-        setDatosForm({ ...datosForm, url: factura })
+        setDatosForm({ ...datosForm, qrCode: factura })
         console.log(datosForm);
-        /*await postPeticion(
+        await postPeticion(
             "http://parkmycar-001-site1.atempurl.com/reserves",
             datosForm
         );
-        navigate("/parqueo");*/
+        navigate("/parqueo");
     };
 
     const modificarDate = (currentDate) => {
@@ -62,8 +62,8 @@ export default function RegistroReserva() {
     const handleUpload = async (e) => {
         setLoading(false)
         await uploadFile(e.target.files[0]).then(
-            (url) => {
-                setFactura(url.toString());
+            (qrCode) => {
+                setFactura(qrCode.toString());
             }
         );
     }
@@ -79,7 +79,7 @@ export default function RegistroReserva() {
             placeId: selector.id,
             guardId: usuario.guardId,
             price: tarifa,
-            url: factura
+            qrCode: factura
         });
     }, [dateEntrada, dateSalida, factura]);
 

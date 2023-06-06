@@ -7,7 +7,7 @@ import { useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PDFViewer } from "@react-pdf/renderer";
-import { postPeticion } from "../functions/useFetch";
+import { postReporte } from "../functions/useFetch";
 
 export default function () {
     const [dateEntrada, setDateEntrada] = useState(new Date());
@@ -20,7 +20,7 @@ export default function () {
     const [datae, setData] = useState();
 
     const handleNotification = () => {
-        toast.warning('¡las fechas no son validas!', { autoClose: 2000 });
+        toast.warning('¡Las fechas no son válidas!', { autoClose: 2000 });
     };
 
     const llenarForm = (e) => {
@@ -29,7 +29,7 @@ export default function () {
 
     const handlePost = async () => {
         if (dataForm.toDate > dataForm.fromDate) {
-            setData(await postPeticion("http://parkmycar-001-site1.atempurl.com/Reserves/Plate", dataForm))
+            setData(await postReporte("http://parkmycar-001-site1.atempurl.com/Reserves/Plate", dataForm))
         }
         else {
             handleNotification()

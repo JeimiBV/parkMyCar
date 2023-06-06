@@ -18,7 +18,7 @@ export function UseFetch(url) {
 }
 export async function  postPeticion(url,datos){
   console.log(datos, "fetchhhhhhhhhhhh", url)
-  const response =await fetch(url,{
+    await fetch(url,{
     method:'POST',
     headers:{
       'Content-Type':'application/json'
@@ -26,8 +26,20 @@ export async function  postPeticion(url,datos){
     body:JSON.stringify(datos)
   })
   //agregado para generar reportes si algo falla es esto
-  console.log(response)
+  //console.log(response)
+//  return await response.json();
+}
+
+export async function postReporte(url,datos){
+  const response =await fetch(url,{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify(datos)
+  })
   return await response.json();
+
 }
 
 export async function postLogin(url, datos) {
