@@ -5,29 +5,24 @@ import React, { useState, useEffect } from "react";
 const QuejasReclamosUser = () => {
   return (
     <div className="contenedorNot overflow-y-scroll">
-      <div>
-        <div className="tituloNoti">Crear Queja o Reclamo</div>
-        <div className="cuadroQad ">
-          <div>
-            <div>
-              <h3 className="tituloUser">Descripción: </h3>
-
-              <div className="contDes">
-                <textarea
-                  className="form-control Descripcion "
-                  placeholder="Escriba el mensaje"
-                  id="floatingTextarea2"
-                ></textarea>
-                <div className="button">
-                  <button
-                    className=" btn btn-primary m-2"
-                    form="myform"
-                    type="submit"
-                  >
-                    Enviar
-                  </button>
-                </div>
-              </div>
+      <h1 className="tituloNoti my-4">Crear Queja o Reclamo</h1>
+      <div className="cuadroQad w-75 mx-auto">
+        <div className="p-2">
+          <h3 className="tituloUser ms-3">Descripción: </h3>
+          <div className="contDes p-0 mx-3 my-3">
+            <textarea
+              className="form-control Descripcion"
+              placeholder="Escriba el mensaje"
+              id="floatingTextarea2"
+            ></textarea>
+            <div className="button">
+              <button
+                className=" btn btn-block mt-4"
+                form="myform"
+                type="submit"
+              >
+                Enviar
+              </button>
             </div>
           </div>
         </div>

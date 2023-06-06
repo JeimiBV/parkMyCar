@@ -1,16 +1,10 @@
 .cuadroQad {
-    background-color: rgba(195 206 218 /70%);
-    width: 90%;
+    background-color: rgba(195 206 218 / 30% );
     border-radius: 10px;
-    height: 40vh;
-    margin-left: 7%;
 }
 .tituloUser{
     color: white;
-    padding-left: 50px;
-    height: 50px;
     align-items: center;
-    display: flex;
 }
 .button{
     display: flex;
@@ -20,9 +14,6 @@
     color: rgb(0, 0, 0);
     display: flex;
     background-color: white;
-    width: 90%;
-    margin-left: 50px;
-    font-size: 4.5vh;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 10px;
 }

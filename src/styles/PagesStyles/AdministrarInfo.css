@@ -15,7 +15,7 @@
 }
 .tituloCliente{
     color: white;
-    padding-left: 50px;
+    padding-left: 10px;
     height: 50px;
     align-items: center;
     display: flex;
@@ -67,4 +67,16 @@
 
 .botonUser{
    float: right;
+}
+
+@media(min-width: 375px) and (max-width: 675px) {
+    .tituloInfo{
+        font-size: 2rem;
+    }
+    .contenidoInfoCliente{
+        justify-content: space-between;
+    }
+    .usuarioFinal{
+        flex-grow: 1;
+    }
 }

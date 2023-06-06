@@ -120,7 +120,7 @@ export default function SideBar({ cambiarE, nombreUsuario, rol }) {
                 <div className="d-flex py-3  text-decoration-none text-light align-items-center">
                   <i class="fa-sharp fa-solid fa-users-gear fs-1 me-3 opciones"></i>
                   <h3 className="opciones fs-5">
-                    Administrar información cliente
+                    Administrar información usuario
                   </h3>
                 </div>
               </a>

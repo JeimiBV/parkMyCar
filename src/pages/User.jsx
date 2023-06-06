@@ -26,12 +26,13 @@ const User = ({ usuario, deleteUser }) => {
             <div
               style={{
                 display: "flex",
-                textAlign: "center",
                 alignItems: "center",
               }}
+              className="row"
             >
-              <p className="datosUser">Nombre: </p>
+              <p className="datosUser col-4">Nombre: </p>
               <input
+                className="col"
                 disabled={!isEditing}
                 type="text"
                 value={name}
@@ -41,12 +42,13 @@ const User = ({ usuario, deleteUser }) => {
             <div
               style={{
                 display: "flex",
-                textAlign: "center",
                 alignItems: "center",
               }}
+              className="row"
             >
-              <p className="datosUser">CI: </p>
+              <p className="datosUser col-4">CI: </p>
               <input
+                className="col"
                 disabled={!isEditing}
                 type="text"
                 value={nit}
@@ -56,12 +58,13 @@ const User = ({ usuario, deleteUser }) => {
             <div
               style={{
                 display: "flex",
-                textAlign: "center",
                 alignItems: "center",
               }}
+              className="row"
             >
-              <p className="datosUser">Teléfono: </p>
+              <p className="datosUser col-4">Teléfono: </p>
               <input
+                className="col"
                 disabled={!isEditing}
                 type="text"
                 value={phone}
@@ -71,12 +74,13 @@ const User = ({ usuario, deleteUser }) => {
             <div
               style={{
                 display: "flex",
-                textAlign: "center",
                 alignItems: "center",
               }}
+              className="row"
             >
-              <p className="datosUser">Correo: </p>
-              <input             
+              <p className="datosUser col-4">Correo: </p>
+              <input
+              className="col"
                 disabled={!isEditing}
                 type="text"
                 value={email}
@@ -100,7 +104,7 @@ const User = ({ usuario, deleteUser }) => {
           </button>
         )}
 
-        <button class="btn btn-primary m-2 botonUser" onClick={() => deleteUser()}>
+        <button class="btn btn-danger m-2 botonUser" onClick={() => deleteUser()}>
           Eliminar
         </button>
       </div>
