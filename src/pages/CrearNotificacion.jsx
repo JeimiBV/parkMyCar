@@ -14,14 +14,14 @@ const CrearNotificacion = () => {
   }, []);
 
   const getReserves = async () => {
-    await fetch("http://parkmycar-001-site1.atempurl.com/reserves")
+    await fetch("http://parkmycar-001-site1.atempurl.com/users/client")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setReserves(data);
       });
-  }
+  };
 
   const methods = useForm();
 
@@ -35,7 +35,9 @@ const CrearNotificacion = () => {
 
   const optionsMapped = reserves.map((reserve) => ({
     value: reserve.phone,
-    label: `${reserve.phone} - ${reserve.plate}`,
+    label: `${reserve.phone} - ${
+      reserve.plate ? reserve.plate[0] : "No tiene Placa"
+    }`,
   }));
 
   const handleSelectValues = (opts) => {
@@ -45,20 +47,26 @@ const CrearNotificacion = () => {
 
   const onSubmit = async (data) => {
     await fetch("http://parkmycar-001-site1.atempurl.com/Notification", {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
       .then((data) => {
         console.log(data);
-        toast.success('notificaciones enviadas con exito', { theme: "colored", autoClose: 3000 });
+        toast.success("notificaciones enviadas con exito", {
+          theme: "colored",
+          autoClose: 3000,
+        });
         setPhonesValues([]);
         reset();
       })
       .catch((error) => {
-        toast.error('error al enviar las notificaciones', { theme: "colored", autoClose: 3000 });
+        toast.error("error al enviar las notificaciones", {
+          theme: "colored",
+          autoClose: 3000,
+        });
         console.error(error);
       });
   };
@@ -66,7 +74,9 @@ const CrearNotificacion = () => {
   return (
     <div className="contenedorNot pt-4">
       <h1 className=" me-auto d-md-block d-none">Crear Notificación</h1>
-      <div className="fs-1 d-md-none text-light text-center">Crear Notificación</div>
+      <div className="fs-1 d-md-none text-light text-center">
+        Crear Notificación
+      </div>
 
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -87,7 +97,7 @@ const CrearNotificacion = () => {
             </span>
           </div>
 
-          <h3 className="text-light">Descripción: </h3>
+          <h3 className="text-light ps-5">Descripción: </h3>
           <div className="contDes">
             <textarea
               name="message"
