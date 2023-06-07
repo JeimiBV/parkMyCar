@@ -24,7 +24,7 @@ export default function Layout({ children }) {
               nombreUsuario={usuario.nombre}
               rol={usuario.rol}
        />
-      <div className="row w-100 layoutSC">
+      <div className="row w-100 layoutSC ">
         <div className={usuario.estado?"col-lg-2 p-0":"d-none"}>
           <SideBar cambiarE={cambiarEstado}
                     nombreUsuario={usuario.nombre}

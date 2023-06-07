@@ -28,10 +28,13 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className="prueba ">
+    <div className="prueba bg-dark bg-opacity-75">
       <div id="parallax-world-of-ugg">
-        <section>
-          <div style={{ textAlign: "center", color: "white" }}>
+        
+        <section className=" ">
+        <article className="position-absolute indicador">
+          <div
+          style={{ textAlign: "center", color: "white" }}>
             {todaySchedule
               ? `Horario de Atención hoy ${todaySchedule.startDate.substring(
                   11,
@@ -42,13 +45,14 @@ const Landing = () => {
                 )} Hasta ${todaySchedule.endDate.substring(
                   11,
                   13
-                )}: ${todaySchedule.endDate.substring(14, 16)} `
-              : "No hay Atención el día de hoy"}
+                )}: ${todaySchedule.endDate.substring(14, 16)} Tarifa: ${todaySchedule.price} `
+              : <h4 className="">No hay Atención el día de hoy</h4>}
           </div>
-          <select className="col-8 w-25 drop p-1" id="guardia" name="guardia">
+          <select className="col-8 w-100 drop p-1 " id="guardia" name="guardia ">
             <option value="">Ver Horarios Disponibles</option>
             {schedules.map((schedule) => (
-              <option key={schedule.id} value={schedule.id}>
+              <option className="p-3"  
+                key={schedule.id} value={schedule.id}>
                 {schedule.startDate.substring(0, 10)}{" "}
                 {schedule.startDate.substring(11, 16)} Hasta{" "}
                 {schedule.endDate.substring(0, 10)}{" "}
@@ -56,8 +60,9 @@ const Landing = () => {
               </option>
             ))}
           </select>
-          <div class="parallax-one">
-            <h2>PARK MY CAR</h2>
+        </article>
+          <div class="parallax-one position-relative ">
+            <h2 className="bg-dark bg-opacity-75 py-2">PARK MY CAR</h2>
           </div>
         </section>
 
@@ -94,7 +99,7 @@ const Landing = () => {
 
         <section>
           <div class="parallax-two">
-            <h2>¿Como funciona?</h2>
+            <h2 className="bg-dark bg-opacity-75 py-2">¿Cómo funciona?</h2>
           </div>
         </section>
 
@@ -113,34 +118,34 @@ const Landing = () => {
               parqueo, podras ver en tiempo real si estan disponibles. Asi como
               tambien podras gestionar tus reservas, teniendo un registro de las
               reservas actuales que tengas, podras pagar por medio de QR por el
-              servicio, al terminar tu tiempo de reserva.{" "}
+              servicio, al terminar tu tiempo de reserva.
             </p>
             <p class="margin-top-10">
               Tambien tendras acceso a los distintos parqueos disponibles en
               nuestro sistema, donde tambien se tendra acceso a reservar en el
               horario especifico que desees, pudiendo asi tener la seguridad de
               tu espacio en avance y con certeza de que estara disponible cuando
-              lo necesites.{" "}
+              lo necesites.
             </p>
           </div>
         </section>
 
         <section>
           <div class="parallax-three">
-            <h2>¿Quienes somos?</h2>
+            <h2 className="bg-dark bg-opacity-75 py-2">¿Quiénes somos?</h2>
           </div>
         </section>
 
         <section className="blok">
           <div class="block">
             <p>
-              <span class="first-character ny">E</span>sta pagina fue realizada
+              <span class="first-character ny">E</span>sta página fue realizada
               por CleanCode SRL,empresa de software conformada por 7 miembros,
               especializados en el desarrollo de software.
             </p>
             <p class="line-break margin-top-10"></p>
             <p class="margin-top-10">
-              Somos un equipo apasionado por la tecnología y comprometido con la
+              Somos un equipo apasionado por la tecnología y comprometidos con la
               creación de soluciones innovadoras. Nuestra empresa ha estado en
               el negocio de desarrollo de software confiable. Con nuestro
               enfoque centrado en el usuario, hemos trabajado arduamente para
@@ -155,8 +160,9 @@ const Landing = () => {
           </div>
         </section>
       </div>
-      <footer>
-        <p>&copy; 2023 ParkMyCar. All rights reserved.</p>
+      <footer className="d-flex align-items-center justify-content-center">
+        <p className="mb-0 ">&copy; 2023 ParkMyCar. All rights reserved.</p>
+        <a class="fa-brands fa-github ms-2 text-decoration-none text-light fs-4" target="_blank" href="https://github.com/JeimiBV/parkmycar/tree/reparandoDetalles"></a>
       </footer>
     </div>
   );

@@ -87,7 +87,7 @@ const CrearNotificacion = () => {
             </span>
           </div>
 
-          <h3 className="text-light ps-5">Descripción: </h3>
+          <h3 className="text-light">Descripción: </h3>
           <div className="contDes">
             <textarea
               name="message"

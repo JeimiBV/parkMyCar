@@ -10,7 +10,7 @@ const QuejasReclamosAdmin = () => {
     const suggestions = await fetchGetSuggestions();
     setSuggestions(suggestions);
   };
-
+  
   useEffect(() => {
     getSuggestions();
   }, []);

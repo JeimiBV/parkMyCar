@@ -14,7 +14,7 @@ export const fetchGetScheduleToday = async () => {
 
 export const fetchPostData = async (schedules) => {
   const response = await fetch(
-    "http://testingapi12023-001-site1.atempurl.com/schedules",
+    "http://parkmycar-001-site1.atempurl.com/schedules",
     {
       method: "POST",
       body: JSON.stringify(schedules),

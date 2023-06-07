@@ -40,17 +40,17 @@ export default function NuevoDiv({ item, selectDate }) {
   }, []);
 
   return (
-    <div className="peticiones row mb-2">
-      <div className="col-md-2 text-center">
+    <div className="peticiones row mb-2 p-1 w-100">
+      <div className="col-2 text-center">
         {item.startDate.toDateString()}
       </div>
 
-      <div className="apertura col-3 ">
-        <label className="me-2" htmlFor="entrada">
+      <div className="col-2 d-flex align-items-center">
+        <label className="" htmlFor="entrada">
           Apertura:
         </label>
         <DatePicker
-          className="w-50 dateA p-1 text-center"
+          className="dateA p-1 text-center w-75 ms-2"
           selected={startHour}
           onChange={(date) => handleSelectStart(date)}
           showTimeSelect
@@ -61,12 +61,12 @@ export default function NuevoDiv({ item, selectDate }) {
         />
       </div>
 
-      <div className="cierre col-3">
-        <label className="me-2" htmlFor="salida">
+      <div className="col-2 d-flex align-items-center">
+        <label className="" htmlFor="salida">
           Cierre:
         </label>
         <DatePicker
-          className="w-50 dateC p-1 text-center"
+          className=" dateC p-1 text-center w-75 ms-2"
           selected={endHour}
           onChange={(date) => handleSelectEnd(date)}
           showTimeSelect
@@ -76,24 +76,25 @@ export default function NuevoDiv({ item, selectDate }) {
           dateFormat="h:mm aa"
         />
       </div>
-      <div className="cierre col-3">
-        <label className="me-2" htmlFor="salida">
+      <div className="col-2 d-flex align-items-center">
+        <label className="" htmlFor="salida">
           Precio:
         </label>
         <input
           name="price"
           type="number"
-          className="w-25 dateC p-1 text-center"
+          min="1"
+          className="dateC p-1 text-center w-50 ms-2 "
           value={price}
           onChange={(e) => handleSelectPrice(e.target.value)}
         />
       </div>
-      <div className="col-3 row ">
-        <label className="col-4" htmlFor="guardia">
+      <div className="col-2 d-flex align-items-center">
+        <label className="" htmlFor="guardia">
           Guardia:
         </label>
         <select
-          className="col-8 w-50 drop p-1"
+          className="drop p-1 ms-2 w-50"
           id="guardia"
           name="guardia"
           value={selectedGuard}
@@ -107,7 +108,7 @@ export default function NuevoDiv({ item, selectDate }) {
           ))}
         </select>
       </div>
-      <div className="col-1 m-2">
+      <div className="col-1 m-2 d-flex align-items-center">
         <i class="fa-solid fa-trash-can" onClick={() => selectDate()}></i>
       </div>
     </div>

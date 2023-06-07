@@ -90,8 +90,9 @@ const User = ({ usuario, deleteUser }) => {
               }}
               className="row"
             >
-              <p className="datosUser">Correo: </p>
+              <p className="datosUser col-4">Correo: </p>
               <input
+                className="col"
                 disabled={!isEditing}
                 type="text"
                 value={email}
@@ -135,7 +136,7 @@ const User = ({ usuario, deleteUser }) => {
           </button>
         ) : (
           <button
-            class="btn btn-primary m-2 botonUser"
+            class="btn btn-success m-2 botonUser"
             onClick={() => editarUsuario()}
           >
             Finalizar
@@ -143,7 +144,7 @@ const User = ({ usuario, deleteUser }) => {
         )}
 
         <button
-          class="btn btn-primary m-2 botonUser"
+          class="btn btn-danger m-2 botonUser"
           onClick={() => deleteUser()}
         >
           Eliminar

@@ -3,7 +3,7 @@ export const fetchCreateSuggestion = async (description) => {
     description: description,
   };
   const response = await fetch(
-    "http://testingapi12023-001-site1.atempurl.com/suggestions",
+    "http://parkmycar-001-site1.atempurl.com/suggestions",
     {
       method: "POST",
       body: JSON.stringify(suggestion),

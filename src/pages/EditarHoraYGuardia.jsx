@@ -33,6 +33,7 @@ function EditarHoraYGUardia() {
   };
 
   const createSchedules = async (schedules) => {
+    //console.log(schedules)
     await fetchPostData(schedules);
   };
 
@@ -47,14 +48,14 @@ function EditarHoraYGUardia() {
     <div className="containerhoras p-3 overflow-y-scroll">
       <h1 className="pb-3">Editar horario de atención</h1>
       <div className="pruebaJavier mb-5">
-        <div className="prueba1">
+        <div className="prueba1 ">
           <DatePicker
             showIcon
             className="date p-2"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             dateFormat="MMMM d, yyyy"
-            minDate={startDate}
+            //minDate={startDate}
           />
         </div>
         <div>
@@ -63,7 +64,7 @@ function EditarHoraYGUardia() {
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             dateFormat="MMMM d, yyyy"
-            minDate={startDate}
+            //minDate={startDate}
           />
         </div>
         <button className="btn btn-block" onClick={() => handleGenerateDates()}>

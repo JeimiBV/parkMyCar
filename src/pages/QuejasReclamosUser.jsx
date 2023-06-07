@@ -12,29 +12,30 @@ const QuejasReclamosUser = () => {
   return (
     <div className="contenedorNot overflow-y-scroll">
       <div>
-        <div className="tituloNoti">Crear Queja o Reclamo</div>
-        <div className="cuadroQad ">
+        <h1 className="tituloNoti my-4">Crear Queja o Reclamo</h1>
+        <div className="cuadroQad w-75 mx-auto">
           <div>
-            <div>
-              <h3 className="tituloUser">Descripción: </h3>
+            <div className="py-3 px-4">
+              <h3 className="tituloUser">Descripción:</h3>
 
-              <div className="contDes">
+              <div>
                 <textarea
-                  className="form-control Descripcion "
+                  className="form-control textareaQRU"
                   placeholder="Escriba el mensaje"
                   id="floatingTextarea2"
                   onChange={(e) => setText(e.target.value)}
                 />
-                <div className="button">
+                <div className="d-flex justify-content-end">
                   <button
-                    className=" btn btn-primary m-2"
-                    form="myform"
-                    type="submit"
-                    onClick={() => handleCreate()}
-                  >
-                    Enviar
-                  </button>
+                  className="btn btn-block mt-3 me-0"
+                  form="myform"
+                  type="submit"
+                  onClick={() => handleCreate()}
+                >
+                  Enviar
+                </button>
                 </div>
+                
               </div>
             </div>
           </div>
@@ -86,7 +87,7 @@ const QuejasReclamosUser = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

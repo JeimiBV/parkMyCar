@@ -17,3 +17,7 @@
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 10px;
 }
+.textareaQRU{
+    resize: none;
+    height: 20vh;
+}

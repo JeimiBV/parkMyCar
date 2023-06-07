@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);
+@import url(https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Libre+Baskerville:wght@400;700&family=Quicksand&family=Roboto:ital,wght@1,300&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
 
 /* Override UGG site */
@@ -31,7 +31,11 @@
 .sc {color: #3b8595;}
 .ny {color: #3d3c3a;}
 .atw {color: #c48660;}
-
+.indicador{
+    top:720px;
+    left:39%;
+    z-index:1;
+}
 /* Section - Title */
 /**************************/
 #parallax-world-of-ugg .title {
@@ -59,7 +63,7 @@
     height: 100%; 
     background-color: black; opacity: 0.70;}
 .blok{
-    background-color: #738FA7;}
+    background-color: #C3CEDA;}
 
 /* Section - Parallax */
 /**************************/
@@ -69,7 +73,7 @@
     overflow: hidden; 
     position: relative; 
     width: 100%; 
-    background-image: url(https://images.unsplash.com/photo-1545179605-1296651e9d43?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGFya2luZ3xlbnwwfHwwfHw%3D&w=1000&q=80); 
+    background-image: url(https://assets-us-01.kc-usercontent.com/fa776f1a-4d27-4a6b-ae1c-2ce928f9647d/5ccd4bb9-c717-4490-b35f-9888b80bbadb/parking%20lot.jpg); 
     background-attachment: fixed; 
     background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; 
     background-repeat: no-repeat; 
@@ -80,7 +84,7 @@
     overflow: hidden; 
     position: relative; 
     width: 100%; 
-    background-image: url(https://images.unsplash.com/photo-1506521781263-d8422e82f27a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGFya2luZ3xlbnwwfHwwfHw%3D&w=1000&q=80); 
+    background-image: url(https://villerenouvelee-mobilite.fr/wp-content/uploads/2020/09/vrmobilite_parking.jpg); 
     background-attachment: fixed; 
     background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; 
     background-repeat: no-repeat; 
@@ -91,7 +95,7 @@
     overflow: hidden; 
     position: relative; 
     width: 100%; 
-    background-image: url(../../public/logoA.png); 
+    background-image: url(https://www.mdpavingpros.com/wp-content/uploads/2020/04/restriped-parking-lot.jpg); 
     background-attachment: fixed; 
     background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; 
     background-repeat: no-repeat; 
@@ -119,6 +123,7 @@
 }
 
 footer{
+    height: 3rem;
     background-color: #071330;
     color: #f2f2f2;
 }
