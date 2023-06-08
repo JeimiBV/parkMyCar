@@ -101,7 +101,7 @@ const PDFDocument = ({datae}) => {
                                             <Text style={styles.tableCell}>{dato.name}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.phone}</Text>
+                                            <Text style={styles.tableCell}>{dato.price}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
                                             <Text style={styles.tableCell}>{dato.entryDate.slice(0,10)}</Text>

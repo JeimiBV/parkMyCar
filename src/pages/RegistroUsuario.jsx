@@ -15,41 +15,45 @@ export default function RegistroUsuario() {
         password: "",
         nit: "",
         phone: 0,
+        vehicles: [{
+            plate: ''
+        }]
     });
-    const [inputs, setInputs] = useState(['']);
+    const [inputs, setInputs] = useState([{plate: ''}]);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
     };
-    
+
     const handleInputChange = (index, event) => {
-        const newInputs = [...inputs];
-        newInputs[index] = event.target.value;
-        setInputs(newInputs);
+        const newInputs = [...datosForm.vehicles];
+        newInputs[index].plate = event.target.value;
+        setDatosForm({ ...datosForm, vehicles: newInputs});
+        console.log(inputs)
     };
 
     const handleAddInput = () => {
-        const newInputs = [...inputs, ''];
-        setInputs(newInputs);
+        const newInputs = [...datosForm.vehicles, {plate:''}];
+        setDatosForm({...datosForm, vehicles: newInputs});
     };
 
     const handleRemoveInput = (index) => {
-        const newInputs = [...inputs];
+        const newInputs = [...datosForm.vehicles];
         newInputs.splice(index, 1);
-        setInputs(newInputs);
+        setDatosForm({...datosForm, vehicles: newInputs});
+        console.log(inputs)
     };
 
     const handlePost = async (e) => {
         e.preventDefault();
-        console.log(inputs)
-        //setLoading(true);
-        /*await postPeticion(
+        setLoading(true);
+        await postPeticion(
             "http://parkmycar-001-site1.atempurl.com/users/client",
             datosForm
         );
         setLoading(false);
-        navigate("/inicioS");*/
+        navigate("/inicioS");
     };
 
     return (
@@ -84,19 +88,17 @@ export default function RegistroUsuario() {
                     </div>
                     <div className="form-group p-2 d-block">
                         <p className="w-100 mb-1">Vehículo</p>
-                        <div className="groupRegistro w-100">
-                            <i class="fa-solid fa-car me-2 pe-2"></i>
-                            <input className="inputRegistro w-100" onChange={(e) => handleInputChange(0,e)} required />
-                        </div>
-                        {inputs.map((value, index) => (
+                        {datosForm.vehicles.map((input, index) => (
                             <div key={index} className="d-flex mt-2">
                                 <div className="groupRegistro w-100">
                                     <i class="fa-solid fa-car me-2 pe-2"></i>
-                                    <input className="inputRegistro w-100" value={value} onChange={(event) => handleInputChange(index, event)} required />
+                                    <input className="inputRegistro w-100" value={input.value} onChange={(event) => handleInputChange(index, event)} required />
                                 </div>
-                                <button type="button" className="btn btn-block ms-2" onClick={() => handleRemoveInput(index)}>
-                                    Eliminar
-                                </button>
+                                {index !== 0 && (
+                                    <button className="btn btn-block" type="button" onClick={() => handleRemoveInput(index)}>
+                                        Eliminar
+                                    </button>
+                                )}
                             </div>
                         ))}
                         <button type="button" className="btn btn-block mt-2" onClick={handleAddInput}>

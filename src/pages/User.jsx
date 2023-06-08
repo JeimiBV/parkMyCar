@@ -100,27 +100,26 @@ const User = ({ usuario, deleteUser }) => {
               />
             </div>
             {usuario.role === "Client" ? (
-              <div className="col-8 w-25 drop p-1">
-                <div className="select-wrapper">
-                  <div className="selected-option" onClick={toggleDropdown}>
-                    Vehiculos
-                  </div>
-                  {isDropdownOpen && (
-                    <ul className="options-list">
-                      {vehicles.map((vehicle, index) => (
-                        <li key={vehicle.id}>
-                          <input
-                            type="text"
-                            value={vehicle.plate}
-                            onChange={(event) =>
-                              handlePlateChange(event, index)
-                            }
-                          />
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+              <div className="row p-1 w-100 bg-warning ms-2">
+                <div className=" w-100  p-1 text-center" onClick={toggleDropdown}>
+                  desplegar lista de placas
                 </div>
+                {isDropdownOpen && (
+                  <ul className="list-unstyled col-8">
+                    {vehicles.map((vehicle, index) => (
+                      <li key={vehicle.id}>
+                        <input
+                          className=""
+                          type="text"
+                          value={vehicle.plate}
+                          onChange={(event) =>
+                            handlePlateChange(event, index)
+                          }
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             ) : null}
           </div>
