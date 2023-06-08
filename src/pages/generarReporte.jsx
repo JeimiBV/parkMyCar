@@ -11,11 +11,13 @@ import { postReporte } from "../functions/useFetch";
 
 export default function () {
     const [dateEntrada, setDateEntrada] = useState(new Date());
-    const [dateSalida, setDateSalida] = useState(new Date());
+    const [busqueda, setBusqueda] = useState({
+         buscar:"name",
+        placeholder:"buscar por nombre",
+        url:"name"
+    });
     const [dataForm, setDataForm] = useState({
-        plateId: "",
-        fromDate: "",
-        toDate: ""
+       
     });
     const [datae, setData] = useState();
 
@@ -29,7 +31,7 @@ export default function () {
 
     const handlePost = async () => {
         if (dataForm.toDate > dataForm.fromDate) {
-            setData(await postReporte("http://parkmycar-001-site1.atempurl.com/Reserves/Plate", dataForm))
+            setData(await postReporte(`http://parkmycar-001-site1.atempurl.com/Reserves/${busqueda.url}`, dataForm))
         }
         else {
             handleNotification()
@@ -41,7 +43,22 @@ export default function () {
             <h1>Generar Reporte</h1>
             <div className="cardReporte p-5 rounded h-100 mb-3">
 
+            <div class="dropdown dropDown" >
+                        <button class="btn dropDown rounded dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Buscar por
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" name="placa" 
+                            onClick={()=>{setBusqueda({buscar:"plateId", placeholder:"Buscar por placa", url:"Plate"})}} >Placa</a></li>
+                            <li><a class="dropdown-item" name="nombre"
+                            onClick={()=>{setBusqueda({buscar:"name", placeholder:"Buscar por Nombre", url:"name"})}}>Nombre</a></li>
+                            <li><a class="dropdown-item" name="plaza" 
+                            onClick={()=>{setBusqueda({buscar:"placeId", placeholder:"Buscar por plaza", url:"place"})}}>Plaza</a></li>
+                        </ul>
+                    </div>
                 <div className="row w-100 me-0 ms-0 mb-5">
+
+                    
 
                     <div className="col-md-4 row d-flex justify-content-center align-items-center">
                         <label className="col-md-5"> Fecha inicial</label>
@@ -68,10 +85,10 @@ export default function () {
                         </div>
                     </div>
                     <input type="text"
-                        placeholder="Buscar placa"
-                        id="buscadorPlaca"
+                        placeholder={busqueda.placeholder}
+                        id="buscadorPaca"
                         className="col-md-2 "
-                        name="plateId"
+                        name={busqueda.buscar}
                         required
                         maxlength="6"
                         onChange={e => {
