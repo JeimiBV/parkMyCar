@@ -111,6 +111,7 @@ const User = ({ usuario, deleteUser }) => {
                         <input
                           className=""
                           type="text"
+                          disabled={!isEditing}
                           value={vehicle.plate}
                           onChange={(event) =>
                             handlePlateChange(event, index)
