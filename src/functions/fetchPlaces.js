@@ -58,6 +58,5 @@ export const fetchShowPlace = async (num) => {
       },
     }
   );
-  console.log(await response.json(), "api");
   return await response.json();
 };
