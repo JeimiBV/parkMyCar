@@ -90,7 +90,7 @@ export default function () {
                         className="col-md-2 "
                         name={busqueda.buscar}
                         required
-                        maxlength="6"
+                        
                         onChange={e => {
                             llenarForm(e)
                         }} />
