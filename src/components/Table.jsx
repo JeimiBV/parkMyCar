@@ -15,6 +15,7 @@ export default function Table({ datos }) {
                         <h4 className="col text-center"> Hora </h4>
                         <h4 className="col text-center"> Nombre </h4>
                         <h4 className="col text-center"> Placa </h4>
+                        <h4 className="col text-center"> Factura </h4>
                     </div>
 
                     {
@@ -23,6 +24,7 @@ export default function Table({ datos }) {
                                 <p className="col text-center">{dato.entryDate.slice(11,16)+" - "+ dato.retirementDate.slice(11,16)}</p>
                                 <p className="col text-center">{dato.name}</p>
                                 <p className="col text-center">{dato.plate}</p>
+                                <p className="col text-center"><a href={dato.qrCode} target="_blank" > ver factura</a></p>
                             </div>
                         )
                     }

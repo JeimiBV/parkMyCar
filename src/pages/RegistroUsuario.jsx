@@ -15,11 +15,34 @@ export default function RegistroUsuario() {
         password: "",
         nit: "",
         phone: 0,
+        vehicles: [{
+            plate: ''
+        }]
     });
+    const [inputs, setInputs] = useState([{plate: ''}]);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
+    };
+
+    const handleInputChange = (index, event) => {
+        const newInputs = [...datosForm.vehicles];
+        newInputs[index].plate = event.target.value;
+        setDatosForm({ ...datosForm, vehicles: newInputs});
+        console.log(inputs)
+    };
+
+    const handleAddInput = () => {
+        const newInputs = [...datosForm.vehicles, {plate:''}];
+        setDatosForm({...datosForm, vehicles: newInputs});
+    };
+
+    const handleRemoveInput = (index) => {
+        const newInputs = [...datosForm.vehicles];
+        newInputs.splice(index, 1);
+        setDatosForm({...datosForm, vehicles: newInputs});
+        console.log(inputs)
     };
 
     const handlePost = async (e) => {
@@ -44,7 +67,7 @@ export default function RegistroUsuario() {
                     <h2 className="mt-2 h2I text-center fs-1 mb-4">Crear cuenta</h2>
                     <div className="form-group p-2 d-block ">
                         <p className="w-100 mb-1">Nombre</p>
-                        <div className=" groupRegistro w-100">
+                        <div className="groupRegistro w-100">
                             <i class="fa-solid fa-user me-2 pe-2"></i>
                             <input name="name" type="text" className="inputRegistro w-100" onChange={handleChange} required pattern="[a-zA-Z\s]+" />
                         </div>
@@ -58,30 +81,40 @@ export default function RegistroUsuario() {
                     </div>
                     <div className="form-group p-2 d-block">
                         <p className="w-100 mb-1">Carnet de identidad</p>
-                        <div className=" groupRegistro w-100">
+                        <div className="groupRegistro w-100">
                             <i class="fa-regular fa-id-card me-2 pe-2"></i>
                             <input name="nit" className="inputRegistro w-100" onChange={handleChange} required pattern="[a-zA-Z0-9]+" />
                         </div>
                     </div>
                     <div className="form-group p-2 d-block">
                         <p className="w-100 mb-1">Vehículo</p>
-                        <div className="w-100">
-                            <div className=" groupRegistro w-100">
-                                <i class="fa-solid fa-car me-2 pe-2"></i>
-                                <input className="inputRegistro w-100" onChange={handleChange} required />
+                        {datosForm.vehicles.map((input, index) => (
+                            <div key={index} className="d-flex mt-2">
+                                <div className="groupRegistro w-100">
+                                    <i class="fa-solid fa-car me-2 pe-2"></i>
+                                    <input className="inputRegistro w-100" value={input.value} onChange={(event) => handleInputChange(index, event)} required />
+                                </div>
+                                {index !== 0 && (
+                                    <button className="btn btn-block" type="button" onClick={() => handleRemoveInput(index)}>
+                                        Eliminar
+                                    </button>
+                                )}
                             </div>
-                        </div>
+                        ))}
+                        <button type="button" className="btn btn-block mt-2" onClick={handleAddInput}>
+                            Agregar Input
+                        </button>
                     </div>
                     <div className="form-group p-2 d-block">
                         <p className="w-100 mb-1">Correo electrónico</p>
-                        <div className=" groupRegistro w-100">
+                        <div className="groupRegistro w-100">
                             <i class="fa-solid fa-at me-2 pe-2"></i>
                             <input type="email" name="email" className="inputRegistro w-100" onChange={handleChange} required />
                         </div>
                     </div>
                     <div className="form-group p-2 d-block">
                         <p className="w-100 mb-1">Contraseña</p>
-                        <div className=" groupRegistro w-100">
+                        <div className="groupRegistro w-100">
                             <i class="fa-solid fa-lock me-2 pe-2"></i>
                             <input name="password" type={showPwd ? "text" : "password"} className="inputRegistro w-100" onChange={handleChange} required />
                             <div class="me-0" onClick={() => setShowPwd(!showPwd)}>
