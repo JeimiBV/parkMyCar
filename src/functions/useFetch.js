@@ -10,7 +10,6 @@ export function UseFetch(url) {
       .then((response) => response.json())
       .then((data) => {
         setData(data);
-        console.log(data,"esta es la data")
       })
       .finally(() => setLoading(false));
   }, []);
@@ -25,10 +24,14 @@ export async function  postPeticion(url,datos){
     },
     body:JSON.stringify(datos)
   })
-  //agregado para generar reportes si algo falla es esto
-  //console.log(response)
-//  return await response.json();
 }
+
+export const fetchVehicles = async (id) => {
+  const response = await fetch(
+    `http://parkmycar-001-site1.atempurl.com/Vehicles?userId=${id}`
+  );
+  return await response.json();
+};
 
 export async function postReporte(url,datos){
   const response =await fetch(url,{
@@ -39,7 +42,6 @@ export async function postReporte(url,datos){
     body:JSON.stringify(datos)
   })
   return await response.json();
-
 }
 
 export async function postLogin(url, datos) {

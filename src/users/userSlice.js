@@ -6,7 +6,11 @@ const initialState={
     telefono:"",
     nit:"",
     estado:false,
-    guardId:null
+    guardId:null,
+    vehicles:[
+        {plate:"asdffg"},
+        {plate:"asddfff"}
+    ]
 
 }
 
@@ -25,6 +29,8 @@ export const userSlice= createSlice({
             state.guardId=action.payload.id
             state.telefono=action.payload.phone
             state.nit=action.payload.nit
+            state.vehicles=[{plate:"asdffg"},
+                            {plate:"asddfff"}]
         },
         cerrarSesion:(state,action)=>{
             state.nombre=""

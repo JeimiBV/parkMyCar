@@ -16,6 +16,8 @@ function EditarHoraYGUardia() {
     const currDate = new Date(startDate);
     const lastDate = new Date(endDate);
 
+    console.log(currDate, "last date")
+
     while (currDate <= lastDate) {
       datesGenerated.push({
         guardId: 0,
@@ -32,12 +34,15 @@ function EditarHoraYGUardia() {
     setDates(getDatesBetweenDates());
   };
 
+  
+
   const createSchedules = async (schedules) => {
-    //console.log(schedules)
+    console.log(schedules)
     await fetchPostData(schedules);
   };
 
   const handleSelectDate = (startDateItem) => {
+    console.log(startDateItem,"ddddddddddddddddd")
     const currentDates = dates.filter(
       (item) => item.startDate !== startDateItem
     );
@@ -55,7 +60,7 @@ function EditarHoraYGUardia() {
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             dateFormat="MMMM d, yyyy"
-            //minDate={startDate}
+            minDate={startDate}
           />
         </div>
         <div>
@@ -64,7 +69,7 @@ function EditarHoraYGUardia() {
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             dateFormat="MMMM d, yyyy"
-            //minDate={startDate}
+            minDate={startDate}
           />
         </div>
         <button className="btn btn-block" onClick={() => handleGenerateDates()}>

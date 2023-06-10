@@ -4,11 +4,18 @@ import { fetchData } from "../functions/fetchGuards";
 import { useEffect, useState } from "react";
 
 export default function NuevoDiv({ item, selectDate }) {
+  const modificarDate = (currentDate) => {
+    console.log(currentDate)
+    return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
+  }
+  
   const [guards, setGuards] = useState([]);
   const [startHour, setStartHour] = useState(item.startDate);
   const [endHour, setEndHour] = useState(item.endDate);
   const [price, setPrice] = useState(item.price);
   const [selectedGuard, setSelectedGuard] = useState("");
+
+  console.log(modificarDate(item.endDate),"ffffffffffffff")
 
   const handleSelectGuard = (event) => {
     item.guardId = event.target.value;
@@ -23,11 +30,13 @@ export default function NuevoDiv({ item, selectDate }) {
   const handleSelectStart = (date) => {
     item.startDate.setTime(date);
     setStartHour(date);
+    console.log(startHour.getHours()-4,"hora seleccionadas")
   };
 
   const handleSelectEnd = (date) => {
     item.endDate.setTime(date);
     setEndHour(date);
+    console.log(endHour,"ddddd")
   };
 
   const handleSelectPrice = (price) => {

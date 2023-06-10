@@ -1,7 +1,6 @@
 import TableRow from "./TableRow";
 
 function ParkingSection({ data, ocuped, actualDate }) {
-  console.log(data, "here");
   const numRows = Math.ceil(data.length / 2);
   const tableRows = [];
   for (let i = 0; i < numRows; i++) {

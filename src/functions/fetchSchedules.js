@@ -12,6 +12,8 @@ export const fetchGetScheduleToday = async () => {
   return await response.json();
 };
 
+
+
 export const fetchPostData = async (schedules) => {
   const response = await fetch(
     "http://parkmycar-001-site1.atempurl.com/schedules",

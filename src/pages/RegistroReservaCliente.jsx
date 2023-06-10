@@ -9,7 +9,8 @@ import Spinner from "../components/Spinner"
 
 import { useSelector } from "react-redux";
 import { uploadFile } from "../firebase/config";
-import { postPeticion } from "../functions/useFetch";
+import { postPeticion, postReporte, fetchVehicles } from "../functions/useFetch";
+import { fetchClients } from "../functions/fetchUsers";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -27,6 +28,10 @@ export default function RegistroReserva() {
     const [tarifa, setTarifa] = useState(0);
     const [factura, setFactura] = useState("");
     const [loading, setLoading] = useState(true);
+    const [selectedOption, setSelectedOption] = useState()
+    const [precio, setPrecio] = useState()
+    const [guardia, setGuardia] = useState()
+    const [vehicle, setVehicle] = useState();
     const [datosForm, setDatosForm] = useState({
         name: usuario.nombre,
         phone: usuario.telefono,
@@ -40,14 +45,10 @@ export default function RegistroReserva() {
         qrCode: ""
     });
 
-    const handleChange = (e) => {
-        setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
-    };
-
     const handlePost = async (e) => {
         e.preventDefault();
         setDatosForm({ ...datosForm, qrCode: factura })
-        console.log(datosForm);
+        console.log(datosForm)
         await postPeticion(
             "http://parkmycar-001-site1.atempurl.com/reserves",
             datosForm
@@ -59,6 +60,16 @@ export default function RegistroReserva() {
         return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
     }
 
+    const obtenerTarifa = async () => {
+        let peticion = await postReporte("http://parkmycar-001-site1.atempurl.com/schedules/day", selector.entryDate)
+        setPrecio(peticion.price);
+        setGuardia(peticion.guardId)
+    }
+
+    const obtenerVehiculos = async () => {
+        setVehicle((await fetchVehicles(usuario.guardId)));
+    }
+
     const handleUpload = async (e) => {
         setLoading(false)
         await uploadFile(e.target.files[0]).then(
@@ -68,20 +79,32 @@ export default function RegistroReserva() {
         );
     }
 
+    const handleSelectChange = (event) => {
+        setSelectedOption(event.target.value);
+        console.log(selectedOption)
+    }
+
+    useEffect(() => {
+        obtenerTarifa();
+        obtenerVehiculos();
+    }, [])
+
     useEffect(() => {
         formatearFecha(dateEntrada, true);
         formatearFecha(dateSalida, false);
-        calcularTarifa(5);
+        calcularTarifa(precio);
         setDatosForm({
             ...datosForm,
             entryDate: modificarDate(dateEntrada),
             retirementDate: modificarDate(dateSalida),
             placeId: selector.id,
-            guardId: usuario.guardId,
+            guardId: guardia,
             price: tarifa,
-            qrCode: factura
+            qrCode: factura,
+            plate: selectedOption
         });
-    }, [dateEntrada, dateSalida, factura]);
+
+    }, [dateEntrada, dateSalida, factura, precio]);
 
     const formatearFecha = (date, tipo) => {
         const dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
@@ -101,10 +124,12 @@ export default function RegistroReserva() {
 
     }
     const calcularTarifa = (precio) => {
+        console.log(precio)
         let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
         let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
         setTarifa((hours + minutes / 60) * precio);
     };
+
 
     return (
         <div className="overflow-y-scroll containerReserva">
@@ -157,14 +182,18 @@ export default function RegistroReserva() {
                     <Card titulo={"Información del vehículo"}>
                         <form id="myform" className="row d-flex align-items-center" onSubmit={(e) => handlePost(e)}>
                             <label htmlFor="" className="col-6 col-md-3">
-                                Placa del vehiculo
+                                Placa del vehículo
                             </label>
-                            <input type="text" name="plate" className="col-6 col-md-9" onChange={handleChange}
-                                required
-                                pattern="[a-zA-Z0-9]{6}"
-                                placeholder="Debe ingresar 6 caracteres"
-                            />
+                            <select value={selectedOption} onChange={handleSelectChange}>
+                                <option>Seleccione un vehículo</option>
+                                {
+                                    vehicle?.map((veh) =>
+                                        <option key={veh.id} value={veh.plate} >{veh.plate}</option>
+                                    )
+                                }
+                            </select>
                         </form>
+
                     </Card>
                 </div>
                 <div className="ms-3 ms-md-0 col-md-3 mt-0 mt-md-3 col-12">
@@ -177,7 +206,7 @@ export default function RegistroReserva() {
                                     <p className="fs-6 ">Nro de plaza:</p>
                                 </div>
                                 <div className="col-5">
-                                    <p className=" fs-6">{5}</p>
+                                    <p className=" fs-6">{precio}</p>
                                     <p className=" fs-6">{tarifa}</p>
                                     <p className=" fs-6">{selector.plaza}</p>
                                 </div>

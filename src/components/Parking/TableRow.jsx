@@ -7,7 +7,7 @@ function TableRow({ item1, item2, ocuped, actualDate }) {
   const usuario = useSelector((state) => state.users).userState;
   const navigate = useNavigate();
   //console.log(ocuped,"dar", actualDate)
-  console.log(item2);
+  //console.log(item2);
   return (
     <tr key={item1.id}>
       <td className="tdItemOne" hidden={item1.status == "Shown" ? false : true}>
@@ -15,8 +15,8 @@ function TableRow({ item1, item2, ocuped, actualDate }) {
           onClick={() => {
             !ocuped.includes(item1.num)
               ? navigate(
-                  usuario.rol == "Client" ? "/reservaCliente" : "/reservas"
-                )
+                usuario.rol == "Client" ? "/reservaCliente" : usuario.rol == "Guard" ? "/reservas" : ""
+              )
               : "";
             dispatch(
               addTask({
@@ -28,9 +28,8 @@ function TableRow({ item1, item2, ocuped, actualDate }) {
               })
             );
           }}
-          className={`place ${
-            !ocuped.includes(item1.num) ? "Available" : "Busy"
-          }`}
+          className={`place ${!ocuped.includes(item1.num) ? "Available" : "Busy"
+            }`}
         >
           {item1.num}
         </button>
@@ -44,8 +43,8 @@ function TableRow({ item1, item2, ocuped, actualDate }) {
             onClick={() => {
               !ocuped.includes(item2.num)
                 ? navigate(
-                    usuario.rol == "Client" ? "/reservaCliente" : "/reservas"
-                  )
+                  usuario.rol == "Client" ? "/reservaCliente" : usuario.rol == "Guard" ? "/reservas" : ""
+                )
                 : "";
               dispatch(
                 addTask({
@@ -57,9 +56,8 @@ function TableRow({ item1, item2, ocuped, actualDate }) {
                 })
               );
             }}
-            className={`place ${
-              !ocuped.includes(item2.num) ? "Available" : "Busy"
-            }`}
+            className={`place ${!ocuped.includes(item2.num) ? "Available" : "Busy"
+              }`}
           >
             {item2.num}
           </button>

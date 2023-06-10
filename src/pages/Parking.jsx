@@ -30,6 +30,7 @@ function Parking() {
   const tableSection = splitIntoSection(places);
   const usuario = useSelector((state) => state.users).userState;
 
+
   const getPlaces = async () => {
     const places = await fetchPlaces();
     setPlaces(places);
@@ -48,7 +49,6 @@ function Parking() {
   const DeletePlace = async () => {
     const id = await fetchDeletePlace();
     setPlaces((places) => places.filter((place) => place.id !== id));
-    console.log(places);
   };
 
   const hidePlace = async () => {
@@ -155,6 +155,7 @@ function Parking() {
   return (
     <div className="containerParqueo overflow-y-scroll p-3">
       <h1>Plazas</h1>
+    { usuario.rol=="Admin"?"":
       <div className="buscadores mt-5 mb-4">
         <div>
           <label className="text-light me-2">Fecha de ingreso:</label>
@@ -193,6 +194,7 @@ function Parking() {
           Search
         </button>
       </div>
+      }
       <div className="tables-container">
         {tableSection.map((tableData, index) => (
           <ParkingSection

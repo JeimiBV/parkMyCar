@@ -51,7 +51,6 @@ function App() {
             }
           >
             <Route path="/plazaReserva" element={<PlazasReserva />} />
-            <Route path="/reservas" element={<RegistroReserva />} />
             <Route path="/parqueo" element={<Parking />} />
           </Route>
 
@@ -59,7 +58,23 @@ function App() {
             element={
               <ProtectedRoute
                 isAllowed={
-                  usuario.rol == "Admin" || usuario.rol == "Guard"
+                  usuario.rol == "Guard" ||
+                    usuario.rol == "Client"
+                    ? true
+                    : false
+                }
+              />
+            }
+          >
+            <Route path="/reservas" element={<RegistroReserva />} />
+          </Route>
+
+          <Route
+            element={
+              <ProtectedRoute
+                isAllowed={
+                  usuario.rol == "Guard" ||
+                    usuario.rol == "Admin"
                     ? true
                     : false
                 }

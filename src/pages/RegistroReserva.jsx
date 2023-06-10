@@ -10,7 +10,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { postPeticion } from "../functions/useFetch";
+import { postPeticion, postReporte } from "../functions/useFetch";
 import { uploadFile } from "../firebase/config";
 
 
@@ -27,6 +27,7 @@ export default function RegistroReserva() {
   const [tarifa, setTarifa] = useState(0);
   const [factura, setFactura] = useState("");
   const [loading, setLoading] = useState(true);
+  const [precio, setPrecio] = useState();
   const [datosForm, setDatosForm] = useState({
     entryDate: "",
     retirementDate: "",
@@ -47,13 +48,17 @@ export default function RegistroReserva() {
   const handlePost = async (e) => {
     e.preventDefault();
     setDatosForm({ ...datosForm, qrCode: factura })
-    var response= await postPeticion(
+    var response = await postPeticion(
       "http://parkmycar-001-site1.atempurl.com/reserves",
       datosForm
     );
     navigate("/parqueo");
     console.log(response);
   };
+
+  const obtenerTarifa = async () => {
+    setPrecio((await postReporte("http://parkmycar-001-site1.atempurl.com/schedules/day", selector.entryDate)).price);
+  }
 
   const modificarDate = (currentDate) => {
     return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}.${currentDate.getMilliseconds().toString().padStart(3, '0')}Z`
@@ -84,8 +89,13 @@ export default function RegistroReserva() {
   }
 
   useEffect(() => {
+    obtenerTarifa();
+  }, [])
+
+  useEffect(() => {
     handleAceptar();
-  }, [dateEntrada, dateSalida, factura]);
+    calcularTarifa(precio);
+  }, [dateEntrada, dateSalida, factura, precio]);
 
   const formatearFecha = (date, flag) => {
     if (flag == true) {
