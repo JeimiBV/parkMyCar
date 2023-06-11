@@ -39,7 +39,7 @@ export default function () {
     };
 
     return (
-        <div className="containerReporte overflow-y-scroll">
+        <div className="containerReporte overflow-y-scroll" class="containerReporte">
             <h1>Generar Reporte</h1>
             <div className="cardReporte p-5 rounded h-100 mb-3">
 
