@@ -81,6 +81,7 @@ export default function () {
                                 selected={dateEntrada}
                                 onChange={e => llenarForm(e)}
                                 className="bg-date p-2 rounded"
+                                max="2023-06-10"
                             />
                         </div>
                     </div>
