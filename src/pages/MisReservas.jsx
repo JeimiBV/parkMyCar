@@ -1,56 +1,58 @@
 import "../styles/PagesStyles/misReservas.css"
+import { fetchPlaceHistory } from "../functions/fetchPlaces";
+import { UseFetch, fetchVehicles, postReservesByPlate } from "../functions/useFetch";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import ItemReserva from "./itemReserva";
 
-import React, { useState } from "react";
+
 
 export default function RedactarMensaje() {
+  const usuario = useSelector((state) => state.users).userState;
+  const [schedules, setSchedules] = useState([]);
+  const [reserves, setReserves] = useState([]);
+  const [selectedVehicle, setVehicleSelected] = useState(null);
+  const getSchedules = async () => {
+    const schedules = await fetchVehicles(usuario.guardId);
+    setSchedules(schedules);
+  };
+
+  const handleSelectChange = async(event) => {
+    setVehicleSelected(event.target.value);
+    const reserves = await postReservesByPlate(event.target.value);
+    console.log(reserves);
+    setReserves(reserves);
+    console.log(selectedVehicle);
+}
+  useEffect(() => {
+    getSchedules();
+  }, []);
   return (
     <div className="containerMisReservas overflow-y-scroll">
       <h1>Mis reservas</h1>
-      <div className="row w-75 mx-auto rounded reservasLista py-3 pe-4">
-        <h2 className="text-light text-center">Información de la reserva</h2>
-        <div className="col-2 pt-3 ">
-          <picture className="">
-            <img src="./images/Parking-bro.svg"></img>
-          </picture>
-        </div>
-        <div className="col-5 text-light">
-          <div className="my-2 col" >
-            <div className="row">
-              <i class="mt-2 fa-solid fa-calendar col-1"></i>
-              <h5 className="col"> Fecha de reserva</h5>
-              <p className=" col text-center">21/04/2023</p>
-            </div>
-            <div className="row">
-              <i class="fa-solid fa-arrow-right-to-bracket mt-2 col-1"></i>
-              <h5 className="col"> Hora de entrada</h5>
-              <p className="col text-center">12:00</p>
-            </div>
-            <div className="row">
-              <i class="fa-solid fa-arrow-right-from-bracket mt-2 col-1"></i>
-              <h5 className="col">Hora de salida</h5>
-              <p className="col text-center">13:00</p>
-            </div>
-          </div>
-        </div>
-        <div className="col-1"></div>
-        <div className="col-4 my-2 text-light">
-          <div className="row">
-            <i class="fa-solid fa-square-parking mt-2 col-1"></i>
-            <h5 className="col-2">Plaza</h5>
-            <p className="col text-center">5</p>
-          </div>
-          <div className="row">
-          <i class="fa-solid fa-money-bill-1-wave mt-2 col-1"></i>
-            <h5 className="col-2">Tarifa</h5>
-            <p className="col text-center">5</p>
-          </div>
-          <div className="row">
-            <i class="mt-2 fas fa-car col-1"></i>
-            <h5 className="col-2">Vehículo</h5>
-            <p className="col text-center">109SAE</p>
-          </div>
-        </div>
-      </div>
+      <select value={selectedVehicle} className="col-8 w-100 drop p-1 " id="guardia" name="guardia " onChange={handleSelectChange}>
+            <option value="">Ver Vehiculos Disponibles</option>
+            {schedules.map((schedule) => (
+              <option className="p-3"  
+                key={schedule.id} value={schedule.plate}>
+                {schedule.plate}
+                
+              </option>
+            ))}
+          </select>
+          
+          {reserves.map((schedule) => (
+            <ItemReserva 
+            key={schedule.id} 
+            fechaReserva={schedule.entryDate.substring(0,10)}
+            horaEntrada={schedule.entryDate.substring(11, 16)}
+            horaSalida={schedule.retirementDate.substring(11, 16)}
+            plaza={schedule.place.num}
+            tarifa={schedule.price}
+            vehiculo={schedule.plate}/>
+          ))}
+          
+      
     </div>
   );
 }

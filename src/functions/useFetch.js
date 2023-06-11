@@ -80,3 +80,19 @@ export async function postAuthorization(url) {
       console.log(data);
     });
 }
+
+export async function postReservesByPlate(plate){
+  const bodydata ={
+    "plateId": plate,
+    "fromDate": "1900-06-11T14:32:03.204Z",
+    "toDate": "2080-06-11T14:32:03.204Z"
+  }
+  const response =await fetch(`http://parkmycar-001-site1.atempurl.com/Reserves/plate`,{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify(bodydata)
+  })
+  return await response.json();
+}
