@@ -94,7 +94,7 @@ export default function () {
                         onChange={e => {
                             llenarForm(e)
                         }} />
-                    <button type="button" class="btn botonReporte col-md-2 ms-1" onClick={() => { handlePost() }}>
+                    <button type="button" class="btn botonReporte col-md-2 ms-2" onClick={() => { handlePost() }}>
                         <i class="fa-solid fa-magnifying-glass me-2"></i>
                         Buscar
                     </button>
