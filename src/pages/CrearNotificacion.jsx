@@ -36,7 +36,7 @@ const CrearNotificacion = () => {
   const optionsMapped = reserves.map((reserve) => ({
     value: reserve.phone,
     label: `${reserve.phone} - ${
-      reserve.plate ? reserve.plate[0] : "No tiene Placa"
+      reserve.vehicles ? reserve.vehicles[0].plate : "No tiene Placa"
     }`,
   }));
 
