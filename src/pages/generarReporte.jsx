@@ -39,8 +39,8 @@ export default function () {
     };
 
     return (
-        <div className="contenedorPadre">
-            <div className="containerReporte overflow-y-scroll">
+        <div className="contenedorPadre overflow-y-scroll">
+            <div className="containerReporte">
                 <h1>Generar Reporte</h1>
                 <div className="cardReporte mx-auto p-5 rounded h-100 mb-3">
 
