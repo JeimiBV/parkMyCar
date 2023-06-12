@@ -30,7 +30,7 @@ export default function RedactarMensaje() {
   return (
     <div className="containerMisReservas overflow-y-scroll">
       <h1>Mis reservas</h1>
-      <select value={selectedVehicle} className="w-25 mx-auto mb-5 drop p-1" id="guardia" name="guardia " onChange={handleSelectChange}>
+      <select value={selectedVehicle} className="w-25 mx-auto my-5 drop p-1" id="guardia" name="guardia " onChange={handleSelectChange}>
         <option value="">Ver Vehiculos Disponibles</option>
         {schedules.map((schedule) => (
           <option className="p-3"

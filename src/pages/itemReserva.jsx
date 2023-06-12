@@ -13,7 +13,7 @@ export default function ItemReserva({fechaReserva, horaEntrada, horaSalida, plaz
         <h2 className="text-light text-center">Información de la reserva</h2>
         <div className="col-2 pt-3 ">
           <picture className="">
-            <img src="./images/Parking-bro.svg"></img>
+            <img src="Parking-bro.png" className="w-100 h-100" ></img>
           </picture>
         </div>
         <div className="col-5 text-light">
