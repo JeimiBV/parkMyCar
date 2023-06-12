@@ -1,12 +1,13 @@
 .containerReporte {
     height: 87vh;
+    
+}
+.contenedorPadre{
+    height: 87vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.contenedorPadre{
-    height: 87vh;
 }
 
 .cardReporte {
