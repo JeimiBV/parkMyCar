@@ -30,13 +30,11 @@ const Landing = () => {
   return (
     <div className="prueba bg-dark bg-opacity-75">
       <div id="parallax-world-of-ugg">
-        
         <section className=" ">
-        <article className="position-absolute indicador">
-          <div
-          style={{ textAlign: "center", color: "white" }}>
-            {todaySchedule
-              ? `Horario de Atención hoy ${todaySchedule.startDate.substring(
+          <article className="position-absolute indicador">
+            <div style={{ textAlign: "center", color: "white" }}>
+              {todaySchedule ? (
+                `Horario de Atención hoy ${todaySchedule.startDate.substring(
                   11,
                   13
                 )}: ${todaySchedule.startDate.substring(
@@ -45,22 +43,29 @@ const Landing = () => {
                 )} Hasta ${todaySchedule.endDate.substring(
                   11,
                   13
-                )}: ${todaySchedule.endDate.substring(14, 16)} Tarifa: ${todaySchedule.price} `
-              : <h4 className="">No hay Atención el día de hoy</h4>}
-          </div>
-          <select className="col-8 w-100 drop p-1 " id="guardia" name="guardia ">
-            <option value="">Ver Horarios Disponibles</option>
-            {schedules.map((schedule) => (
-              <option className="p-3"  
-                key={schedule.id} value={schedule.id}>
-                {schedule.startDate.substring(0, 10)}{" "}
-                {schedule.startDate.substring(11, 16)} Hasta{" "}
-                {schedule.endDate.substring(0, 10)}{" "}
-                {schedule.endDate.substring(11, 16)}
-              </option>
-            ))}
-          </select>
-        </article>
+                )}: ${todaySchedule.endDate.substring(14, 16)} Tarifa: ${
+                  todaySchedule.price
+                } `
+              ) : (
+                <h4 className="">No hay Atención el día de hoy</h4>
+              )}
+            </div>
+            <select
+              className="col-8 w-100 drop p-1 "
+              id="guardia"
+              name="guardia "
+            >
+              <option value="">Ver Horarios Disponibles</option>
+              {schedules.map((schedule) => (
+                <option className="p-3" key={schedule.id} value={schedule.id}>
+                  {schedule.startDate.substring(0, 10)}{" "}
+                  {schedule.startDate.substring(11, 16)} Hasta{" "}
+                  {schedule.endDate.substring(0, 10)}{" "}
+                  {schedule.endDate.substring(11, 16)} precio = {schedule.price}
+                </option>
+              ))}
+            </select>
+          </article>
           <div class="parallax-one position-relative ">
             <h2 className="bg-dark bg-opacity-75 py-2">PARK MY CAR</h2>
           </div>
@@ -145,9 +150,9 @@ const Landing = () => {
             </p>
             <p class="line-break margin-top-10"></p>
             <p class="margin-top-10">
-              Somos un equipo apasionado por la tecnología y comprometidos con la
-              creación de soluciones innovadoras. Nuestra empresa ha estado en
-              el negocio de desarrollo de software confiable. Con nuestro
+              Somos un equipo apasionado por la tecnología y comprometidos con
+              la creación de soluciones innovadoras. Nuestra empresa ha estado
+              en el negocio de desarrollo de software confiable. Con nuestro
               enfoque centrado en el usuario, hemos trabajado arduamente para
               ofrecer una plataforma fácil de usar y confiable para la reserva
               de sitios de estacionamiento. Además, nuestro equipo de
@@ -162,7 +167,11 @@ const Landing = () => {
       </div>
       <footer className="d-flex align-items-center justify-content-center">
         <p className="mb-0 ">&copy; 2023 ParkMyCar. All rights reserved.</p>
-        <a class="fa-brands fa-github ms-2 text-decoration-none text-light fs-4" target="_blank" href="https://github.com/JeimiBV/parkmycar/tree/reparandoDetalles"></a>
+        <a
+          class="fa-brands fa-github ms-2 text-decoration-none text-light fs-4"
+          target="_blank"
+          href="https://github.com/JeimiBV/parkmycar/tree/reparandoDetalles"
+        ></a>
       </footer>
     </div>
   );
