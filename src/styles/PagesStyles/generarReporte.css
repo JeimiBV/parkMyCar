@@ -5,6 +5,10 @@
     flex-direction: column;
     align-items: center;
 }
+.contenedorPadre{
+    background-color: #0C4160;
+    height: 87vh;
+}
 
 .cardReporte {
     width: 100%;
