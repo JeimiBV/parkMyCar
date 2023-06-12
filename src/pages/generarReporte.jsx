@@ -41,7 +41,7 @@ export default function () {
     return (
         <div className="containerReporte overflow-y-scroll">
             <h1>Generar Reporte</h1>
-            <div className="cardReporte p-5 rounded h-100 mb-3">
+            <div className="cardReporte mx-auto p-5 rounded h-100 mb-3">
 
                 <div class="dropdown dropDown" >
                     <button class="btn dropDown rounded dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
