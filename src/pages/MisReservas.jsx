@@ -17,42 +17,42 @@ export default function RedactarMensaje() {
     setSchedules(schedules);
   };
 
-  const handleSelectChange = async(event) => {
+  const handleSelectChange = async (event) => {
     setVehicleSelected(event.target.value);
     const reserves = await postReservesByPlate(event.target.value);
     console.log(reserves);
     setReserves(reserves);
     console.log(selectedVehicle);
-}
+  }
   useEffect(() => {
     getSchedules();
   }, []);
   return (
     <div className="containerMisReservas overflow-y-scroll">
       <h1>Mis reservas</h1>
-      <select value={selectedVehicle} className="col-8 w-100 drop p-1 " id="guardia" name="guardia " onChange={handleSelectChange}>
-            <option value="">Ver Vehiculos Disponibles</option>
-            {schedules.map((schedule) => (
-              <option className="p-3"  
-                key={schedule.id} value={schedule.plate}>
-                {schedule.plate}
-                
-              </option>
-            ))}
-          </select>
-          
-          {reserves.map((schedule) => (
-            <ItemReserva 
-            key={schedule.id} 
-            fechaReserva={schedule.entryDate.substring(0,10)}
-            horaEntrada={schedule.entryDate.substring(11, 16)}
-            horaSalida={schedule.retirementDate.substring(11, 16)}
-            plaza={schedule.place.num}
-            tarifa={schedule.price}
-            vehiculo={schedule.plate}/>
-          ))}
-          
-      
+      <select value={selectedVehicle} className="w-25 mx-auto mb-5 drop p-1" id="guardia" name="guardia " onChange={handleSelectChange}>
+        <option value="">Ver Vehiculos Disponibles</option>
+        {schedules.map((schedule) => (
+          <option className="p-3"
+            key={schedule.id} value={schedule.plate}>
+            {schedule.plate}
+
+          </option>
+        ))}
+      </select>
+
+      {reserves.map((schedule) => (
+        <ItemReserva
+          key={schedule.id}
+          fechaReserva={schedule.entryDate.substring(0, 10)}
+          horaEntrada={schedule.entryDate.substring(11, 16)}
+          horaSalida={schedule.retirementDate.substring(11, 16)}
+          plaza={schedule.place.num}
+          tarifa={schedule.price}
+          vehiculo={schedule.plate} />
+      ))}
+
+
     </div>
   );
 }

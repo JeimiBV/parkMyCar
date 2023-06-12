@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 export default function ItemReserva({fechaReserva, horaEntrada, horaSalida, plaza, tarifa,vehiculo}) {
   
   return (     
-      <div className="row w-75 mx-auto rounded reservasLista py-3 pe-4">
+      <div className="row w-75 mx-auto rounded reservasLista py-3 pe-4 mb-3">
         <h2 className="text-light text-center">Información de la reserva</h2>
         <div className="col-2 pt-3 ">
           <picture className="">
