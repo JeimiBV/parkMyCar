@@ -1,17 +1,21 @@
+import "react-toastify/dist/ReactToastify.css";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ProtectedRoute } from "./protectedRoute/ProtectedRoute";
+import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer } from "react-toastify";
+
 import InicioSesion from "./pages/InicioSesion";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import ListaReserva from "./pages/ListaReserva";
 import RegistroReserva from "./pages/RegistroReserva";
 import PlazasReserva from "./pages/PlazasReserva";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Parking from "./pages/Parking";
 import Landing from "./pages/Landing";
 import CrearNotificacion from "./pages/CrearNotificacion";
 import EditarHoraYGuardia from "./pages/EditarHoraYGuardia";
-import { ProtectedRoute } from "./protectedRoute/ProtectedRoute";
-import { useSelector, useDispatch } from "react-redux";
 import QuejasReclamosUser from "./pages/QuejasReclamosUser";
 import QuejasReclamosAdmin from "./pages/QuejasReclamosAdmin";
 import RegistrarGuardia from "./pages/RegistrarGuardia";
@@ -19,9 +23,6 @@ import RegistroUsuario from "./pages/RegistroUsuario";
 import MisReservas from "./pages/MisReservas";
 import RegistroReservaCliente from "./pages/RegistroReservaCliente";
 import VerQr from "./pages/verQr";
-import generarReporte from "./pages/generarReporte";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import AdministrarInfo from "./pages/AdministrarInfo";
 import GenerarReporte from "./pages/generarReporte";
 import Factura from "./pages/Factura"
