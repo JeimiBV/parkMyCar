@@ -263,7 +263,7 @@ export default function RegistroReserva() {
         </div>
         <Modal titulo={"Escanea para realizar el pago"} mostrar={modalQR}>
           <div className="row">
-            <QRCode value="www.google.com" size={150}/>
+            <QRCode value="https://coruscating-tulumba-b76ec7.netlify.app/factura" size={150}/>
             <div className="row d-flex justify-content-center mt-1">
               { factura? <button
                 className="btn btn-primary w-25 my-5 ms-3"
