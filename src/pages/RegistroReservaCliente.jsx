@@ -258,10 +258,18 @@ export default function RegistroReserva() {
                                 !factura && !loading ? <div className="w-25 my-5 ms-2"><Spinner /></div> :
 
                                     <><label for="fileInput" className=" text-center mb-2 mt-3">Ingrese la factura de su reserva:</label>
-                                        <input className=" btn btn-warning w-25 mb-5 ms-2 text-center"
+                                        <input className=" btn btn-warning w-25 h-50 ms-2 text-center"
                                             id="image-upload" type="file" accept="image/*" placeholder=""
                                             onChange={e => handleUpload(e)}
                                         />
+                                        <button
+             className="btn btn-primary w-25 ms-3 h-50 me-2"
+             onClick={() => {
+               setModalQR(false);
+             }}
+           >
+             Cancelar
+           </button>
                                     </>
                             }
                         </div>
