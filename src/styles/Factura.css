@@ -12,7 +12,7 @@
     width: 25%;
 }
 
-@media(min-width: 375px) and (max-width: 675px) {
+@media(min-width: 355px) and (max-width: 675px) {
     .factura{
         width: 80%;
     }

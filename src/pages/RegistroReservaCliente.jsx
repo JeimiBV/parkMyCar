@@ -247,7 +247,7 @@ export default function RegistroReserva() {
                 </div>
                 <Modal titulo={"Código QR"} mostrar={modalQR}>
                     <div className="row">
-                        <QRCode value="www.google.com" size={150} />
+                        <QRCode value="https://coruscating-tulumba-b76ec7.netlify.app/factura" size={150} />
                         <div className="row d-flex justify-content-center mt-1 ">
                             <input className=" btn btn-danger m-2 d-flex justify-content-center align-items-center"
                                 id="image-upload" type="file" accept="image/*" placeholder=""
