@@ -2,14 +2,19 @@ import "../styles/PagesStyles/EditarHoraYGuardia.css";
 
 import DatePicker from "react-datepicker";
 import NuevoDiv from "./seleccionable";
-
 import React, { useState } from "react";
+
 import { fetchPostData } from "../functions/fetchSchedules";
+import { toast } from 'react-toastify';
 
 function EditarHoraYGUardia() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [dates, setDates] = useState([]);
+
+  const handleNotification = () => {
+    toast.success('Guardando horarios', { autoClose: 2000 });
+  };
 
   const getDatesBetweenDates = () => {
     const datesGenerated = [];
@@ -34,15 +39,15 @@ function EditarHoraYGUardia() {
     setDates(getDatesBetweenDates());
   };
 
-  
+
 
   const createSchedules = async (schedules) => {
-    console.log(schedules)
+    handleNotification()
     await fetchPostData(schedules);
   };
 
   const handleSelectDate = (startDateItem) => {
-    console.log(startDateItem,"ddddddddddddddddd")
+    //console.log(startDateItem,"ddddddddddddddddd")
     const currentDates = dates.filter(
       (item) => item.startDate !== startDateItem
     );
