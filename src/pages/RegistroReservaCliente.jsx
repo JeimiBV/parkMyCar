@@ -10,7 +10,7 @@ import Spinner from "../components/Spinner"
 import { useSelector } from "react-redux";
 import { uploadFile } from "../firebase/config";
 import { postPeticion, postReporte, fetchVehicles } from "../functions/useFetch";
-import { fetchClients } from "../functions/fetchUsers";
+//import { fetchClients } from "../functions/fetchUsers";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -211,28 +211,25 @@ export default function RegistroReserva() {
                                     <p className=" fs-6">{selector.plaza}</p>
                                 </div>
                             </div>
-                            <div className="row m-0 h-50">
-                                <button
+                            <div className="row m-2 h-25">
+                                {!factura ? <button
                                     className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                                     onClick={() => {
                                         setModalQR(true);
                                     }}
                                 >
                                     Generar QR
-                                </button>
-                                {factura ? <button
+                                </button> : ""}
+
+
+                                <button
                                     className="btn btn-success m-2 d-flex justify-content-center align-items-center"
                                     form="myform"
                                     type="submit"
+                                    disabled={!factura}
                                 >
                                     Reservar
-                                </button> :
-                                    !loading && !factura ? <Spinner /> :
-                                        <input className=" btn btn-danger m-2 d-flex justify-content-center align-items-center"
-                                            id="image-upload" type="file" accept="image/*" placeholder=""
-                                            onChange={e => handleUpload(e)}
-                                        />
-                                }
+                                </button>
                                 <button
                                     className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                                     onClick={() => {
@@ -242,29 +239,31 @@ export default function RegistroReserva() {
                                     Cancelar
                                 </button>
                             </div>
+
                         </div>
                     </Card>
                 </div>
-                <Modal titulo={"Código QR"} mostrar={modalQR}>
-                    <div className="row">
+                <Modal titulo={"Escanea para obtener tu factura"} mostrar={modalQR}>
+                    <div className="row ">
                         <QRCode value="www.google.com" size={150} />
                         <div className="row d-flex justify-content-center mt-1 ">
-                            <button
+                            {factura ? <button
                                 className="btn btn-primary w-25 my-5 me-2"
                                 onClick={() => {
                                     setModalQR(false);
                                 }}
                             >
                                 Aceptar
-                            </button>
-                            <button
-                                className="btn btn-primary w-25 my-5 ms-2"
-                                onClick={() => {
-                                    setModalQR(false);
-                                }}
-                            >
-                                Cancelar
-                            </button>
+                            </button> :
+                                !factura && !loading ? <div className="w-25 my-5 ms-2"><Spinner /></div> :
+
+                                    <><label for="fileInput" className=" text-center mb-2 mt-3">Ingrese la factura de su reserva:</label>
+                                        <input className=" btn btn-warning w-25 mb-5 ms-2 text-center"
+                                            id="image-upload" type="file" accept="image/*" placeholder=""
+                                            onChange={e => handleUpload(e)}
+                                        />
+                                    </>
+                            }
                         </div>
                     </div>
                 </Modal>

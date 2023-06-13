@@ -1,11 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../../tasks/taskSlice";
+import { toast } from 'react-toastify';
 
 function TableRow({ item1, item2, ocuped, actualDate }) {
   const dispatch = useDispatch();
   const usuario = useSelector((state) => state.users).userState;
   const navigate = useNavigate();
+
+
+  const handleNotification = () => {
+    toast.warning('¡El espacio que quiere reservar ya esta ocupado!', { autoClose: 2000 });
+};
+
   //console.log(ocuped,"dar", actualDate)
   //console.log(item2);
   return (
@@ -45,7 +52,7 @@ function TableRow({ item1, item2, ocuped, actualDate }) {
                 ? navigate(
                   usuario.rol == "Client" ? "/reservaCliente" : usuario.rol == "Guard" ? "/reservas" : ""
                 )
-                : "";
+                : handleNotification();
               dispatch(
                 addTask({
                   plaza: item2.num,

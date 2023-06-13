@@ -231,30 +231,24 @@ export default function RegistroReserva() {
                 </div>
               </div>
               <div className="row m-2 h-25">
-                <button
+                {!factura?<button
                   className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                   onClick={() => {
                     setModalQR(true);
                   }}
                 >
                   Generar QR
-                </button>
+                </button>:""}
 
 
-                {factura ? <button
+                <button
                   className="btn btn-success m-2 d-flex justify-content-center align-items-center"
                   form="myform"
                   type="submit"
-                >
+                  disabled={!factura}
+                  >
                   Reservar
-                </button> :
-
-                  !loading && !factura ? <Spinner /> :
-                    <input className=" btn btn-danger m-2 text-center"
-                      id="image-upload" type="file" accept="image/*" placeholder=""
-                      onChange={e => handleUpload(e)}
-                    />
-                }
+                </button>        
                 <button
                   className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                   onClick={() => {
@@ -267,26 +261,35 @@ export default function RegistroReserva() {
             </div>
           </Card>
         </div>
-        <Modal titulo={"Código QR"} mostrar={modalQR}>
+        <Modal titulo={"Escanea para realizar el pago"} mostrar={modalQR}>
           <div className="row">
-            <QRCode value="www.google.com" size={150} />
+            <QRCode value="www.google.com" size={150}/>
             <div className="row d-flex justify-content-center mt-1">
-              <button
-                className="btn btn-primary w-25 my-5 me-2"
+              { factura? <button
+                className="btn btn-primary w-25 my-5 ms-3"
                 onClick={() => {
                   setModalQR(false);
                 }}
               >
                 Aceptar
-              </button>
-              <button
-                className="btn btn-primary w-25 my-5 ms-2"
-                onClick={() => {
-                  setModalQR(false);
-                }}
-              >
-                Cancelar
-              </button>
+              </button>  :
+              !factura && !loading? <div className="w-25 my-5 ms-2"><Spinner/></div>:
+               
+              <><label for="fileInput" className=" text-center mb-2 mt-3">Ingrese la factura de su reserva:</label>
+              <input className=" btn btn-warning w-25 h-50 ms-2 text-center"
+               id="image-upload" type="file" accept="image/*" placeholder="" 
+               onChange={e => handleUpload(e)}
+             /> <button
+             className="btn btn-primary w-25 ms-3 h-50 me-2"
+             onClick={() => {
+               setModalQR(false);
+             }}
+           >
+             Cancelar
+           </button>
+              </>
+              }
+             
             </div>
           </div>
         </Modal>
