@@ -24,6 +24,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdministrarInfo from "./pages/AdministrarInfo";
 import GenerarReporte from "./pages/generarReporte";
+import Factura from "./pages/Factura"
 
 function App() {
   const usuario = useSelector((state) => state.users).userState;
@@ -37,6 +38,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/inicioS" element={<InicioSesion />} />
           <Route path="/registroUsuario" element={<RegistroUsuario />} />
+          <Route path="/factura" element={<Factura />} />
           <Route
             element={
               <ProtectedRoute

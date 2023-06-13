@@ -1,0 +1,22 @@
+.containerFactura{
+    height: 87vh;
+    width: 100%;
+}
+
+.factura{
+    width: 25%;
+    height: 80%;
+}
+
+.download{
+    width: 25%;
+}
+
+@media(min-width: 375px) and (max-width: 675px) {
+    .factura{
+        width: 80%;
+    }
+    .download{
+        width: 75%;
+    }
+}

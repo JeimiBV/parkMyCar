@@ -249,6 +249,10 @@ export default function RegistroReserva() {
                     <div className="row">
                         <QRCode value="www.google.com" size={150} />
                         <div className="row d-flex justify-content-center mt-1 ">
+                            <input className=" btn btn-danger m-2 d-flex justify-content-center align-items-center"
+                                id="image-upload" type="file" accept="image/*" placeholder=""
+                                onChange={e => handleUpload(e)}
+                            />
                             <button
                                 className="btn btn-primary w-25 my-5 me-2"
                                 onClick={() => {
