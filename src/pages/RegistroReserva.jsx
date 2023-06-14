@@ -67,7 +67,7 @@ export default function RegistroReserva() {
   const handleAceptar = () => {
     formatearFecha(dateEntrada, true);
     formatearFecha(dateSalida, false);
-    calcularTarifa(5);
+    calcularTarifa(precio);
     setDatosForm({
       ...datosForm,
       entryDate: modificarDate(dateEntrada),
@@ -114,6 +114,7 @@ export default function RegistroReserva() {
   };
 
   const calcularTarifa = (precio) => {
+    //console.log(precio,"dddd")
     let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
     let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
     setTarifa((hours + minutes / 60) * precio);
@@ -225,7 +226,7 @@ export default function RegistroReserva() {
                   <p className="fs-6 ">Nro de plaza:</p>
                 </div>
                 <div className="col-5">
-                  <p className=" fs-6">{5}</p>
+                  <p className=" fs-6">{precio}</p>
                   <p className=" fs-6">{tarifa}</p>
                   <p className=" fs-6">{selector.plaza}</p>
                 </div>
