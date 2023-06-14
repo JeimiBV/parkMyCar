@@ -1,3 +1,5 @@
+import { json } from "react-router-dom";
+
 export const fetchGetSchedules = async () => {
   const response = await fetch(
     "http://parkmycar-001-site1.atempurl.com/schedules"
@@ -6,10 +8,25 @@ export const fetchGetSchedules = async () => {
 };
 
 export const fetchGetScheduleToday = async () => {
+  const currentDate = new Date();
+
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const day = String(currentDate.getDate()).padStart(2, "0");
+
+  const formattedDate = `${year}-${month}-${day}`;
+
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/schedules/today"
+    `http://parkmycar-001-site1.atempurl.com/schedules/day`,
+    {
+      method: "POST",
+      body: JSON.stringify(formattedDate),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }
   );
-  return await response.json();
+  return response.json();
 };
 
 export const fetchPostData = async (schedules) => {
