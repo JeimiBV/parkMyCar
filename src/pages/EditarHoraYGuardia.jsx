@@ -5,15 +5,20 @@ import NuevoDiv from "./seleccionable";
 import React, { useState } from "react";
 
 import { fetchPostData } from "../functions/fetchSchedules";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function EditarHoraYGUardia() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [dates, setDates] = useState([]);
 
-  const handleNotification = () => {
-    toast.success('Guardando horarios', { autoClose: 2000 });
+  const handleNotification = (type) => {
+    console.log(type)
+    if (type == "success") {
+      toast.success("Guardando horarios", { autoClose: 2000 });
+    } else {
+      toast.error("No existen horarios seleccionados", { autoClose: 2000 });
+    }
   };
 
   const getDatesBetweenDates = () => {
@@ -21,7 +26,7 @@ function EditarHoraYGUardia() {
     const currDate = new Date(startDate);
     const lastDate = new Date(endDate);
 
-    console.log(currDate, "last date")
+    console.log(currDate, "last date");
 
     while (currDate <= lastDate) {
       datesGenerated.push({
@@ -39,11 +44,14 @@ function EditarHoraYGUardia() {
     setDates(getDatesBetweenDates());
   };
 
-
-
   const createSchedules = async (schedules) => {
-    handleNotification()
-    await fetchPostData(schedules);
+    console.log(schedules.length)
+    if (schedules.length == 0) {
+      handleNotification("error");
+    } else {
+      handleNotification("success");
+      await fetchPostData("schedules");
+    }
   };
 
   const handleSelectDate = (startDateItem) => {
@@ -52,6 +60,7 @@ function EditarHoraYGUardia() {
       (item) => item.startDate !== startDateItem
     );
     setDates(currentDates);
+    console.log(currentDates);
   };
 
   return (

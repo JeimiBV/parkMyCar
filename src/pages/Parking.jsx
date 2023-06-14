@@ -26,6 +26,7 @@ function Parking() {
   const [entryTime, setEntryTime] = useState("");
   const [retirementTime, setRetirementTime] = useState("");
   const [unAvailablePlaces, setUnAvailablePlaces] = useState([]);
+  const [showPlaces, setShowPlaces]= useState(false)
 
   const tableSection = splitIntoSection(places);
   const usuario = useSelector((state) => state.users).userState;
@@ -172,6 +173,7 @@ function Parking() {
           <input
             className="h-100 buscador p-1"
             type="time"
+            step="3600"
             value={entryTime}
             onChange={(e) => setEntryTime(e.target.value)}
           />
@@ -183,28 +185,35 @@ function Parking() {
             type="time"
             value={retirementTime}
             onChange={(e) => setRetirementTime(e.target.value)}
+            step="3600"
           />
         </div>
         <button
           className="btn btn-block"
           onClick={() => {
             handleSearch();
+            setShowPlaces(true);
           }}
         >
           Search
         </button>
       </div>
       }
-      <div className="tables-container">
-        {tableSection.map((tableData, index) => (
-          <ParkingSection
-            key={index}
-            data={tableData}
-            ocuped={unAvailablePlaces}
-            actualDate={actualDate}
-          />
-        ))}
-      </div>
+      { (usuario.rol =="Client" || usuario.rol=="Guard") && !showPlaces? 
+      <h2 className="text-light mt-5 text-center">Seleccione una fecha y rango de horas para ver los horarios disponibles </h2>
+    :<div className="tables-container">
+    {tableSection.map((tableData, index) => (
+      <ParkingSection
+        key={index}
+        data={tableData}
+        ocuped={unAvailablePlaces}
+        actualDate={actualDate}
+      />
+    ))}
+  </div>
+    }
+      
+      
       <div
         className={
           usuario.rol == "Admin"

@@ -1,3 +1,5 @@
+import "../styles/PagesStyles/EditarHoraYGuardia.css";
+
 import DatePicker from "react-datepicker";
 
 import { fetchData } from "../functions/fetchGuards";
@@ -118,7 +120,7 @@ export default function NuevoDiv({ item, selectDate }) {
         </select>
       </div>
       <div className="col-1 m-2 d-flex align-items-center">
-        <i class="fa-solid fa-trash-can" onClick={() => selectDate()}></i>
+        <i class="fa-solid fa-trash-can text-danger" onClick={() => selectDate()}></i>
       </div>
     </div>
   );

@@ -30,6 +30,7 @@ export default function () {
     }
 
     const handlePost = async () => {
+        console.log(datae)
         if (dataForm.toDate > dataForm.fromDate) {
             setData(await postReporte(`http://parkmycar-001-site1.atempurl.com/Reserves/${busqueda.url}`, dataForm))
         }
@@ -81,7 +82,7 @@ export default function () {
                                 selected={dateEntrada}
                                 onChange={e => llenarForm(e)}
                                 className="bg-date p-2 rounded"
-                                max="2023-06-10"
+                                
                             />
                         </div>
                     </div>

@@ -7,6 +7,7 @@ import QRCode from "react-qr-code";
 import moment from "moment";
 import Spinner from "../components/Spinner"
 
+import { toast } from 'react-toastify';
 import { useSelector } from "react-redux";
 import { uploadFile } from "../firebase/config";
 import { postPeticion, postReporte, fetchVehicles } from "../functions/useFetch";
@@ -45,6 +46,10 @@ export default function RegistroReserva() {
         qrCode: ""
     });
 
+    const handleNotification = () => {
+        toast.success('La reserva se ha realizado exitosamente', { autoClose: 2000 });
+    };
+
     const handlePost = async (e) => {
         e.preventDefault();
         setDatosForm({ ...datosForm, qrCode: factura })
@@ -53,6 +58,7 @@ export default function RegistroReserva() {
             "http://parkmycar-001-site1.atempurl.com/reserves",
             datosForm
         );
+        handleNotification();
         navigate("/parqueo");
     };
 
@@ -227,12 +233,14 @@ export default function RegistroReserva() {
                                     form="myform"
                                     type="submit"
                                     disabled={!factura}
+                                    
                                 >
                                     Reservar
                                 </button>
                                 <button
                                     className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                                     onClick={() => {
+                                        
                                         navigate("/parqueo");
                                     }}
                                 >

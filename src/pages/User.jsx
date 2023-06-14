@@ -2,6 +2,7 @@ import "../styles/PagesStyles/AdministrarInfo.css";
 
 import React, { useState, useEffect } from "react";
 import { EditData } from "../functions/fetchUsers";
+import { toast } from 'react-toastify';
 
 const User = ({ usuario, deleteUser }) => {
   const [name, setName] = useState(usuario.name);
@@ -32,7 +33,12 @@ const User = ({ usuario, deleteUser }) => {
     SetIsEditing(true);
   };
 
-  console.log(isEditing);
+  const handleNotification = () => {
+    toast.success("Actualizando datos", {
+      autoClose: 2000,
+    });
+  };
+
   return (
     <div key={usuario.nombre} className="usuarioFinal p-2 m-3">
       <form
@@ -158,7 +164,11 @@ const User = ({ usuario, deleteUser }) => {
               Editar
             </button>
           ) : (
-            <button type="submit" class="btn btn-success m-2 botonUser">
+            <button
+              type="submit"
+              class="btn btn-success m-2 botonUser"
+              onClick={handleNotification}
+            >
               Finalizar
             </button>
           )}

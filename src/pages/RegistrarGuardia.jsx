@@ -18,8 +18,14 @@ const RegistrarGuardia = () => {
 
   const handleChange = (e) => {
     setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
-    console.log(datosForm)
-  }
+  };
+
+  const formEmpty = () => {
+    var elements = document.getElementsByClassName("cuadroG");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].value = "";
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(datosForm);
@@ -29,7 +35,8 @@ const RegistrarGuardia = () => {
       datosForm
     );
     setLoading(false);
-  }
+    formEmpty();
+  };
 
   return (
     <div className="contenedorGuardia w-100 p-4 d-flex align-items-center flex-column overflow-y-scroll">
@@ -53,7 +60,9 @@ const RegistrarGuardia = () => {
             </div>
           </div>
           <div className="tituloGuardia w-100 mb-4  d-flex align-items-center">
-            <label htmlFor="ci" className="labelRG">Carnet de identidad:</label>
+            <label htmlFor="ci" className="labelRG">
+              Carnet de identidad:
+            </label>
             <div className="inputRG me-0 groupRG">
               <i class="fa-regular fa-id-card me-3"></i>
               <input
@@ -67,7 +76,9 @@ const RegistrarGuardia = () => {
             </div>
           </div>
           <div className="tituloGuardia w-100 mb-4 d-flex align-items-center">
-            <label htmlFor="telefono" className="labelRG">Teléfono celular:</label>
+            <label htmlFor="telefono" className="labelRG">
+              Teléfono celular:
+            </label>
             <div className="inputRG me-0 groupRG">
               <i class="fa-solid fa-phone me-3"></i>
               <input
@@ -81,7 +92,9 @@ const RegistrarGuardia = () => {
             </div>
           </div>
           <div className="tituloGuardia w-100 mb-4 d-flex align-items-center">
-            <label htmlFor="correo" className="labelRG">Correo electrónico:</label>
+            <label htmlFor="correo" className="labelRG">
+              Correo electrónico:
+            </label>
             <div className="inputRG me-0 groupRG">
               <i class="fa-solid fa-at me-3"></i>
               <input
@@ -95,7 +108,9 @@ const RegistrarGuardia = () => {
             </div>
           </div>
           <div className="tituloGuardia w-100 d-flex align-items-center">
-            <label htmlFor="correo" className="labelRG">Contraseña:</label>
+            <label htmlFor="correo" className="labelRG">
+              Contraseña:
+            </label>
             <div className="inputRG me-0 groupRG">
               <i class="fa-solid fa-lock me-3"></i>
               <input
@@ -114,18 +129,18 @@ const RegistrarGuardia = () => {
               </div>
             </div>
           </div>
-          {
-            loading ? <Spinner /> :
-              <div className="buttonGuardia">
-                <button
-                  className=" btn btnG btn-block ms-auto me-auto mt-5"
-                  type="submit"
-                  onClick={handleSubmit}
-                >
-                  Registrar
-                </button>
-              </div>
-          }
+          {loading ? (
+            <Spinner />
+          ) : (
+            <div className="buttonGuardia">
+              <button
+                className="btn btnG btn-block ms-auto me-auto mt-5"
+                type="submit"
+              >
+                Registrar
+              </button>
+            </div>
+          )}
         </form>
       </div>
     </div>
