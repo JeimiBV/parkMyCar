@@ -44,6 +44,13 @@ function EditarHoraYGUardia() {
   };
 
   const createSchedules = async (schedules) => {
+    console.log(schedules.length);
+    if (schedules.length == 0) {
+      handleNotification("error");
+    } else {
+      handleNotification("success");
+      await fetchPostData(schedules);
+    }
     await fetchPostData(schedules);
   };
 
