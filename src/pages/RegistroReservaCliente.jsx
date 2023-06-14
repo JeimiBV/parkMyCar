@@ -69,7 +69,7 @@ export default function RegistroReserva() {
     const obtenerTarifa = async () => {
         let peticion = await postReporte("http://parkmycar-001-site1.atempurl.com/schedules/day", selector.entryDate)
         setPrecio(peticion.price);
-        setGuardia(peticion.guardId)
+        setGuardia(peticion.guardId);
     }
 
     const obtenerVehiculos = async () => {
@@ -268,6 +268,7 @@ export default function RegistroReserva() {
                                     <><label for="fileInput" className=" text-center mb-2 mt-3">Ingrese la factura de su reserva:</label>
                                         <input className=" btn btn-warning w-25 h-50 ms-2 text-center"
                                             id="image-upload" type="file" accept="image/*" placeholder=""
+                                            required
                                             onChange={e => handleUpload(e)}
                                         />
                                         <button
