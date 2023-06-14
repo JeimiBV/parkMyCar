@@ -13,7 +13,6 @@ function EditarHoraYGUardia() {
   const [dates, setDates] = useState([]);
 
   const handleNotification = (type) => {
-    console.log(type)
     if (type == "success") {
       toast.success("Guardando horarios", { autoClose: 2000 });
     } else {

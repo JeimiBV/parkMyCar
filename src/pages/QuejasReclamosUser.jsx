@@ -2,12 +2,22 @@ import { fetchCreateSuggestion } from "../functions/fetchSuggestions";
 import "../styles/PagesStyles/QuejasReclamosUsers.css";
 
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const QuejasReclamosUser = () => {
   const [text, setText] = useState("");
 
+  const handleNotification = () => {
+    toast.error('Ingrese un mensaje', { autoClose: 2000 });
+  };
+
   const handleCreate = async () => {
-    await fetchCreateSuggestion(text);
+    console.log(text.length)
+    if (text.length != 0) {
+      await fetchCreateSuggestion(text);
+    } else {
+      handleNotification()
+    }
   };
   return (
     <div className="contenedorNot overflow-y-scroll">
@@ -27,15 +37,15 @@ const QuejasReclamosUser = () => {
                 />
                 <div className="d-flex justify-content-end">
                   <button
-                  className="btn btn-block mt-3 me-0"
-                  form="myform"
-                  type="submit"
-                  onClick={() => handleCreate()}
-                >
-                  Enviar
-                </button>
+                    className="btn btn-block mt-3 me-0"
+                    form="myform"
+                    type="submit"
+                    onClick={() => handleCreate()}
+                  >
+                    Enviar
+                  </button>
                 </div>
-                
+
               </div>
             </div>
           </div>
