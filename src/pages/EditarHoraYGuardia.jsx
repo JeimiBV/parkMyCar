@@ -51,6 +51,7 @@ function EditarHoraYGUardia() {
       handleNotification("success");
       await fetchPostData(schedules);
     }
+    await fetchPostData(schedules);
   };
 
   const handleSelectDate = (startDateItem) => {
