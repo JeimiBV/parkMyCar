@@ -38,7 +38,7 @@ const AdministrarInfo = () => {
   return (
     <div className="contenedorNot overflow-y-scroll">
       <div>
-        <div className="tituloAinfo">Administrar información de usuario</div>
+        <h1>Administrar información de usuario</h1>
           <div>
             <div className="container">
               <div className="col">

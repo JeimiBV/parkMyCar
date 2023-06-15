@@ -31,8 +31,8 @@ const Landing = () => {
     <div className="prueba bg-dark bg-opacity-75">
       <div id="parallax-world-of-ugg">
         <section className=" ">
-          <article className="position-absolute indicador">
-            <div style={{ textAlign: "center", color: "white" }}>
+          <article className="position-absolute start-0 end-0 w-50 mx-auto indicador text-center">
+            <div style={{ textAlign: "center", color: "#C3CEDA", fontSize:"25px" }}>
               {todaySchedule ? (
                 `Horario de Atención hoy ${todaySchedule.startDate.substring(
                   11,
@@ -51,7 +51,7 @@ const Landing = () => {
               )}
             </div>
             <select
-              className="col-8 w-100 drop p-1 "
+              className="col-8 w-50 drop p-1 border-none "
               id="guardia"
               name="guardia "
             >

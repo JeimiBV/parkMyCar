@@ -108,7 +108,7 @@ export default function RegistroUsuario() {
                 className="inputRegistro w-100"
                 onChange={handleChange}
                 required
-                pattern="[a-zA-Z0-9]+"
+                pattern="[a-zA-Z0-9]{7,10}"
               />
             </div>
           </div>
@@ -122,6 +122,7 @@ export default function RegistroUsuario() {
                     className="inputRegistro w-100"
                     value={input.value}
                     onChange={(event) => handleInputChange(index, event)}
+                    pattern="[a-zA-Z0-9]{6,8}"
                     required
                   />
                 </div>

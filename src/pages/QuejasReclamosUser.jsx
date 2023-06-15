@@ -11,12 +11,17 @@ const QuejasReclamosUser = () => {
     toast.success('La sugerencia ha sido realizada exitosamente, gracias', { autoClose: 2000 });
   };
 
-  const handleCreate = async (e) => {
-    e.preventDefault();
-    console.log(text.length)
-    handleNotification()
+  const formEmpty = () => {
+    var elements = document.getElementsByClassName("textareaQRU");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].value = "";
+    }
+  };
+
+  const handleCreate = async () => {
     if (text.length != 0) {
       await fetchCreateSuggestion(text);
+      formEmpty()
     } else {
       handleNotification()
     }

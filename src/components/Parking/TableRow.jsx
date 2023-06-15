@@ -24,7 +24,7 @@ function TableRow({ item1, item2, ocuped, actualDate }) {
               ? navigate(
                 usuario.rol == "Client" ? "/reservaCliente" : usuario.rol == "Guard" ? "/reservas" : ""
               )
-              :  handleNotification();
+              : handleNotification();
             dispatch(
               addTask({
                 plaza: item1.num,

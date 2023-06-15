@@ -124,7 +124,7 @@ export default function RegistroReserva() {
     let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
     setTarifa((hours + minutes / 60) * precio);
   };
-
+  console.log(Math.round(tarifa * 100) / 100)
   return (
     <div className="overflow-y-scroll containerReserva">
       <div className="row w-100 position-relative">
@@ -201,7 +201,7 @@ export default function RegistroReserva() {
                   className=" w-100 h-100"
                   onChange={handleChange}
                   required
-                  pattern="[a-zA-Z0-9]+"
+                  pattern="[a-zA-Z0-9]{7,10}"
                   placeholder=" Este espacio debe contener una cadena de 9 caracteres"
                 />
               </div>
@@ -214,7 +214,7 @@ export default function RegistroReserva() {
                   className=" w-100 h-100"
                   onChange={handleChange}
                   required
-                  pattern="[a-zA-Z0-9]{6}"
+                  pattern="[a-zA-Z0-9]{6,8}"
                   placeholder=" Este espacio debe contener una cadena de 6 caracteres"
                 />
               </div>
@@ -232,7 +232,7 @@ export default function RegistroReserva() {
                 </div>
                 <div className="col-5">
                   <p className=" fs-6">{precio}</p>
-                  <p className=" fs-6">{tarifa}</p>
+                  <p className=" fs-6">{Math.round(tarifa * 100) / 100}</p>
                   <p className=" fs-6">{selector.plaza}</p>
                 </div>
               </div>
