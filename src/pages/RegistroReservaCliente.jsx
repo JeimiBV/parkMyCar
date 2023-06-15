@@ -190,8 +190,8 @@ export default function RegistroReserva() {
                             <label htmlFor="" className="col-6 col-md-3">
                                 Placa del vehículo
                             </label>
-                            <select value={selectedOption} onChange={handleSelectChange}>
-                                <option>Seleccione un vehículo</option>
+                            <select value={selectedOption} onChange={handleSelectChange} required>
+                                <option value={""}>seleccione una opcion</option>
                                 {
                                     vehicle?.map((veh) =>
                                         <option key={veh.id} value={veh.plate} >{veh.plate}</option>

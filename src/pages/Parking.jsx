@@ -200,7 +200,7 @@ function Parking() {
       </div>
       }
       { (usuario.rol =="Client" || usuario.rol=="Guard") && !showPlaces? 
-      <h2 className="text-light mt-5 text-center">Seleccione una fecha y rango de horas para ver los horarios disponibles </h2>
+      <h2 className="text-light mt-5 text-center">Seleccione una fecha y rango de horas para ver las plazas disponibles</h2>
     :<div className="tables-container">
     {tableSection.map((tableData, index) => (
       <ParkingSection

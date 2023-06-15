@@ -8,11 +8,13 @@ const QuejasReclamosUser = () => {
   const [text, setText] = useState("");
 
   const handleNotification = () => {
-    toast.error('Ingrese un mensaje', { autoClose: 2000 });
+    toast.success('La sugerencia ha sido realizada exitosamente, gracias', { autoClose: 2000 });
   };
 
-  const handleCreate = async () => {
+  const handleCreate = async (e) => {
+    e.preventDefault();
     console.log(text.length)
+    handleNotification()
     if (text.length != 0) {
       await fetchCreateSuggestion(text);
     } else {
@@ -28,19 +30,21 @@ const QuejasReclamosUser = () => {
             <div className="py-3 px-4">
               <h3 className="tituloUser">Descripción:</h3>
 
-              <div>
+              <div><form id="myform" onSubmit={(e) => handleCreate(e)}>
                 <textarea
                   className="form-control textareaQRU"
                   placeholder="Escriba el mensaje"
                   id="floatingTextarea2"
                   onChange={(e) => setText(e.target.value)}
+                  required
                 />
+                </form>
                 <div className="d-flex justify-content-end">
                   <button
                     className="btn btn-block mt-3 me-0"
                     form="myform"
                     type="submit"
-                    onClick={() => handleCreate()}
+                    
                   >
                     Enviar
                   </button>
