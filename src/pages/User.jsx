@@ -33,12 +33,6 @@ const User = ({ usuario, deleteUser }) => {
     SetIsEditing(true);
   };
 
-  const handleNotification = () => {
-    toast.success("Actualizando datos", {
-      autoClose: 2000,
-    });
-  };
-
   return (
     <div key={usuario.nombre} className="usuarioFinal p-2 m-3">
       <form
@@ -171,7 +165,6 @@ const User = ({ usuario, deleteUser }) => {
             <button
               type="submit"
               class="btn btn-success m-2 botonUser"
-              onClick={handleNotification}
             >
               Finalizar
             </button>
