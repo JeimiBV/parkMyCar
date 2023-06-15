@@ -83,46 +83,36 @@ function Parking() {
     setHistoryPlace(historyPlace);
   };
 
-  const handleNotification = (type) => {
-    toast.error('Seleccione un rango de horas válido', { autoClose: 2000 });
-  };
-
   const handleSearch = () => {
-    if ((retirementTime.slice(0, 2) - entryTime.slice(0, 2)) <= 0) {
-      setShowPlaces(false);
-      handleNotification();
-    } else {
-      setShowPlaces(true);
-      getReserves();
-      setActualDate({
-        entryDate: entryDate,
-        entryTime: entryTime,
-        retirementTime: retirementTime,
-      });
-      setUnAvailablePlaces([]);
+    getReserves();
+    setActualDate({
+      entryDate: entryDate,
+      entryTime: entryTime,
+      retirementTime: retirementTime,
+    });
+    setUnAvailablePlaces([]);
 
-      reserves.forEach((reserve) => {
-        const reserveEntryTime = reserve.entryDate.slice(11, 16);
-        const reserveRetirementTime = reserve.retirementDate.slice(11, 16);
-        const isEntryDateEqual = moment(entryDate).isSame(
-          reserve.entryDate.slice(0, 10),
-          "day"
-        );
-        const isEntryTimeInRange =
-          (entryTime > reserveEntryTime && entryTime < reserveRetirementTime) ||
-          (entryTime < reserveEntryTime && retirementTime > reserveEntryTime);
+    reserves.forEach((reserve) => {
+      const reserveEntryTime = reserve.entryDate.slice(11, 16);
+      const reserveRetirementTime = reserve.retirementDate.slice(11, 16);
+      const isEntryDateEqual = moment(entryDate).isSame(
+        reserve.entryDate.slice(0, 10),
+        "day"
+      );
+      const isEntryTimeInRange =
+        (entryTime > reserveEntryTime && entryTime < reserveRetirementTime) ||
+        (entryTime < reserveEntryTime && retirementTime > reserveEntryTime);
 
-        const isRetirementTimeInRange =
-          (retirementTime > reserveEntryTime &&
-            retirementTime <= reserveRetirementTime) ||
-          (entryTime < reserveRetirementTime &&
-            retirementTime >= reserveRetirementTime);
+      const isRetirementTimeInRange =
+        (retirementTime > reserveEntryTime &&
+          retirementTime <= reserveRetirementTime) ||
+        (entryTime < reserveRetirementTime &&
+          retirementTime >= reserveRetirementTime);
 
-        if (isEntryDateEqual && (isEntryTimeInRange || isRetirementTimeInRange)) {
-          setUnAvailablePlaces((prev) => [...prev, reserve.place.num]);
-        }
-      });
-    }
+      if (isEntryDateEqual && (isEntryTimeInRange || isRetirementTimeInRange)) {
+        setUnAvailablePlaces((prev) => [...prev, reserve.place.num]);
+      }
+    });
   };
 
   useEffect(() => {
@@ -200,27 +190,28 @@ function Parking() {
             className="btn btn-block"
             onClick={() => {
               handleSearch();
+              setShowPlaces(true);
             }}
           >
             Buscar plazas
           </button>
         </div>
       }
-      { (usuario.rol =="Client" || usuario.rol=="Guard") && !showPlaces? 
-      <h2 className="text-light mt-5 text-center">Seleccione una fecha y rango de horas para ver las plazas disponibles</h2>
-    :<div className="tables-container">
-    {tableSection.map((tableData, index) => (
-      <ParkingSection
-        key={index}
-        data={tableData}
-        ocuped={unAvailablePlaces}
-        actualDate={actualDate}
-      />
-    ))}
-  </div>
-    }
-      
-      
+      {(usuario.rol == "Client" || usuario.rol == "Guard") && !showPlaces ?
+        <h2 className="text-light mt-5 text-center">Seleccione una fecha y rango de horas para ver las plazas disponibles</h2>
+        : <div className="tables-container">
+          {tableSection.map((tableData, index) => (
+            <ParkingSection
+              key={index}
+              data={tableData}
+              ocuped={unAvailablePlaces}
+              actualDate={actualDate}
+            />
+          ))}
+        </div>
+      }
+
+
       <div
         className={
           usuario.rol == "Admin"

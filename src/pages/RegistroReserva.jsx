@@ -51,11 +51,10 @@ export default function RegistroReserva() {
   const handlePost = async (e) => {
     e.preventDefault();
     setDatosForm({ ...datosForm, qrCode: factura })
-    console.log(datosForm)
-    /*var response = await postPeticion(
+    var response = await postPeticion(
       "http://parkmycar-001-site1.atempurl.com/reserves",
       datosForm
-    );*/
+    );
     handleNotification();
     navigate("/parqueo");
     console.log(response);
