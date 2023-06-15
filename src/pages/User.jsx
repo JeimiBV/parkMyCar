@@ -2,7 +2,7 @@ import "../styles/PagesStyles/AdministrarInfo.css";
 
 import React, { useState, useEffect } from "react";
 import { EditData } from "../functions/fetchUsers";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const User = ({ usuario, deleteUser }) => {
   const [name, setName] = useState(usuario.name);
@@ -66,7 +66,7 @@ const User = ({ usuario, deleteUser }) => {
                   disabled={!isEditing}
                   type="text"
                   required
-                  minLength={6}
+                  minLength={1}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -84,7 +84,8 @@ const User = ({ usuario, deleteUser }) => {
                   disabled={!isEditing}
                   type="text"
                   required
-                  minLength={6}
+                  minLength={7}
+                  maxLength={10}
                   value={nit}
                   onChange={(e) => setNit(e.target.value)}
                 />
@@ -102,7 +103,8 @@ const User = ({ usuario, deleteUser }) => {
                   disabled={!isEditing}
                   type="text"
                   required
-                  minLength={7}
+                  minLength={8}
+                  maxLength={8}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
@@ -139,6 +141,8 @@ const User = ({ usuario, deleteUser }) => {
                           <input
                             className=""
                             type="text"
+                            minLength={6}
+                            maxLength={8}
                             disabled={!isEditing}
                             value={vehicle.plate}
                             onChange={(event) =>
