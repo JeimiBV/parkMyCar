@@ -33,10 +33,10 @@ const RegistrarGuardia = () => {
     e.preventDefault();
     console.log(datosForm);
     setLoading(true);
-    /*await postPeticion(
+    await postPeticion(
       "http://parkmycar-001-site1.atempurl.com/users/guard",
       datosForm
-    );*/
+    );
     handleNotification();
     setLoading(false);
     formEmpty();
