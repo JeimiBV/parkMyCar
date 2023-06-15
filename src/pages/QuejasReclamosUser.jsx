@@ -11,10 +11,17 @@ const QuejasReclamosUser = () => {
     toast.error('Ingrese un mensaje', { autoClose: 2000 });
   };
 
+  const formEmpty = () => {
+    var elements = document.getElementsByClassName("textareaQRU");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].value = "";
+    }
+  };
+
   const handleCreate = async () => {
-    console.log(text.length)
     if (text.length != 0) {
       await fetchCreateSuggestion(text);
+      formEmpty()
     } else {
       handleNotification()
     }
