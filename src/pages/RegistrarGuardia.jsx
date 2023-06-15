@@ -4,6 +4,7 @@ import Spinner from "../components/Spinner";
 
 import React, { useEffect, useState } from "react";
 import { postPeticion } from "../functions/useFetch";
+import { toast } from "react-toastify";
 
 const RegistrarGuardia = () => {
   const [showPwd, setShowPwd] = useState(false);
@@ -15,7 +16,9 @@ const RegistrarGuardia = () => {
     ci: "",
     phone: 0,
   });
-
+  const handleNotification=()=>{
+    toast.success('Se ha registrado al guardia exitosamente',{autoClose:2000})
+  }
   const handleChange = (e) => {
     setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
   };
@@ -30,10 +33,11 @@ const RegistrarGuardia = () => {
     e.preventDefault();
     console.log(datosForm);
     setLoading(true);
-    await postPeticion(
+    /*await postPeticion(
       "http://parkmycar-001-site1.atempurl.com/users/guard",
       datosForm
-    );
+    );*/
+    handleNotification();
     setLoading(false);
     formEmpty();
   };

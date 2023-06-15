@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postPeticion, postReporte } from "../functions/useFetch";
 import { uploadFile } from "../firebase/config";
+import { toast } from "react-toastify";
 
 
 export default function RegistroReserva() {
@@ -44,14 +45,18 @@ export default function RegistroReserva() {
   const handleChange = (e) => {
     setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
   };
-
+  const handleNotification=()=>{
+    toast.success('La reserva se ha realizado exitosamente', { autoClose: 2000 });
+  }
   const handlePost = async (e) => {
     e.preventDefault();
     setDatosForm({ ...datosForm, qrCode: factura })
-    var response = await postPeticion(
+    console.log(datosForm)
+    /*var response = await postPeticion(
       "http://parkmycar-001-site1.atempurl.com/reserves",
       datosForm
-    );
+    );*/
+    handleNotification();
     navigate("/parqueo");
     console.log(response);
   };

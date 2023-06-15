@@ -55,7 +55,7 @@ const CrearNotificacion = () => {
     })
       .then((data) => {
         console.log(data);
-        toast.success("notificaciones enviadas con exito", {
+        toast.success(" Las notificaciones se han enviado exitosamente", {
           theme: "colored",
           autoClose: 3000,
         });
@@ -102,7 +102,7 @@ const CrearNotificacion = () => {
             <textarea
               name="message"
               className="form-control Descripcion"
-              placeholder="Escriba el mensaje"
+              placeholder="Escriba el mensaje de al menos 15 caracteres"
               {...register("message", {
                 required: {
                   value: true,
