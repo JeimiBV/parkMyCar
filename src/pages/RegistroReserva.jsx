@@ -79,7 +79,7 @@ export default function RegistroReserva() {
       retirementDate: modificarDate(dateSalida),
       placeId: selector.id,
       guardId: "1",
-      price: tarifa,
+      price: Math.round(tarifa),
       qrCode: factura
     });
   }

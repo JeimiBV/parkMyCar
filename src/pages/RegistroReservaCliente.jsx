@@ -53,7 +53,6 @@ export default function RegistroReserva() {
     const handlePost = async (e) => {
         e.preventDefault();
         setDatosForm({ ...datosForm, qrCode: factura })
-        console.log(datosForm)
         await postPeticion(
             "http://parkmycar-001-site1.atempurl.com/reserves",
             datosForm
@@ -105,7 +104,7 @@ export default function RegistroReserva() {
             retirementDate: modificarDate(dateSalida),
             placeId: selector.id,
             guardId: guardia,
-            price: tarifa,
+            price: Math.round(tarifa),
             qrCode: factura,
             plate: selectedOption
         });
