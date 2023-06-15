@@ -129,7 +129,6 @@ export default function RegistroReserva() {
 
     }
     const calcularTarifa = (precio) => {
-        console.log(precio)
         let hours = Math.abs(dateEntrada.getHours() - dateSalida.getHours());
         let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
         setTarifa((hours + minutes / 60) * precio);
@@ -212,7 +211,7 @@ export default function RegistroReserva() {
                                 </div>
                                 <div className="col-5">
                                     <p className=" fs-6">{precio}</p>
-                                    <p className=" fs-6">{Math.round(tarifa * 100) / 100}</p>
+                                    <p className=" fs-6">{Math.round(tarifa)}</p>
                                     <p className=" fs-6">{selector.plaza}</p>
                                 </div>
                             </div>
