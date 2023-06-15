@@ -74,7 +74,7 @@ const RegistrarGuardia = () => {
                 className="cuadroG"
                 type="text"
                 onChange={handleChange}
-                pattern="[a-zA-Z0-9]+{7,10}"
+                pattern="[a-zA-Z0-9]{7,10}"
                 required
               />
             </div>

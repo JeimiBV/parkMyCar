@@ -201,7 +201,7 @@ export default function RegistroReserva() {
                   className=" w-100 h-100"
                   onChange={handleChange}
                   required
-                  pattern="[a-zA-Z0-9]+{7,10}"
+                  pattern="[a-zA-Z0-9]{7,10}"
                   placeholder=" Este espacio debe contener una cadena de 9 caracteres"
                 />
               </div>
