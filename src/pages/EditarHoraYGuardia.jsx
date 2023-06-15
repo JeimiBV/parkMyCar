@@ -94,6 +94,7 @@ function EditarHoraYGUardia() {
         <NuevoDiv
           item={item}
           selectDate={() => handleSelectDate(item.startDate)}
+          key={item.startDate}
         />
       ))}
       <div className="button1">
