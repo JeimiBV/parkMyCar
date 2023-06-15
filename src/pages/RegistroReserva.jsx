@@ -51,6 +51,7 @@ export default function RegistroReserva() {
   const handlePost = async (e) => {
     e.preventDefault();
     setDatosForm({ ...datosForm, qrCode: factura })
+    console.log(datosForm)
     var response = await postPeticion(
       "http://parkmycar-001-site1.atempurl.com/reserves",
       datosForm
@@ -201,7 +202,7 @@ export default function RegistroReserva() {
                   onChange={handleChange}
                   required
                   pattern="[a-zA-Z0-9]{7,10}"
-                  placeholder=" Este espacio debe contener una cadena de 9 caracteres"
+                  placeholder=" Este espacio debe contener una cadena con mínimo 7 y máximo 10"
                 />
               </div>
               <h3 className=" mt-4">Información del vehículo</h3>
@@ -214,7 +215,7 @@ export default function RegistroReserva() {
                   onChange={handleChange}
                   required
                   pattern="[a-zA-Z0-9]{6,8}"
-                  placeholder=" Este espacio debe contener una cadena de 6 caracteres"
+                  placeholder=" Este espacio debe contener una cadena de con mínimo 6 y máximo 8"
                 />
               </div>
             </form>
