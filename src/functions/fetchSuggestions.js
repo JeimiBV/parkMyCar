@@ -3,7 +3,7 @@ export const fetchCreateSuggestion = async (description) => {
     description: description,
   };
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/suggestions",
+    "https://parkmycar-001-site1.atempurl.com/suggestions",
     {
       method: "POST",
       body: JSON.stringify(suggestion),
@@ -17,7 +17,7 @@ export const fetchCreateSuggestion = async (description) => {
 
 export const fetchGetSuggestions = async () => {
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/suggestions"
+    "https://parkmycar-001-site1.atempurl.com/suggestions"
   );
   return await response.json();
 };

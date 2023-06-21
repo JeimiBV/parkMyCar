@@ -28,7 +28,7 @@ export async function  postPeticion(url,datos){
 
 export const fetchVehicles = async (id) => {
   const response = await fetch(
-    `http://parkmycar-001-site1.atempurl.com/Vehicles?userId=${id}`
+    `https://parkmycar-001-site1.atempurl.com/Vehicles?userId=${id}`
   );
   return await response.json();
 };
@@ -87,7 +87,7 @@ export async function postReservesByPlate(plate){
     "fromDate": "1900-06-11T14:32:03.204Z",
     "toDate": "2080-06-11T14:32:03.204Z"
   }
-  const response =await fetch(`http://parkmycar-001-site1.atempurl.com/Reserves/plate`,{
+  const response =await fetch(`https://parkmycar-001-site1.atempurl.com/Reserves/plate`,{
     method:'POST',
     headers:{
       'Content-Type':'application/json'
@@ -98,13 +98,13 @@ export async function postReservesByPlate(plate){
 }
 export const fetchVerification = async () => {
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/Reserves/History?placeId=57"
+    "https://parkmycar-001-site1.atempurl.com/Reserves/History?placeId=57"
   );
   return await response.json();
 };
 
 export const patchVerificacion=()=>{
-  fetch('http://parkmycar-001-site1.atempurl.com/Reserves/264' , {
+  fetch('https://parkmycar-001-site1.atempurl.com/Reserves/264' , {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json'

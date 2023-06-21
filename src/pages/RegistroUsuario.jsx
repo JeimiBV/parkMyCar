@@ -51,7 +51,7 @@ export default function RegistroUsuario() {
     e.preventDefault();
     setLoading(true);
     await postPeticion(
-      "http://parkmycar-001-site1.atempurl.com/users/client",
+      "https://parkmycar-001-site1.atempurl.com/users/client",
       datosForm
     );
     setLoading(false);

@@ -2,7 +2,7 @@ import { json } from "react-router-dom";
 
 export const fetchGetSchedules = async () => {
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/schedules"
+    "https://parkmycar-001-site1.atempurl.com/schedules"
   );
   return await response.json();
 };
@@ -17,7 +17,7 @@ export const fetchGetScheduleToday = async () => {
   const formattedDate = `${year}-${month}-${day}`;
 
   const response = await fetch(
-    `http://parkmycar-001-site1.atempurl.com/schedules/day`,
+    `https://parkmycar-001-site1.atempurl.com/schedules/day`,
     {
       method: "POST",
       body: JSON.stringify(formattedDate),
@@ -58,7 +58,7 @@ export const fetchPostData = async (schedules) => {
   });
 
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/schedules",
+    "https://parkmycar-001-site1.atempurl.com/schedules",
     {
       method: "POST",
       body: JSON.stringify(updatedData),

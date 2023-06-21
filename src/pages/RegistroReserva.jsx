@@ -28,7 +28,7 @@ export default function RegistroReserva() {
   const [tarifa, setTarifa] = useState(0);
   const [factura, setFactura] = useState("");
   const [loading, setLoading] = useState(true);
-  const [precio, setPrecio] = useState();
+  const [precio, setPrecio] = useState(0);
   const [datosForm, setDatosForm] = useState({
     entryDate: "",
     retirementDate: "",
@@ -53,7 +53,7 @@ export default function RegistroReserva() {
     setDatosForm({ ...datosForm, qrCode: factura })
     console.log(datosForm)
     var response = await postPeticion(
-      "http://parkmycar-001-site1.atempurl.com/reserves",
+      "https://parkmycar-001-site1.atempurl.com/reserves",
       datosForm
     );
     handleNotification();
@@ -62,7 +62,7 @@ export default function RegistroReserva() {
   };
 
   const obtenerTarifa = async () => {
-    setPrecio((await postReporte("http://parkmycar-001-site1.atempurl.com/schedules/day", selector.entryDate)).price);
+    setPrecio((await postReporte("https://parkmycar-001-site1.atempurl.com/schedules/day", selector.entryDate)).price);
   }
 
   const modificarDate = (currentDate) => {
@@ -124,7 +124,7 @@ export default function RegistroReserva() {
     let minutes = Math.abs(dateEntrada.getMinutes() - dateSalida.getMinutes());
     setTarifa((hours + minutes / 60) * precio);
   };
-  console.log(Math.round(tarifa * 100) / 100)
+
   return (
     <div className="overflow-y-scroll containerReserva">
       <div className="row w-100 position-relative">

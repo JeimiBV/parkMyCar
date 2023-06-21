@@ -34,7 +34,7 @@ const RegistrarGuardia = () => {
     console.log(datosForm);
     setLoading(true);
     await postPeticion(
-      "http://parkmycar-001-site1.atempurl.com/users/guard",
+      "https://parkmycar-001-site1.atempurl.com/users/guard",
       datosForm
     );
     handleNotification();

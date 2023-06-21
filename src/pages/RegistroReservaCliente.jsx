@@ -77,7 +77,7 @@ export default function RegistroReserva() {
         e.preventDefault();
         setDatosForm({ ...datosForm, qrCode: factura })
         await postPeticion(
-            "http://parkmycar-001-site1.atempurl.com/reserves",
+            "https://parkmycar-001-site1.atempurl.com/reserves",
             datosForm
         );
         handleNotification();
@@ -89,7 +89,7 @@ export default function RegistroReserva() {
     }
 
     const obtenerTarifa = async () => {
-        let peticion = await postReporte("http://parkmycar-001-site1.atempurl.com/schedules/day", selector.entryDate)
+        let peticion = await postReporte("https://parkmycar-001-site1.atempurl.com/schedules/day", selector.entryDate)
         setPrecio(peticion.price);
         setGuardia(peticion.guardId);
     }

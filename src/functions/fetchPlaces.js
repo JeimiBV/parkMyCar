@@ -1,20 +1,20 @@
 export const fetchPlaces = async () => {
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/places"
+    "https://parkmycar-001-site1.atempurl.com/places"
   );
   return await response.json();
 };
 
 export const fetchReserves = async () => {
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/reserves"
+    "https://parkmycar-001-site1.atempurl.com/reserves"
   );
   return await response.json();
 };
 
 export const fetchCreatePlace = async () => {
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/places",
+    "https://parkmycar-001-site1.atempurl.com/places",
     { method: "POST" }
   );
   return await response.json();
@@ -22,7 +22,7 @@ export const fetchCreatePlace = async () => {
 
 export const fetchDeletePlace = async () => {
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/places",
+    "https://parkmycar-001-site1.atempurl.com/places",
     { method: "DELETE" }
   );
   return await response.json();
@@ -30,14 +30,14 @@ export const fetchDeletePlace = async () => {
 
 export const fetchPlaceHistory = async () => {
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/placeHistory"
+    "https://parkmycar-001-site1.atempurl.com/placeHistory"
   );
   return await response.json();
 };
 
 export const fetchHidePlace = async (num) => {
   const response = await fetch(
-    `http://parkmycar-001-site1.atempurl.com/places/hide/${num}`,
+    `https://parkmycar-001-site1.atempurl.com/places/hide/${num}`,
     {
       method: "PATCH",
       headers: {
@@ -50,7 +50,7 @@ export const fetchHidePlace = async (num) => {
 
 export const fetchShowPlace = async (num) => {
   const response = await fetch(
-    `http://parkmycar-001-site1.atempurl.com/places/show/${num}`,
+    `https://parkmycar-001-site1.atempurl.com/places/show/${num}`,
     {
       method: "PATCH",
       headers: {

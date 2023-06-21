@@ -1,5 +1,5 @@
 export const fetchData = async () => {
-  const response = await fetch("http://parkmycar-001-site1.atempurl.com/users");
+  const response = await fetch("https://parkmycar-001-site1.atempurl.com/users");
   return await response.json();
 };
 
@@ -19,7 +19,7 @@ export const EditData = async (
     vehicles: newVehicles,
   };
   const response = await fetch(
-    `http://parkmycar-001-site1.atempurl.com/users/${id}`,
+    `https://parkmycar-001-site1.atempurl.com/users/${id}`,
     {
       method: "PUT",
       body: JSON.stringify(userData),
@@ -33,7 +33,7 @@ export const EditData = async (
 
 export const DeleteData = async (id) => {
   const response = await fetch(
-    `http://parkmycar-001-site1.atempurl.com/users/${id}`,
+    `https://parkmycar-001-site1.atempurl.com/users/${id}`,
     {
       method: "DELETE",
     }
@@ -43,14 +43,14 @@ export const DeleteData = async (id) => {
 
 export const fetchClients = async () => {
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/users/client"
+    "https://parkmycar-001-site1.atempurl.com/users/client"
   );
   return await response.json();
 };
 
 export const fetchGuards = async () => {
   const response = await fetch(
-    "http://parkmycar-001-site1.atempurl.com/users/guard"
+    "https://parkmycar-001-site1.atempurl.com/users/guard"
   );
   return await response.json();
 };

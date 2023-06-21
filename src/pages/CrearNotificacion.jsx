@@ -14,7 +14,7 @@ const CrearNotificacion = () => {
   }, []);
 
   const getReserves = async () => {
-    await fetch("http://parkmycar-001-site1.atempurl.com/users/client")
+    await fetch("https://parkmycar-001-site1.atempurl.com/users/client")
       .then((response) => {
         return response.json();
       })
@@ -46,7 +46,7 @@ const CrearNotificacion = () => {
   };
 
   const onSubmit = async (data) => {
-    await fetch("http://parkmycar-001-site1.atempurl.com/Notification", {
+    await fetch("https://parkmycar-001-site1.atempurl.com/Notification", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
