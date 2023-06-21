@@ -10,7 +10,7 @@ import Spinner from "../components/Spinner"
 import { toast } from 'react-toastify';
 import { useSelector } from "react-redux";
 import { uploadFile } from "../firebase/config";
-import { postPeticion, postReporte, fetchVehicles } from "../functions/useFetch";
+import { postPeticion, postReporte, fetchVehicles, patchVerificacion , fetchVerification } from "../functions/useFetch";
 //import { fetchClients } from "../functions/fetchUsers";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -33,6 +33,7 @@ export default function RegistroReserva() {
     const [precio, setPrecio] = useState()
     const [guardia, setGuardia] = useState()
     const [vehicle, setVehicle] = useState();
+    const [isPay, setIsPay] = useState(false);
     const [datosForm, setDatosForm] = useState({
         name: usuario.nombre,
         phone: usuario.telefono,
@@ -49,6 +50,28 @@ export default function RegistroReserva() {
     const handleNotification = () => {
         toast.success('La reserva se ha realizado exitosamente', { autoClose: 2000 });
     };
+    const handleVerification = (estado) => {
+       if(estado){
+        toast.success("se ha confirmado el pago exitosamente", { autoClose: 2000 });
+       }
+       else{
+        toast.error("el pago no ha sido confirmado", { autoClose: 2000 });
+       }
+    };
+
+    const payVerification =async()=>{
+       let res =await fetchVerification()
+        if (res[0].reserves[0].isPaid==true){
+            setIsPay(true);
+            handleVerification(true);
+             patchVerificacion();
+            console.log(res[0].reserves[0].isPaid)
+        }
+        else{
+            setIsPay(false);
+            handleVerification(false);
+        }
+    }
 
     const handlePost = async (e) => {
         e.preventDefault();
@@ -231,14 +254,14 @@ export default function RegistroReserva() {
                                     form="myform"
                                     type="submit"
                                     disabled={!factura}
-                                    
+
                                 >
                                     Reservar
                                 </button>
                                 <button
                                     className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                                     onClick={() => {
-                                        
+
                                         navigate("/parqueo");
                                     }}
                                 >
@@ -260,7 +283,18 @@ export default function RegistroReserva() {
                                 }}
                             >
                                 Aceptar
-                            </button> :
+                            </button> : !isPay ?
+                                <>
+                                    <button className="btn btn-primary w-25 my-5 me-2" onClick={() => { payVerification() }}> verificar pago </button>
+                                    <button
+                                        className="btn btn-primary w-25 my-5 me-2"
+                                        onClick={() => {
+                                            setModalQR(false);
+                                        }}
+                                    >
+                                        Cancelar
+                                    </button>
+                                </> :
                                 !factura && !loading ? <div className="w-25 my-5 ms-2"><Spinner /></div> :
 
                                     <><label for="fileInput" className=" text-center mb-2 mt-3">Ingrese la factura de su reserva:</label>
@@ -269,14 +303,7 @@ export default function RegistroReserva() {
                                             required
                                             onChange={e => handleUpload(e)}
                                         />
-                                        <button
-             className="btn btn-primary w-25 ms-3 h-50 me-2"
-             onClick={() => {
-               setModalQR(false);
-             }}
-           >
-             Cancelar
-           </button>
+
                                     </>
                             }
                         </div>

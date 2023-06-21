@@ -96,3 +96,26 @@ export async function postReservesByPlate(plate){
   })
   return await response.json();
 }
+export const fetchVerification = async () => {
+  const response = await fetch(
+    "http://parkmycar-001-site1.atempurl.com/Reserves/History?placeId=57"
+  );
+  return await response.json();
+};
+
+export const patchVerificacion=()=>{
+  fetch('http://parkmycar-001-site1.atempurl.com/Reserves/264' , {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({}) // Puedes enviar un objeto vacío si solo deseas enviar el ID
+          })
+            .then(response => {
+               
+            })
+            .catch(error => {
+               console.log("error",error);
+            });
+}
+
