@@ -70,8 +70,9 @@ const PDFDocument = ({ datae }) => {
     //console.log(datae, "datos")
 
     useEffect(() => {
+        setTotal(0);
         datae.map((dato) => setTotal(prevTotal => prevTotal+dato.price));  
-    }, []);
+    }, [datae]);
     
     return (
         <Document>
