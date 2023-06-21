@@ -12,9 +12,9 @@ import { postReporte } from "../functions/useFetch";
 export default function () {
     const [dateEntrada, setDateEntrada] = useState(new Date());
     const [busqueda, setBusqueda] = useState({
-        buscar: "name",
-        placeholder: "buscar por nombre",
-        url: "name"
+        buscar: "Date",
+        placeholder: "buscar por todos",
+        url: "Date"
     });
     const [dataForm, setDataForm] = useState({
 
@@ -39,28 +39,28 @@ export default function () {
         }
     };
 
+    const handleOption = () => {
+
+    }
+
     return (
         <div className="contenedorPadre overflow-y-scroll">
             <h1>Generar Reporte</h1>
             <div className="cardReporte mx-auto p-5 rounded h-100 mb-3">
-
-                <div class="dropdown dropDown" >
-                    <button class="btn dropDown rounded dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Buscar por
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" name="placa"
-                            onClick={() => { setBusqueda({ buscar: "plateId", placeholder: "Buscar por placa", url: "Plate" }) }} >Placa</a></li>
-                        <li><a class="dropdown-item" name="nombre"
-                            onClick={() => { setBusqueda({ buscar: "name", placeholder: "Buscar por Nombre", url: "name" }) }}>Nombre</a></li>
-                        <li><a class="dropdown-item" name="plaza"
-                            onClick={() => { setBusqueda({ buscar: "placeId", placeholder: "Buscar por plaza", url: "place" }) }}>Plaza</a></li>
-                    </ul>
-                </div>
-                <div className="row w-100 me-0 ms-0 mb-5">
-
-
-
+                <button class="dropDown dropDownReporte rounded dropdown-toggle p-1 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Buscar por
+                </button>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" name="plaza"
+                        onClick={() => { setBusqueda({ buscar: "Date", placeholder: "Buscar todos", url: "Date" }) }}>Todos</a></li>
+                    <li><a class="dropdown-item" name="placa"
+                        onClick={() => { setBusqueda({ buscar: "plateId", placeholder: "Buscar por placa", url: "Plate" }) }} >Placa</a></li>
+                    <li><a class="dropdown-item" name="nombre"
+                        onClick={() => { setBusqueda({ buscar: "name", placeholder: "Buscar por Nombre", url: "name" }) }}>Nombre</a></li>
+                    <li><a class="dropdown-item" name="plaza"
+                        onClick={() => { setBusqueda({ buscar: "placeId", placeholder: "Buscar por plaza", url: "place" }) }}>Plaza</a></li>
+                </ul>
+                <div className="row w-100 me-0 mb-5 mt-3">
                     <div className="col-md-4 row d-flex justify-content-center align-items-center">
                         <label className="col-md-5"> Fecha inicial</label>
                         <div className="col">
@@ -82,17 +82,17 @@ export default function () {
                                 selected={dateEntrada}
                                 onChange={e => llenarForm(e)}
                                 className="bg-date p-2 rounded"
-                                
+
                             />
                         </div>
                     </div>
                     <input type="text"
                         placeholder={busqueda.placeholder}
                         id="buscadorPaca"
-                        className="col-md-2 "
+                        className="col-md-2 rounded"
                         name={busqueda.buscar}
                         required
-
+                        disabled={ busqueda.buscar=="Date"}
                         onChange={e => {
                             llenarForm(e)
                         }} />

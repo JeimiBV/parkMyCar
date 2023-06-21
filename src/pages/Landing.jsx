@@ -11,6 +11,7 @@ import { useEffect } from "react";
 const Landing = () => {
   const [schedules, setSchedules] = useState([]);
   const [todaySchedule, setTodaySchedule] = useState(null);
+  const [selectedSchedule, setSelectedSchedule] = useState(null);
 
   const getTodaySchedule = async () => {
     const todaySchedule = await fetchGetScheduleToday();
@@ -20,6 +21,12 @@ const Landing = () => {
   const getSchedules = async () => {
     const schedules = await fetchGetSchedules();
     setSchedules(schedules);
+  };
+
+  const handleSelectSchedule = (value) => {
+    setSelectedSchedule(value);
+    setTodaySchedule(null);
+    console.log("herss");
   };
 
   useEffect(() => {
@@ -32,7 +39,13 @@ const Landing = () => {
       <div id="parallax-world-of-ugg">
         <section className=" ">
           <article className="position-absolute start-0 end-0 w-50 mx-auto indicador text-center">
-            <div style={{ textAlign: "center", color: "#C3CEDA", fontSize:"25px" }}>
+            <div
+              style={{
+                textAlign: "center",
+                color: "#C3CEDA",
+                fontSize: "25px",
+              }}
+            >
               {todaySchedule ? (
                 `Horario de Atención hoy ${todaySchedule.startDate.substring(
                   11,
@@ -47,17 +60,36 @@ const Landing = () => {
                   todaySchedule.price
                 } `
               ) : (
-                <h4 className="">No hay Atención el día de hoy</h4>
+                <h4 className="">{selectedSchedule}</h4>
               )}
             </div>
             <select
               className="col-8 w-50 drop p-1 border-none "
               id="guardia"
-              name="guardia "
+              name="guardia"
+              onChange={(e) => handleSelectSchedule(e.target.value)}
             >
               <option value="">Ver Horarios Disponibles</option>
               {schedules.map((schedule) => (
-                <option className="p-3" key={schedule.id} value={schedule.id}>
+                <option
+                  className="p-3"
+                  key={schedule.id}
+                  value={`Horario de Atención De Fecha ${schedule.startDate.substring(
+                    0,
+                    10
+                  )} De ${schedule.startDate.substring(
+                    11,
+                    13
+                  )}: ${schedule.startDate.substring(
+                    14,
+                    16
+                  )} Hasta ${schedule.endDate.substring(
+                    11,
+                    13
+                  )}: ${schedule.endDate.substring(14, 16)} Tarifa: ${
+                    schedule.price
+                  } `}
+                >
                   {schedule.startDate.substring(0, 10)}{" "}
                   {schedule.startDate.substring(11, 16)} Hasta{" "}
                   {schedule.endDate.substring(0, 10)}{" "}
