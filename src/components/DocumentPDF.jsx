@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { useState } from 'react';
+
 
 const styles = StyleSheet.create({
     page: {
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     tableRowHead: {
         margin: "auto",
         flexDirection: "row",
-        backgroundColor:'#738FA7'
+        backgroundColor: '#738FA7'
     },
     tableRowBody: {
         margin: "auto",
@@ -44,6 +45,19 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderTopWidth: 0
     },
+    tableColTotal: {
+        width: "18%",
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderTopWidth: 0,
+        backgroundColor: '#738FA7'
+    },
+    tableColTotalVal: {
+        width: "78%",
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderTopWidth: 0
+    },
     tableCell: {
         margin: "auto",
         marginTop: 5,
@@ -51,14 +65,16 @@ const styles = StyleSheet.create({
     }
 });
 
-const PDFDocument = ({datae}) => {
+const PDFDocument = ({ datae }) => {
+    const [total, setTotal] = useState (0);
+    //console.log(datae, "datos")
+
+    useEffect(() => {
+        datae.map((dato) => setTotal(prevTotal => prevTotal+dato.price));  
+    }, []);
     
-
-
-   console.log(datae, "datos")
-
     return (
-    <Document>
+        <Document>
             <Page size="LETTER" style={styles.page} orientation="landscape">
                 <View style={styles.section}>
                     <Text style={styles.tittle}>Reporte de ingresos</Text>
@@ -90,8 +106,8 @@ const PDFDocument = ({datae}) => {
                             </View>
                         </View>
                         <View style={styles.container}>
-                            { 
-                              
+                            {
+
                                 datae.map((dato) => (
                                     <View style={styles.tableRowBody}>
                                         <View style={styles.tableColID}>
@@ -104,30 +120,37 @@ const PDFDocument = ({datae}) => {
                                             <Text style={styles.tableCell}>{dato.price}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.entryDate.slice(0,10)}</Text>
+                                            <Text style={styles.tableCell}>{dato.entryDate.slice(0, 10)}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.entryDate.slice(11,19)}</Text>
+                                            <Text style={styles.tableCell}>{dato.entryDate.slice(11, 19)}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.retirementDate.slice(11,19)}</Text>
+                                            <Text style={styles.tableCell}>{dato.retirementDate.slice(11, 19)}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{Math.abs(dato.entryDate.slice(11,13)-dato.retirementDate.slice(11,13))}</Text>
+                                            <Text style={styles.tableCell}>{Math.abs(dato.entryDate.slice(11, 13) - dato.retirementDate.slice(11, 13))}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
                                             <Text style={styles.tableCell}>{dato.plate}</Text>
                                         </View>
-                                        
                                     </View>
 
                                 ))
                             }
+                            <View style={styles.tableRowBody}>
+                                <View style={styles.tableColTotal}>
+                                    <Text style={styles.tableCell}>Total</Text>
+                                </View>
+                                <View style={styles.tableColTotalVal}>
+                                    <Text style={styles.tableCell}>{total}</Text>
+                                </View>
+                            </View>
                         </View>
                     </View>
                 </View>
             </Page>
-        </Document>  
+        </Document >
     );
 };
 
