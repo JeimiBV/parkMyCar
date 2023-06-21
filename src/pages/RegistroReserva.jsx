@@ -10,7 +10,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { postPeticion, postReporte } from "../functions/useFetch";
+import { postPeticion, postReporte, patchVerificacion,fetchVerification } from "../functions/useFetch";
 import { uploadFile } from "../firebase/config";
 import { toast } from "react-toastify";
 
@@ -28,6 +28,7 @@ export default function RegistroReserva() {
   const [tarifa, setTarifa] = useState(0);
   const [factura, setFactura] = useState("");
   const [loading, setLoading] = useState(true);
+  const [isPay, setIsPay] = useState(false);
   const [precio, setPrecio] = useState(0);
   const [datosForm, setDatosForm] = useState({
     entryDate: "",
@@ -45,9 +46,32 @@ export default function RegistroReserva() {
   const handleChange = (e) => {
     setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
   };
-  const handleNotification=()=>{
+  const handleNotification = () => {
     toast.success('La reserva se ha realizado exitosamente', { autoClose: 2000 });
   }
+  const handleVerification = (estado) => {
+    if(estado){
+     toast.success("se ha confirmado el pago exitosamente", { autoClose: 2000 });
+    }
+    else{
+     toast.error("el pago no ha sido confirmado", { autoClose: 2000 });
+    }
+ };
+
+ const payVerification =async()=>{
+    let res =await fetchVerification()
+     if (res[0].reserves[0].isPaid==true){
+         setIsPay(true);
+         handleVerification(true);
+          patchVerificacion();
+         console.log(res[0].reserves[0].isPaid)
+     }
+     else{
+         setIsPay(false);
+         handleVerification(false);
+     }
+ }
+
   const handlePost = async (e) => {
     e.preventDefault();
     setDatosForm({ ...datosForm, qrCode: factura })
@@ -237,14 +261,14 @@ export default function RegistroReserva() {
                 </div>
               </div>
               <div className="row m-2 h-25">
-                {!factura?<button
+                {!factura ? <button
                   className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                   onClick={() => {
                     setModalQR(true);
                   }}
                 >
                   Generar QR
-                </button>:""}
+                </button> : ""}
 
 
                 <button
@@ -252,9 +276,9 @@ export default function RegistroReserva() {
                   form="myform"
                   type="submit"
                   disabled={!factura}
-                  >
+                >
                   Reservar
-                </button>        
+                </button>
                 <button
                   className="btn btn-primary m-2 d-flex justify-content-center align-items-center"
                   onClick={() => {
@@ -269,34 +293,39 @@ export default function RegistroReserva() {
         </div>
         <Modal titulo={"Escanea para realizar el pago"} mostrar={modalQR}>
           <div className="row">
-            <QRCode value="https://coruscating-tulumba-b76ec7.netlify.app/factura" size={150}/>
-            <div className="row d-flex justify-content-center mt-1">
-              { factura? <button
-                className="btn btn-primary w-25 my-5 ms-3"
-                onClick={() => {
-                  setModalQR(false);
-                }}
-              >
-                Aceptar
-              </button>  :
-              !factura && !loading? <div className="w-25 my-5 ms-2"><Spinner/></div>:
-               
-              <><label for="fileInput" className=" text-center mb-2 mt-3">Ingrese la factura de su reserva:</label>
-              <input className=" btn btn-warning w-25 h-50 ms-2 text-center"
-               id="image-upload" type="file" accept="image/*" placeholder="" 
-               onChange={e => handleUpload(e)}
-             /> <button
-             className="btn btn-primary w-25 ms-3 h-50 me-2"
-             onClick={() => {
-               setModalQR(false);
-             }}
-           >
-             Cancelar
-           </button>
-              </>
-              }
-             
-            </div>
+            <QRCode value="https://coruscating-tulumba-b76ec7.netlify.app/factura" size={150} />
+            <div className="row d-flex justify-content-center mt-1 ">
+                            {factura ? <button
+                                className="btn btn-primary w-25 my-5 me-2"
+                                onClick={() => {
+                                    setModalQR(false);
+                                }}
+                            >
+                                Aceptar
+                            </button> : !isPay ?
+                                <>
+                                    <button className="btn btn-primary w-25 my-5 me-2" onClick={() => { payVerification() }}> verificar pago </button>
+                                    <button
+                                        className="btn btn-primary w-25 my-5 me-2"
+                                        onClick={() => {
+                                            setModalQR(false);
+                                        }}
+                                    >
+                                        Cancelar
+                                    </button>
+                                </> :
+                                !factura && !loading ? <div className="w-25 my-5 ms-2"><Spinner /></div> :
+
+                                    <><label for="fileInput" className=" text-center mb-2 mt-3">Ingrese la factura de su reserva:</label>
+                                        <input className=" btn btn-warning w-25 h-50 ms-2 text-center"
+                                            id="image-upload" type="file" accept="image/*" placeholder=""
+                                            required
+                                            onChange={e => handleUpload(e)}
+                                        />
+
+                                    </>
+                            }
+                        </div>
           </div>
         </Modal>
 

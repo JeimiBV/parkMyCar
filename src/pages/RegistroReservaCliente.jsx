@@ -50,6 +50,7 @@ export default function RegistroReserva() {
     const handleNotification = () => {
         toast.success('La reserva se ha realizado exitosamente', { autoClose: 2000 });
     };
+    
     const handleVerification = (estado) => {
        if(estado){
         toast.success("se ha confirmado el pago exitosamente", { autoClose: 2000 });
