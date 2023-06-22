@@ -10,7 +10,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { postPeticion, postReporte, patchVerificacion,fetchVerification } from "../functions/useFetch";
+import { postPeticion, postReporte, patchVerificacion, fetchVerification } from "../functions/useFetch";
 import { uploadFile } from "../firebase/config";
 import { toast } from "react-toastify";
 
@@ -50,27 +50,37 @@ export default function RegistroReserva() {
     toast.success('La reserva se ha realizado exitosamente', { autoClose: 2000 });
   }
   const handleVerification = (estado) => {
-    if(estado){
-     toast.success("se ha confirmado el pago exitosamente", { autoClose: 2000 });
+    if (estado) {
+      toast.success("Se ha confirmado el pago exitosamente", { autoClose: 2000 });
     }
-    else{
-     toast.error("el pago no ha sido confirmado", { autoClose: 2000 });
+    else {
+      toast.error("El pago no ha sido confirmado", { autoClose: 2000 });
     }
- };
+  };
 
- const payVerification =async()=>{
-    let res =await fetchVerification()
-     if (res[0].reserves[0].isPaid==true){
-         setIsPay(true);
-         handleVerification(true);
-          patchVerificacion();
-         console.log(res[0].reserves[0].isPaid)
-     }
-     else{
-         setIsPay(false);
-         handleVerification(false);
-     }
- }
+  const cancelarPago = async () => {
+    let res = await fetchVerification();
+    if (res[0].reserves[0].isPaid == true) {
+      setIsPay(false);
+      patchVerificacion();
+    }
+    setModalQR(false);
+
+  }
+
+  const payVerification = async () => {
+    let res = await fetchVerification()
+    if (res[0].reserves[0].isPaid == true) {
+      setIsPay(true);
+      handleVerification(true);
+      patchVerificacion();
+      console.log(res[0].reserves[0].isPaid)
+    }
+    else {
+      setIsPay(false);
+      handleVerification(false);
+    }
+  }
 
   const handlePost = async (e) => {
     e.preventDefault();
@@ -295,37 +305,37 @@ export default function RegistroReserva() {
           <div className="row">
             <QRCode value="https://coruscating-tulumba-b76ec7.netlify.app/factura" size={150} />
             <div className="row d-flex justify-content-center mt-1 ">
-                            {factura ? <button
-                                className="btn btn-primary w-25 my-5 me-2"
-                                onClick={() => {
-                                    setModalQR(false);
-                                }}
-                            >
-                                Aceptar
-                            </button> : !isPay ?
-                                <>
-                                    <button className="btn btn-primary w-25 my-5 me-2" onClick={() => { payVerification() }}> verificar pago </button>
-                                    <button
-                                        className="btn btn-primary w-25 my-5 me-2"
-                                        onClick={() => {
-                                            setModalQR(false);
-                                        }}
-                                    >
-                                        Cancelar
-                                    </button>
-                                </> :
-                                !factura && !loading ? <div className="w-25 my-5 ms-2"><Spinner /></div> :
+              {factura ? <button
+                className="btn btn-primary w-25 my-5 me-2"
+                onClick={() => {
+                  setModalQR(false);
+                }}
+              >
+                Aceptar
+              </button> : !isPay ?
+                <>
+                  <button className="btn btn-primary w-25 my-5 me-2" onClick={() => { payVerification() }}> Verificar pago </button>
+                  <button
+                    className="btn btn-primary w-25 my-5 me-2"
+                    onClick={() => {
+                      cancelarPago();
+                    }}
+                  >
+                    Cancelar
+                  </button>
+                </> :
+                !factura && !loading ? <div className="w-25 my-5 ms-2"><Spinner /></div> :
 
-                                    <><label for="fileInput" className=" text-center mb-2 mt-3">Ingrese la factura de su reserva:</label>
-                                        <input className=" btn btn-warning w-25 h-50 ms-2 text-center"
-                                            id="image-upload" type="file" accept="image/*" placeholder=""
-                                            required
-                                            onChange={e => handleUpload(e)}
-                                        />
+                  <><label for="fileInput" className=" text-center mb-2 mt-3">Ingrese la factura de su reserva:</label>
+                    <input className=" btn btn-warning w-25 h-50 ms-2 text-center"
+                      id="image-upload" type="file" accept="image/*" placeholder=""
+                      required
+                      onChange={e => handleUpload(e)}
+                    />
 
-                                    </>
-                            }
-                        </div>
+                  </>
+              }
+            </div>
           </div>
         </Modal>
 

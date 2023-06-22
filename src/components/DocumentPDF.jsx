@@ -88,7 +88,7 @@ const PDFDocument = ({ datae }) => {
                                 <Text style={styles.tableCell}>Nombre completo</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>Monto cobrado</Text>
+                                <Text style={styles.tableCell}>Monto cobrado (Bs.)</Text>
                             </View>
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>Fecha</Text>
@@ -118,7 +118,7 @@ const PDFDocument = ({ datae }) => {
                                             <Text style={styles.tableCell}>{dato.name}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{dato.price}</Text>
+                                            <Text style={styles.tableCell}>{dato.price} Bs.</Text>
                                         </View>
                                         <View style={styles.tableCol}>
                                             <Text style={styles.tableCell}>{dato.entryDate.slice(0, 10)}</Text>
@@ -144,7 +144,7 @@ const PDFDocument = ({ datae }) => {
                                     <Text style={styles.tableCell}>Total</Text>
                                 </View>
                                 <View style={styles.tableColTotalVal}>
-                                    <Text style={styles.tableCell}>{total}</Text>
+                                    <Text style={styles.tableCell}>{total} Bs.</Text>
                                 </View>
                             </View>
                         </View>

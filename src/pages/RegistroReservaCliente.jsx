@@ -53,12 +53,22 @@ export default function RegistroReserva() {
     
     const handleVerification = (estado) => {
        if(estado){
-        toast.success("se ha confirmado el pago exitosamente", { autoClose: 2000 });
+        toast.success("Se ha confirmado el pago exitosamente", { autoClose: 2000 });
        }
        else{
-        toast.error("el pago no ha sido confirmado", { autoClose: 2000 });
+        toast.error("El pago no ha sido confirmado", { autoClose: 2000 });
        }
     };
+
+    const cancelarPago=async()=>{
+        let res =await fetchVerification();
+        if (res[0].reserves[0].isPaid==true){
+            setIsPay(false);
+             patchVerificacion();
+        }
+        setModalQR(false);
+
+    }
 
     const payVerification =async()=>{
        let res =await fetchVerification()
@@ -286,11 +296,11 @@ export default function RegistroReserva() {
                                 Aceptar
                             </button> : !isPay ?
                                 <>
-                                    <button className="btn btn-primary w-25 my-5 me-2" onClick={() => { payVerification() }}> verificar pago </button>
+                                    <button className="btn btn-primary w-25 my-5 me-2" onClick={() => { payVerification() }}> Verificar pago </button>
                                     <button
                                         className="btn btn-primary w-25 my-5 me-2"
                                         onClick={() => {
-                                            setModalQR(false);
+                                            cancelarPago();
                                         }}
                                     >
                                         Cancelar
