@@ -130,7 +130,7 @@ const PDFDocument = ({ datae }) => {
                                             <Text style={styles.tableCell}>{dato.retirementDate.slice(11, 19)}</Text>
                                         </View>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{Math.abs(dato.entryDate.slice(11, 13) - dato.retirementDate.slice(11, 13))}</Text>
+                                            <Text style={styles.tableCell}>{Math.abs(dato.entryDate.slice(11, 13) - dato.retirementDate.slice(11, 13))} Hrs.</Text>
                                         </View>
                                         <View style={styles.tableCol}>
                                             <Text style={styles.tableCell}>{dato.plate}</Text>
